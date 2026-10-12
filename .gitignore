@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+# regenerierbare Zwischenstände der Kartenkette
+karte/data/osm.pkl
+karte/data/dgm_frame.tif
+karte/data/*.npy
+karte/out/maps/
+karte/out/landmarken_v0.*
+karte/web/site/
+karte/web/app/
+karte/web/feld_full.png

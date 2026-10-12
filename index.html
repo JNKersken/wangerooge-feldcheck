@@ -1,0 +1,532 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Feldcheck"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="theme-color" content="#fffdf7"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png"><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style><title>Feldcheck Wangerooge West</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Layout: one-screen field tool — paper map fills the screen, a bottom sheet (side panel on wide screens) carries the selected landmark and the three verdict buttons. */
+:root{
+  --paper:#fffdf7; --panel:#fffdf7; --ink:#1f1d24; --muted:#6b6676; --line:#ddd6c8; --chip:#f2eee5;
+  --accent:#a3237f; --accent-ink:#ffffff; --ok:#2e9d57; --bad:#cf4136; --move:#d98a1c; --sel:#2b6fd6;
+  --f-display:"Caveat","Segoe Print","Bradley Hand",cursive; --f-ui:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#17151b;--panel:#1f1c24;--ink:#f1ede5;--muted:#a7a1b0;--line:#38333f;--chip:#2a2630;--accent:#e46bc4;--accent-ink:#17151b;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#17151b;--panel:#1f1c24;--ink:#f1ede5;--muted:#a7a1b0;--line:#38333f;--chip:#2a2630;--accent:#e46bc4;--accent-ink:#17151b;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:15px;overflow:hidden}
+ .leaflet-pane, .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-tile-container, .leaflet-pane > svg, .leaflet-pane > canvas, .leaflet-zoom-box, .leaflet-image-layer, .leaflet-layer { position: absolute; left: 0; top: 0; } .leaflet-container { overflow: hidden; } .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow { -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-user-drag: none; } .leaflet-tile::selection { background: transparent; } .leaflet-safari .leaflet-tile { image-rendering: -webkit-optimize-contrast; } .leaflet-safari .leaflet-tile-container { width: 1600px; height: 1600px; -webkit-transform-origin: 0 0; } .leaflet-marker-icon, .leaflet-marker-shadow { display: block; } .leaflet-container .leaflet-overlay-pane svg { max-width: none !important; max-height: none !important; } .leaflet-container .leaflet-marker-pane img, .leaflet-container .leaflet-shadow-pane img, .leaflet-container .leaflet-tile-pane img, .leaflet-container img.leaflet-image-layer, .leaflet-container .leaflet-tile { max-width: none !important; max-height: none !important; width: auto; padding: 0; } .leaflet-container img.leaflet-tile { mix-blend-mode: plus-lighter; } .leaflet-container.leaflet-touch-zoom { -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; } .leaflet-container.leaflet-touch-drag { -ms-touch-action: pinch-zoom; touch-action: none; touch-action: pinch-zoom; } .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom { -ms-touch-action: none; touch-action: none; } .leaflet-container { -webkit-tap-highlight-color: transparent; } .leaflet-container a { -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4); } .leaflet-tile { filter: inherit; visibility: hidden; } .leaflet-tile-loaded { visibility: inherit; } .leaflet-zoom-box { width: 0; height: 0; -moz-box-sizing: border-box; box-sizing: border-box; z-index: 800; } .leaflet-overlay-pane svg { -moz-user-select: none; } .leaflet-pane { z-index: 400; } .leaflet-tile-pane { z-index: 200; } .leaflet-overlay-pane { z-index: 400; } .leaflet-shadow-pane { z-index: 500; } .leaflet-marker-pane { z-index: 600; } .leaflet-tooltip-pane { z-index: 650; } .leaflet-popup-pane { z-index: 700; } .leaflet-map-pane canvas { z-index: 100; } .leaflet-map-pane svg { z-index: 200; } .leaflet-vml-shape { width: 1px; height: 1px; } .lvml { behavior: url(#default#VML); display: inline-block; position: absolute; } .leaflet-control { position: relative; z-index: 800; pointer-events: visiblePainted; pointer-events: auto; } .leaflet-top, .leaflet-bottom { position: absolute; z-index: 1000; pointer-events: none; } .leaflet-top { top: 0; } .leaflet-right { right: 0; } .leaflet-bottom { bottom: 0; } .leaflet-left { left: 0; } .leaflet-control { float: left; clear: both; } .leaflet-right .leaflet-control { float: right; } .leaflet-top .leaflet-control { margin-top: 10px; } .leaflet-bottom .leaflet-control { margin-bottom: 10px; } .leaflet-left .leaflet-control { margin-left: 10px; } .leaflet-right .leaflet-control { margin-right: 10px; } .leaflet-fade-anim .leaflet-popup { opacity: 0; -webkit-transition: opacity 0.2s linear; -moz-transition: opacity 0.2s linear; transition: opacity 0.2s linear; } .leaflet-fade-anim .leaflet-map-pane .leaflet-popup { opacity: 1; } .leaflet-zoom-animated { -webkit-transform-origin: 0 0; -ms-transform-origin: 0 0; transform-origin: 0 0; } svg.leaflet-zoom-animated { will-change: transform; } .leaflet-zoom-anim .leaflet-zoom-animated { -webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1); -moz-transition: -moz-transform 0.25s cubic-bezier(0,0,0.25,1); transition: transform 0.25s cubic-bezier(0,0,0.25,1); } .leaflet-zoom-anim .leaflet-tile, .leaflet-pan-anim .leaflet-tile { -webkit-transition: none; -moz-transition: none; transition: none; } .leaflet-zoom-anim .leaflet-zoom-hide { visibility: hidden; } .leaflet-interactive { cursor: pointer; } .leaflet-grab { cursor: -webkit-grab; cursor: -moz-grab; cursor: grab; } .leaflet-crosshair, .leaflet-crosshair .leaflet-interactive { cursor: crosshair; } .leaflet-popup-pane, .leaflet-control { cursor: auto; } .leaflet-dragging .leaflet-grab, .leaflet-dragging .leaflet-grab .leaflet-interactive, .leaflet-dragging .leaflet-marker-draggable { cursor: move; cursor: -webkit-grabbing; cursor: -moz-grabbing; cursor: grabbing; } .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-image-layer, .leaflet-pane > svg path, .leaflet-tile-container { pointer-events: none; } .leaflet-marker-icon.leaflet-interactive, .leaflet-image-layer.leaflet-interactive, .leaflet-pane > svg path.leaflet-interactive, svg.leaflet-image-layer.leaflet-interactive path { pointer-events: visiblePainted; pointer-events: auto; } .leaflet-container { background: #ddd; outline-offset: 1px; } .leaflet-container a { color: #0078A8; } .leaflet-zoom-box { border: 2px dotted #38f; background: rgba(255,255,255,0.5); } .leaflet-container { font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; font-size: 12px; font-size: 0.75rem; line-height: 1.5; } .leaflet-bar { box-shadow: 0 1px 5px rgba(0,0,0,0.65); border-radius: 4px; } .leaflet-bar a { background-color: #fff; border-bottom: 1px solid #ccc; width: 26px; height: 26px; line-height: 26px; display: block; text-align: center; text-decoration: none; color: black; } .leaflet-bar a, .leaflet-control-layers-toggle { background-position: 50% 50%; background-repeat: no-repeat; display: block; } .leaflet-bar a:hover, .leaflet-bar a:focus { background-color: #f4f4f4; } .leaflet-bar a:first-child { border-top-left-radius: 4px; border-top-right-radius: 4px; } .leaflet-bar a:last-child { border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-bottom: none; } .leaflet-bar a.leaflet-disabled { cursor: default; background-color: #f4f4f4; color: #bbb; } .leaflet-touch .leaflet-bar a { width: 30px; height: 30px; line-height: 30px; } .leaflet-touch .leaflet-bar a:first-child { border-top-left-radius: 2px; border-top-right-radius: 2px; } .leaflet-touch .leaflet-bar a:last-child { border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; } .leaflet-control-zoom-in, .leaflet-control-zoom-out { font: bold 18px 'Lucida Console', Monaco, monospace; text-indent: 1px; } .leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out { font-size: 22px; } .leaflet-control-layers { box-shadow: 0 1px 5px rgba(0,0,0,0.4); background: #fff; border-radius: 5px; } .leaflet-control-layers-toggle { background-image: url(images/layers.png); width: 36px; height: 36px; } .leaflet-retina .leaflet-control-layers-toggle { background-image: url(images/layers-2x.png); background-size: 26px 26px; } .leaflet-touch .leaflet-control-layers-toggle { width: 44px; height: 44px; } .leaflet-control-layers .leaflet-control-layers-list, .leaflet-control-layers-expanded .leaflet-control-layers-toggle { display: none; } .leaflet-control-layers-expanded .leaflet-control-layers-list { display: block; position: relative; } .leaflet-control-layers-expanded { padding: 6px 10px 6px 6px; color: #333; background: #fff; } .leaflet-control-layers-scrollbar { overflow-y: scroll; overflow-x: hidden; padding-right: 5px; } .leaflet-control-layers-selector { margin-top: 2px; position: relative; top: 1px; } .leaflet-control-layers label { display: block; font-size: 13px; font-size: 1.08333em; } .leaflet-control-layers-separator { height: 0; border-top: 1px solid #ddd; margin: 5px -10px 5px -6px; } .leaflet-default-icon-path { background-image: url(images/marker-icon.png); } .leaflet-container .leaflet-control-attribution { background: #fff; background: rgba(255, 255, 255, 0.8); margin: 0; } .leaflet-control-attribution, .leaflet-control-scale-line { padding: 0 5px; color: #333; line-height: 1.4; } .leaflet-control-attribution a { text-decoration: none; } .leaflet-control-attribution a:hover, .leaflet-control-attribution a:focus { text-decoration: underline; } .leaflet-attribution-flag { display: inline !important; vertical-align: baseline !important; width: 1em; height: 0.6669em; } .leaflet-left .leaflet-control-scale { margin-left: 5px; } .leaflet-bottom .leaflet-control-scale { margin-bottom: 5px; } .leaflet-control-scale-line { border: 2px solid #777; border-top: none; line-height: 1.1; padding: 2px 5px 1px; white-space: nowrap; -moz-box-sizing: border-box; box-sizing: border-box; background: rgba(255, 255, 255, 0.8); text-shadow: 1px 1px #fff; } .leaflet-control-scale-line:not(:first-child) { border-top: 2px solid #777; border-bottom: none; margin-top: -2px; } .leaflet-control-scale-line:not(:first-child):not(:last-child) { border-bottom: 2px solid #777; } .leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar { box-shadow: none; } .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar { border: 2px solid rgba(0,0,0,0.2); background-clip: padding-box; } .leaflet-popup { position: absolute; text-align: center; margin-bottom: 20px; } .leaflet-popup-content-wrapper { padding: 1px; text-align: left; border-radius: 12px; } .leaflet-popup-content { margin: 13px 24px 13px 20px; line-height: 1.3; font-size: 13px; font-size: 1.08333em; min-height: 1px; } .leaflet-popup-content p { margin: 17px 0; margin: 1.3em 0; } .leaflet-popup-tip-container { width: 40px; height: 20px; position: absolute; left: 50%; margin-top: -1px; margin-left: -20px; overflow: hidden; pointer-events: none; } .leaflet-popup-tip { width: 17px; height: 17px; padding: 1px; margin: -10px auto 0; pointer-events: auto; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); } .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: white; color: #333; box-shadow: 0 3px 14px rgba(0,0,0,0.4); } .leaflet-container a.leaflet-popup-close-button { position: absolute; top: 0; right: 0; border: none; text-align: center; width: 24px; height: 24px; font: 16px/24px Tahoma, Verdana, sans-serif; color: #757575; text-decoration: none; background: transparent; } .leaflet-container a.leaflet-popup-close-button:hover, .leaflet-container a.leaflet-popup-close-button:focus { color: #585858; } .leaflet-popup-scrolled { overflow: auto; } .leaflet-oldie .leaflet-popup-content-wrapper { -ms-zoom: 1; } .leaflet-oldie .leaflet-popup-tip { width: 24px; margin: 0 auto; -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)"; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678); } .leaflet-oldie .leaflet-control-zoom, .leaflet-oldie .leaflet-control-layers, .leaflet-oldie .leaflet-popup-content-wrapper, .leaflet-oldie .leaflet-popup-tip { border: 1px solid #999; } .leaflet-div-icon { background: #fff; border: 1px solid #666; } .leaflet-tooltip { position: absolute; padding: 6px; background-color: #fff; border: 1px solid #fff; border-radius: 3px; color: #222; white-space: nowrap; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: none; box-shadow: 0 1px 3px rgba(0,0,0,0.4); } .leaflet-tooltip.leaflet-interactive { cursor: pointer; pointer-events: auto; } .leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before, .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { position: absolute; pointer-events: none; border: 6px solid transparent; background: transparent; content: ""; } .leaflet-tooltip-bottom { margin-top: 6px; } .leaflet-tooltip-top { margin-top: -6px; } .leaflet-tooltip-bottom:before, .leaflet-tooltip-top:before { left: 50%; margin-left: -6px; } .leaflet-tooltip-top:before { bottom: 0; margin-bottom: -12px; border-top-color: #fff; } .leaflet-tooltip-bottom:before { top: 0; margin-top: -12px; margin-left: -6px; border-bottom-color: #fff; } .leaflet-tooltip-left { margin-left: -6px; } .leaflet-tooltip-right { margin-left: 6px; } .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { top: 50%; margin-top: -6px; } .leaflet-tooltip-left:before { right: 0; margin-right: -12px; border-left-color: #fff; } .leaflet-tooltip-right:before { left: 0; margin-left: -12px; border-right-color: #fff; } @media print { .leaflet-control { -webkit-print-color-adjust: exact; print-color-adjust: exact; } } 
+#app{position:relative;height:100%;display:grid;grid-template-rows:auto 1fr}
+.bar{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--panel);z-index:5}
+.brand{font-family:var(--f-display);font-size:24px;font-weight:700;line-height:1;white-space:nowrap}
+.brand small{font-family:var(--f-ui);font-size:12px;font-weight:400;color:var(--muted);display:block;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+.prog{flex:1;min-width:0;display:grid;gap:4px;justify-items:end}
+.prog b{font-variant-numeric:tabular-nums;font-size:14px}
+.meter{width:min(220px,100%);height:6px;border-radius:3px;background:var(--chip);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+button{font:inherit;color:inherit;cursor:pointer}
+.ib{border:1px solid var(--line);background:var(--chip);border-radius:8px;padding:7px 10px;font-size:14px;white-space:nowrap}
+.bar .ib{padding:6px 9px}
+.ib:focus-visible,.act:focus-visible,.chip:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
+#map{position:relative;background:#fffdf7;z-index:1}
+.leaflet-container{background:#fffdf7;font-family:var(--f-ui)}
+#banner{position:absolute;top:58px;left:50%;transform:translateX(-50%);z-index:20;background:var(--accent);color:var(--accent-ink);padding:9px 14px;border-radius:999px;font-weight:700;display:flex;gap:10px;align-items:center;box-shadow:0 4px 16px #0003;max-width:calc(100% - 32px)}
+#banner button{background:transparent;border:1px solid currentColor;border-radius:999px;padding:3px 10px;color:inherit;font-size:13px}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:10;background:var(--panel);border-top:1px solid var(--line);box-shadow:0 -6px 20px #0002;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));max-height:52%;overflow:auto;display:grid;gap:10px}
+@media (min-width:820px){.sheet{left:auto;top:57px;width:370px;max-height:none;border-top:0;border-left:1px solid var(--line);box-shadow:-6px 0 20px #0001;align-content:start}}
+.kicker{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700;letter-spacing:.02em;text-transform:none}
+.p-open{background:var(--chip);color:var(--muted)} .p-ok{background:var(--ok);color:#fff} .p-bad{background:var(--bad);color:#fff} .p-move{background:var(--move);color:#1b1305} .p-sure{background:var(--chip);color:var(--ink)}
+h2{margin:0;font-size:19px;line-height:1.25;text-wrap:balance}
+.meta{color:var(--muted);font-size:13.5px;line-height:1.45}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.act{border:0;border-radius:var(--r);padding:12px 6px;font-weight:700;font-size:15px;display:grid;gap:2px;justify-items:center}
+.act span{font-size:11.5px;font-weight:400;opacity:.9}
+.a-ok{background:var(--ok);color:#fff}.a-bad{background:var(--bad);color:#fff}.a-move{background:var(--move);color:#1b1305}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row .ib{flex:1 1 auto}
+textarea{width:100%;box-sizing:border-box;font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px;min-height:40px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:6px 11px;font-size:13.5px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.status{font-size:12.5px;color:var(--muted)}
+.status.warn{color:var(--bad)}
+.panel{position:absolute;inset:57px 0 0 0;z-index:15;background:var(--panel);overflow:auto;padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px));display:grid;gap:14px;align-content:start}
+@media (min-width:820px){.panel{left:auto;width:370px;border-left:1px solid var(--line)}}
+.panel h3{margin:0;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.list{display:grid;gap:2px}
+.li{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;text-align:left;border:0;background:transparent;border-bottom:1px solid var(--line);padding:9px 2px}
+.li small{color:var(--muted)}
+.li .d{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+pre{white-space:pre-wrap;word-break:break-all;font-size:11px;background:var(--chip);padding:8px;border-radius:8px;max-height:160px;overflow:auto}
+.ico{width:22px;height:22px}
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px;font-size:13px}
+.legend div{display:flex;gap:8px;align-items:center}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid #8f8a96;flex:none}
+.gpsb[data-st="on"]{background:var(--sel);color:#fff;border-color:var(--sel)} .gpsb[data-st="wait"]{background:var(--chip);color:var(--sel);border-color:var(--sel)} .gpsb[data-st="err"]{color:var(--bad);border-color:var(--bad)}
+.ctl{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;width:40px;height:40px;font-size:20px;line-height:38px;text-align:center;box-shadow:0 2px 8px #0002;padding:0}
+.ctl[aria-pressed="true"]{background:var(--sel);color:#fff;border-color:var(--sel)}
+.a-here{background:var(--sel);color:#fff;border:0;border-radius:var(--r);padding:11px 8px;font-weight:700;font-size:14.5px}
+.rec{color:var(--bad);font-weight:700}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style></head><body>
+
+<div id="app">
+  <header class="bar">
+    <div class="brand">Feldcheck<small>Wangerooge West</small></div>
+    <div class="prog" aria-live="polite"><b id="progTxt">–/–</b><div class="meter"><i id="meterFill"></i></div></div>
+    <button class="ib gpsb" id="btnGps" type="button" data-st="off" hidden>GPS</button>
+    <button class="ib" id="btnList" type="button">Liste</button>
+    <button class="ib" id="btnMenu" type="button">Mehr</button>
+  </header>
+  <div id="map" role="application" aria-label="Karte Wangerooge West"></div>
+  <div id="banner" hidden><span id="bannerTxt"></span><button id="bannerCancel" type="button">Abbrechen</button></div>
+  <section class="sheet" id="sheet" aria-live="polite"></section>
+  <section class="panel" id="listPanel" hidden></section>
+  <section class="panel" id="menuPanel" hidden></section>
+</div>
+
+<script src="leaflet.js"></script>
+<script>
+(() => {
+const IS_APP = true;   // standalone web app (own domain): real GPS, offline cache, file export
+const X0 = 423750, Y1 = 5961650, W = 3400, H = 2800;
+// WGS84 -> UTM zone 32N (ETRS89/UTM32, EPSG:25832; sub-metre agreement, far below phone GPS accuracy)
+function toUTM(lat, lon){
+  const a = 6378137, f = 1 / 298.257222101, k0 = 0.9996, e2 = f * (2 - f), ep2 = e2 / (1 - e2), d = Math.PI / 180;
+  const phi = lat * d, A = Math.cos(phi) * (lon - 9) * d, sn = Math.sin(phi), N = a / Math.sqrt(1 - e2 * sn * sn), T = Math.tan(phi) ** 2, C = ep2 * Math.cos(phi) ** 2;
+  const M = a * ((1 - e2 / 4 - 3 * e2 * e2 / 64 - 5 * e2 ** 3 / 256) * phi - (3 * e2 / 8 + 3 * e2 * e2 / 32 + 45 * e2 ** 3 / 1024) * Math.sin(2 * phi)
+          + (15 * e2 * e2 / 256 + 45 * e2 ** 3 / 1024) * Math.sin(4 * phi) - (35 * e2 ** 3 / 3072) * Math.sin(6 * phi));
+  const E = 500000 + k0 * N * (A + (1 - T + C) * A ** 3 / 6 + (5 - 18 * T + T * T + 72 * C - 58 * ep2) * A ** 5 / 120);
+  const Nn = k0 * (M + N * Math.tan(phi) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A ** 4 / 24 + (61 - 58 * T + T * T + 600 * C - 330 * ep2) * A ** 6 / 720));
+  return [Math.round(E * 10) / 10, Math.round(Nn * 10) / 10];
+}
+const HEAD_CORR = 4.4;   // magnetic -> grid north on Wangerooge (declination ~+3.5°, convergence ~-0.9°)
+const ll = (e, n) => L.latLng(n - Y1, e - X0);
+const en = (p) => [Math.round((p.lng + X0) * 10) / 10, Math.round((p.lat + Y1) * 10) / 10];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LS = {get(k, d){try{const v = localStorage.getItem(k); return v ? JSON.parse(v) : d}catch(e){return d}}, set(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}};
+
+const CAT = {
+  'Bank':['Bank','M4 9H16M6 9V14M14 9V14'], 'Trichter':['Grube/Trichter','M5 7L10 14L15 7'], 'Gewässer':['Tümpel','M6 11a4 4 0 1 0 8 0a4 4 0 1 0 -8 0'],
+  'Rettungspunkt':['SOS-Schild','M10 5V15M5 10H15'], 'Durchgang':['Tor/Durchlass','M5 6V14M15 6V14M5 8H15M5 12.5H15M5 12.5L15 8'], 'Kleinobjekt':['Infotafel & Co.','M10 9V14M10 6.2V6.4'],
+  'Gastronomie':['Gastronomie','M6 7L7 14H13L14 7Z'], 'Bauwerk':['Bauwerk','M5 13L10 6L15 13Z'], 'Einrichtung':['Einrichtung','M8 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0'],
+  'Historisch':['Gedenkort','M10 5V15M7 8H13'], 'Dünenübergang':['Dünenübergang','M7 5V15M13 5V15M7 8H13M7 12H13'], 'Unterkunft':['Heim','M5 10L10 5L15 10V15H5Z'],
+  'Gebäude':['Gebäude','M5 10L10 5L15 10V15H5Z'], 'Gelände':['Düne','M4 14L10 6L16 14Z'], 'Vegetation':['Wäldchen','M10 15V11M6 9a4 4 0 1 0 8 0a4 4 0 1 0 -8 0'],
+  'Pfad':['Pfad','M3 15L7 11M9 9L11 7M13 5L17 3'],
+  'Kuppe':['Dünenkuppe','M4 14Q10 4 16 14M10 9V9.2'], 'Steilhang':['Steilhang','M4 8H16M6 8V12M10 8V12M14 8V12'], 'Busch':['Busch','M7 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0'],
+  'km-Stein':['km-Stein','M8 15V7L10 5L12 7V15Z'], 'Bahnübergang':['Bahnübergang','M5 5L15 15M15 5L5 15'], 'Haltepunkt':['Haltepunkt','M7 5V15M13 5V15M7 10H13'],
+  'Buhne':['Buhne','M4 15L16 5M7 15L9 13'], 'Brücke':['Brücke/Durchlass','M4 7Q10 11 16 7M4 13Q10 9 16 13'], 'Hydrant':['Hydrant','M7 15V8H13V15M6 8H14M10 8V5'],
+  'Spielplatz':['Spielplatz','M5 15L8 5H12L15 15M8 5V10'], 'Sportplatz':['Sportplatz','M4 6H16V14H4ZM10 6V14'], 'Fitness':['Fitness','M8 12L12 8M4.5 12.5L7.5 15.5M12.5 4.5L15.5 7.5'],
+  'Recycling':['Container','M5 8H15L14 15H6ZM8 6H12'], 'Fahrradständer':['Fahrradständer','M4 13a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M11 13a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M6.5 13L10 8L13.5 13'],
+  'Umspannstation':['Trafostation','M11 4L7 11H11L9 16L14 9H10Z'],
+  'Neu':['Neu','M10 4L12 9H17L13 12L14.5 17L10 14L5.5 17L7 12L3 9H8Z'],
+};
+const FILL = {open:'#ffffff', ok:'#2e9d57', fehlt:'#cf4136', woanders:'#d98a1c', sure:'#4a3f55', neu:'#2b6fd6'};
+const SURE_ZOOM = 0;
+const VERB = {ok:'Stimmt', fehlt:'Fehlt', woanders:'Woanders'};
+const NEWGROUPS = [
+  ['Nur vor Ort erfassbar', ['Ruhezonen-Schild','Ruhezonen-Pfahl','Strandaufgang (Nr.)','Findling / Stein','Pfahl / Pfosten','Fahnenmast','Einzelbaum','Schild (sonstiges)']],
+  ['Weitere Landmarken', ['Bank','SOS-Schild','Markanter Busch','Grube / Trichter','Tümpel','Dünenkuppe','Steilhang / Abbruch','Dünenübergang','Tor / Durchlass','Infotafel','Schutzhütte','Sandfangzaun','Holzsteg','Sonstiges']]];
+const NEWTYPES = NEWGROUPS.flatMap(g => g[1]);
+const typeChips = (cur) => NEWGROUPS.map(([h, ts]) => `<div class="kicker" style="margin-top:2px">${esc(h)}</div><div class="chips">${ts.map(t => `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${t === cur}">${esc(t)}</button>`).join('')}</div>`).join('');
+
+let DATA = null, byId = {}, markers = {}, lines = {}, moveLines = {};
+let verdicts = {};             // confirmed from store (or local when no store)
+let pending = LS.get('fc_pending', {});   // local writes not yet confirmed
+let news = {}; let pendingNew = LS.get('fc_pendingNew', {});
+let selId = null, mode = null, addType = null, draft = [], draftLine = null, formDraft = null, showForm = false;
+let showAll = LS.get('fc_showAll', false), catOff = new Set(LS.get('fc_catOff', [])), me = LS.get('fc_me', null), meMarker = null;
+let db = null, storeState = 'connecting';
+let gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}, follow = false, rec = null, accLayer = null;
+
+const map = L.map('map', {crs: L.CRS.Simple, minZoom: -2, maxZoom: 3, zoomSnap: .25, zoomDelta: .5, attributionControl: false, zoomControl: false, maxBoundsViscosity: .8});
+const B = L.latLngBounds(ll(X0, Y1 - H), ll(X0 + W, Y1));
+map.setMaxBounds(B.pad(.15));
+const Tiles = L.TileLayer.extend({getTileUrl(c){return `t${c.z + 2}_${c.x}_${c.y}.png`}});
+new Tiles('', {tileSize: 512, minZoom: -2, maxZoom: 3, minNativeZoom: -2, maxNativeZoom: 1, bounds: B, noWrap: true,
+  errorTileUrl: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}).addTo(map);
+L.control.zoom({position: 'topleft'}).addTo(map);
+map.fitBounds(L.latLngBounds(ll(424150, 5960050), ll(425350, 5961000)));
+
+const vOf = (id) => pending[id] || verdicts[id] || null;
+function stateOf(it){ const v = vOf(it.id); if (v) return v.st; return it.s === 'sicher' ? 'sure' : 'open'; }
+function icon(it, selected){
+  const st = stateOf(it), c = CAT[it.k] || CAT['Kleinobjekt'];
+  const sz = st === 'sure' ? (it.k === 'Trichter' ? 16 : 19) : (it.k === 'Trichter' ? 20 : 24), glyph = (st === 'ok' || st === 'fehlt' || st === 'sure') ? '#ffffff' : '#1f1d24';
+  const ring = selected ? '#2b6fd6' : (st === 'open' ? '#7d7787' : (st === 'sure' ? '#ffffff' : 'rgba(0,0,0,.35)'));
+  const html = `<svg class="ico" width="${sz}" height="${sz}" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="${FILL[st]}" stroke="${ring}" stroke-width="${selected ? 2.4 : 1.4}"/><path d="${c[1]}" fill="none" stroke="${glyph}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  return L.divIcon({html, className: '', iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2]});
+}
+function visible(it){ if (catOff.has(it.k)) return false; if (it.s === 'sicher' && !showAll && !vOf(it.id) && it.id !== selId && map.getZoom() < SURE_ZOOM) return false; return true; }
+let sureVis = null;
+map.on('zoomend', () => { const v = map.getZoom() >= SURE_ZOOM; if (DATA && v !== sureVis) { sureVis = v; DATA.items.forEach(i => { if (i.s === 'sicher') drawItem(i); }); } });
+
+function drawItem(it){
+  const sel = it.id === selId;
+  if (it.c){ // path
+    const st = stateOf(it), col = st === 'open' ? '#6f4aa0' : FILL[st];
+    if (lines[it.id]) map.removeLayer(lines[it.id]);
+    if (!visible(it)) return;
+    lines[it.id] = L.polyline(it.c.map(p => ll(p[0], p[1])), {color: sel ? '#2b6fd6' : col, weight: sel ? 7 : 5, opacity: .85, dashArray: st === 'open' ? '8 7' : null})
+      .on('click', (e) => { L.DomEvent.stop(e); onTap(e.latlng, it.id); }).addTo(map);
+    return;
+  }
+  if (markers[it.id]) { map.removeLayer(markers[it.id]); delete markers[it.id]; }
+  if (moveLines[it.id]) { map.removeLayer(moveLines[it.id]); delete moveLines[it.id]; }
+  if (!visible(it)) return;
+  const v = vOf(it.id);
+  markers[it.id] = L.marker(ll(it.e, it.nn), {icon: icon(it, sel), keyboard: false, zIndexOffset: sel ? 1000 : (it.s === 'sicher' ? 0 : 100)})
+    .on('click', (e) => { L.DomEvent.stop(e); onTap(e.latlng, it.id); }).addTo(map);
+  if (v && v.st === 'woanders' && v.e){
+    moveLines[it.id] = L.layerGroup([
+      L.polyline([ll(it.e, it.nn), ll(v.e, v.n)], {color: '#d98a1c', weight: 2.5, dashArray: '4 4'}),
+      L.circleMarker(ll(v.e, v.n), {radius: 6, color: '#7a4a07', weight: 2, fillColor: '#d98a1c', fillOpacity: 1})
+    ]).addTo(map);
+  }
+}
+let newLayer = L.layerGroup().addTo(map);
+function drawNews(){
+  newLayer.clearLayers();
+  const all = {...news, ...pendingNew};
+  for (const [id, n] of Object.entries(all)){
+    if (n.pts && n.pts.length > 1) newLayer.addLayer(L.polyline(n.pts.map(p => ll(p[0], p[1])), {color: '#2b6fd6', weight: 4}));
+    const p = n.pts ? n.pts[0] : [n.e, n.n];
+    newLayer.addLayer(L.marker(ll(p[0], p[1]), {icon: L.divIcon({className: '', iconSize: [22, 22], iconAnchor: [11, 11],
+      html: `<svg width="22" height="22" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#2b6fd6" stroke="#fff" stroke-width="1.4"/><path d="${CAT['Neu'][1]}" fill="#fff" stroke="none" transform="translate(2.5 2.5) scale(.75)"/></svg>`})})
+      .on('click', (e) => { L.DomEvent.stop(e); selectNew(id); }));
+  }
+}
+function redrawAll(){ DATA.items.forEach(drawItem); DATA.paths.forEach(drawItem); drawNews(); progress(); }
+
+function progress(){
+  const todo = DATA.items.filter(i => i.s !== 'sicher').concat(DATA.paths);
+  const done = todo.filter(i => vOf(i.id)).length;
+  $('progTxt').textContent = `${done}/${todo.length}`; $('progTxt').title = `${done} von ${todo.length} Objekten geprüft`;
+  $('meterFill').style.width = (100 * done / todo.length).toFixed(1) + '%';
+}
+
+// ---------- store ----------
+function saveVerdict(id, v){
+  pending[id] = v; LS.set('fc_pending', pending); drawItem(byId[id]); progress();
+  if (!db) { verdicts[id] = v; return; }
+  queueWrite(id, () => v === null ? db.collection('pruefung').doc(id).delete() : db.collection('pruefung').doc(id).set(v));
+}
+const chains = {};
+function queueWrite(key, fn){
+  chains[key] = (chains[key] || Promise.resolve()).then(fn).then(() => { setStore('ok'); })
+    .catch((e) => { setStore('err', e && e.code); });
+}
+function saveNew(id, n){
+  pendingNew[id] = n; LS.set('fc_pendingNew', pendingNew); drawNews();
+  if (!db) { news[id] = n; return; }
+  queueWrite('neu/' + id, () => db.collection('neu').doc(id).set(n));
+}
+function setStore(s, code){
+  storeState = s;
+  const el = document.querySelector('#sheet .status');
+  if (el) { el.textContent = storeText(); el.className = 'status' + (s === 'err' || s === 'local' ? ' warn' : ''); }
+}
+function storeText(){
+  return {connecting: 'Verbinde mit Speicher …', ok: 'Gespeichert – Claude sieht deine Einträge.', err: 'Speichern gerade nicht möglich. Einträge bleiben auf dem Handy und werden nachgereicht.',
+    local: IS_APP ? 'Auf diesem Handy gespeichert (auch offline). Am Ende „Mehr → Ergebnis teilen“ und die Datei an Claude schicken.' : 'Nur auf diesem Gerät gespeichert. Am Ende über „Mehr → Ergebnis kopieren“ an Claude schicken.'}[storeState];
+}
+async function initStore(){
+  try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch(e) { db = null; }
+  if (!db) { storeState = 'local'; Object.assign(verdicts, pending); Object.assign(news, pendingNew); renderSheet(); redrawAll(); return; }
+  db.collection('pruefung').onSnapshot((snap) => {
+    verdicts = {}; snap.docs.forEach(d => { verdicts[d.id] = d.data(); });
+    for (const id of Object.keys(pending)){ // confirmed?
+      const a = pending[id], b = verdicts[id];
+      if (b && a && b.t === a.t) delete pending[id];
+      else if (!snap.metadata.hasPendingWrites && (!chains[id])) queueWrite(id, () => db.collection('pruefung').doc(id).set(a)); // retry offline leftovers
+    }
+    LS.set('fc_pending', pending); storeState = 'ok'; redrawAll(); renderSheet();
+  }, () => { setStore('err'); });
+  db.collection('neu').onSnapshot((snap) => {
+    news = {}; snap.docs.forEach(d => { news[d.id] = d.data(); });
+    for (const id of Object.keys(pendingNew)) if (news[id]) delete pendingNew[id];
+    LS.set('fc_pendingNew', pendingNew); drawNews();
+  }, () => { setStore('err'); });
+}
+
+// ---------- interaction ----------
+function onTap(latlng, id){
+  if (mode === 'move' && selId){ const [e, n] = en(latlng); setMode(null); saveVerdict(selId, {st: 'woanders', e, n, note: noteVal(), t: Date.now()}); renderSheet(); return; }
+  if (mode === 'add'){ const [e, n] = en(latlng); const nid = 'N' + Date.now().toString(36); setMode(null); saveNew(nid, {...formDraft, e, n, t: Date.now()}); formDraft = null; selectNew(nid); return; }
+  if (mode === 'movenew' && selNewId){ const [e, n] = en(latlng); const cur = pendingNew[selNewId] || news[selNewId]; setMode(null); if (cur) saveNew(selNewId, {...cur, e, n, t: Date.now()}); renderSheet(); return; }
+  if (mode === 'path'){ draft.push(en(latlng)); drawDraft(); renderSheet(); return; }
+  if (mode === 'me'){ me = en(latlng); LS.set('fc_me', me); setMode(null); drawMe(); renderSheet(); return; }
+  if (id) select(id); else { selId = null; selNewId = null; redrawSel(); renderSheet(); }
+}
+map.on('click', (e) => onTap(e.latlng, null));
+let prevSel = null, selNewId = null;
+function redrawSel(){ if (prevSel && byId[prevSel]) drawItem(byId[prevSel]); if (selId && byId[selId]) drawItem(byId[selId]); prevSel = selId; }
+function select(id){ selId = id; selNewId = null; redrawSel(); renderSheet(); }
+function selectNew(id){ selNewId = id; selId = null; redrawSel(); renderSheet(); }
+function setMode(m, txt){
+  mode = m; $('banner').hidden = !m; if (m) $('bannerTxt').textContent = txt;
+  map.getContainer().style.cursor = m ? 'crosshair' : '';
+}
+$('bannerCancel').onclick = () => { if (mode === 'path') { draft = []; drawDraft(); } setMode(null); renderSheet(); };
+function drawDraft(pts){ pts = pts || draft; if (draftLine) map.removeLayer(draftLine); draftLine = pts.length ? L.polyline(pts.map(p => ll(p[0], p[1])), {color: rec ? '#cf4136' : '#2b6fd6', weight: 4, dashArray: '2 6'}).addTo(map) : null; }
+function drawMe(){
+  if (meMarker) map.removeLayer(meMarker); if (accLayer) map.removeLayer(accLayer); meMarker = accLayer = null;
+  if (gps.pos){
+    accLayer = L.circle(ll(gps.pos[0], gps.pos[1]), {radius: Math.max(gps.acc || 0, 2), color: '#2b6fd6', weight: 1, opacity: .5, fillColor: '#2b6fd6', fillOpacity: .12, interactive: false}).addTo(map);
+    const h = gps.head, cone = h === null ? '' : `<path d="M20 20 L13 4 A17 17 0 0 1 27 4 Z" fill="#2b6fd6" opacity=".35" transform="rotate(${h.toFixed(0)} 20 20)"/>`;
+    meMarker = L.marker(ll(gps.pos[0], gps.pos[1]), {interactive: false, keyboard: false, zIndexOffset: 2000, icon: L.divIcon({className: '', iconSize: [40, 40], iconAnchor: [20, 20],
+      html: `<svg width="40" height="40" viewBox="0 0 40 40">${cone}<circle cx="20" cy="20" r="7.5" fill="#2b6fd6" stroke="#fff" stroke-width="3"/></svg>`})}).addTo(map);
+    return;
+  }
+  if (me) meMarker = L.circleMarker(ll(me[0], me[1]), {radius: 8, color: '#fff', weight: 3, fillColor: '#2b6fd6', fillOpacity: 1}).addTo(map);
+}
+// ---------- GPS (web app only) ----------
+const inFrame = (p) => p[0] >= X0 && p[0] <= X0 + W && p[1] >= Y1 - H && p[1] <= Y1;
+function gpsBtn(){
+  const b = $('btnGps'); if (!b) return;
+  b.dataset.st = !gps.on ? 'off' : (gps.err ? 'err' : (gps.pos ? 'on' : 'wait'));
+  b.textContent = !gps.on ? 'GPS aus' : (gps.err ? 'GPS ?' : (gps.pos ? `± ${Math.round(gps.acc)} m` : 'GPS …'));
+  const c = document.querySelector('#ctlFollow'); if (c) c.setAttribute('aria-pressed', follow);
+}
+function gpsText(){
+  if (!gps.on) return 'GPS ist aus. Oben auf „GPS aus“ tippen, um es einzuschalten.';
+  if (gps.err) return gps.err;
+  if (!gps.pos) return 'Suche GPS-Signal …';
+  const age = Math.round((Date.now() - gps.t) / 1000);
+  return `GPS: Genauigkeit ± ${Math.round(gps.acc)} m${age > 15 ? ` · letzte Position vor ${age} s` : ''}${inFrame(gps.pos) ? '' : ' · du bist außerhalb der Karte'}`;
+}
+function startGps(){
+  if (!navigator.geolocation){ gps.err = 'Dieses Gerät liefert keine GPS-Position.'; gps.on = true; gpsBtn(); renderSheet(); return; }
+  gps.on = true; gps.err = null; gpsBtn();
+  // compass needs a tap-triggered permission on iOS
+  try {
+    const DOE = window.DeviceOrientationEvent;
+    const listen = () => window.addEventListener('deviceorientation', onOrient, true);
+    if (DOE && typeof DOE.requestPermission === 'function') DOE.requestPermission().then(r => { if (r === 'granted') listen(); }).catch(() => {});
+    else if (DOE) listen();
+  } catch(e) {}
+  gps.watch = navigator.geolocation.watchPosition(onPos, (e) => {
+    gps.err = e.code === 1 ? 'GPS nicht erlaubt. In den Einstellungen Ortungsdienste für Safari/diese App erlauben.' : 'Kein GPS-Signal – weiter versuchen …';
+    gpsBtn(); renderStatus();
+  }, {enableHighAccuracy: true, maximumAge: 2000, timeout: 30000});
+  LS.set('fc_gps', true); try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch(e) {}
+}
+function stopGps(){ if (gps.watch !== null) navigator.geolocation.clearWatch(gps.watch); gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}; follow = false;
+  window.removeEventListener('deviceorientation', onOrient, true); LS.set('fc_gps', false); me = LS.get('fc_me', null); drawMe(); gpsBtn(); renderSheet(); }
+let lastHeadDraw = 0;
+function onOrient(ev){
+  let h = null;
+  if (typeof ev.webkitCompassHeading === 'number') { h = ev.webkitCompassHeading + HEAD_CORR; window.__hasCompass = true; }
+  else if (ev.absolute && typeof ev.alpha === 'number') h = 360 - ev.alpha + HEAD_CORR;
+  if (h === null || !gps.pos) return;
+  gps.head = (h + 360) % 360;
+  const t = performance.now(); if (t - lastHeadDraw > 150) { lastHeadDraw = t; drawMe(); }
+}
+function onPos(p){
+  const c = p.coords; gps.pos = toUTM(c.latitude, c.longitude); gps.acc = c.accuracy; gps.t = Date.now(); gps.err = null;
+  if (c.heading !== null && !isNaN(c.heading) && c.speed > 0.8 && !window.__hasCompass) gps.head = c.heading - 0.9;
+  me = gps.pos; drawMe(); gpsBtn();
+  if (follow) panToMe();
+  if (rec && c.accuracy <= 20){ const last = rec.pts[rec.pts.length - 1]; if (!last || dist(last, gps.pos) >= 4) { rec.pts.push(gps.pos.slice()); drawDraft(rec.pts); } }
+  renderStatus();
+}
+function renderStatus(){
+  const el = document.querySelector('#sheet .gpsst'); if (el) el.textContent = gpsText();
+  const hb = document.querySelectorAll('[data-here]'); hb.forEach(b => { b.disabled = !gps.pos; b.querySelector('small') && (b.querySelector('small').textContent = gps.pos ? `± ${Math.round(gps.acc)} m` : 'kein Signal'); });
+  if (rec) { const r = document.querySelector('#recN'); if (r) r.textContent = `${rec.pts.length} Punkte · ${Math.round(rec.pts.reduce((s, p, i) => i ? s + dist(p, rec.pts[i - 1]) : 0, 0))} m`; }
+}
+const hereBtn = (id, label) => IS_APP && gps.on ? `<button class="a-here" id="${id}" type="button" data-here ${gps.pos ? '' : 'disabled'}>📍 ${label} <small style="font-weight:400">${gps.pos ? '± ' + Math.round(gps.acc) + ' m' : 'kein Signal'}</small></button>` : '';
+function panToMe(zoom){   // centre the position in the part of the map not covered by the bottom sheet
+  if (!gps.pos) return; const sh = $('sheet'), wide = window.innerWidth >= 820;
+  if (zoom !== undefined) map.setZoom(zoom, {animate: false});
+  const pt = map.project(ll(gps.pos[0], gps.pos[1])).add(wide ? [sh.offsetWidth / 2, 0] : [0, sh.offsetHeight / 2]);
+  map.panTo(map.unproject(pt), {animate: true});
+}
+const hereNow = () => gps.pos ? {e: gps.pos[0], n: gps.pos[1], acc: Math.round(gps.acc), src: 'gps'} : null;
+const noteVal = () => { const t = $('note'); return t ? t.value.trim() : ''; };
+const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+function posOf(it){ return it.c ? it.c[Math.floor(it.c.length / 2)] : [it.e, it.nn]; }
+function nextOpen(){
+  const from = selId ? posOf(byId[selId]) : (me || en(map.getCenter()));
+  const cand = DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k) && i.id !== selId);
+  cand.sort((a, b) => dist(posOf(a), from) - dist(posOf(b), from));
+  if (cand[0]) { select(cand[0].id); const p = posOf(cand[0]); map.panTo(ll(p[0], p[1])); }
+}
+
+function renderSheet(){
+  const S = $('sheet');
+  if (rec){
+    S.innerHTML = `<div class="kicker"><span class="rec">● Aufnahme</span> Schleichpfad per GPS</div><h2 id="recN">${rec.pts.length} Punkte</h2>
+      <p class="meta" style="margin:0">Lauf den Pfad ab. Alle 4 m wird ein Punkt gesetzt, solange die Genauigkeit besser als 20 m ist.</p>
+      <div class="row"><button class="ib" id="rStop" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Stopp &amp; speichern</button><button class="ib" id="rCancel" type="button">Verwerfen</button></div>
+      <div class="status gpsst">${gpsText()}</div>`;
+    $('rStop').onclick = () => { const pts = rec.pts; rec = null; drawDraft([]); if (pts.length >= 2) { const nid = 'N' + Date.now().toString(36); saveNew(nid, {typ: 'Schleichpfad', pts, note: '', src: 'gps', t: Date.now()}); selectNew(nid); } else renderSheet(); };
+    $('rCancel').onclick = () => { rec = null; drawDraft([]); renderSheet(); };
+    renderStatus(); return;
+  }
+  if (mode === 'path'){
+    S.innerHTML = `<div class="kicker">Neuer Pfad</div><h2>${draft.length} Punkt${draft.length === 1 ? '' : 'e'} gesetzt</h2>
+      <p class="meta">Tippe den Pfadverlauf Punkt für Punkt auf die Karte. Mindestens zwei Punkte.</p>
+      <div class="row"><button class="ib" id="pUndo" type="button">Letzten Punkt löschen</button><button class="ib" id="pDone" type="button" ${draft.length < 2 ? 'disabled' : ''}>Pfad speichern</button></div>`;
+    $('pUndo').onclick = () => { draft.pop(); drawDraft(); renderSheet(); };
+    $('pDone').onclick = () => { const nid = 'N' + Date.now().toString(36); saveNew(nid, {typ: 'Schleichpfad', pts: draft.slice(), note: '', t: Date.now()}); draft = []; drawDraft(); setMode(null); selectNew(nid); };
+    return;
+  }
+  if (showForm){
+    const cur = formDraft || {typ: 'Ruhezonen-Schild', name: '', note: ''};
+    S.innerHTML = `<div class="kicker">Neuer Landmarker</div>
+      <div id="typChips" style="display:grid;gap:6px">${typeChips(cur.typ)}</div>
+      <input id="nName" type="text" placeholder="Bezeichnung (optional), z. B. „Doppelbank am Dünenkamm“" value="${esc(cur.name || '')}" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
+      <textarea id="nDesc" placeholder="Beschreibung: Was ist es, wie erkennt man es? z. B. „Holzbank mit Lehne, Blick nach Norden, 3 m neben dem Pfad“">${esc(cur.note || '')}</textarea>
+      ${hereBtn('fHere', 'Hier ist es (GPS)')}
+      <div class="row"><button class="ib" id="fPin" type="button" ${IS_APP && gps.on ? '' : 'style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)"'}>${IS_APP && gps.on ? 'Stattdessen auf Karte tippen' : '📍 Pin auf Karte setzen'}</button><button class="ib" id="fCancel" type="button">Abbrechen</button></div>
+      <p class="meta" style="margin:0">${IS_APP && gps.on ? 'Stell dich direkt an das Objekt und tippe „Hier ist es“. ' : 'Nach dem Antippen der Position wird der Landmarker gespeichert. '}Vor Ort erfasste Objekte übernehme ich in Version 2 als sicher.</p>
+      ${IS_APP && gps.on ? `<div class="status gpsst">${gpsText()}</div>` : ''}`;
+    let typ = cur.typ;
+    S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+    if ($('fHere')) $('fHere').onclick = () => { const h = hereNow(); if (!h) return; const nid = 'N' + Date.now().toString(36); showForm = false;
+      saveNew(nid, {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), ...h, t: Date.now()}); formDraft = null; selectNew(nid); };
+    $('fPin').onclick = () => { formDraft = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()}; showForm = false; setMode('add', `Tippe die Position: ${typ}`); renderSheet(); };
+    $('fCancel').onclick = () => { showForm = false; formDraft = null; renderSheet(); };
+    return;
+  }
+  if (selNewId){
+    const n = pendingNew[selNewId] || news[selNewId]; if (!n) { selNewId = null; return renderSheet(); }
+    S.innerHTML = `<div class="kicker"><span class="pill" style="background:var(--sel);color:#fff">vor Ort erfasst · gilt als sicher</span> ${esc(selNewId)}</div>
+      <div id="typChips" style="display:grid;gap:6px">${n.pts ? `<div class="chips"><button class="chip" type="button" data-t="Schleichpfad" aria-pressed="true">Schleichpfad</button></div>` : typeChips(n.typ)}</div>
+      <input id="nName" type="text" placeholder="Bezeichnung (optional)" value="${esc(n.name || '')}" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
+      <textarea id="nDesc" placeholder="Beschreibung">${esc(n.note || '')}</textarea>
+      ${n.pts ? '' : hereBtn('nHere', 'Pin auf meine Position')}
+      <div class="row"><button class="ib" id="nSave" type="button">Speichern</button>${n.pts ? '' : '<button class="ib" id="nMove" type="button">Pin verschieben</button>'}<button class="ib" id="nDel" type="button">Löschen</button></div>
+      <p class="meta" style="margin:0">${n.src === 'gps' ? `Position per GPS${n.acc ? ` (± ${n.acc} m)` : ''}` : (n.pts ? `${n.pts.length} Punkte` : 'Position per Antippen')}</p>
+      <div class="status">${storeText()}</div>`;
+    let typ = n.typ;
+    S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+    $('nSave').onclick = () => { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), t: Date.now()}); $('nSave').textContent = 'Gespeichert'; };
+    if (!n.pts) $('nMove').onclick = () => setMode('movenew', 'Tippe die neue Position');
+    if ($('nHere')) $('nHere').onclick = () => { const h = hereNow(); if (h) { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), ...h, t: Date.now()}); renderSheet(); } };
+    $('nDel').onclick = () => { const id = selNewId; delete pendingNew[id]; delete news[id]; LS.set('fc_pendingNew', pendingNew); if (db) queueWrite('neu/' + id, () => db.collection('neu').doc(id).delete()); selNewId = null; drawNews(); renderSheet(); };
+    return;
+  }
+  if (!selId){
+    S.innerHTML = `<div class="kicker">So geht's</div>
+      <p class="meta" style="margin:0">Tippe einen <b>weißen Marker</b> an, prüfe das Objekt vor Ort und wähle <b>Stimmt</b>, <b>Fehlt</b> oder <b>Woanders</b>. <b>Dunkle Marker</b> sind schon sicher, du kannst sie aber genauso korrigieren (sichtbar ab näherem Zoom). ${IS_APP ? 'Der blaue Punkt ist deine GPS-Position, ◎ links hält die Karte bei dir.' : 'Hier gibt es kein GPS – dafür die Feldcheck-Web-App nutzen. Standort bei Bedarf per Antippen setzen.'}</p>
+      <div class="row"><button class="ib" id="bNew" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">+ Neuer Landmarker</button><button class="ib" id="bPath" type="button">+ Schleichpfad zeichnen</button></div>
+      ${IS_APP && gps.on ? '<div class="row"><button class="ib" id="bRec" type="button" data-here>● Pfad per GPS aufzeichnen</button></div>' : ''}
+      <div class="row"><button class="ib" id="bNext" type="button">Nächstes offenes Objekt</button>${IS_APP && gps.on ? '' : `<button class="ib" id="bMe" type="button">${me ? 'Standort neu setzen' : 'Standort setzen'}</button>`}</div>
+      ${IS_APP ? `<div class="status gpsst">${gpsText()}</div>` : ''}
+      <div class="status ${storeState === 'local' || storeState === 'err' ? 'warn' : ''}">${storeText()}</div>`;
+    $('bNext').onclick = nextOpen;
+    if ($('bMe')) $('bMe').onclick = () => setMode('me', 'Tippe auf deinen Standort');
+    if ($('bRec')) $('bRec').onclick = () => { rec = {pts: gps.pos ? [gps.pos.slice()] : []}; drawDraft(rec.pts); renderSheet(); };
+    $('bNew').onclick = () => { showForm = true; formDraft = null; renderSheet(); };
+    $('bPath').onclick = () => { draft = []; setMode('path', 'Pfad Punkt für Punkt antippen'); renderSheet(); };
+    return;
+  }
+  const it = byId[selId], v = vOf(selId), st = stateOf(it), c = CAT[it.k] || CAT['Kleinobjekt'];
+  const pill = {open: ['p-open', 'offen'], sure: ['p-sure', 'sicher (2 Quellen)'], ok: ['p-ok', 'stimmt · vor Ort bestätigt'], fehlt: ['p-bad', 'fehlt · wird entfernt'], woanders: ['p-move', 'woanders · neue Lage gilt']}[st];
+  const d = me ? Math.round(dist(posOf(it), me)) : null;
+  S.innerHTML = `<div class="kicker"><span class="pill ${pill[0]}">${pill[1]}</span> ${esc(it.id)} · ${esc(c[0])}${it.z ? ' · ' + esc(it.z) : ''}${d !== null ? ` · ${d} m von dir` : ''}</div>
+    <h2>${esc(it.n || (it.t && it.t !== it.k ? it.t : c[0]))}</h2>
+    <p class="meta" style="margin:0">${esc(it.no || '')}<br>Quelle: ${esc(it.q || '')}${it.s === 'sicher' && !v ? '<br><b>Schon sicher</b> – korrigiere nur, wenn es vor Ort nicht stimmt.' : ''}</p>
+    <div class="acts">
+      <button class="act a-ok" id="vOk" type="button">✓ Stimmt<span>ist da</span></button>
+      <button class="act a-bad" id="vBad" type="button">✗ Fehlt<span>nicht vorhanden</span></button>
+      <button class="act a-move" id="vMove" type="button">↦ Woanders<span>Stelle antippen</span></button>
+    </div>
+    ${hereBtn('vHere', 'Woanders: es steht hier (GPS)')}
+    <textarea id="note" placeholder="Beschreibung / Notiz (optional), z. B. „Bank 10 m weiter am Pfad, mit Lehne“">${esc(v && v.note || '')}</textarea>
+    <div class="row"><button class="ib" id="bNext2" type="button">Nächstes offenes →</button>${v ? '<button class="ib" id="vUndo" type="button">Bewertung zurücknehmen</button>' : ''}</div>
+    ${IS_APP ? `<div class="status gpsst">${gpsText()}</div>` : ''}
+    <div class="status ${storeState === 'local' || storeState === 'err' ? 'warn' : ''}">${storeText()}</div>`;
+  $('vOk').onclick = () => { saveVerdict(selId, {st: 'ok', note: noteVal(), t: Date.now()}); renderSheet(); };
+  $('vBad').onclick = () => { saveVerdict(selId, {st: 'fehlt', note: noteVal(), t: Date.now()}); renderSheet(); };
+  $('vMove').onclick = () => setMode('move', 'Tippe die richtige Position');
+  if ($('vHere')) $('vHere').onclick = () => { const h = hereNow(); if (!h) return; saveVerdict(selId, {st: 'woanders', ...h, note: noteVal(), t: Date.now()}); renderSheet(); };
+  $('bNext2').onclick = nextOpen;
+  if (v) $('vUndo').onclick = () => { delete pending[selId]; LS.set('fc_pending', pending); delete verdicts[selId]; if (db) queueWrite(selId, () => db.collection('pruefung').doc(selId).delete()); drawItem(it); progress(); renderSheet(); };
+}
+
+// ---------- list & menu ----------
+function openPanel(id){ for (const p of ['listPanel', 'menuPanel']) $(p).hidden = p !== id || !$(p).hidden; }
+$('btnList').onclick = () => { renderList(); openPanel('listPanel'); };
+$('btnMenu').onclick = () => { renderMenu(); openPanel('menuPanel'); };
+function renderList(){
+  const from = me || en(map.getCenter());
+  const open = DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k));
+  open.sort((a, b) => dist(posOf(a), from) - dist(posOf(b), from));
+  $('listPanel').innerHTML = `<h3>${open.length} offene Objekte · sortiert nach Entfernung ${me ? 'zu deinem Standort' : 'zur Kartenmitte'}</h3>
+    <div class="list">${open.slice(0, 150).map(i => { const c = CAT[i.k] || CAT['Kleinobjekt']; return `<button class="li" type="button" data-id="${esc(i.id)}"><svg class="ico" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#fff" stroke="#7d7787" stroke-width="1.4"/><path d="${c[1]}" fill="none" stroke="#1f1d24" stroke-width="1.8" stroke-linecap="round"/></svg><span>${esc(i.n || c[0])}<br><small>${esc(i.id)}</small></span><span class="d">${Math.round(dist(posOf(i), from))} m</span></button>`; }).join('')}</div>`;
+  $('listPanel').querySelectorAll('.li').forEach(b => b.onclick = () => { openPanel(null); $('listPanel').hidden = true; const it = byId[b.dataset.id]; select(it.id); const p = posOf(it); map.setView(ll(p[0], p[1]), Math.max(map.getZoom(), 1)); });
+}
+function renderMenu(){
+  const cats = [...new Set(DATA.items.map(i => i.k).concat(['Pfad']))];
+  const res = {verdicts: {...verdicts, ...pending}, neu: {...news, ...pendingNew}};
+  const txt = JSON.stringify(res);
+  $('menuPanel').innerHTML = `<h3>Anzeigen</h3>
+    <div class="chips">${cats.map(k => `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${!catOff.has(k)}">${esc((CAT[k] || [k])[0])}</button>`).join('')}</div>
+    <div class="row"><button class="chip" type="button" id="tAll" aria-pressed="${showAll}">Sichere Objekte immer zeigen</button></div><p class="meta" style="margin:0">Sonst erscheinen sichere Objekte erst beim Hineinzoomen.</p><div class="row"></div>
+    <h3>Legende</h3>
+    <div class="legend"><div><span class="dot" style="background:#fff"></span>offen</div><div><span class="dot" style="background:#2e9d57;border-color:#0003"></span>stimmt</div>
+    <div><span class="dot" style="background:#cf4136;border-color:#0003"></span>fehlt</div><div><span class="dot" style="background:#d98a1c;border-color:#0003"></span>woanders</div>
+    <div><span class="dot" style="background:#2b6fd6;border-color:#fff"></span>neu erfasst</div><div><span class="dot" style="background:#4a3f55;border-color:#fff"></span>sicher</div></div>
+    <p class="meta" style="margin:0">Alles, was du hier bestätigst, korrigierst oder neu einträgst, übernehme ich in Version 2 als <b>sicher</b> (Quelle: Feldbegehung).</p>
+    <p class="meta" style="margin:0">Gestrichelte violette Linien sind Pfade, die im Luftbild kaum sichtbar sind.</p>
+    <h3>Ergebnis</h3>
+    <p class="meta" style="margin:0">${Object.keys(res.verdicts).length} Bewertungen, ${Object.keys(res.neu).length} neue Objekte. ${db ? 'Alles liegt im Speicher dieser Seite – Claude liest es direkt.' : (IS_APP ? 'Teile die Datei mit Claude (z. B. in den Chat) – ich übernehme sie ins Artefakt.' : 'Kopiere das Ergebnis und füge es im Chat ein.')}</p>
+    <div class="row">${IS_APP ? '<button class="ib" id="bShare" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Ergebnis teilen (Datei)</button>' : ''}<button class="ib" id="bCopy" type="button">Ergebnis kopieren</button></div>
+    <pre id="exportTxt">${esc(txt)}</pre>
+    ${!IS_APP && db ? `<h3>Aus der Web-App übernehmen</h3><p class="meta" style="margin:0">Ergebnis-Text aus der Feldcheck-Web-App hier einfügen – Bewertungen und neue Objekte landen im Speicher dieser Seite (neuere Einträge gewinnen).</p>
+      <textarea id="impTxt" placeholder='{"verdicts": …, "neu": …}'></textarea><div class="row"><button class="ib" id="bImp" type="button">Übernehmen</button></div><p class="status" id="impSt"></p>` : ''}
+    ${IS_APP ? `<h3>Offline</h3><p class="meta" style="margin:0" id="offSt">Lädt alle Kartenkacheln aufs Handy, damit die Karte auch ohne Netz geht (ca. 3,5 MB).</p><div class="row"><button class="ib" id="bOff" type="button">Karte offline speichern</button></div>
+      <h3>Tipp</h3><p class="meta" style="margin:0">In Safari „Teilen → Zum Home-Bildschirm“: Dann startet der Feldcheck wie eine App, ohne Adressleiste, und die Einträge bleiben dauerhaft gespeichert.</p>` : ''}`;
+  $('menuPanel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const k = b.dataset.k; catOff.has(k) ? catOff.delete(k) : catOff.add(k); LS.set('fc_catOff', [...catOff]); b.setAttribute('aria-pressed', !catOff.has(k)); redrawAll(); });
+  $('tAll').onclick = (e) => { showAll = !showAll; LS.set('fc_showAll', showAll); e.currentTarget.setAttribute('aria-pressed', showAll); redrawAll(); };
+  if ($('bShare')) $('bShare').onclick = async () => {
+    const name = 'feldcheck_' + new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-') + '.json';
+    const file = new File([JSON.stringify({...res, exportiert: new Date().toISOString(), quelle: 'Feldcheck-Web-App'}, null, 1)], name, {type: 'application/json'});
+    try { if (navigator.canShare && navigator.canShare({files: [file]})) { await navigator.share({files: [file], title: 'Feldcheck Wangerooge'}); $('bShare').textContent = 'Geteilt'; return; } } catch(e) { if (e && e.name === 'AbortError') return; }
+    const a = document.createElement('a'); a.href = URL.createObjectURL(file); a.download = name; document.body.appendChild(a); a.click(); a.remove(); $('bShare').textContent = 'Datei gespeichert';
+  };
+  if ($('bImp')) $('bImp').onclick = () => {
+    let d; try { d = JSON.parse($('impTxt').value); } catch(e) { $('impSt').textContent = 'Das ist kein gültiges Ergebnis.'; return; }
+    let nv = 0, nn = 0;
+    for (const [id, v] of Object.entries(d.verdicts || {})) { if (!byId[id] || !v || !v.st) continue; const cur = vOf(id); if (!cur || (v.t || 0) > (cur.t || 0)) { saveVerdict(id, v); nv++; } }
+    for (const [id, n] of Object.entries(d.neu || {})) { const cur = pendingNew[id] || news[id]; if (!cur || (n.t || 0) > (cur.t || 0)) { saveNew(id, n); nn++; } }
+    $('impSt').textContent = `${nv} Bewertungen und ${nn} neue Objekte übernommen.`; redrawAll();
+  };
+  if ($('bOff')) $('bOff').onclick = async () => {
+    const st = $('offSt'), b = $('bOff'); b.disabled = true;
+    try {
+      const list = await (await fetch('tiles.json')).json(), c = await caches.open('fc-tiles'); let k = 0;
+      for (let i = 0; i < list.length; i += 6) {
+        await Promise.all(list.slice(i, i + 6).map(async (u) => { if (!(await c.match(u))) { const r = await fetch(u); if (r.ok) await c.put(u, r); } k++; }));
+        st.textContent = `Lade Kacheln … ${k}/${list.length}`;
+      }
+      st.textContent = `Fertig: alle ${list.length} Kacheln offline verfügbar.`; b.textContent = 'Offline gespeichert';
+    } catch(e) { st.textContent = 'Offline-Speichern hat nicht geklappt – mit Netz erneut versuchen.'; b.disabled = false; }
+  };
+  $('bCopy').onclick = () => { navigator.clipboard.writeText(txt).then(() => { $('bCopy').textContent = 'Kopiert'; }).catch(() => { const r = document.createRange(); r.selectNodeContents($('exportTxt')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('bCopy').textContent = 'Text markiert – jetzt kopieren'; }); };
+}
+
+if (IS_APP){
+  $('btnGps').hidden = false;
+  $('btnGps').onclick = () => { gps.on ? stopGps() : startGps(); renderSheet(); };
+  const Follow = L.Control.extend({onAdd(){ const b = L.DomUtil.create('button', 'ctl'); b.id = 'ctlFollow'; b.type = 'button'; b.title = 'Karte folgt meiner Position'; b.textContent = '◎'; b.setAttribute('aria-pressed', 'false');
+    L.DomEvent.disableClickPropagation(b);
+    b.onclick = () => { if (!gps.on) startGps(); follow = !follow; if (follow && gps.pos) panToMe(Math.max(map.getZoom(), 1)); gpsBtn(); };
+    return b; }});
+  new Follow({position: 'topleft'}).addTo(map);
+  map.on('dragstart', () => { if (follow) { follow = false; gpsBtn(); } });
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  if (LS.get('fc_gps', false) && navigator.permissions) navigator.permissions.query({name: 'geolocation'}).then(r => { if (r.state === 'granted') { startGps(); renderSheet(); } }).catch(() => {});
+}
+fetch('data.json').then(r => r.json()).then(d => {
+  DATA = d; DATA.items.forEach(i => byId[i.id] = i); DATA.paths.forEach(p => byId[p.id] = p);
+  redrawAll(); drawMe(); renderSheet(); initStore();
+}).catch(() => { $('sheet').innerHTML = '<p class="status warn">Die Objektliste konnte nicht geladen werden. Bitte Seite neu laden.</p>'; });
+})();
+</script>
+</body></html>

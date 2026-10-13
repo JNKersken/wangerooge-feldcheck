@@ -45,17 +45,16 @@ PAL = {
 }
 
 # ---------- map layers: every drawn artist gets an SVG id "L-<layer>-<n>" so the web app can switch layers on/off ----------
-LAYERS = [  # (key, label, group)
-    ('contours', 'Höhenlinien', 'Gelände'), ('summits', 'Dünenkuppen mit Höhe', 'Gelände'), ('steep', 'Steilhänge', 'Gelände'), ('pits', 'Gruben / Bombentrichter', 'Gelände'),
-    ('sea', 'Meer / Watt', 'Flächen & Wasser'), ('water', 'Tümpel, Gräben, Salzwiese', 'Flächen & Wasser'), ('open', 'Offene Wiese', 'Flächen & Wasser'),
-    ('veg', 'Gebüsch / Wäldchen', 'Flächen & Wasser'), ('sand', 'Sand / Strand', 'Flächen & Wasser'), ('ruhezone', 'Ruhezone', 'Flächen & Wasser'),
-    ('roads', 'Straßen / Hauptwege', 'Wege & Bauwerke'), ('paths', 'Fußwege, Pfade, Treppen, Stege', 'Wege & Bauwerke'), ('rail', 'Inselbahn mit Haltepunkten & km-Steinen', 'Wege & Bauwerke'),
-    ('buildings', 'Gebäude & Sportplätze', 'Wege & Bauwerke'), ('structures', 'Deiche, Zäune, Buhnen', 'Wege & Bauwerke'),
-    ('bench', 'Bänke', 'Punkte'), ('rescue', 'SOS-Schilder mit Nummer', 'Punkte'), ('shelter', 'Schutzhütten', 'Punkte'), ('gate', 'Tore / Durchlässe', 'Punkte'),
-    ('info', 'Infotafeln, Wegweiser, Gedenkstätten', 'Punkte'), ('landmarks', 'Leuchttürme, Sternwarte, Aussichtsdüne, Gastronomie', 'Punkte'),
-    ('facilities', 'WC, Rettungsringe, Feuerstellen, Spiel & Sport', 'Punkte'), ('small', 'Hydranten, Container, Fahrradständer, Trafo', 'Punkte'),
-    ('field', 'Findlinge, Pfähle, Schilder (vor Ort erfasst)', 'Punkte'),
-    ('labels', 'Ortsnamen', 'Karte'), ('north', 'Nordlinien', 'Karte'), ('lupen', 'Lupen (Ausschnittvergrößerungen)', 'Karte'), ('sheetindex', 'Blattschnitte (nur Übersicht)', 'Karte'),
+LAYERS = [  # (key, label, group) – same order as the map legend: lines, areas, points, map elements
+    ('roads', 'Straßen / Hauptwege', 'Linien'), ('paths', 'Fußwege, Pfade, Treppen, Stege', 'Linien'), ('rail', 'Inselbahn mit Haltepunkten & km-Steinen', 'Linien'),
+    ('structures', 'Deiche, Zäune, Buhnen', 'Linien'), ('contours', 'Höhenlinien', 'Linien'), ('steep', 'Steilhänge', 'Linien'),
+    ('buildings', 'Gebäude & Sportplätze', 'Flächen'), ('veg', 'Gebüsch / Wäldchen', 'Flächen'), ('open', 'Offene Wiese', 'Flächen'), ('sand', 'Sand / Strand', 'Flächen'),
+    ('water', 'Tümpel, Gräben, Salzwiese', 'Flächen'), ('sea', 'Meer / Watt', 'Flächen'), ('ruhezone', 'Ruhezone', 'Flächen'),
+    ('bench', 'Bänke', 'Punkte'), ('rescue', 'SOS-Schilder mit Nummer', 'Punkte'), ('gate', 'Tore / Durchlässe', 'Punkte'), ('shelter', 'Schutzhütten', 'Punkte'),
+    ('info', 'Infotafeln, Wegweiser, Gedenkstätten', 'Punkte'), ('summits', 'Dünenkuppen mit Höhe', 'Punkte'), ('pits', 'Gruben / Bombentrichter', 'Punkte'),
+    ('landmarks', 'Leuchttürme, Sternwarte, Aussichtsdüne, Gastronomie', 'Punkte'), ('facilities', 'WC, Rettungsringe, Feuerstellen, Spiel & Sport', 'Punkte'),
+    ('small', 'Hydranten, Container, Fahrradständer, Trafo', 'Punkte'), ('field', 'Findlinge, Pfähle, Schilder (vor Ort erfasst)', 'Punkte'),
+    ('labels', 'Ortsnamen', 'Karte'), ('lupen', 'Lupen (Ausschnittvergrößerungen)', 'Karte'), ('north', 'Nordlinien', 'Karte'), ('sheetindex', 'Blattschnitte (nur Übersicht)', 'Karte'),
 ]
 KIND_LAYER = dict(bench='bench', rescue='rescue', shelter='shelter', gate='gate', info='info', flag='info', memorial='info',
                   lighthouse='landmarks', observatory='landmarks', peak='landmarks', food='landmarks',
@@ -1150,26 +1149,47 @@ LEG_LAYER = dict(road='roads', foot='paths', path='paths', board='paths', steps=
                  bld='buildings', pitch='buildings', lupe='lupen', group='bench', groyne='structures')
 def legend(S, lx, ty, width=54):
     P = S.P; fig = S.fig; pw, ph = S.pw, S.ph
+    # map-legend order: lines, then areas, then point symbols (most useful for orienteering first); '#' = group heading
     cols = [[
-        ('road', 'Straße / Hauptweg'), ('foot', 'befestigter Weg'), ('path', 'Pfad'), ('board', 'Holzsteg'),
-        ('steps', 'Treppe / Übergang'), ('rail', 'Inselbahn'), ('railx', 'Bahnübergang'), ('bridge', 'Brücke / Durchlass'), ('fence', 'Zaun'),
-        ('dyke', 'Deich'), ('cont', 'Höhenlinie 2,5 m'), ('steep', 'Steilhang'), ('summit', 'Kuppe, Höhe m'), ('pit', 'Grube / Trichter'),
-        ('water', 'Tümpel / Wasser'), ('open', 'offene Wiese'), ('scrub', 'Gebüsch'), ('forest', 'Wäldchen'), ('sand', 'Sand / Strand'),
-        ('rz', 'Ruhezone'), ('bld', 'Gebäude'), ('pitch', 'Sportplatz'), ('lupe', 'Lupe (1:1.000)'),
+        ('#', 'Linien'),
+        ('road', 'Straße / Hauptweg'), ('foot', 'befestigter Weg'), ('path', 'Pfad'), ('board', 'Holzsteg'), ('steps', 'Treppe / Übergang'),
+        ('bridge', 'Brücke / Durchlass'), ('rail', 'Inselbahn'), ('railx', 'Bahnübergang'), ('dyke', 'Deich'), ('fence', 'Zaun'),
+        ('groyne', 'Buhne + Name'), ('cont', 'Höhenlinie 2,5 m'), ('steep', 'Steilhang'),
+        ('#', 'Flächen'),
+        ('bld', 'Gebäude'), ('pitch', 'Sportplatz'), ('forest', 'Wäldchen'), ('scrub', 'Gebüsch'), ('open', 'offene Wiese'),
+        ('sand', 'Sand / Strand'), ('water', 'Tümpel / Wasser'), ('rz', 'Ruhezone'),
+        ('#', 'Karte'),
+        ('lupe', 'Lupe (1:1.000)'),
     ], [
-        ('bench', 'Bank'), ('group', 'Anzahl (ab 7 römisch)'), ('rescue', 'SOS-Schild + Nr.'), ('shelter', 'Schutzhütte'), ('gate', 'Tor / Durchlass'),
-        ('info', 'Infotafel'), ('food', 'Gastronomie'), ('lighthouse', 'Leuchtturm'), ('observatory', 'Sternwarte'), ('peak', 'Aussichtsdüne'),
-        ('memorial', 'Gedenkstätte'), ('milestone', 'km-Stein Bahn'), ('station', 'Haltepunkt Bahn'), ('groyne', 'Buhne + Name'), ('hydrant', 'Hydrant'),
-        ('playground', 'Spielplatz'), ('fitness', 'Fitnessgerät'), ('recycling', 'Container'), ('bike', 'Fahrradständer'), ('substation', 'Trafostation'),
-        ('toilet', 'WC'), ('ring', 'Rettungsring'), ('fire', 'Feuerstelle'), ('picnic', 'Picknickplatz'),
+        ('#', 'Orientierungspunkte'),
+        ('bench', 'Bank'), ('group', 'Anzahl (ab 7 römisch)'), ('rescue', 'SOS-Schild + Nr.'), ('gate', 'Tor / Durchlass'), ('shelter', 'Schutzhütte'),
+        ('info', 'Infotafel'), ('memorial', 'Gedenkstätte'), ('summit', 'Kuppe, Höhe m'), ('pit', 'Grube / Trichter'),
+        ('milestone', 'km-Stein Bahn'), ('station', 'Haltepunkt Bahn'),
+        ('#', 'Landmarken'),
+        ('lighthouse', 'Leuchtturm'), ('observatory', 'Sternwarte'), ('peak', 'Aussichtsdüne'), ('food', 'Gastronomie'),
+        ('#', 'Ausstattung'),
+        ('toilet', 'WC'), ('playground', 'Spielplatz'), ('fitness', 'Fitnessgerät'), ('picnic', 'Picknickplatz'), ('fire', 'Feuerstelle'),
+        ('ring', 'Rettungsring'), ('hydrant', 'Hydrant'), ('recycling', 'Container'), ('bike', 'Fahrradständer'), ('substation', 'Trafostation'),
     ]]
-    h = 4.3; NR = max(len(c) for c in cols); col_w = width / 2
-    a = fig.add_axes([lx / pw, (ty - h * NR - 2) / ph, width / pw, (h * NR + 2) / ph]); a.axis('off')
-    a.set_xlim(0, width); a.set_ylim(-h * NR - 2, 2)
+    h = 4.3   # row height (mm)
+    ys = []
+    for items in cols:
+        y_, yy = 0.0, []
+        for k, _ in items:
+            if k == '#':
+                if yy: y_ -= 1.4                       # air before a new group
+                yy.append(y_ - 2.0); y_ -= 3.7
+            else: yy.append(y_ - 2.15); y_ -= h
+        ys.append(yy)
+    tot = -min(min(yy) for yy in ys) + 2.5; col_w = width / 2
+    a = fig.add_axes([lx / pw, (ty - tot) / ph, width / pw, (tot + 2) / ph]); a.axis('off')
+    a.set_xlim(0, width); a.set_ylim(-tot, 2)
     M = Sheet.__new__(Sheet); M.ax = a; M.m = 1.0; M.P = P; M.mode = S.mode; M.wobf = 0.3
     for ci, items in enumerate(cols):
         for r, (k, txt) in enumerate(items):
-            x = ci * col_w; y = -r * h - 1.5
+            x = ci * col_w; y = ys[ci][r]
+            if k == '#':
+                a.text(x + 0.5, y, txt, fontproperties=HANDB, fontsize=7.8, va='center', color=P['ink']); continue
             _tg = _Tag(a, LEG_LAYER.get(k, KIND_LAYER.get(k, 'facilities'))); _tg.__enter__()
             sx, ex = x + 0.5, x + 6.5; cx = (sx + ex) / 2
             def ln(color, lw, dashes=None, amp=0.18):
@@ -1241,7 +1261,7 @@ def legend(S, lx, ty, width=54):
             else: M.sym(k, cx, y, P['ink'], k)
             a.text(ex + 0.9, y, txt, fontproperties=HAND, fontsize=7.0, va='center', color=P['ink'])
             _tg.__exit__(None, None, None)
-    yb = ty - h * NR - 5.5
+    yb = ty - tot - 5
     fig.text(lx / pw, yb / ph, 'Ruhezone: Wege nicht verlassen!', fontproperties=HANDB, fontsize=7.2, color=P['purple'])
 
 def render(name, mode, out, png=None):

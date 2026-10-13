@@ -1,112 +1,194 @@
 <title>Feldcheck Wangerooge West</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600;700&display=swap">
 <style>
-/* Layout: one-screen field tool — paper map fills the screen, a bottom sheet (side panel on wide screens) carries the selected landmark and the three verdict buttons. */
+/* Feldcheck – the map is the screen; controls float above it as glass (iOS "Liquid Glass"): a top bar, a bottom card for the selected object, sheets for list and menu.
+   One accent: OL-course magenta. System font (SF Pro on iPhone) for crisp text; rounded variant only for the app name. */
 :root{
-  --paper:#fffdf7; --panel:#fffdf7; --ink:#1f1d24; --muted:#6b6676; --line:#ddd6c8; --chip:#f2eee5;
-  --accent:#a3237f; --accent-ink:#ffffff; --ok:#2e9d57; --bad:#cf4136; --move:#d98a1c; --sel:#2b6fd6;
-  --f-display:"Caveat","Segoe Print","Bradley Hand",cursive; --f-ui:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --r:10px;
+  --ink:#1c1c1e; --muted:#6e6e73; --hair:rgba(60,60,67,.14);
+  --glass:rgba(246,246,248,.62); --glass-strong:rgba(248,248,250,.86); --edge:rgba(255,255,255,.75); --sheen:rgba(255,255,255,.55);
+  --fill:rgba(118,118,128,.12); --fill-2:rgba(118,118,128,.2); --field:rgba(118,118,128,.1);
+  --accent:#d0176c; --accent-ink:#fff; --ok:#2c9a4e; --bad:#e0352d; --move:#f09a12; --sel:#0a7aff; --sure:#4b4458;
+  --paper:#fffdf7; --panel:var(--glass-strong); --chip:var(--fill); --line:var(--hair);
+  --f-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,"Segoe UI",Roboto,sans-serif;
+  --f-round:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --blur:saturate(180%) blur(24px);
+  --lift:0 12px 32px rgba(0,0,0,.16),0 2px 6px rgba(0,0,0,.08);
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+  --r:18px; --tint:rgba(208,23,108,.09); --tint-edge:rgba(208,23,108,.3); --accent-text:#b3105b; --btn-in:rgba(255,255,255,.88);
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#17151b;--panel:#1f1c24;--ink:#f1ede5;--muted:#a7a1b0;--line:#38333f;--chip:#2a2630;--accent:#e46bc4;--accent-ink:#17151b;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#17151b;--panel:#1f1c24;--ink:#f1ede5;--muted:#a7a1b0;--line:#38333f;--chip:#2a2630;--accent:#e46bc4;--accent-ink:#17151b;color-scheme:dark}
-html,body{height:100%}
-body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:15px;overflow:hidden}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#f5f5f7;--muted:#a1a1a6;--hair:rgba(255,255,255,.12);--glass:rgba(34,34,38,.76);--sel:#3b9cff;--glass-strong:rgba(28,28,32,.86);--edge:rgba(255,255,255,.16);--sheen:rgba(255,255,255,.08);--fill:rgba(120,120,128,.26);--fill-2:rgba(120,120,128,.38);--field:rgba(120,120,128,.22);--accent:#e3257c;--lift:0 12px 32px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3);--tint:rgba(255,80,150,.2);--tint-edge:rgba(255,80,150,.38);--accent-text:#ff7ab0;--btn-in:rgba(255,255,255,.1);color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#f5f5f7;--muted:#a1a1a6;--hair:rgba(255,255,255,.12);--glass:rgba(34,34,38,.76);--sel:#3b9cff;--glass-strong:rgba(28,28,32,.86);--edge:rgba(255,255,255,.16);--sheen:rgba(255,255,255,.08);--fill:rgba(120,120,128,.26);--fill-2:rgba(120,120,128,.38);--field:rgba(120,120,128,.22);--accent:#e3257c;--lift:0 12px 32px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3);--tint:rgba(255,80,150,.2);--tint-edge:rgba(255,80,150,.38);--accent-text:#ff7ab0;--btn-in:rgba(255,255,255,.1);color-scheme:dark}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:15px/1.4 var(--f-ui);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;overflow:hidden;-webkit-tap-highlight-color:transparent}
 /*LEAFLET*/
-#app{position:relative;height:100%;display:grid;grid-template-rows:auto 1fr}
-.bar{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--panel);z-index:5}
-.brand{font-family:var(--f-display);font-size:24px;font-weight:700;line-height:1;white-space:nowrap}
-.brand small{font-family:var(--f-ui);font-size:12px;font-weight:400;color:var(--muted);display:block;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
-.prog{flex:1;min-width:0;display:grid;gap:4px;justify-items:end}
-.prog b{font-variant-numeric:tabular-nums;font-size:14px}
-.meter{width:min(220px,100%);height:6px;border-radius:3px;background:var(--chip);overflow:hidden}
-.meter i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+#app{position:fixed;inset:0}
+#map{position:absolute;inset:0;background:var(--paper);z-index:1}
+.leaflet-container{background:var(--paper);font-family:var(--f-ui)}
+
+/* glass material: translucent fill, blur of the map behind, a bright top edge and a soft lift */
+.glass{background:linear-gradient(180deg,var(--sheen),transparent 46%),var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:.5px solid var(--edge);box-shadow:var(--lift),inset 0 .5px 0 var(--edge)}
+.glass-strong{background:linear-gradient(180deg,var(--sheen),transparent 30%),var(--glass-strong);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:.5px solid var(--edge);box-shadow:var(--lift),inset 0 .5px 0 var(--edge)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.glass,.glass-strong{background:var(--glass-strong)}:root{--glass:rgba(246,246,248,.96);--glass-strong:rgba(248,248,250,.97)}}
+
+/* top bar */
+.top{position:fixed;z-index:12;top:calc(var(--sat) + 8px);left:10px;right:10px;display:flex;gap:8px;align-items:center;pointer-events:none}
+.top > *{pointer-events:auto}
+.brandcap{display:flex;align-items:center;gap:10px;height:48px;padding:0 14px 0 16px;border-radius:24px;min-width:0;overflow:hidden}
+.brand{font:700 19px/1 var(--f-round);letter-spacing:-.01em;white-space:nowrap}
+.prog{display:flex;align-items:center;gap:6px;color:var(--ink);opacity:.72;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pring{width:18px;height:18px;transform:rotate(-90deg)}
+.pring circle{fill:none;stroke-width:3.2}
+.pring .pt{stroke:var(--fill-2)} .pring .pf{stroke:var(--ok);stroke-linecap:round;transition:stroke-dasharray .4s}
+.top .sp{flex:1}
+.tools{display:flex;align-items:center;height:48px;padding:0 3px;border-radius:24px}
+.tb{display:flex;align-items:center;justify-content:center;gap:5px;min-width:42px;height:42px;padding:0 9px;border:0;border-radius:21px;background:transparent;color:var(--ink);font:600 14px var(--f-ui)}
+.tb svg{width:21px;height:21px;flex:none}
+.tb:active{background:var(--fill)}
+.tb .tl{white-space:nowrap;font-size:13px}
+.tb .tl:empty{display:none}
+.gpsb[data-st="on"]{color:var(--sel)} .gpsb[data-st="wait"]{color:var(--sel);opacity:.7} .gpsb[data-st="err"]{color:var(--bad)}
+.gpsb[data-st="on"] .tl{font-variant-numeric:tabular-nums}
+.gpsb[data-st="on"] svg path{fill:currentColor}
+@media (max-width:419px){.pring{display:none}.brandcap{padding:0 14px}}
+@media (max-width:379px){.pring{display:block}.prog b{display:none}}
+
+/* buttons */
 button{font:inherit;color:inherit;cursor:pointer}
-.ib{border:1px solid var(--line);background:var(--chip);border-radius:8px;padding:7px 10px;font-size:14px;white-space:nowrap}
-.bar .ib{padding:6px 9px}
-.ib:focus-visible,.act:focus-visible,.chip:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
-#map{position:relative;background:#fffdf7;z-index:1}
-.leaflet-container{background:#fffdf7;font-family:var(--f-ui)}
-#banner{position:absolute;top:58px;left:50%;transform:translateX(-50%);z-index:20;background:var(--accent);color:var(--accent-ink);padding:9px 14px;border-radius:999px;font-weight:700;display:flex;gap:10px;align-items:center;box-shadow:0 4px 16px #0003;max-width:calc(100% - 32px)}
-#banner button{background:transparent;border:1px solid currentColor;border-radius:999px;padding:3px 10px;color:inherit;font-size:13px}
-.sheet{position:absolute;left:0;right:0;bottom:0;z-index:10;background:var(--panel);border-top:1px solid var(--line);box-shadow:0 -6px 20px #0002;
-  padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));max-height:52%;overflow:auto;display:grid;gap:10px}
-@media (min-width:820px){.sheet{left:auto;top:57px;width:370px;max-height:none;border-top:0;border-left:1px solid var(--line);box-shadow:-6px 0 20px #0001;align-content:start}}
-.kicker{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700;letter-spacing:.02em;text-transform:none}
-.p-open{background:var(--chip);color:var(--muted)} .p-ok{background:var(--ok);color:#fff} .p-bad{background:var(--bad);color:#fff} .p-move{background:var(--move);color:#1b1305} .p-sure{background:var(--chip);color:var(--ink)}
-h2{margin:0;font-size:19px;line-height:1.25;text-wrap:balance}
-.find{margin:0;font-size:15px;line-height:1.45}
-.meta{color:var(--muted);font-size:13.5px;line-height:1.45}
-.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.act{border:0;border-radius:var(--r);padding:12px 6px;font-weight:700;font-size:15px;display:grid;gap:2px;justify-items:center}
-.act span{font-size:11.5px;font-weight:400;opacity:.9}
-.a-ok{background:var(--ok);color:#fff}.a-bad{background:var(--bad);color:#fff}.a-move{background:var(--move);color:#1b1305}
+.ib{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:0 16px;border:0;border-radius:22px;background:var(--fill);color:var(--ink);font:600 15px var(--f-ui);white-space:nowrap;text-align:center}
+.ib:active{background:var(--fill-2)}
+.ib:disabled{opacity:.45}
+.ib svg{width:19px;height:19px;flex:none}
+.ib.pri,.big{background:var(--accent);color:var(--accent-ink)}
+.ib.pri:active{filter:brightness(.92)}
+.ib.icon{width:44px;padding:0;flex:0 0 auto}
+.ib.grow{flex:1 1 auto}
+.big{width:100%;min-height:50px;border:0;border-radius:25px;font:600 16px var(--f-ui)}
+.big:disabled{opacity:.6}
+.ib:focus-visible,.act:focus-visible,.chip:focus-visible,.tb:focus-visible,.li:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .row .ib{flex:1 1 auto}
-textarea{width:100%;box-sizing:border-box;font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px;min-height:40px;resize:vertical}
+.row .ib.icon{flex:0 0 auto}
+
+/* mode banner (tap a position, draw a path) */
+#banner{position:fixed;top:calc(var(--sat) + 66px);left:50%;transform:translateX(-50%);z-index:20;background:var(--accent);color:#fff;padding:8px 8px 8px 16px;border-radius:22px;font-weight:600;display:flex;gap:10px;align-items:center;box-shadow:var(--lift);max-width:calc(100% - 24px)}
+#banner button{background:rgba(255,255,255,.22);border:0;border-radius:16px;padding:6px 12px;color:#fff;font-weight:600;font-size:14px}
+
+/* bottom card (side card on wide screens) */
+.sheet{position:fixed;z-index:10;left:10px;right:10px;bottom:calc(var(--sab) + 10px);border-radius:28px;padding:16px;max-height:min(60vh,600px);overflow:auto;overscroll-behavior:contain;display:grid;gap:12px}
+@media (min-width:820px){.sheet{left:auto;right:12px;top:calc(var(--sat) + 70px);bottom:12px;width:380px;max-height:none;align-content:start}}
+.ihead{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);min-width:0}
+.ihead .cat{font-weight:600;color:var(--ink)}
+.ihead .id{margin-left:auto;font-variant-numeric:tabular-nums}
+.pill{display:inline-flex;align-items:center;height:22px;border-radius:11px;padding:0 9px;font-size:12px;font-weight:700}
+.p-open{background:var(--fill);color:var(--ink)} .p-ok{background:var(--ok);color:#fff} .p-bad{background:var(--bad);color:#fff} .p-move{background:var(--move);color:#231500} .p-sure{background:var(--sure);color:#fff} .p-new{background:var(--sel);color:#fff} .p-rec{background:var(--bad);color:#fff}
+h2{margin:0;font-size:21px;line-height:1.2;font-weight:700;letter-spacing:-.015em;text-wrap:balance}
+.find{margin:0;font-size:15.5px;line-height:1.4}
+.facts{display:grid;gap:6px}
+.fact{display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start;font-size:13.5px;line-height:1.35;color:var(--muted)}
+.fact svg{width:16px;height:16px;margin-top:1px;color:var(--muted)}
+.fact.zone,.fact.zone svg{color:#2f8a4a}
+.meta{color:var(--muted);font-size:13.5px;line-height:1.4;margin:0}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.act{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:58px;border:0;border-radius:var(--r);font:700 15px var(--f-ui)}
+.act svg{width:20px;height:20px}
+.act:active{filter:brightness(.92);transform:scale(.98)}
+.a-ok{background:var(--ok);color:#fff}.a-bad{background:var(--bad);color:#fff}.a-move{background:var(--move);color:#231500}
+.a-here{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;border:0;border-radius:var(--r);background:rgba(10,122,255,.16);color:var(--sel);font:600 15px var(--f-ui)}
+.a-here:disabled{opacity:.5}
+.a-here svg{width:18px;height:18px}
+input[type=text],input[type=password],textarea{width:100%;box-sizing:border-box;font:16px/1.35 var(--f-ui);color:var(--ink);background:var(--field);border:0;border-radius:14px;padding:12px 14px;outline:none}
+input:focus,textarea:focus{box-shadow:0 0 0 2px var(--sel)}
+textarea{min-height:46px;resize:vertical}
+::placeholder{color:var(--muted);opacity:.85}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:6px 11px;font-size:13.5px}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.status{font-size:12.5px;color:var(--muted)}
+.chip{border:0;background:var(--fill);border-radius:17px;min-height:34px;padding:0 13px;font:500 14px var(--f-ui);color:var(--ink)}
+.chip[aria-pressed="false"]{color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--tint);color:var(--ink);box-shadow:inset 0 0 0 1px var(--tint-edge)}
+/* map SVGs from matplotlib carry a global '*{stroke-linecap:butt}' – keep our icons round */
+.ico *,svg[aria-hidden] *{stroke-linecap:round;stroke-linejoin:round}
+.sub{margin:2px 0 0;font-size:13px;font-weight:600;color:var(--muted)}
+.status{font-size:13px;color:var(--muted);margin:0}
 .status.warn{color:var(--bad)}
-.panel{position:absolute;inset:57px 0 0 0;z-index:15;background:var(--panel);overflow:auto;padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px));display:grid;gap:14px;align-content:start}
-@media (min-width:820px){.panel{left:auto;width:370px;border-left:1px solid var(--line)}}
-.panel h3{margin:0;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.list{display:grid;gap:2px}
-.li{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;text-align:left;border:0;background:transparent;border-bottom:1px solid var(--line);padding:9px 2px}
-.li small{color:var(--muted)}
-.li .d{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
-pre{white-space:pre-wrap;word-break:break-all;font-size:11px;background:var(--chip);padding:8px;border-radius:8px;max-height:160px;overflow:auto}
-.ico{width:22px;height:22px}
-.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px;font-size:13px}
+.rec{color:var(--bad);font-weight:700}
+
+/* sheets for list, menu, pdf */
+.panel{position:fixed;z-index:15;left:10px;right:10px;top:calc(var(--sat) + 64px);bottom:calc(var(--sab) + 10px);border-radius:28px;overflow:auto;overscroll-behavior:contain;padding:0 16px 18px;display:grid;gap:14px;align-content:start}
+@media (min-width:820px){.panel{left:auto;right:12px;width:400px;top:calc(var(--sat) + 70px);bottom:12px}}
+.phead{position:sticky;top:0;z-index:4;display:flex;align-items:center;gap:10px;margin:0 -16px;padding:14px 12px 10px 18px;background:var(--glass-strong);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:28px 28px 0 0;box-shadow:0 .5px 0 var(--hair)}
+.phead h2{flex:1;font-size:22px}
+.x{width:36px;height:36px;border-radius:18px;border:0;background:var(--fill);display:grid;place-items:center;color:var(--muted);flex:none}
+.x svg{width:15px;height:15px}
+.grp{display:grid;gap:10px;padding:14px;border-radius:20px;background:var(--fill)}
+.grp h3{margin:0;font-size:15px;font-weight:700}
+.grp .ib{background:var(--btn-in)}
+.grp .ib.pri{background:var(--accent)}
+.list{display:grid;border-radius:20px;background:var(--fill);overflow:hidden}
+.li{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;text-align:left;border:0;background:transparent;padding:10px 14px;color:var(--ink);font:15px/1.3 var(--f-ui)}
+.li + .li{box-shadow:inset 0 .5px 0 var(--hair)}
+.li:active{background:var(--fill)}
+.li small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}
+.li .d{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px}
+pre{white-space:pre-wrap;word-break:break-all;font-size:11px;background:var(--field);padding:10px;border-radius:12px;max-height:160px;overflow:auto;margin:0}
+details summary{cursor:pointer;color:var(--muted);font-size:14px;font-weight:600}
+.ico{width:24px;height:24px}
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;font-size:14px}
 .legend div{display:flex;gap:8px;align-items:center}
 .dot{width:14px;height:14px;border-radius:50%;border:2px solid #8f8a96;flex:none}
-.gpsb[data-st="on"]{background:var(--sel);color:#fff;border-color:var(--sel)} .gpsb[data-st="wait"]{background:var(--chip);color:var(--sel);border-color:var(--sel)} .gpsb[data-st="err"]{color:var(--bad);border-color:var(--bad)}
-.ctl{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;width:40px;height:40px;font-size:20px;line-height:38px;text-align:center;box-shadow:0 2px 8px #0002;padding:0}
-.ctl[aria-pressed="true"]{background:var(--sel);color:#fff;border-color:var(--sel)}
-.a-here{background:var(--sel);color:#fff;border:0;border-radius:var(--r);padding:11px 8px;font-weight:700;font-size:14.5px}
-.rec{color:var(--bad);font-weight:700}
-#pv{border:1px solid var(--line);border-radius:8px;background:#fffdf7;overflow:hidden;min-height:120px;display:grid;place-items:center}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px}
+.sw{appearance:none;-webkit-appearance:none;width:51px;height:31px;border-radius:16px;background:var(--fill-2);position:relative;flex:none;transition:background .2s;margin:0}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .2s}
+.sw:checked{background:var(--ok)} .sw:checked::after{transform:translateX(20px)}
+
+/* map controls (zoom on desktop, follow-me everywhere) as glass buttons under the tool bar */
+.leaflet-top{top:calc(var(--sat) + 64px)}
+.leaflet-right .leaflet-control{margin-right:12px}
+.leaflet-touch .leaflet-bar,.leaflet-bar{border:.5px solid var(--edge)!important;border-radius:22px!important;overflow:hidden;background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:var(--lift)!important}
+.leaflet-bar a,.leaflet-touch .leaflet-bar a{width:44px!important;height:44px!important;line-height:44px!important;background:transparent!important;color:var(--ink)!important;border-bottom:.5px solid var(--hair)!important;font:400 22px/44px var(--f-ui)!important}
+.leaflet-bar a:last-child{border-bottom:0!important}
+@media (pointer:coarse){.leaflet-control-zoom{display:none}}
+.ctl{width:44px;height:44px;border-radius:22px;display:grid;place-items:center;color:var(--ink);padding:0}
+.ctl svg{width:21px;height:21px}
+.ctl[aria-pressed="true"]{color:#fff;background:var(--sel)!important}
+
+#pv{border-radius:16px;background:#fffdf7;overflow:hidden;min-height:120px;display:grid;place-items:center;box-shadow:inset 0 0 0 .5px var(--hair)}
 #pv svg{width:100%;height:auto;display:block}
-.pvwrap{position:sticky;top:-14px;z-index:3;background:var(--panel);padding:8px 0 6px;display:grid;gap:6px;box-shadow:0 8px 10px -8px #0003}
-.pgrp{display:grid;gap:6px}
-.big{width:100%;padding:12px;font-weight:700;background:var(--accent);color:var(--accent-ink);border:0;border-radius:var(--r);font-size:15px}
-.big:disabled{opacity:.6}
+.pvwrap{position:sticky;top:60px;z-index:3;background:var(--glass-strong);padding:8px 0 8px;display:grid;gap:6px;border-radius:0 0 16px 16px}
+.pgrp{display:grid;gap:8px}
+
+/* tour */
 .tour{position:fixed;inset:0;z-index:1000;pointer-events:none}
-.tour .blk{position:fixed;background:rgba(12,14,20,.6);pointer-events:auto}
-.tour .ring{position:fixed;border-radius:12px;box-shadow:0 0 0 3px var(--accent),0 0 0 8px rgba(255,255,255,.28);pointer-events:none;transition:all .25s ease}
-.tour .card{position:fixed;left:12px;right:12px;max-width:430px;margin:0 auto;background:var(--panel);color:var(--ink);border-radius:16px;padding:16px 16px 12px;box-shadow:0 14px 44px #0007;pointer-events:auto;display:grid;gap:10px;transition:top .25s ease,bottom .25s ease}
-.tour .card h3{margin:0;font-size:18px;line-height:1.25}
-.tour .card p{margin:0;font-size:14.5px;line-height:1.45;color:var(--ink)}
-.tour .card .hint{font-size:13px;color:var(--accent);font-weight:700}
+.tour .blk{position:fixed;background:rgba(0,0,0,.42);pointer-events:auto}
+.tour .ring{position:fixed;border-radius:22px;box-shadow:0 0 0 2.5px var(--accent),0 0 0 7px rgba(255,255,255,.3);pointer-events:none;transition:all .28s cubic-bezier(.2,.8,.2,1)}
+.tour .card{position:fixed;left:12px;right:12px;max-width:420px;margin:0 auto;border-radius:26px;padding:18px 18px 14px;pointer-events:auto;display:grid;gap:10px;transition:top .28s cubic-bezier(.2,.8,.2,1)}
+.tour .card h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
+.tour .card p{margin:0;font-size:15px;line-height:1.4}
+.tour .card .hint{font-size:14px;color:var(--accent);font-weight:600}
 .tour .tnav{display:flex;gap:8px;align-items:center}
 .tour .tnav .sp{flex:1}
 .tour .dots{display:flex;gap:5px}
-.tour .dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
-.tour .dots i.on{background:var(--accent)}
-.tour label{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
-.tour .skip{border:0;background:transparent;color:var(--muted);font-size:13.5px;padding:6px 2px;text-decoration:underline}
-@media (prefers-reduced-motion: reduce){.tour .ring,.tour .card{transition:none}}
+.tour .dots i{width:6px;height:6px;border-radius:50%;background:var(--fill-2)}
+.tour .dots i.on{background:var(--accent);width:16px;border-radius:3px}
+.tour label{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--muted)}
+.tour label input{width:18px;height:18px;accent-color:var(--accent)}
+.tour .skip{border:0;background:transparent;color:var(--muted);font-size:14px;font-weight:600;padding:6px 4px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
 <div id="app">
-  <header class="bar">
-    <div class="brand">Feldcheck<small>Wangerooge West</small></div>
-    <div class="prog" aria-live="polite"><b id="progTxt">–/–</b><div class="meter"><i id="meterFill"></i></div></div>
-    <button class="ib gpsb" id="btnGps" type="button" data-st="off" hidden>GPS</button>
-    <button class="ib" id="btnList" type="button">Liste</button>
-    <button class="ib" id="btnMenu" type="button">Mehr</button>
-  </header>
   <div id="map" role="application" aria-label="Karte Wangerooge West"></div>
+  <header class="top" id="topbar">
+    <div class="brandcap glass"><span class="brand">Feldcheck</span><span class="prog" id="prog" aria-live="polite"><svg class="pring" viewBox="0 0 20 20" aria-hidden="true"><circle class="pt" cx="10" cy="10" r="7.4"/><circle class="pf" id="meterFill" cx="10" cy="10" r="7.4" pathLength="100" stroke-dasharray="0 100"/></svg><b id="progTxt">–/–</b></span></div>
+    <span class="sp"></span>
+    <div class="tools glass">
+      <button class="tb gpsb" id="btnGps" type="button" data-st="off" hidden aria-label="GPS" title="GPS"></button>
+      <button class="tb" id="btnList" type="button" aria-label="Liste" title="Liste"></button>
+      <button class="tb" id="btnMenu" type="button" aria-label="Mehr" title="Mehr"></button>
+    </div>
+  </header>
   <div id="banner" hidden><span id="bannerTxt"></span><button id="bannerCancel" type="button">Abbrechen</button></div>
-  <section class="sheet" id="sheet" aria-live="polite"></section>
-  <section class="panel" id="listPanel" hidden></section>
-  <section class="panel" id="menuPanel" hidden></section>
-  <section class="panel" id="pdfPanel" hidden></section>
+  <section class="sheet glass-strong" id="sheet" aria-live="polite"></section>
+  <section class="panel glass-strong" id="listPanel" hidden></section>
+  <section class="panel glass-strong" id="menuPanel" hidden></section>
+  <section class="panel glass-strong" id="pdfPanel" hidden></section>
 </div>
 
 <!--LEAFLETJS-->
@@ -129,6 +211,17 @@ const ll = (e, n) => L.latLng(n - Y1, e - X0);
 const en = (p) => [Math.round((p.lng + X0) * 10) / 10, Math.round((p.lat + Y1) * 10) / 10];
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const IC = {
+  loc: '<path d="M20.5 3.5 3.5 10.6l7.2 2.7 2.7 7.2z"/>', list: '<path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01" stroke-width="3"/>',
+  more: '<path d="M5.5 12h.01M12 12h.01M18.5 12h.01" stroke-width="3.4"/>', plus: '<path d="M12 5v14M5 12h14"/>', x: '<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>',
+  help: '<path d="M9.3 9.2a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2 1-1.2 1.9v.5"/><path d="M12 17.6h.01" stroke-width="2.8"/>', check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  move: '<path d="M7 17 17 7M9.5 7H17v7.5"/>', pin: '<path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.2"/>',
+  info: '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.2"/><path d="M12 7.8h.01" stroke-width="2.6"/>', leaf: '<path d="M5 19c.4-7.6 5-12.6 14-14-.6 8.8-5.6 13.6-14 14z"/><path d="M5 19l6.5-6.5"/>',
+  text: '<path d="M5 7h14M5 12h14M5 17h9"/>', next: '<path d="M5 12h14M13 6l6 6-6 6"/>', undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
+  down: '<path d="M6 9.5l6 6 6-6"/>', trash: '<path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/>', path: '<path d="M4 19c4-1 3-6 8-7s4-6 8-7" stroke-dasharray="2.2 3"/>',
+  rec: '<circle cx="12" cy="12" r="5.5" fill="currentColor" stroke="none"/>', follow: '<circle cx="12" cy="12" r="7"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/><circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/>',
+  chev: '<path d="M9.5 6l6 6-6 6"/>', send: '<path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/>', doc: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/>', cloud: '<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/>'};
+const svgI = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 const LS = {get(k, d){try{const v = localStorage.getItem(k); return v ? JSON.parse(v) : d}catch(e){return d}}, set(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}};
 
 const CAT = {
@@ -146,14 +239,18 @@ const CAT = {
   'Umspannstation':['Trafostation','M11 4L7 11H11L9 16L14 9H10Z'],
   'Neu':['Neu','M10 4L12 9H17L13 12L14.5 17L10 14L5.5 17L7 12L3 9H8Z'],
 };
+const CAT_GROUPS = [   // filter order like the map legend: lines, points by usefulness for orienteering, then buildings & facilities
+  ['Wege & Linien', ['Pfad', 'Dünenübergang', 'Brücke', 'Bahnübergang', 'Buhne', 'Steilhang']],
+  ['Orientierungspunkte', ['Bank', 'Rettungspunkt', 'Durchgang', 'Bauwerk', 'Kleinobjekt', 'Historisch', 'Kuppe', 'Trichter', 'Gewässer', 'Busch', 'km-Stein', 'Haltepunkt']],
+  ['Gebäude & Ausstattung', ['Unterkunft', 'Gebäude', 'Gastronomie', 'Einrichtung', 'Gelände', 'Vegetation', 'Spielplatz', 'Sportplatz', 'Fitness', 'Hydrant', 'Recycling', 'Fahrradständer', 'Umspannstation']]];
 const FILL = {open:'#ffffff', ok:'#2e9d57', fehlt:'#cf4136', woanders:'#d98a1c', sure:'#4a3f55', neu:'#2b6fd6'};
 const SURE_ZOOM = 0;
 const VERB = {ok:'Stimmt', fehlt:'Fehlt', woanders:'Woanders'};
 const NEWGROUPS = [
-  ['Nur vor Ort erfassbar', ['Ruhezonen-Schild','Ruhezonen-Pfahl','Strandaufgang (Nr.)','Findling / Stein','Pfahl / Pfosten','Fahnenmast','Einzelbaum','Schild (sonstiges)']],
+  ['Nur vor Ort zu sehen', ['Ruhezonen-Schild','Ruhezonen-Pfahl','Strandaufgang (Nr.)','Findling / Stein','Pfahl / Pfosten','Fahnenmast','Einzelbaum','Schild (sonstiges)']],
   ['Weitere Landmarken', ['Bank','SOS-Schild','Markanter Busch','Grube / Trichter','Tümpel','Dünenkuppe','Steilhang / Abbruch','Dünenübergang','Tor / Durchlass','Infotafel','Schutzhütte','Sandfangzaun','Holzsteg','Sonstiges']]];
 const NEWTYPES = NEWGROUPS.flatMap(g => g[1]);
-const typeChips = (cur) => NEWGROUPS.map(([h, ts]) => `<div class="kicker" style="margin-top:2px">${esc(h)}</div><div class="chips">${ts.map(t => `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${t === cur}">${esc(t)}</button>`).join('')}</div>`).join('');
+const typeChips = (cur) => NEWGROUPS.map(([h, ts]) => `<p class="sub">${esc(h)}</p><div class="chips">${ts.map(t => `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${t === cur}">${esc(t)}</button>`).join('')}</div>`).join('');
 
 let DATA = null, byId = {}, markers = {}, lines = {}, moveLines = {};
 let verdicts = {};             // confirmed from store (or local when no store)
@@ -182,11 +279,18 @@ if (IS_APP && location.hash.includes('key=')) {
 }
 if (IS_APP && !box) { const m = document.cookie.match(/(?:^|;\s*)fc_box=([^;]+)/); if (m) { try { box = JSON.parse(decodeURIComponent(m[1])); if (box && box.key) LS.set('fc_box', box); else box = null; } catch(e) { box = null; } } }
 
+$('btnList').innerHTML = svgI('list'); $('btnMenu').innerHTML = svgI('more');
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -2, maxZoom: 3, zoomSnap: .25, zoomDelta: .5, attributionControl: false, zoomControl: false, maxBoundsViscosity: .8});
 const B = L.latLngBounds(ll(X0, Y1 - H), ll(X0 + W, Y1));
-function updateBounds(z){   // keep the map in reach, but let every edge be panned out from under the bottom sheet / side panel
-  const sh = $('sheet'), wide = window.innerWidth >= 820, s = Math.pow(2, z === undefined ? map.getZoom() : z);
-  const px = (wide && sh ? sh.offsetWidth : 0) / s + W * .15, py = (!wide && sh ? sh.offsetHeight : 0) / s + H * .15;
+function visibleBox(){   // screen part of the map not covered by the top bar and the bottom card (side card on wide screens)
+  const W_ = window.innerWidth, H_ = window.innerHeight, sh = $('sheet'), top = $('topbar').getBoundingClientRect().bottom;
+  if (!sh || !sh.offsetHeight) return {l: 0, t: top, r: W_, b: H_};
+  const r = sh.getBoundingClientRect();
+  return W_ >= 820 ? {l: 0, t: top, r: r.left, b: H_} : {l: 0, t: top, r: W_, b: r.top};
+}
+function updateBounds(z){   // keep the map in reach, but let every edge be panned out from under the bars
+  const v = visibleBox(), s = Math.pow(2, z === undefined ? map.getZoom() : z);
+  const px = (window.innerWidth - (v.r - v.l)) / s + W * .15, py = (window.innerHeight - (v.b - v.t)) / s + H * .15;
   map.setMaxBounds(L.latLngBounds(ll(X0 - px, Y1 - H - py), ll(X0 + W + px, Y1 + py)));
 }
 updateBounds(0); map.on('zoomend', () => updateBounds()); window.addEventListener('resize', () => updateBounds());
@@ -194,7 +298,7 @@ if (window.ResizeObserver) new ResizeObserver(() => updateBounds()).observe($('s
 const Tiles = L.TileLayer.extend({getTileUrl(c){return `t${c.z + 2}_${c.x}_${c.y}.png`}});
 new Tiles('', {tileSize: 512, minZoom: -2, maxZoom: 3, minNativeZoom: -2, maxNativeZoom: 1, bounds: B, noWrap: true,
   errorTileUrl: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}).addTo(map);
-L.control.zoom({position: 'topleft'}).addTo(map);
+L.control.zoom({position: 'topright'}).addTo(map);
 map.fitBounds(L.latLngBounds(ll(424150, 5960050), ll(425350, 5961000)));
 
 const vOf = (id) => pending[id] || verdicts[id] || null;
@@ -252,7 +356,7 @@ function progress(){
   const todo = DATA.items.filter(i => i.s !== 'sicher').concat(DATA.paths);
   const done = todo.filter(i => vOf(i.id)).length;
   $('progTxt').textContent = `${done}/${todo.length}`; $('progTxt').title = `${done} von ${todo.length} Objekten geprüft`;
-  $('meterFill').style.width = (100 * done / todo.length).toFixed(1) + '%';
+  $('meterFill').setAttribute('stroke-dasharray', `${(100 * done / todo.length).toFixed(1)} 100`);
 }
 
 // ---------- store ----------
@@ -274,12 +378,13 @@ function saveNew(id, n){
 function setStore(s, code){
   storeState = s;
   const el = document.querySelector('#sheet .storest');
-  if (el) { el.textContent = storeText(); el.className = 'status storest' + (storeWarn() ? ' warn' : ''); }
+  if (el) { el.textContent = storeText(); el.className = 'status storest' + (storeWarn() ? ' warn' : ''); el.hidden = !storeShown(); }
 }
 const storeWarn = () => storeState === 'err' || (storeState === 'local' && !IS_APP);
+const storeShown = () => storeWarn() || !IS_APP;   // in the app "saved on this phone" is the normal case – no need to say it every time
 function storeText(){
   return {connecting: 'Verbinde mit Speicher …', ok: 'Gespeichert – Claude sieht deine Einträge.', err: 'Speichern gerade nicht möglich. Einträge bleiben auf dem Handy und werden nachgereicht.',
-    local: IS_APP ? 'Auf diesem Handy gespeichert, auch offline. Am Ende „Mehr → Ans Kartenteam senden“.' : 'Nur auf diesem Gerät gespeichert. Am Ende über „Mehr → Ergebnis kopieren“ an Claude schicken.'}[storeState];
+    local: IS_APP ? 'Auf diesem Handy gespeichert. Am Ende: Mehr → Senden.' : 'Nur auf diesem Gerät gespeichert. Am Ende über „Mehr → Ergebnis kopieren“ an Claude schicken.'}[storeState];
 }
 async function initStore(){
   try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch(e) { db = null; }
@@ -336,15 +441,16 @@ const inFrame = (p) => p[0] >= X0 && p[0] <= X0 + W && p[1] >= Y1 - H && p[1] <=
 function gpsBtn(){
   const b = $('btnGps'); if (!b) return;
   b.dataset.st = !gps.on ? 'off' : (gps.err ? 'err' : (gps.pos ? 'on' : 'wait'));
-  b.textContent = !gps.on ? 'GPS aus' : (gps.err ? 'GPS ?' : (gps.pos ? `± ${Math.round(gps.acc)} m` : 'GPS …'));
+  b.innerHTML = svgI('loc') + `<span class="tl">${!gps.on ? '' : (gps.err ? '!' : (gps.pos ? `±${Math.round(gps.acc)} m` : '…'))}</span>`;
+  b.setAttribute('aria-label', !gps.on ? 'GPS einschalten' : 'GPS ausschalten');
   const c = document.querySelector('#ctlFollow'); if (c) c.setAttribute('aria-pressed', follow);
 }
 function gpsText(){
-  if (!gps.on) return 'GPS ist aus. Oben auf „GPS aus“ tippen, um es einzuschalten.';
+  if (!gps.on) return 'GPS aus';
   if (gps.err) return gps.err;
-  if (!gps.pos) return 'Suche GPS-Signal …';
+  if (!gps.pos) return 'Suche GPS …';
   const age = Math.round((Date.now() - gps.t) / 1000);
-  return `GPS: Genauigkeit ± ${Math.round(gps.acc)} m${age > 15 ? ` · letzte Position vor ${age} s` : ''}${inFrame(gps.pos) ? '' : ' · du bist außerhalb der Karte'}`;
+  return `GPS ± ${Math.round(gps.acc)} m${age > 15 ? `, Position vor ${age} s` : ''}${inFrame(gps.pos) ? '' : ', du bist außerhalb der Karte'}`;
 }
 function startGps(){
   if (!navigator.geolocation){ gps.err = 'Dieses Gerät liefert keine GPS-Position.'; gps.on = true; gpsBtn(); renderSheet(); return; }
@@ -386,10 +492,10 @@ function renderStatus(){
   const hb = document.querySelectorAll('[data-here]'); hb.forEach(b => { b.disabled = !gps.pos; b.querySelector('small') && (b.querySelector('small').textContent = gps.pos ? `± ${Math.round(gps.acc)} m` : 'kein Signal'); });
   if (rec) { const r = document.querySelector('#recN'); if (r) r.textContent = `${rec.pts.length} Punkte · ${Math.round(rec.pts.reduce((s, p, i) => i ? s + dist(p, rec.pts[i - 1]) : 0, 0))} m`; }
 }
-const hereBtn = (id, label) => IS_APP && gps.on ? `<button class="a-here" id="${id}" type="button" data-here ${gps.pos ? '' : 'disabled'}>📍 ${label} <small style="font-weight:400">${gps.pos ? '± ' + Math.round(gps.acc) + ' m' : 'kein Signal'}</small></button>` : '';
-function panToVisible(p, zoom){   // centre a point in the part of the map not covered by the bottom sheet (side panel on wide screens)
-  const sh = $('sheet'), wide = window.innerWidth >= 820, z = zoom === undefined ? map.getZoom() : zoom;
-  const off = sh ? (wide ? [sh.offsetWidth / 2, 0] : [0, sh.offsetHeight / 2]) : [0, 0];
+const hereBtn = (id, label) => IS_APP && gps.on ? `<button class="a-here" id="${id}" type="button" data-here ${gps.pos ? '' : 'disabled'}>${svgI('loc')}${label} <small style="font-weight:400;opacity:.85">${gps.pos ? '± ' + Math.round(gps.acc) + ' m' : 'kein Signal'}</small></button>` : '';
+function panToVisible(p, zoom){   // centre a point in the visible part of the map
+  const z = zoom === undefined ? map.getZoom() : zoom, v = visibleBox(), sz = map.getSize();
+  const off = L.point(sz.x / 2 - (v.l + v.r) / 2, sz.y / 2 - (v.t + v.b) / 2);
   updateBounds(z); map.setView(map.unproject(map.project(ll(p[0], p[1]), z).add(off), z), z, {animate: true});
 }
 function panToMe(zoom){ if (gps.pos) panToVisible(gps.pos, zoom); }
@@ -406,98 +512,101 @@ function nextOpen(){
 
 function renderSheet(){
   const S = $('sheet');
+  const gpsLine = () => IS_APP && gps.on ? `<p class="status gpsst">${gpsText()}</p>` : '';
+  const storeLine = () => `<p class="status storest ${storeWarn() ? 'warn' : ''}" ${storeShown() ? '' : 'hidden'}>${storeText()}</p>`;
   if (rec){
-    S.innerHTML = `<div class="kicker"><span class="rec">● Aufnahme</span> Schleichpfad per GPS</div><h2 id="recN">${rec.pts.length} Punkte</h2>
-      <p class="meta" style="margin:0">Lauf den Pfad ab. Alle 4 m wird ein Punkt gesetzt, solange die Genauigkeit besser als 20 m ist.</p>
-      <div class="row"><button class="ib" id="rStop" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Stopp &amp; speichern</button><button class="ib" id="rCancel" type="button">Verwerfen</button></div>
-      <div class="status gpsst">${gpsText()}</div>`;
+    S.innerHTML = `<div class="ihead"><span class="pill p-rec">● Aufnahme</span><span class="cat">Pfad per GPS</span></div>
+      <h2 id="recN">${rec.pts.length} Punkte</h2>
+      <p class="meta">Lauf den Pfad ab. Punkte kommen automatisch dazu.</p>
+      <div class="row"><button class="ib pri" id="rStop" type="button">Stopp &amp; speichern</button><button class="ib" id="rCancel" type="button">Verwerfen</button></div>
+      ${gpsLine()}`;
     $('rStop').onclick = () => { const pts = rec.pts; rec = null; drawDraft([]); if (pts.length >= 2) { const nid = 'N' + Date.now().toString(36); saveNew(nid, {typ: 'Schleichpfad', pts, note: '', src: 'gps', t: Date.now()}); selectNew(nid); } else renderSheet(); };
     $('rCancel').onclick = () => { rec = null; drawDraft([]); renderSheet(); };
     renderStatus(); return;
   }
   if (mode === 'path'){
-    S.innerHTML = `<div class="kicker">Neuer Pfad</div><h2>${draft.length} Punkt${draft.length === 1 ? '' : 'e'} gesetzt</h2>
-      <p class="meta">Tippe den Pfadverlauf Punkt für Punkt auf die Karte. Mindestens zwei Punkte.</p>
-      <div class="row"><button class="ib" id="pUndo" type="button">Letzten Punkt löschen</button><button class="ib" id="pDone" type="button" ${draft.length < 2 ? 'disabled' : ''}>Pfad speichern</button></div>`;
+    S.innerHTML = `<div class="ihead"><span class="cat">Pfad zeichnen</span></div><h2>${draft.length} Punkt${draft.length === 1 ? '' : 'e'}</h2>
+      <p class="meta">Tippe den Verlauf Punkt für Punkt auf die Karte.</p>
+      <div class="row"><button class="ib" id="pUndo" type="button" ${draft.length ? '' : 'disabled'}>${svgI('undo')}Zurück</button><button class="ib pri" id="pDone" type="button" ${draft.length < 2 ? 'disabled' : ''}>Speichern</button></div>`;
     $('pUndo').onclick = () => { draft.pop(); drawDraft(); renderSheet(); };
     $('pDone').onclick = () => { const nid = 'N' + Date.now().toString(36); saveNew(nid, {typ: 'Schleichpfad', pts: draft.slice(), note: '', t: Date.now()}); draft = []; drawDraft(); setMode(null); selectNew(nid); };
     return;
   }
   if (showForm){
-    const cur = formDraft || {typ: 'Ruhezonen-Schild', name: '', note: ''};
-    S.innerHTML = `<div class="kicker">Neuer Landmarker</div>
+    const cur = formDraft || {typ: 'Ruhezonen-Schild', name: '', note: ''}, g = IS_APP && gps.on;
+    S.innerHTML = `<div class="row" style="flex-wrap:nowrap"><h2 style="flex:1">Neu erfassen</h2><button class="x" id="fCancel" type="button" aria-label="Abbrechen">${svgI('x')}</button></div>
       <div id="typChips" style="display:grid;gap:6px">${typeChips(cur.typ)}</div>
-      <input id="nName" type="text" placeholder="Bezeichnung (optional), z. B. „Doppelbank am Dünenkamm“" value="${esc(cur.name || '')}" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
-      <textarea id="nDesc" placeholder="Beschreibung: Was ist es, wie erkennt man es? z. B. „Holzbank mit Lehne, Blick nach Norden, 3 m neben dem Pfad“">${esc(cur.note || '')}</textarea>
-      ${hereBtn('fHere', 'Hier ist es (GPS)')}
-      <div class="row"><button class="ib" id="fPin" type="button" ${IS_APP && gps.on ? '' : 'style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)"'}>${IS_APP && gps.on ? 'Stattdessen auf Karte tippen' : '📍 Pin auf Karte setzen'}</button><button class="ib" id="fCancel" type="button">Abbrechen</button></div>
-      <p class="meta" style="margin:0">${IS_APP && gps.on ? 'Stell dich direkt an das Objekt und tippe „Hier ist es“. ' : 'Nach dem Antippen der Position wird der Landmarker gespeichert. '}Vor Ort erfasste Objekte übernehme ich in Version 2 als sicher.</p>
-      ${IS_APP && gps.on ? `<div class="status gpsst">${gpsText()}</div>` : ''}`;
+      <input id="nName" type="text" placeholder="Name (optional)" value="${esc(cur.name || '')}">
+      <textarea id="nDesc" placeholder="Woran erkennt man es? (optional)">${esc(cur.note || '')}</textarea>
+      ${hereBtn('fHere', 'Hier ist es')}
+      <button class="ib ${g ? '' : 'pri'}" id="fPin" type="button">${svgI('pin')}${g ? 'Stattdessen auf Karte tippen' : 'Position auf Karte tippen'}</button>
+      ${gpsLine()}`;
     let typ = cur.typ;
     S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
     if ($('fHere')) $('fHere').onclick = () => { const h = hereNow(); if (!h) return; const nid = 'N' + Date.now().toString(36); showForm = false;
       saveNew(nid, {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), ...h, t: Date.now()}); formDraft = null; selectNew(nid); };
-    $('fPin').onclick = () => { formDraft = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()}; showForm = false; setMode('add', `Tippe die Position: ${typ}`); renderSheet(); };
+    $('fPin').onclick = () => { formDraft = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()}; showForm = false; setMode('add', `Position antippen: ${typ}`); renderSheet(); };
     $('fCancel').onclick = () => { showForm = false; formDraft = null; renderSheet(); };
     return;
   }
   if (selNewId){
     const n = pendingNew[selNewId] || news[selNewId]; if (!n) { selNewId = null; return renderSheet(); }
-    S.innerHTML = `<div class="kicker"><span class="pill" style="background:var(--sel);color:#fff">vor Ort erfasst · gilt als sicher</span> ${esc(selNewId)}</div>
+    S.innerHTML = `<div class="ihead"><span class="pill p-new">neu</span><span class="cat">vor Ort erfasst</span><span class="id">${n.src === 'gps' ? `GPS${n.acc ? ` ± ${n.acc} m` : ''}` : (n.pts ? `${n.pts.length} Punkte` : 'angetippt')}</span></div>
       <div id="typChips" style="display:grid;gap:6px">${n.pts ? `<div class="chips"><button class="chip" type="button" data-t="Schleichpfad" aria-pressed="true">Schleichpfad</button></div>` : typeChips(n.typ)}</div>
-      <input id="nName" type="text" placeholder="Bezeichnung (optional)" value="${esc(n.name || '')}" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
-      <textarea id="nDesc" placeholder="Beschreibung">${esc(n.note || '')}</textarea>
-      ${n.pts ? '' : hereBtn('nHere', 'Pin auf meine Position')}
-      <div class="row"><button class="ib" id="nSave" type="button">Speichern</button>${n.pts ? '' : '<button class="ib" id="nMove" type="button">Pin verschieben</button>'}<button class="ib" id="nDel" type="button">Löschen</button></div>
-      <p class="meta" style="margin:0">${n.src === 'gps' ? `Position per GPS${n.acc ? ` (± ${n.acc} m)` : ''}` : (n.pts ? `${n.pts.length} Punkte` : 'Position per Antippen')}</p>
-      <div class="status storest">${storeText()}</div>`;
+      <input id="nName" type="text" placeholder="Name (optional)" value="${esc(n.name || '')}">
+      <textarea id="nDesc" placeholder="Woran erkennt man es?">${esc(n.note || '')}</textarea>
+      ${n.pts ? '' : hereBtn('nHere', 'Auf meine Position setzen')}
+      <div class="row"><button class="ib pri" id="nSave" type="button">Speichern</button>${n.pts ? '' : `<button class="ib" id="nMove" type="button">${svgI('pin')}Verschieben</button>`}<button class="ib icon" id="nDel" type="button" aria-label="Löschen" title="Löschen">${svgI('trash')}</button></div>
+      <div class="row"><button class="ib" id="nDone" type="button">Fertig</button></div>
+      ${storeLine()}`;
     let typ = n.typ;
     S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
     $('nSave').onclick = () => { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), t: Date.now()}); $('nSave').textContent = 'Gespeichert'; };
-    if (!n.pts) $('nMove').onclick = () => setMode('movenew', 'Tippe die neue Position');
+    $('nDone').onclick = () => { selNewId = null; drawNews(); renderSheet(); };
+    if (!n.pts) $('nMove').onclick = () => setMode('movenew', 'Neue Position antippen');
     if ($('nHere')) $('nHere').onclick = () => { const h = hereNow(); if (h) { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), ...h, t: Date.now()}); renderSheet(); } };
     $('nDel').onclick = () => { const id = selNewId; delete pendingNew[id]; delete news[id]; LS.set('fc_pendingNew', pendingNew); if (db) queueWrite('neu/' + id, () => db.collection('neu').doc(id).delete()); selNewId = null; drawNews(); renderSheet(); };
     return;
   }
   if (!selId){
-    S.innerHTML = `<div class="row"><button class="ib" id="bNext" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700">Nächstes offenes Objekt</button>
-        <button class="ib" id="bAdd" type="button" aria-expanded="${addOpen}" style="flex:0 0 auto">+ Neu</button>
-        <button class="ib" id="bHelp" type="button" style="flex:0 0 auto" title="Einführung" aria-label="Einführung zeigen">?</button></div>
-      ${addOpen ? `<div class="row"><button class="ib" id="bNew" type="button">Landmarker</button><button class="ib" id="bPath" type="button">Pfad zeichnen</button>${IS_APP && gps.on ? '<button class="ib" id="bRec" type="button" data-here>● Pfad per GPS</button>' : ''}</div>
-        ${IS_APP && gps.on ? '' : `<div class="row"><button class="ib" id="bMe" type="button">${me ? 'Standort neu setzen' : 'Standort per Antippen setzen'}</button></div>`}` : ''}
-      ${IS_APP ? `<div class="status gpsst">${gpsText()}</div>` : ''}
-      <div class="status storest ${storeWarn() ? 'warn' : ''}">${storeText()}</div>`;
+    S.innerHTML = `<div class="row" style="flex-wrap:nowrap"><button class="ib pri grow" id="bNext" type="button">Nächstes offenes Objekt</button>
+        <button class="ib icon" id="bAdd" type="button" aria-expanded="${addOpen}" aria-label="Neu erfassen" title="Neu erfassen">${svgI(addOpen ? 'x' : 'plus')}</button>
+        <button class="ib icon" id="bHelp" type="button" aria-label="Einführung" title="Einführung">${svgI('help')}</button></div>
+      ${addOpen ? `<div class="row"><button class="ib" id="bNew" type="button">${svgI('pin')}Landmarke</button><button class="ib" id="bPath" type="button">${svgI('path')}Pfad zeichnen</button>${IS_APP && gps.on ? `<button class="ib" id="bRec" type="button" data-here>${svgI('rec')}Pfad per GPS</button>` : ''}
+        ${IS_APP && gps.on ? '' : `<button class="ib" id="bMe" type="button">${svgI('loc')}${me ? 'Standort neu' : 'Mein Standort'}</button>`}</div>` : ''}
+      ${gpsLine()}${storeLine()}`;
     $('bAdd').onclick = () => { addOpen = !addOpen; renderSheet(); };
     $('bHelp').onclick = () => startTour();
     $('bNext').onclick = nextOpen;
-    if ($('bMe')) $('bMe').onclick = () => setMode('me', 'Tippe auf deinen Standort');
-    if ($('bRec')) $('bRec').onclick = () => { rec = {pts: gps.pos ? [gps.pos.slice()] : []}; drawDraft(rec.pts); renderSheet(); };
+    if ($('bMe')) $('bMe').onclick = () => { addOpen = false; setMode('me', 'Tippe auf deinen Standort'); renderSheet(); };
+    if ($('bRec')) $('bRec').onclick = () => { addOpen = false; rec = {pts: gps.pos ? [gps.pos.slice()] : []}; drawDraft(rec.pts); renderSheet(); };
     if ($('bNew')) $('bNew').onclick = () => { showForm = true; formDraft = null; addOpen = false; renderSheet(); };
     if ($('bPath')) $('bPath').onclick = () => { draft = []; addOpen = false; setMode('path', 'Pfad Punkt für Punkt antippen'); renderSheet(); };
     return;
   }
   const it = byId[selId], v = vOf(selId), st = stateOf(it), c = CAT[it.k] || CAT['Kleinobjekt'];
-  const pill = {open: ['p-open', 'offen'], sure: ['p-sure', 'sicher (2 Quellen)'], ok: ['p-ok', 'stimmt · vor Ort bestätigt'], fehlt: ['p-bad', 'fehlt · wird entfernt'], woanders: ['p-move', 'woanders · neue Lage gilt']}[st];
+  const pill = {open: ['p-open', 'offen'], sure: ['p-sure', 'sicher'], ok: ['p-ok', 'stimmt'], fehlt: ['p-bad', 'fehlt'], woanders: ['p-move', 'woanders']}[st];
   const d = me ? Math.round(dist(posOf(it), me)) : null;
-  S.innerHTML = `<div class="kicker"><span class="pill ${pill[0]}">${pill[1]}</span> ${esc(c[0])} · ${esc(it.id)}${d !== null ? ` · ${d} m von dir` : ''}</div>
+  const fact = (ic, txt, cls = '') => txt ? `<div class="fact ${cls}">${svgI(ic)}<span>${esc(txt)}</span></div>` : '';
+  S.innerHTML = `<div class="ihead"><span class="pill ${pill[0]}">${pill[1]}</span><span class="cat">${esc(c[0])}</span><span class="id">${d !== null ? `${d} m` : esc(it.id)}</span></div>
     <h2>${esc(it.n || c[0])}</h2>
     ${it.f ? `<p class="find">${esc(it.f)}</p>` : ''}
-    <p class="meta" style="margin:0">${it.wo ? `<b>Wo:</b> ${esc(it.wo)}<br>` : ''}${it.z ? `<b>${esc(it.z)}:</b> nur von den erlaubten Wegen aus prüfen.<br>` : ''}${it.w ? `<b>Warum prüfen:</b> ${esc(it.w)}<br>` : ''}${it.no ? `<b>Beschreibung:</b> ${esc(it.no)}<br>` : ''}${it.s === 'sicher' && !v ? `<b>Schon sicher</b> (${esc(it.q || '')}) – korrigiere nur, wenn es vor Ort nicht stimmt.` : ''}</p>
+    <div class="facts">${fact('pin', it.wo)}${it.z ? fact('leaf', 'Ruhezone: nur von Wegen aus prüfen', 'zone') : ''}${fact('info', it.s === 'sicher' && !v ? 'Schon sicher – nur ändern, wenn es nicht stimmt.' : it.w)}${fact('text', it.no)}</div>
     <div class="acts">
-      <button class="act a-ok" id="vOk" type="button">✓ Stimmt<span>ist da</span></button>
-      <button class="act a-bad" id="vBad" type="button">✗ Fehlt<span>nicht vorhanden</span></button>
-      <button class="act a-move" id="vMove" type="button">↦ Woanders<span>Stelle antippen</span></button>
+      <button class="act a-ok" id="vOk" type="button">${svgI('check')}Stimmt</button>
+      <button class="act a-bad" id="vBad" type="button">${svgI('x')}Fehlt</button>
+      <button class="act a-move" id="vMove" type="button">${svgI('move')}Woanders</button>
     </div>
-    ${hereBtn('vHere', 'Woanders: es steht hier (GPS)')}
-    <textarea id="note" placeholder="Beschreibung / Notiz (optional), z. B. „Bank 10 m weiter am Pfad, mit Lehne“">${esc(v && v.note || '')}</textarea>
-    <div class="row"><button class="ib" id="bNext2" type="button">Nächstes offenes →</button>${v ? '<button class="ib" id="vUndo" type="button">Bewertung zurücknehmen</button>' : ''}</div>
-    ${IS_APP ? `<div class="status gpsst">${gpsText()}</div>` : ''}
-    <div class="status storest ${storeWarn() ? 'warn' : ''}">${storeText()}</div>`;
+    ${hereBtn('vHere', 'Woanders: steht hier')}
+    <textarea id="note" placeholder="Notiz (optional)" rows="1">${esc(v && v.note || '')}</textarea>
+    <div class="row"><button class="ib grow" id="bNext2" type="button">Nächstes offenes${svgI('next')}</button>${v ? `<button class="ib icon" id="vUndo" type="button" aria-label="Bewertung zurücknehmen" title="Bewertung zurücknehmen">${svgI('undo')}</button>` : ''}<button class="ib icon" id="vClose" type="button" aria-label="Schließen" title="Schließen">${svgI('down')}</button></div>
+    ${gpsLine()}${storeLine()}`;
   $('vOk').onclick = () => { saveVerdict(selId, {st: 'ok', note: noteVal(), t: Date.now()}); renderSheet(); };
   $('vBad').onclick = () => { saveVerdict(selId, {st: 'fehlt', note: noteVal(), t: Date.now()}); renderSheet(); };
-  $('vMove').onclick = () => setMode('move', 'Tippe die richtige Position');
+  $('vMove').onclick = () => setMode('move', 'Richtige Position antippen');
   if ($('vHere')) $('vHere').onclick = () => { const h = hereNow(); if (!h) return; saveVerdict(selId, {st: 'woanders', ...h, note: noteVal(), t: Date.now()}); renderSheet(); };
   $('bNext2').onclick = nextOpen;
+  $('vClose').onclick = () => { selId = null; redrawSel(); renderSheet(); };
   if (v) $('vUndo').onclick = () => { delete pending[selId]; LS.set('fc_pending', pending); delete verdicts[selId]; if (db) queueWrite(selId, () => db.collection('pruefung').doc(selId).delete()); drawItem(it); progress(); renderSheet(); };
 }
 
@@ -509,55 +618,69 @@ function renderList(){
   const from = me || en(map.getCenter());
   const open = DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k));
   open.sort((a, b) => dist(posOf(a), from) - dist(posOf(b), from));
-  $('listPanel').innerHTML = `<h3>${open.length} offene Objekte · sortiert nach Entfernung ${me ? 'zu deinem Standort' : 'zur Kartenmitte'}</h3>
-    <div class="list">${open.slice(0, 150).map(i => { const c = CAT[i.k] || CAT['Kleinobjekt']; return `<button class="li" type="button" data-id="${esc(i.id)}"><svg class="ico" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#fff" stroke="#7d7787" stroke-width="1.4"/><path d="${c[1]}" fill="none" stroke="#1f1d24" stroke-width="1.8" stroke-linecap="round"/></svg><span>${esc(i.n || c[0])}<br><small>${esc(i.id)}</small></span><span class="d">${Math.round(dist(posOf(i), from))} m</span></button>`; }).join('')}</div>`;
+  $('listPanel').innerHTML = `<div class="phead"><h2>${open.length} offen</h2><button class="x" type="button" data-close aria-label="Schließen">${svgI('x')}</button></div>
+    <p class="meta" style="margin-top:-8px">Nach Entfernung ${me ? 'zu dir' : 'zur Kartenmitte'}</p>
+    <div class="list">${open.slice(0, 150).map(i => { const c = CAT[i.k] || CAT['Kleinobjekt']; const dd = Math.round(dist(posOf(i), from)); return `<button class="li" type="button" data-id="${esc(i.id)}"><svg class="ico" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#fff" stroke="#8e8e93" stroke-width="1.2"/><path d="${c[1]}" fill="none" stroke="#1c1c1e" stroke-width="1.8" stroke-linecap="round"/></svg><span>${esc(i.n || c[0])}<small>${esc(c[0])}</small></span><span class="d">${dd < 1000 ? dd + ' m' : (dd / 1000).toFixed(1).replace('.', ',') + ' km'}</span></button>`; }).join('')}</div>`;
+  $('listPanel').querySelector('[data-close]').onclick = () => openPanel(null);
   $('listPanel').querySelectorAll('.li').forEach(b => b.onclick = () => { openPanel(null); $('listPanel').hidden = true; const it = byId[b.dataset.id]; select(it.id); panToVisible(posOf(it), Math.max(map.getZoom(), 1)); });
+}
+function catGroups(cats){   // present categories in legend order; unknown ones go to the last group
+  const seen = new Set(), out = CAT_GROUPS.map(([h, ks]) => [h, ks.filter(k => cats.includes(k) && !seen.has(k) && seen.add(k))]);
+  out[out.length - 1][1].push(...cats.filter(k => !seen.has(k)));
+  return out.filter(([, ks]) => ks.length);
 }
 function renderMenu(){
   const cats = [...new Set(DATA.items.map(i => i.k).concat(['Pfad']))];
   const res = {verdicts: {...verdicts, ...pending}, neu: {...news, ...pendingNew}};
   const txt = JSON.stringify(res);
-  $('menuPanel').innerHTML = `<h3>Anzeigen</h3>
-    <div class="chips">${cats.map(k => `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${!catOff.has(k)}">${esc((CAT[k] || [k])[0])}</button>`).join('')}</div>
-    <div class="row"><button class="chip" type="button" id="tAll" aria-pressed="${showAll}">Sichere Objekte immer zeigen</button></div><p class="meta" style="margin:0">Sonst erscheinen sichere Objekte erst beim Hineinzoomen.</p><div class="row"></div>
-    <h3>Einführung</h3><div class="row"><button class="ib" id="bTour" type="button">Einführung noch einmal ansehen</button></div>
-    <h3>Legende</h3>
-    <div class="legend"><div><span class="dot" style="background:#fff"></span>offen</div><div><span class="dot" style="background:#2e9d57;border-color:#0003"></span>stimmt</div>
-    <div><span class="dot" style="background:#cf4136;border-color:#0003"></span>fehlt</div><div><span class="dot" style="background:#d98a1c;border-color:#0003"></span>woanders</div>
-    <div><span class="dot" style="background:#2b6fd6;border-color:#fff"></span>neu erfasst</div><div><span class="dot" style="background:#4a3f55;border-color:#fff"></span>sicher</div></div>
-    <p class="meta" style="margin:0">Alles, was du hier bestätigst, korrigierst oder neu einträgst, übernehme ich in Version 2 als <b>sicher</b> (Quelle: Feldbegehung).</p>
-    <p class="meta" style="margin:0">Gestrichelte violette Linien sind Pfade, die im Luftbild kaum sichtbar sind.</p>
-    <h3>Ergebnis</h3>
-    <p class="meta" style="margin:0">${Object.keys(res.verdicts).length} Bewertungen, ${Object.keys(res.neu).length} neue Objekte. ${db ? 'Alles liegt im Speicher dieser Seite – Claude liest es direkt.' : (IS_APP ? (box && box.key ? 'Mit „Ans Kartenteam senden“ landet alles im Briefkasten.' : 'Ohne Einladung: Datei teilen und ans Kartenteam schicken.') : 'Kopiere das Ergebnis und füge es im Chat ein.')}</p>
-    ${IS_APP ? (box && box.key ? `<div class="row"><button class="ib" id="bSend" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Ans Kartenteam senden</button></div>
-      <p class="status" id="sendSt">${esc(sentText())}</p>` : `<p class="meta" style="margin:0">Zum direkten Senden brauchst du einen Einladungslink vom Kartenteam. Bis dahin: Datei teilen.</p>`) : ''}
-    <div class="row">${IS_APP ? '<button class="ib" id="bShare" type="button">Ergebnis teilen (Datei)</button>' : ''}<button class="ib" id="bCopy" type="button">Ergebnis kopieren</button></div>
-    <pre id="exportTxt"${IS_APP ? ' hidden' : ''}>${esc(txt)}</pre>
-    ${!IS_APP && db ? `<h3>Aus der Web-App übernehmen</h3><p class="meta" style="margin:0">Ergebnis-Text aus der Feldcheck-Web-App hier einfügen – Bewertungen und neue Objekte landen im Speicher dieser Seite (neuere Einträge gewinnen).</p>
-      <textarea id="impTxt" placeholder='{"verdicts": …, "neu": …}'></textarea><div class="row"><button class="ib" id="bImp" type="button">Übernehmen</button></div><p class="status" id="impSt"></p>` : ''}
-    ${IS_APP ? `<h3>Briefkasten</h3>
-      ${box && box.key ? `<p class="meta" style="margin:0">Eingerichtet für <b>${esc(box.name || 'ohne Namen')}</b>. Gesendete Ergebnisse arbeitet GitHub automatisch ein; das Kartenteam gibt sie frei.</p>
-        <div class="row"><input id="boxName" type="text" value="${esc(box.name || '')}" placeholder="Dein Name" style="flex:1;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)"><button class="ib" id="boxNameSave" type="button" style="flex:0">Name speichern</button></div>
-        <div class="row"><button class="ib" id="boxOff" type="button">Schlüssel von diesem Handy entfernen</button></div>`
-      : `<p class="meta" style="margin:0">Noch nicht eingerichtet. Öffne den Einladungslink vom Kartenteam in Safari und lege die App danach auf den Home-Bildschirm – oder füge Link bzw. Schlüssel hier ein.</p>
-        <input id="boxName" type="text" placeholder="Dein Name" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
-        <input id="boxKey" type="password" placeholder="Einladungslink oder Schlüssel (github_pat_…)" autocomplete="off" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
-        <div class="row"><button class="ib" id="boxSave" type="button">Einrichten</button></div>`}
-      <details><summary class="meta">Helfer einladen (Kartenteam)</summary>
-        <div style="display:grid;gap:8px;margin-top:8px">
-          <p class="meta" style="margin:0">Schlüssel auf github.com erstellen (Fine-grained token, nur dieses Repo, „Contents: Read and write“), dann hier Name und Schlüssel eintragen. Der Helfer öffnet den Link in Safari (Android: Chrome) und legt die App danach auf den Home-Bildschirm – dann ist sie eingerichtet.</p>
-          <input id="invName" type="text" placeholder="Name des Helfers" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
-          <input id="invKey" type="password" placeholder="Schlüssel (github_pat_…)" autocomplete="off" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
-          <div class="row"><button class="ib" id="invMake" type="button">Einladungslink erzeugen</button></div>
+  const nv = Object.keys(res.verdicts).length, nn = Object.keys(res.neu).length;
+  const inp = (id, ph, val = '', type = 'text') => `<input id="${id}" type="${type}" placeholder="${ph}" value="${esc(val)}" autocomplete="off">`;
+  $('menuPanel').innerHTML = `<div class="phead"><h2>Mehr</h2><button class="x" type="button" data-close aria-label="Schließen">${svgI('x')}</button></div>
+    ${IS_APP ? `<section class="grp"><h3>Ergebnis senden</h3>
+      <p class="meta">${nv} Bewertungen, ${nn} neue Objekte</p>
+      ${box && box.key ? `<button class="ib pri" id="bSend" type="button">${svgI('send')}Ans Kartenteam senden</button><p class="status" id="sendSt">${esc(sentText())}</p>`
+        : `<p class="meta">Noch nicht eingerichtet. Einladungslink vom Kartenteam in Safari öffnen – oder hier einfügen:</p>
+          ${inp('boxName', 'Dein Name')}${inp('boxKey', 'Einladungslink oder Schlüssel', '', 'password')}
+          <button class="ib" id="boxSave" type="button">Einrichten</button>`}
+      <button class="ib" id="bShare" type="button">${svgI('doc')}Als Datei teilen</button>
+    </section>` : `<section class="grp"><h3>Ergebnis</h3><p class="meta">${nv} Bewertungen, ${nn} neue Objekte. ${db ? 'Liegt im Speicher dieser Seite.' : 'Kopieren und im Chat einfügen.'}</p>
+      <button class="ib" id="bCopy" type="button">Ergebnis kopieren</button><pre id="exportTxt">${esc(txt)}</pre>
+      ${db ? `<p class="sub">Aus der Web-App übernehmen</p><textarea id="impTxt" placeholder='{"verdicts": …, "neu": …}'></textarea><button class="ib" id="bImp" type="button">Übernehmen</button><p class="status" id="impSt"></p>` : ''}</section>`}
+    ${IS_APP ? `<section class="grp"><h3>Karte</h3>
+      <button class="ib pri" id="bPdf" type="button">${svgI('doc')}Karte als PDF</button>
+      <p class="meta">Blätter und Ebenen wählen, z. B. ohne Höhenlinien.</p>
+      <button class="ib" id="bOff" type="button">${svgI('cloud')}Offline speichern</button>
+      <p class="meta" id="offSt">Karte und PDF-Daten aufs Handy laden (ca. 15 MB).</p>
+    </section>` : ''}
+    <section class="grp"><h3>Anzeigen</h3>
+      ${catGroups(cats).map(([h, ks]) => `<p class="sub">${esc(h)}</p><div class="chips">${ks.map(k => `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${!catOff.has(k)}">${esc((CAT[k] || [k])[0])}</button>`).join('')}</div>`).join('')}
+      <label class="tog">Sichere Objekte immer zeigen<input class="sw" type="checkbox" id="tAll" ${showAll ? 'checked' : ''}></label>
+    </section>
+    <section class="grp"><h3>Legende</h3>
+      <div class="legend"><div><span class="dot" style="background:#fff"></span>offen</div><div><span class="dot" style="background:#4a3f55;border-color:#fff"></span>sicher</div>
+      <div><span class="dot" style="background:#2e9d57;border-color:#0003"></span>stimmt</div><div><span class="dot" style="background:#cf4136;border-color:#0003"></span>fehlt</div>
+      <div><span class="dot" style="background:#d98a1c;border-color:#0003"></span>woanders</div><div><span class="dot" style="background:#2b6fd6;border-color:#fff"></span>neu</div></div>
+      <p class="meta">Gestrichelt violett: Pfad, im Luftbild kaum sichtbar.</p>
+    </section>
+    <section class="grp"><h3>Hilfe</h3>
+      <button class="ib" id="bTour" type="button">${svgI('help')}Einführung ansehen</button>
+      ${IS_APP ? `<p class="meta">Tipp: In Safari „Teilen → Zum Home-Bildschirm“. Die App dort hat eigenen Speicher – vor dem Löschen des Symbols alles senden.</p>` : ''}
+    </section>
+    ${IS_APP && box && box.key ? `<section class="grp"><h3>Briefkasten</h3>
+      <div class="row" style="flex-wrap:nowrap">${inp('boxName', 'Dein Name', box.name || '')}<button class="ib" id="boxNameSave" type="button" style="flex:0 0 auto">Speichern</button></div>
+      <details><summary>Helfer einladen</summary>
+        <div style="display:grid;gap:8px;margin-top:10px">
+          <p class="meta">Schlüssel auf github.com erstellen (Fine-grained, nur dieses Repo, „Contents: Read and write“). Helfer öffnet den Link in Safari und legt die App auf den Home-Bildschirm.</p>
+          ${inp('invName', 'Name des Helfers')}${inp('invKey', 'Schlüssel (github_pat_…)', '', 'password')}
+          <button class="ib" id="invMake" type="button">Einladungslink erzeugen</button>
           <div id="invOut"></div>
-        </div></details>` : ''}
-    ${IS_APP ? `<h3>Karte als PDF</h3><p class="meta" style="margin:0">Blätter und Kartenebenen auswählen (z. B. ohne Höhenlinien oder Trichter) und als PDF aufs Handy laden – mit dem aktuellen Datenstand.</p>
-      <div class="row"><button class="ib" id="bPdf" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Karte zusammenstellen</button></div>` : ''}
-    ${IS_APP ? `<h3>Offline</h3><p class="meta" style="margin:0" id="offSt">Lädt alle Kartenkacheln und die Karten für den PDF-Export aufs Handy, damit beides auch ohne Netz geht (ca. 15 MB).</p><div class="row"><button class="ib" id="bOff" type="button">Karte offline speichern</button></div>
-      <h3>Tipp</h3><p class="meta" style="margin:0">In Safari „Teilen → Zum Home-Bildschirm“: Dann startet der Feldcheck wie eine App, ohne Adressleiste, und die Einträge bleiben dauerhaft gespeichert. Achtung: Die App auf dem Home-Bildschirm hat ihren eigenen Speicher – vor dem Löschen des Symbols alles senden.</p>` : ''}`;
+        </div></details>
+      <button class="ib" id="boxOff" type="button" style="color:var(--bad)">Schlüssel von diesem Handy entfernen</button>
+    </section>` : ''}`;
+  $('menuPanel').querySelector('[data-close]').onclick = () => openPanel(null);
   $('menuPanel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const k = b.dataset.k; catOff.has(k) ? catOff.delete(k) : catOff.add(k); LS.set('fc_catOff', [...catOff]); b.setAttribute('aria-pressed', !catOff.has(k)); redrawAll(); });
   $('bTour').onclick = () => startTour();
-  $('tAll').onclick = (e) => { showAll = !showAll; LS.set('fc_showAll', showAll); e.currentTarget.setAttribute('aria-pressed', showAll); redrawAll(); };
+  $('tAll').onchange = (e) => { showAll = e.target.checked; LS.set('fc_showAll', showAll); redrawAll(); };
   if ($('bPdf')) $('bPdf').onclick = () => { openPanel('pdfPanel'); renderPdfPanel(); };
   if ($('bSend')) $('bSend').onclick = () => sendBox(res);
   if ($('boxSave')) $('boxSave').onclick = () => { const b = parseInvite($('boxKey').value); if (!b) return; box = {key: b.key, name: $('boxName').value.trim() || b.name || ''}; LS.set('fc_box', box); boxCookie(box); renderMenu(); };
@@ -568,9 +691,9 @@ function renderMenu(){
     const url = location.origin + location.pathname + '#' + new URLSearchParams({key: k, name: nm}).toString();
     let qr = '';
     try { await loadScript('lib/qrcode.js'); const q = window.qrcode(0, 'M'); q.addData(url); q.make(); qr = q.createSvgTag({cellSize: 4, margin: 2, scalable: true}); } catch(e) {}
-    $('invOut').innerHTML = `<div style="max-width:240px;background:#fff;padding:6px;border-radius:8px">${qr}</div>
-      <div class="row"><button class="ib" id="invShare" type="button">Link teilen</button><button class="ib" id="invCopy" type="button">Link kopieren</button></div>
-      <p class="meta" style="margin:0">Wer diesen Link hat, kann in den Briefkasten senden. Nur an die Person schicken, für die der Schlüssel ist.</p>`;
+    $('invOut').innerHTML = `<div style="max-width:220px;background:#fff;padding:8px;border-radius:14px">${qr}</div>
+      <div class="row"><button class="ib" id="invShare" type="button">Link teilen</button><button class="ib" id="invCopy" type="button">Kopieren</button></div>
+      <p class="meta">Nur an diese eine Person schicken.</p>`;
     $('invShare').onclick = () => { if (navigator.share) navigator.share({title: 'Feldcheck Wangerooge', text: `Feldcheck-App für ${nm || 'dich'}: Link in Safari öffnen, dann „Teilen → Zum Home-Bildschirm“ – fertig eingerichtet.`, url}).catch(() => {}); };
     $('invCopy').onclick = () => navigator.clipboard.writeText(url).then(() => { $('invCopy').textContent = 'Kopiert'; });
   };
@@ -594,31 +717,31 @@ function renderMenu(){
       try { const M = await kartenMeta(); list = list.concat(['karten/layers.json', 'lib/jspdf.umd.min.js', 'lib/svg2pdf.umd.min.js'], M.sheets.map(s => s.files.color)); } catch(e) {}
       for (let i = 0; i < list.length; i += 6) {
         await Promise.all(list.slice(i, i + 6).map(async (u) => { if (!(await c.match(u))) { const r = await fetch(u); if (r.ok) await c.put(u, r); } k++; }));
-        st.textContent = `Lade Kacheln … ${k}/${list.length}`;
+        st.textContent = `Lade … ${k}/${list.length}`;
       }
-      st.textContent = `Fertig: alle ${list.length} Kacheln offline verfügbar.`; b.textContent = 'Offline gespeichert';
-    } catch(e) { st.textContent = 'Offline-Speichern hat nicht geklappt – mit Netz erneut versuchen.'; b.disabled = false; }
+      st.textContent = `Fertig – ${list.length} Dateien offline verfügbar.`; b.textContent = 'Offline gespeichert';
+    } catch(e) { st.textContent = 'Hat nicht geklappt – mit Netz erneut versuchen.'; b.disabled = false; }
   };
-  $('bCopy').onclick = () => { navigator.clipboard.writeText(txt).then(() => { $('bCopy').textContent = 'Kopiert'; }).catch(() => { $('exportTxt').hidden = false; const r = document.createRange(); r.selectNodeContents($('exportTxt')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('bCopy').textContent = 'Text markiert – jetzt kopieren'; }); };
+  if ($('bCopy')) $('bCopy').onclick = () => { navigator.clipboard.writeText(txt).then(() => { $('bCopy').textContent = 'Kopiert'; }).catch(() => { $('exportTxt').hidden = false; const r = document.createRange(); r.selectNodeContents($('exportTxt')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('bCopy').textContent = 'Text markiert – jetzt kopieren'; }); };
 }
 
 if (IS_APP){
-  $('btnGps').hidden = false;
+  $('btnGps').hidden = false; gpsBtn();
   $('btnGps').onclick = () => { gps.on ? stopGps() : startGps(); renderSheet(); };
-  const Follow = L.Control.extend({onAdd(){ const b = L.DomUtil.create('button', 'ctl'); b.id = 'ctlFollow'; b.type = 'button'; b.title = 'Karte folgt meiner Position'; b.textContent = '◎'; b.setAttribute('aria-pressed', 'false');
+  const Follow = L.Control.extend({onAdd(){ const b = L.DomUtil.create('button', 'ctl leaflet-bar'); b.id = 'ctlFollow'; b.type = 'button'; b.title = 'Karte folgt mir'; b.setAttribute('aria-label', 'Karte folgt mir'); b.innerHTML = svgI('follow'); b.setAttribute('aria-pressed', 'false');
     L.DomEvent.disableClickPropagation(b);
     b.onclick = () => { if (!gps.on) startGps(); follow = !follow; if (follow && gps.pos) panToMe(Math.max(map.getZoom(), 1)); gpsBtn(); };
     return b; }});
-  new Follow({position: 'topleft'}).addTo(map);
+  new Follow({position: 'topright'}).addTo(map);
   map.on('dragstart', () => { if (follow) { follow = false; gpsBtn(); } });
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
   if (LS.get('fc_gps', false) && navigator.permissions) navigator.permissions.query({name: 'geolocation'}).then(r => { if (r.state === 'granted') { startGps(); renderSheet(); } }).catch(() => {});
 }
-function sentText(){ const s = LS.get('fc_sent', null); return s ? `Zuletzt gesendet: ${new Date(s.t).toLocaleString('de-DE', {dateStyle: 'short', timeStyle: 'short'})} (${s.nv} Bewertungen, ${s.nn} neue Objekte)` : 'Noch nichts gesendet.'; }
+function sentText(){ const s = LS.get('fc_sent', null); return s ? `Zuletzt gesendet am ${new Date(s.t).toLocaleString('de-DE', {dateStyle: 'short', timeStyle: 'short'})}.` : 'Noch nichts gesendet.'; }
 function b64utf8(str){ const b = new TextEncoder().encode(str); let s = ''; for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(s); }
 async function sendBox(res){
   const st = $('sendSt'), btn = $('bSend'); const nv = Object.keys(res.verdicts).length, nn = Object.keys(res.neu).length;
-  if (!nv && !nn) { st.textContent = 'Noch keine Einträge zum Senden.'; return; }
+  if (!nv && !nn) { st.textContent = 'Noch nichts zum Senden.'; return; }
   btn.disabled = true; st.className = 'status'; st.textContent = 'Sende …';
   const who = (box.name || 'ohne-name'), slug = who.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'helfer';
   const now = new Date(), stamp = now.toISOString().slice(0, 16).replace(/[:T]/g, '-');
@@ -633,12 +756,12 @@ async function sendBox(res){
       // wake the GitHub Action (runs from main); if this fails the daily run picks the file up
       fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/dispatches`, {method: 'POST', headers: {'Authorization': 'Bearer ' + box.key, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'},
         body: JSON.stringify({event_type: 'feldcheck', client_payload: {datei: path}})}).catch(() => {});
-      st.textContent = 'Gesendet. Die Karte wird automatisch neu berechnet; nach der Freigabe erscheint alles in App und PDF. ' + sentText();
+      st.textContent = 'Gesendet. Nach der Freigabe erscheint alles in Karte und App.';
     }
-    else if (r.status === 401) { st.className = 'status warn'; st.textContent = 'Schlüssel ungültig oder abgelaufen – bitte neuen Einladungslink anfordern.'; }
-    else if (r.status === 403 || r.status === 404) { st.className = 'status warn'; st.textContent = `Keine Berechtigung für den Briefkasten (Fehler ${r.status}). Schlüssel prüfen lassen.`; }
+    else if (r.status === 401) { st.className = 'status warn'; st.textContent = 'Schlüssel ungültig oder abgelaufen. Neuen Einladungslink anfordern.'; }
+    else if (r.status === 403 || r.status === 404) { st.className = 'status warn'; st.textContent = `Keine Berechtigung (Fehler ${r.status}). Schlüssel prüfen lassen.`; }
     else { st.className = 'status warn'; st.textContent = `Senden fehlgeschlagen (Fehler ${r.status}). Später erneut versuchen.`; }
-  } catch(e) { st.className = 'status warn'; st.textContent = 'Kein Netz – die Einträge bleiben auf dem Handy. Später erneut senden.'; }
+  } catch(e) { st.className = 'status warn'; st.textContent = 'Kein Netz. Einträge bleiben gespeichert – später senden.'; }
   btn.disabled = false;
 }
 
@@ -656,18 +779,18 @@ async function renderPdfPanel(){
   let M; try { M = await kartenMeta(); } catch(e) { P.innerHTML = '<p class="status warn">Kartendaten nicht erreichbar – einmal mit Netz öffnen.</p>'; return; }
   pdfSel.sheets = pdfSel.sheets.filter(id => M.sheets.some(s => s.id === id)); if (!pdfSel.sheets.length) pdfSel.sheets = [M.sheets[0].id];
   const groups = [...new Set(M.layers.map(l => l.group))];
-  P.innerHTML = `<div class="row" style="justify-content:space-between"><h3>Karte als PDF</h3><button class="ib" id="pdfClose" type="button">Schließen</button></div>
-    <p class="meta" style="margin:0">Datenstand ${esc(M.stand.split('-').reverse().join('.'))}. Neue Feldcheck-Einträge erscheinen hier, sobald Claude sie eingearbeitet hat.</p>
-    <div class="kicker">Blätter</div>
+  P.innerHTML = `<div class="phead"><h2>Karte als PDF</h2><button class="x" id="pdfClose" type="button" aria-label="Schließen">${svgI('x')}</button></div>
+    <p class="meta" style="margin-top:-8px">Stand ${esc(M.stand.split('-').reverse().join('.'))}</p>
+    <p class="sub">Blätter</p>
     <div class="chips">${M.sheets.map(s => `<button class="chip" type="button" data-sh="${s.id}" aria-pressed="${pdfSel.sheets.includes(s.id)}">${esc(s.title)}</button>`).join('')}</div>
-    <div class="kicker">Druck</div>
+    <p class="sub">Druck</p>
     <div class="chips"><button class="chip" type="button" data-md="color" aria-pressed="${pdfSel.mode === 'color'}">Farbe</button><button class="chip" type="button" data-md="bw" aria-pressed="${pdfSel.mode === 'bw'}">Schwarzweiß</button></div>
-    <div class="pvwrap"><div class="kicker">Vorschau <span id="pvName"></span></div><div id="pv"><p class="meta">…</p></div></div><style id="pvStyle"></style>
-    ${groups.map(g => `<div class="pgrp"><div class="kicker">${esc(g)}</div><div class="chips">${M.layers.filter(l => l.group === g).map(l => `<button class="chip" type="button" data-ly="${l.key}" aria-pressed="${!pdfSel.off.includes(l.key)}">${esc(l.label)}</button>`).join('')}</div></div>`).join('')}
+    <div class="pvwrap"><p class="sub">Vorschau <span id="pvName" style="font-weight:400"></span></p><div id="pv"><p class="meta">…</p></div></div><style id="pvStyle"></style>
+    ${groups.map(g => `<div class="pgrp"><p class="sub">${esc(g)}</p><div class="chips">${M.layers.filter(l => l.group === g).map(l => `<button class="chip" type="button" data-ly="${l.key}" aria-pressed="${!pdfSel.off.includes(l.key)}">${esc(l.label)}</button>`).join('')}</div></div>`).join('')}
     <div class="row"><button class="ib" id="lyAll" type="button">Alle Ebenen an</button><button class="ib" id="lyMin" type="button">Nur Wege &amp; Punkte</button></div>
     <button class="big" id="pdfGo" type="button">PDF erzeugen</button>
-    <p class="status" id="pdfSt">Ausgeblendete Ebenen fehlen in Karte, Lupen und Legende. Das PDF entsteht auf dem Handy, auch offline.</p>`;
-  $('pdfClose').onclick = () => { P.hidden = true; };
+    <p class="status" id="pdfSt">Ausgeblendete Ebenen fehlen auch in Lupen und Legende.</p>`;
+  $('pdfClose').onclick = () => openPanel(null);
   P.querySelectorAll('[data-sh]').forEach(b => b.onclick = () => { const id = b.dataset.sh; const on = pdfSel.sheets.includes(id);
     if (on && pdfSel.sheets.length === 1) return; pdfSel.sheets = on ? pdfSel.sheets.filter(x => x !== id) : M.sheets.map(s => s.id).filter(x => x === id || pdfSel.sheets.includes(x));
     b.setAttribute('aria-pressed', !on); savePdfSel(); preview(); });
@@ -719,21 +842,21 @@ async function makePdf(){
 // ---------- Einführung (tour): spotlight on the controls, step by step; the highlighted control stays usable ----------
 let tour = null;
 const TOUR_STEPS = () => [
-  {t: 'Willkommen beim Feldcheck', x: 'Mit dieser App prüfst du vor Ort, ob die Landmarken der OL-Karte stimmen, und trägst ein, was fehlt. Die Einführung dauert eine Minute.'},
-  {sel: '#map', t: 'Die Karte', x: 'Weiße Marker sind offen und warten auf dich. Dunkle sind schon sicher – sie erscheinen beim Hineinzoomen. Nach deiner Bewertung färben sich die Marker: grün stimmt, rot fehlt, orange woanders, blau neu erfasst.', pad: -10},
-  IS_APP && {sel: '#btnGps', t: 'GPS einschalten', x: 'Damit siehst du dich als blauen Punkt auf der Karte. Mit ◎ links folgt die Karte deiner Position.', hint: 'Tipp jetzt auf „GPS“ – oder weiter.', tap: true},
-  {sel: '#bNext', t: 'Nächstes offenes Objekt', x: 'Springt zum nächsten offenen Marker in deiner Nähe. Du kannst auch direkt einen Marker auf der Karte antippen.', hint: 'Probier es aus – oder weiter.', tap: true},
-  {sel: '#sheet', t: 'Prüfen', before: () => { if (!selId) nextOpen(); }, x: 'Hier steht, was du suchst und wo es ungefähr ist. Vor Ort tippst du Stimmt, Fehlt oder Woanders (dann die richtige Stelle antippen oder per GPS). Eine kurze Notiz hilft.'},
-  {sel: '#bAdd', before: () => { if (selId) { selId = null; redrawSel(); renderSheet(); } }, t: 'Neues erfassen', x: 'Findling, Schild, Pfahl, Trampelpfad … alles, was auf der Karte fehlt. Pfade kannst du auch mit GPS ablaufen.'},
-  {sel: '#btnList', t: 'Liste', x: 'Alle offenen Objekte, sortiert nach Entfernung – praktisch, um eine Runde zu planen.'},
-  {sel: '#btnMenu', t: 'Mehr', x: IS_APP ? 'Ergebnisse ans Kartenteam senden, Karte als PDF erstellen, Karte offline speichern, Filter und Legende.' : 'Ergebnis, Filter und Legende.'},
-  {t: 'Und am Ende?', x: IS_APP ? 'Unter „Mehr → Ans Kartenteam senden“ schickst du deine Ergebnisse ab. Bis dahin bleibt alles auf dem Handy gespeichert – auch ohne Netz.' : 'Deine Einträge landen direkt im Speicher dieser Seite.', last: true},
+  {t: 'Feldcheck', x: 'Prüfe vor Ort, ob die Landmarken der OL-Karte stimmen – und trag ein, was fehlt.'},
+  {sel: '#map', t: 'Die Karte', x: 'Weiß = offen. Dunkel = schon sicher. Nach dem Prüfen: grün stimmt, rot fehlt, orange woanders, blau neu.', pad: -12},
+  IS_APP && {sel: '#btnGps', t: 'GPS', x: 'Zeigt dich als blauen Punkt. ⊙ darunter lässt die Karte dir folgen.', hint: 'Tippe jetzt auf den Pfeil.', tap: true},
+  {sel: '#bNext', t: 'Nächstes offenes Objekt', x: 'Springt zum nächsten offenen Punkt. Oder tippe einfach einen Marker an.', hint: 'Probier es aus.', tap: true},
+  {sel: '#sheet', t: 'Prüfen', before: () => { if (!selId) nextOpen(); }, x: 'Oben steht, was du suchst. Dann Stimmt, Fehlt oder Woanders.'},
+  {sel: '#bAdd', before: () => { if (selId) { selId = null; redrawSel(); renderSheet(); } }, t: 'Neu erfassen', x: 'Fehlt etwas auf der Karte? Hier eintragen – auch Pfade per GPS.'},
+  {sel: '#btnList', t: 'Liste', x: 'Alle offenen Punkte, nach Entfernung sortiert.'},
+  {sel: '#btnMenu', t: 'Mehr', x: IS_APP ? 'Ergebnis senden, Karte als PDF, offline speichern, Filter.' : 'Ergebnis, Filter und Legende.'},
+  {t: 'Fertig', x: IS_APP ? 'Am Ende: Mehr → Ans Kartenteam senden. Bis dahin bleibt alles auf dem Handy, auch offline.' : 'Deine Einträge landen im Speicher dieser Seite.', last: true},
 ].filter(Boolean);
 function startTour(){
   endTour(); openPanel(null);
   const steps = TOUR_STEPS().filter(st => !st.sel || (document.querySelector(st.sel) && !document.querySelector(st.sel).hidden) || st.before);
   const el = document.createElement('div'); el.className = 'tour'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
-  el.innerHTML = '<div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="ring"></div><div class="card" aria-live="polite"></div>';
+  el.innerHTML = '<div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="ring"></div><div class="card glass-strong" aria-live="polite"></div>';
   document.body.appendChild(el);
   tour = {el, steps, i: 0, tapOff: null};
   window.addEventListener('resize', placeTour); showStep(0);
@@ -753,9 +876,9 @@ function showStep(i){
   const card = tour.el.querySelector('.card');
   card.innerHTML = `<div class="tnav"><div class="dots">${tour.steps.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div><span class="sp"></span><button class="skip" type="button" id="tSkip">${st.last ? '' : 'Überspringen'}</button></div>
     <h3>${esc(st.t)}</h3><p>${esc(st.x)}</p>${st.hint ? `<div class="hint">${esc(st.hint)}</div>` : ''}
-    <label><input type="checkbox" id="tOff" ${off ? 'checked' : ''}> Beim Start nicht mehr zeigen</label>
+    <label><input type="checkbox" id="tOff" ${off ? 'checked' : ''}> Nicht mehr beim Start zeigen</label>
     <div class="tnav">${i ? '<button class="ib" type="button" id="tBack" style="flex:0 0 auto">Zurück</button>' : ''}<span class="sp"></span>
-      <button class="ib" type="button" id="tNext" style="flex:0 0 auto;background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700">${st.last ? 'Los geht’s' : (i ? 'Weiter' : 'Einführung starten')}</button></div>`;
+      <button class="ib pri" type="button" id="tNext" style="flex:0 0 auto">${st.last ? 'Los geht’s' : (i ? 'Weiter' : 'Kurz zeigen')}</button></div>`;
   card.querySelector('#tOff').onchange = (e) => LS.set('fc_tour_off', e.target.checked);
   card.querySelector('#tNext').onclick = () => showStep(i + 1);
   if (card.querySelector('#tBack')) card.querySelector('#tBack').onclick = () => showStep(i - 1);

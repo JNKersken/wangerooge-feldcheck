@@ -20,8 +20,8 @@ for wid, st in json.load(open(BASE + '/data/path_status_v1.json' if os.path.exis
     _bel = {'dirt': 'Erde', 'sand': 'Sand', 'grass': 'Gras', 'ground': 'Naturboden', 'unpaved': 'unbefestigt', 'paving_stones': 'Pflaster', 'concrete': 'Beton', 'asphalt': 'Asphalt', 'wood': 'Holz', 'compacted': 'Schotter', 'fine_gravel': 'Feinschotter', 'gravel': 'Schotter'}.get(t.get('surface', ''))
     _m = re.search(r'sichtbar (\d+)%', st.get('why', ''))
     _paths.append(dict(id=f'PF{wid}', k='Pfad', t=t.get('highway', ''), n=(f"{_hw} „{t['name']}“" if t.get('name') else _hw), s='prüfen', c=[[round(x, 1), round(y, 1)] for x, y in g.coords],
-                       f=f"{_hw}{' (' + _bel + ')' if _bel else ''}, etwa {round(g.length, -1):.0f} m lang. Geh ihn ab: Ist er da und gut begehbar, oder zugewachsen bzw. verschwunden?",
-                       w='In OpenStreetMap eingetragen, im Luftbild aber kaum zu sehen' + (f' (nur auf {_m.group(1)} % der Strecke).' if _m else '.'),
+                       f=f"{_hw}{' (' + _bel + ')' if _bel else ''}, ca. {round(g.length, -1):.0f} m. Noch begehbar?",
+                       w='Im Luftbild kaum sichtbar' + (f' (auf {_m.group(1)} % der Strecke).' if _m else '.'),
                        no='', q='OSM; im Luftbild kaum sichtbar'))
 old = dict(paths=_paths); os.makedirs(SITE, exist_ok=True)
 def nice_name(p):
@@ -83,8 +83,8 @@ head = ('<!doctype html><html lang="de"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
         '<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">'
         '<meta name="apple-mobile-web-app-title" content="Feldcheck"><meta name="apple-mobile-web-app-status-bar-style" content="default">'
-        '<meta name="theme-color" content="#fffdf7"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">'
-        '<link rel="icon" href="favicon-32.png" sizes="32x32"><link rel="icon" href="icon-192.png" sizes="192x192"><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>')
+        '<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f2f5"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1c1e"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">'
+        '<link rel="icon" href="favicon-32.png" sizes="32x32"><link rel="icon" href="icon-192.png" sizes="192x192"><style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>')
 open(APP + '/index.html', 'w').write(head + body[:cut] + '</head><body>' + body[cut:] + '</body></html>')
 open(APP + '/.nojekyll', 'w').write('')
 # layered map SVGs + layer list for "Karte als PDF" in the app

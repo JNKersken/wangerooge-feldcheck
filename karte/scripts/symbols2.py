@@ -81,8 +81,8 @@ def knock_geom(kind, x, y, m, size=1.0, fam='B', variant=None, extra_mm=None):
             gs.append(pg.buffer((sh[3] or 0) * size * m / 2 + k, 12))
         elif t == 'C':
             cx, cy, r, fill, wmm = sh[1:6]; gs.append(_PT(x + cx * sc, y + cy * sc).buffer(r * sc + (wmm or 0) * size * m / 2 + k, 16))
-        elif t == 'T':
-            gs.append(_text_geom(sh[1], sh[2] * size, x, y, m).buffer(k, 8))
+        elif t == 'T':   # text: solid rounded plate behind the letters (no dark showing through counters or gaps)
+            gs.append(_text_geom(sh[1], sh[2] * size, x, y, m).envelope.buffer(k * 1.2, 8))
     return _UU(gs)
 
 def _arc(cx, cy, r, a0, a1, n=24):

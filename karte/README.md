@@ -95,6 +95,8 @@ Diese Dateien sind Ergebnis längerer oder teils manueller Schritte. `run_all.sh
 | Ortsnamen-Beschriftungen | `scripts/render_map.py` → `LABELS` |
 | Lupen-Regeln, manuelle Lupe Westanleger | `scripts/render_map.py` → `OVERLAP_NEW`, `MANUAL_LUPEN` |
 | Feldcheck-Oberfläche | `web/page_template.html` |
+| Texte in der App („Was du suchst“, „Wo“, „Warum prüfen“) | `scripts/feld_text.py` |
+| Einführung (Tour beim Start) | `web/page_template.html` → `TOUR_STEPS` |
 | App-Logo | `scripts/app_icon.py` → `web/icon-*.png`, `web/apple-touch-icon.png` |
 
 Hilfsskripte ohne Einfluss auf die Ergebnisse: `view_*.py`, `symbol_*.py`, `family_demo.py`, `overview.py`, `trails.py`, `depressions.py`, `lrm.py`, `craters.py`, `meadow_craters.py` (frühere Varianten der Trichtererkennung).

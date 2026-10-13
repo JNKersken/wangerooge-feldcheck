@@ -87,6 +87,8 @@ h2{margin:0;font-size:21px;line-height:1.2;font-weight:700;letter-spacing:-.015e
 .fact svg{width:16px;height:16px;margin-top:1px;color:var(--muted)}
 .fact.zone,.fact.zone svg{color:#2f8a4a}
 .meta{color:var(--muted);font-size:13.5px;line-height:1.4;margin:0}
+.ii{display:inline-grid;place-items:center;width:1.5em;height:1.25em;vertical-align:-.28em;border-radius:.45em;background:var(--fill);color:var(--ink)}
+.ii svg{width:.95em;height:.95em}
 .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .act{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:58px;border:0;border-radius:var(--r);font:700 15px var(--f-ui)}
 .act svg{width:20px;height:20px}
@@ -181,7 +183,7 @@ details summary{cursor:pointer;color:var(--muted);font-size:14px;font-weight:600
     <div class="tools glass">
       <button class="tb gpsb" id="btnGps" type="button" data-st="off" hidden aria-label="GPS" title="GPS"></button>
       <button class="tb" id="btnList" type="button" aria-label="Liste" title="Liste"></button>
-      <button class="tb" id="btnMenu" type="button" aria-label="Mehr" title="Mehr"></button>
+      <button class="tb" id="btnMenu" type="button" aria-label="Menü" title="Menü"></button>
     </div>
   </header>
   <div id="banner" hidden><span id="bannerTxt"></span><button id="bannerCancel" type="button">Abbrechen</button></div>
@@ -222,6 +224,7 @@ const IC = {
   rec: '<circle cx="12" cy="12" r="5.5" fill="currentColor" stroke="none"/>', follow: '<circle cx="12" cy="12" r="7"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/><circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/>',
   chev: '<path d="M9.5 6l6 6-6 6"/>', send: '<path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/>', doc: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/>', cloud: '<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/>'};
 const svgI = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
+const ti = (t) => esc(t).replace(/\[(more|list|loc|follow|plus|help)\]/g, (_, k) => `<span class="ii">${svgI(k)}</span>`);
 const LS = {get(k, d){try{const v = localStorage.getItem(k); return v ? JSON.parse(v) : d}catch(e){return d}}, set(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}};
 
 const CAT = {
@@ -378,13 +381,13 @@ function saveNew(id, n){
 function setStore(s, code){
   storeState = s;
   const el = document.querySelector('#sheet .storest');
-  if (el) { el.textContent = storeText(); el.className = 'status storest' + (storeWarn() ? ' warn' : ''); el.hidden = !storeShown(); }
+  if (el) { el.innerHTML = ti(storeText()); el.className = 'status storest' + (storeWarn() ? ' warn' : ''); el.hidden = !storeShown(); }
 }
 const storeWarn = () => storeState === 'err' || (storeState === 'local' && !IS_APP);
 const storeShown = () => storeWarn() || !IS_APP;   // in the app "saved on this phone" is the normal case – no need to say it every time
 function storeText(){
   return {connecting: 'Verbinde mit Speicher …', ok: 'Gespeichert – Claude sieht deine Einträge.', err: 'Speichern gerade nicht möglich. Einträge bleiben auf dem Handy und werden nachgereicht.',
-    local: IS_APP ? 'Auf diesem Handy gespeichert. Am Ende: Mehr → Senden.' : 'Nur auf diesem Gerät gespeichert. Am Ende über „Mehr → Ergebnis kopieren“ an Claude schicken.'}[storeState];
+    local: IS_APP ? 'Auf diesem Handy gespeichert. Am Ende im Menü [more] senden.' : 'Nur auf diesem Gerät gespeichert. Am Ende im Menü [more] „Ergebnis kopieren“ und an Claude schicken.'}[storeState];
 }
 async function initStore(){
   try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch(e) { db = null; }
@@ -463,7 +466,7 @@ function startGps(){
     else if (DOE) listen();
   } catch(e) {}
   gps.watch = navigator.geolocation.watchPosition(onPos, (e) => {
-    gps.err = e.code === 1 ? 'GPS nicht erlaubt. In den Einstellungen Ortungsdienste für Safari/diese App erlauben.' : 'Kein GPS-Signal – weiter versuchen …';
+    gps.err = e.code === 1 ? 'GPS nicht erlaubt. In den iPhone-Einstellungen unter Ortungsdienste freigeben.' : 'Kein GPS-Signal, suche weiter …';
     gpsBtn(); renderStatus();
   }, {enableHighAccuracy: true, maximumAge: 2000, timeout: 30000});
   LS.set('fc_gps', true); try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch(e) {}
@@ -513,7 +516,7 @@ function nextOpen(){
 function renderSheet(){
   const S = $('sheet');
   const gpsLine = () => IS_APP && gps.on ? `<p class="status gpsst">${gpsText()}</p>` : '';
-  const storeLine = () => `<p class="status storest ${storeWarn() ? 'warn' : ''}" ${storeShown() ? '' : 'hidden'}>${storeText()}</p>`;
+  const storeLine = () => `<p class="status storest ${storeWarn() ? 'warn' : ''}" ${storeShown() ? '' : 'hidden'}>${ti(storeText())}</p>`;
   if (rec){
     S.innerHTML = `<div class="ihead"><span class="pill p-rec">● Aufnahme</span><span class="cat">Pfad per GPS</span></div>
       <h2 id="recN">${rec.pts.length} Punkte</h2>
@@ -635,7 +638,7 @@ function renderMenu(){
   const txt = JSON.stringify(res);
   const nv = Object.keys(res.verdicts).length, nn = Object.keys(res.neu).length;
   const inp = (id, ph, val = '', type = 'text') => `<input id="${id}" type="${type}" placeholder="${ph}" value="${esc(val)}" autocomplete="off">`;
-  $('menuPanel').innerHTML = `<div class="phead"><h2>Mehr</h2><button class="x" type="button" data-close aria-label="Schließen">${svgI('x')}</button></div>
+  $('menuPanel').innerHTML = `<div class="phead"><h2>Menü</h2><button class="x" type="button" data-close aria-label="Schließen">${svgI('x')}</button></div>
     ${IS_APP ? `<section class="grp"><h3>Ergebnis senden</h3>
       <p class="meta">${nv} Bewertungen, ${nn} neue Objekte</p>
       ${box && box.key ? `<button class="ib pri" id="bSend" type="button">${svgI('send')}Ans Kartenteam senden</button><p class="status" id="sendSt">${esc(sentText())}</p>`
@@ -844,13 +847,13 @@ let tour = null;
 const TOUR_STEPS = () => [
   {t: 'Feldcheck', x: 'Prüfe vor Ort, ob die Landmarken der OL-Karte stimmen – und trag ein, was fehlt.'},
   {sel: '#map', t: 'Die Karte', x: 'Weiß = offen. Dunkel = schon sicher. Nach dem Prüfen: grün stimmt, rot fehlt, orange woanders, blau neu.', pad: -12},
-  IS_APP && {sel: '#btnGps', t: 'GPS', x: 'Zeigt dich als blauen Punkt. ⊙ darunter lässt die Karte dir folgen.', hint: 'Tippe jetzt auf den Pfeil.', tap: true},
+  IS_APP && {sel: '#btnGps', t: 'GPS', x: 'Zeigt dich als blauen Punkt. Mit [follow] darunter folgt die Karte dir.', hint: 'Tippe jetzt auf [loc].', tap: true},
   {sel: '#bNext', t: 'Nächstes offenes Objekt', x: 'Springt zum nächsten offenen Punkt. Oder tippe einfach einen Marker an.', hint: 'Probier es aus.', tap: true},
   {sel: '#sheet', t: 'Prüfen', before: () => { if (!selId) nextOpen(); }, x: 'Oben steht, was du suchst. Dann Stimmt, Fehlt oder Woanders.'},
-  {sel: '#bAdd', before: () => { if (selId) { selId = null; redrawSel(); renderSheet(); } }, t: 'Neu erfassen', x: 'Fehlt etwas auf der Karte? Hier eintragen – auch Pfade per GPS.'},
-  {sel: '#btnList', t: 'Liste', x: 'Alle offenen Punkte, nach Entfernung sortiert.'},
-  {sel: '#btnMenu', t: 'Mehr', x: IS_APP ? 'Ergebnis senden, Karte als PDF, offline speichern, Filter.' : 'Ergebnis, Filter und Legende.'},
-  {t: 'Fertig', x: IS_APP ? 'Am Ende: Mehr → Ans Kartenteam senden. Bis dahin bleibt alles auf dem Handy, auch offline.' : 'Deine Einträge landen im Speicher dieser Seite.', last: true},
+  {sel: '#bAdd', before: () => { if (selId) { selId = null; redrawSel(); renderSheet(); } }, t: 'Neu erfassen', x: 'Mit [plus] trägst du ein, was auf der Karte fehlt – auch Pfade per GPS.'},
+  {sel: '#btnList', t: 'Liste', x: '[list] zeigt alle offenen Punkte, nach Entfernung sortiert.'},
+  {sel: '#btnMenu', t: 'Menü', x: IS_APP ? '[more] öffnet das Menü: Ergebnis senden, Karte als PDF, offline speichern, Filter.' : '[more] öffnet das Menü: Ergebnis, Filter und Legende.'},
+  {t: 'Fertig', x: (IS_APP ? 'Am Ende im Menü [more] auf „Ans Kartenteam senden“ tippen. Bis dahin bleibt alles auf dem Handy, auch offline.' : 'Deine Einträge landen im Speicher dieser Seite.') + ' Diese Einführung gibt es jederzeit über [help].', last: true},
 ].filter(Boolean);
 function startTour(){
   endTour(); openPanel(null);
@@ -875,7 +878,7 @@ function showStep(i){
   const off = LS.get('fc_tour_off', false), n = tour.steps.length;
   const card = tour.el.querySelector('.card');
   card.innerHTML = `<div class="tnav"><div class="dots">${tour.steps.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div><span class="sp"></span><button class="skip" type="button" id="tSkip">${st.last ? '' : 'Überspringen'}</button></div>
-    <h3>${esc(st.t)}</h3><p>${esc(st.x)}</p>${st.hint ? `<div class="hint">${esc(st.hint)}</div>` : ''}
+    <h3>${esc(st.t)}</h3><p>${ti(st.x)}</p>${st.hint ? `<div class="hint">${ti(st.hint)}</div>` : ''}
     <label><input type="checkbox" id="tOff" ${off ? 'checked' : ''}> Nicht mehr beim Start zeigen</label>
     <div class="tnav">${i ? '<button class="ib" type="button" id="tBack" style="flex:0 0 auto">Zurück</button>' : ''}<span class="sp"></span>
       <button class="ib pri" type="button" id="tNext" style="flex:0 0 auto">${st.last ? 'Los geht’s' : (i ? 'Weiter' : 'Kurz zeigen')}</button></div>`;

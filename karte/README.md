@@ -30,7 +30,7 @@ Neue Ebene: Schlüssel in `LAYERS` ergänzen und die Zeichenbefehle in `with tag
 
 ## Feldcheck-Briefkasten (Einsendungen aus der App)
 
-1. Helfer tippen in der App „Mehr → Briefkasten → Senden“. Die App legt eine JSON-Datei in den Zweig `eingang`
+1. Helfer tippen in der App im Menü (•••) auf „Ans Kartenteam senden“. Die App legt eine JSON-Datei in den Zweig `eingang`
    (`karte/data/feldcheck/eingang/<zeit>_<name>_<zufall>.json`) und meldet das per `repository_dispatch`.
    Dafür braucht jedes Handy einen eigenen Fine-grained-Token (nur dieses Repo, „Contents: Read and write“);
    der Einladungslink `…/#key=<token>&name=<name>` richtet das Handy ein und wird danach aus der Adresszeile entfernt.

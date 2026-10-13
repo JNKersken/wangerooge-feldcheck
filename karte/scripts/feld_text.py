@@ -26,54 +26,54 @@ def title_hint(p):
     if k == 'Bank':
         lehne = {'yes': ' mit Lehne', 'no': ' ohne Lehne'}.get(tg.get('backrest'), '')
         mat = {'wood': 'Holz', 'plastic': 'Kunststoff', 'metal': 'Metall', 'stone': 'Stein'}.get(tg.get('material'))
-        return 'Bank' + lehne, f"Sitzbank{lehne}{' aus ' + mat if mat else ''}. Prüfe, ob sie hier steht."
+        return 'Bank' + lehne, f"Sitzbank{lehne}{' aus ' + mat if mat else ''}."
     if k == 'Trichter':
         d, z = _num(no, r'Ø (?:ca\. )?([\d.,]+) m'), _num(no, r'Tiefe ([\d.,]+) m')
-        size = (f'etwa {_m(d)} m breit' if d else '') + (f' und {_m(z)} m tief' if z else '')
-        return 'Grube / Bombentrichter', f"Runde Mulde im Gelände{', ' + size if size else ''}, oft mit Gras oder Büschen bewachsen. Prüfe, ob die Mulde da ist und ungefähr hier liegt."
+        size = (f'ca. {_m(d)} m breit' if d else '') + (f', {_m(z)} m tief' if z else '')
+        return 'Grube / Bombentrichter', f"Runde Mulde{', ' + size if size else ''}, oft bewachsen."
     if k == 'Rettungspunkt':
-        return (f'SOS-Schild Nr. {nm}' if nm else 'SOS-Schild'), f"Rettungspunkt-Schild{' mit der Nummer ' + nm if nm else ''}, meist an einem Pfahl am Weg, Dünenübergang oder Strandaufgang. Prüfe Nummer und Standort."
+        return (f'SOS-Schild Nr. {nm}' if nm else 'SOS-Schild'), f"Rettungspunkt-Schild{' Nr. ' + nm if nm else ''} an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer?"
     if k == 'Hydrant':
-        return 'Unterflurhydrant' + (f' {nm}' if nm else ''), 'Hinweisschild (weiß mit rotem Rand und „H“) an Pfahl oder Wand; der Hydrant selbst ist ein Deckel im Boden. Prüfe, ob Schild oder Deckel da sind.'
+        return 'Unterflurhydrant' + (f' {nm}' if nm else ''), 'Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden.'
     if k == 'Kleinobjekt':
-        if t == 'Infotafel': return ('Infotafel „' + nm + '“' if nm else 'Infotafel'), 'Info- oder Schautafel am Weg. Prüfe, ob sie hier steht.'
-        if t == 'firepit': return 'Feuerstelle', 'Feuer- oder Grillstelle (Steinring, Grillrost). Prüfe, ob sie da ist.'
-        if t == 'picnic_site': return 'Picknickplatz', 'Tisch mit Bänken. Prüfe, ob er hier steht.'
-        if t == 'monitoring_station': return 'Messstation' + (f' „{nm}“' if nm else ''), 'Pegel oder Messeinrichtung (Mast, Kasten oder Messlatte am Wasser).'
+        if t == 'Infotafel': return ('Infotafel „' + nm + '“' if nm else 'Infotafel'), 'Info- oder Schautafel.'
+        if t == 'firepit': return 'Feuerstelle', 'Feuer- oder Grillstelle.'
+        if t == 'picnic_site': return 'Picknickplatz', 'Tisch mit Bänken.'
+        if t == 'monitoring_station': return 'Messstation' + (f' „{nm}“' if nm else ''), 'Pegel oder Messgerät am Wasser.'
     if k == 'Gewässer':
         d = _num(no, r'Ø≈([\d.,]+) m')
-        return 'Tümpel / Wasserloch', f"Kleine Wasserfläche oder feuchte Senke{', etwa ' + _m(d) + ' m groß' if d else ''}. Kann im Sommer trocken sein – dann zählt die Senke."
+        return 'Tümpel / Wasserloch', f"Wasserloch oder feuchte Senke{', ca. ' + _m(d) + ' m' if d else ''}. Im Sommer evtl. trocken."
     if k == 'Durchgang':
-        return {'gate': ('Tor / Gatter', 'Tor oder Gatter in einem Zaun oder quer über den Weg. Prüfe, ob es da ist.'),
-                'coupure': ('Deichscharte', 'Durchfahrt durch den Deich, die bei Sturmflut mit Toren oder Balken verschlossen wird.'),
-                'cycle_barrier': ('Umlaufsperre', 'Versetzte Metallbügel quer über den Weg („Drängelgitter“).'),
-                'lift_gate': ('Schranke', 'Schlagbaum quer über den Weg.'),
-                'bollard': ('Poller', 'Pfosten mitten im Weg, der Autos sperrt.')}.get(t, ('Tor / Durchlass', 'Tor oder Durchlass am Weg.'))
+        return {'gate': ('Tor / Gatter', 'Tor oder Gatter am Weg.'),
+                'coupure': ('Deichscharte', 'Durchfahrt im Deich, bei Sturmflut verschließbar.'),
+                'cycle_barrier': ('Umlaufsperre', 'Versetzte Bügel quer über den Weg.'),
+                'lift_gate': ('Schranke', 'Schlagbaum über den Weg.'),
+                'bollard': ('Poller', 'Sperrpfosten im Weg.')}.get(t, ('Tor / Durchlass', 'Tor oder Durchlass am Weg.'))
     if k == 'Einrichtung':
-        if t == 'life_ring': return 'Rettungsring', 'Rettungsring an einem Pfahl oder Gestell, meist nahe am Wasser.'
-        if t == 'lifeguard': return 'Rettungsschwimmer-Station', 'Turm oder Hütte der Rettungsschwimmer am Strand (evtl. nur im Sommer aufgebaut).'
-        if t == 'toilets': return 'WC', 'Öffentliche Toilette – Toilettenhäuschen oder WC im Gebäude.'
+        if t == 'life_ring': return 'Rettungsring', 'Rettungsring an Pfahl oder Gestell.'
+        if t == 'lifeguard': return 'Rettungsschwimmer-Station', 'Turm oder Hütte der Rettungsschwimmer, evtl. nur im Sommer.'
+        if t == 'toilets': return 'WC', 'Öffentliche Toilette.'
     if k == 'Gastronomie':
         art = {'cafe': 'Café', 'restaurant': 'Restaurant'}.get(t, 'Gastronomie')
-        return (nm or art), f"{art}{' „' + nm + '“' if nm else ''}. Prüfe, ob es hier ist und noch betrieben wird."
-    if k == 'Bauwerk' and t == 'Schutzhütte': return 'Schutzhütte', 'Unterstand bzw. Wetterschutzhütte mit Dach.'
-    if k == 'Historisch' and t == 'war_memorial': return (nm or 'Gedenkstätte'), 'Gedenkstein, Kreuz oder Gedenktafel.'
-    if k == 'km-Stein': return (f'km-Stein {nm}' if nm else 'km-Stein'), f"Kleiner Stein oder Schild{' mit „' + nm + '“' if nm else ''} direkt neben dem Gleis der Inselbahn."
+        return (nm or art), f"{art}. Noch in Betrieb?"
+    if k == 'Bauwerk' and t == 'Schutzhütte': return 'Schutzhütte', 'Unterstand mit Dach.'
+    if k == 'Historisch' and t == 'war_memorial': return (nm or 'Gedenkstätte'), 'Gedenkstein oder -tafel.'
+    if k == 'km-Stein': return (f'km-Stein {nm}' if nm else 'km-Stein'), f"Kilometerstein{' ' + nm if nm else ''} am Gleis der Inselbahn."
     if k == 'Recycling':
         was = RECYC.get(no.strip())
-        return (f'Container für {was}' if was else 'Wertstoff-Container'), f"Wertstoff-Container{' für ' + was if was else ''}. Prüfe, ob er hier steht."
+        return (f'Container für {was}' if was else 'Wertstoff-Container'), f"Wertstoff-Container{' für ' + was if was else ''}."
     if k == 'Fahrradständer':
         n = no.strip()
-        return 'Fahrradständer', f"Fahrradständer{' für etwa ' + n + ' Räder' if n.isdigit() else ''}."
-    if k == 'Fitness': return 'Fitnessgerät', 'Outdoor-Trainingsgerät am Weg.'
-    if k == 'Umspannstation': return 'Trafostation', 'Kleines Gebäude oder Kasten mit Blitz-Warnschild (Strom).'
+        return 'Fahrradständer', f"Fahrradständer{' für ca. ' + n + ' Räder' if n.isdigit() else ''}."
+    if k == 'Fitness': return 'Fitnessgerät', 'Trainingsgerät im Freien.'
+    if k == 'Umspannstation': return 'Trafostation', 'Häuschen oder Kasten mit Blitz-Schild.'
     if k == 'Feldobjekt':
         tt, h = FELD.get(t, ('Landmarke', '')); return (nm if nm and nm != tt else tt), h
     if k == 'Kuppe': return (f'Dünenkuppe {nm} m' if nm else 'Dünenkuppe'), 'Höchster Punkt einer Düne.'
     if k == 'Steilhang': return 'Steilhang', 'Steile Abbruchkante an einer Düne.'
     if k == 'Busch': return 'Markanter Busch', 'Einzelner, auffälliger Busch.'
     if k == 'Baum': return 'Einzelbaum', 'Einzeln stehender Baum.'
-    if k == 'Buhne': return (f'Buhne {nm}' if nm else 'Buhne'), 'Buhne am Strand; der Punkt ist ihr landseitiges Ende.'
+    if k == 'Buhne': return (f'Buhne {nm}' if nm else 'Buhne'), 'Landseitiges Ende der Buhne.'
     if k == 'Dünenübergang': return 'Dünenübergang' + (' (Treppe)' if t == 'Treppe' else ''), 'Weg oder Treppe über die Düne zum Strand.'
     if k == 'Bahnübergang': return 'Bahnübergang', 'Weg kreuzt das Gleis der Inselbahn.'
     if k == 'Haltepunkt': return (f'Haltepunkt {nm}' if nm else 'Haltepunkt'), 'Haltestelle der Inselbahn.'
@@ -92,19 +92,19 @@ def why(p):
     if p['status'] == 'sicher': return ''
     q, no = p.get('quellen') or '', p.get('notiz') or ''
     bits = []
-    if 'liegt auf einem OSM-Pfad' in no: bits.append('Liegt genau auf einem Pfad – entweder die Grube oder der Pfad ist ungenau eingezeichnet.')
+    if 'liegt auf einem OSM-Pfad' in no: bits.append('Liegt auf einem Pfad – Grube oder Pfad ungenau.')
     m = re.search(r'Nr\. (\S+) ist in OSM (\d+)x an verschiedenen Stellen eingetragen', no)
-    if m: bits.append(f'Die Nummer {m.group(1)} steht in OpenStreetMap {m.group(2)}× an verschiedenen Stellen – welche stimmt?')
-    if 'Position?' in no: bits.append('In OpenStreetMap ist die Lage als unsicher markiert.')
-    src = {'nur OSM': 'Nur aus OpenStreetMap bekannt, im Luftbild nicht zu erkennen.',
-           'OSM; im Luftbild nicht erkennbar': 'In OpenStreetMap eingetragen, im Luftbild aber nicht zu sehen.',
-           'OSM; im Luftbild unsicher': 'In OpenStreetMap eingetragen, im Luftbild nur undeutlich zu sehen.',
-           'OSM; im Luftbild nicht eindeutig': 'In OpenStreetMap eingetragen, im Luftbild nicht eindeutig.',
-           'OSM; Betrieb nicht geprüft': 'In OpenStreetMap eingetragen – ob es noch geöffnet ist, ist unbekannt.',
-           'Höhenmodell': 'Nur im Höhenmodell (Laserscan) erkannt, im Luftbild nicht zu sehen.',
+    if m: bits.append(f'Nr. {m.group(1)} steht {m.group(2)}× in OpenStreetMap – welche stimmt?')
+    if 'Position?' in no: bits.append('Lage in OpenStreetMap unsicher.')
+    src = {'nur OSM': 'Nur in OpenStreetMap, im Luftbild nicht sichtbar.',
+           'OSM; im Luftbild nicht erkennbar': 'Nur in OpenStreetMap, im Luftbild nicht sichtbar.',
+           'OSM; im Luftbild unsicher': 'In OpenStreetMap, im Luftbild undeutlich.',
+           'OSM; im Luftbild nicht eindeutig': 'In OpenStreetMap, im Luftbild nicht eindeutig.',
+           'OSM; Betrieb nicht geprüft': 'Ob noch geöffnet, ist unbekannt.',
+           'Höhenmodell': 'Nur im Höhenmodell erkannt, nicht im Luftbild.',
            'Luftbild (manuell ausgewertet)': 'Nur im Luftbild gesehen.'}.get(q)
     if src and not (bits and q == 'Höhenmodell + Luftbild'): bits.append(src)
-    if p['kategorie'] == 'Trichter' and 'Form wahrscheinlich' in no: bits.append('Die Form ist im Höhenmodell nicht ganz eindeutig.')
+    if p['kategorie'] == 'Trichter' and 'Form wahrscheinlich' in no: bits.append('Form unsicher.')
     return ' '.join(bits) or 'Bisher nur aus einer Quelle bekannt.'
 
 def description(p):
@@ -135,7 +135,7 @@ def anchors_from(points, labels):
     out, seen = [], set()
     SKIP = {'W E S T G R O D E N', 'Westlagune', 'Salinenbucht', 'Ruhezone I/32', 'Strand', 'Straße zum Westen', 'Standort alter Westturm'}
     for lab in labels:
-        t = lab[0].replace('\n', ' ')
+        t = lab[0].split('\n')[0]   # 'Inselheim Rüstringen\nmit Sternwarte' -> first line
         if t in SKIP or t in seen: continue
         seen.add(t); out.append((t, lab[1], lab[2], 0.6))   # printed map names are the easiest to find
     for p, (e, n) in points:

@@ -10,7 +10,7 @@
     "color": "karten/uebersicht_color.svg",
     "bw": "karten/uebersicht_bw.svg"
    },
-   "kb": 3572
+   "kb": 3616
   },
   {
    "id": "detail_west",
@@ -59,79 +59,69 @@
  ],
  "layers": [
   {
-   "key": "contours",
-   "label": "Höhenlinien",
-   "group": "Gelände"
-  },
-  {
-   "key": "summits",
-   "label": "Dünenkuppen mit Höhe",
-   "group": "Gelände"
-  },
-  {
-   "key": "steep",
-   "label": "Steilhänge",
-   "group": "Gelände"
-  },
-  {
-   "key": "pits",
-   "label": "Gruben / Bombentrichter",
-   "group": "Gelände"
-  },
-  {
-   "key": "sea",
-   "label": "Meer / Watt",
-   "group": "Flächen & Wasser"
-  },
-  {
-   "key": "water",
-   "label": "Tümpel, Gräben, Salzwiese",
-   "group": "Flächen & Wasser"
-  },
-  {
-   "key": "open",
-   "label": "Offene Wiese",
-   "group": "Flächen & Wasser"
-  },
-  {
-   "key": "veg",
-   "label": "Gebüsch / Wäldchen",
-   "group": "Flächen & Wasser"
-  },
-  {
-   "key": "sand",
-   "label": "Sand / Strand",
-   "group": "Flächen & Wasser"
-  },
-  {
-   "key": "ruhezone",
-   "label": "Ruhezone",
-   "group": "Flächen & Wasser"
-  },
-  {
    "key": "roads",
    "label": "Straßen / Hauptwege",
-   "group": "Wege & Bauwerke"
+   "group": "Linien"
   },
   {
    "key": "paths",
    "label": "Fußwege, Pfade, Treppen, Stege",
-   "group": "Wege & Bauwerke"
+   "group": "Linien"
   },
   {
    "key": "rail",
    "label": "Inselbahn mit Haltepunkten & km-Steinen",
-   "group": "Wege & Bauwerke"
-  },
-  {
-   "key": "buildings",
-   "label": "Gebäude & Sportplätze",
-   "group": "Wege & Bauwerke"
+   "group": "Linien"
   },
   {
    "key": "structures",
    "label": "Deiche, Zäune, Buhnen",
-   "group": "Wege & Bauwerke"
+   "group": "Linien"
+  },
+  {
+   "key": "contours",
+   "label": "Höhenlinien",
+   "group": "Linien"
+  },
+  {
+   "key": "steep",
+   "label": "Steilhänge",
+   "group": "Linien"
+  },
+  {
+   "key": "buildings",
+   "label": "Gebäude & Sportplätze",
+   "group": "Flächen"
+  },
+  {
+   "key": "veg",
+   "label": "Gebüsch / Wäldchen",
+   "group": "Flächen"
+  },
+  {
+   "key": "open",
+   "label": "Offene Wiese",
+   "group": "Flächen"
+  },
+  {
+   "key": "sand",
+   "label": "Sand / Strand",
+   "group": "Flächen"
+  },
+  {
+   "key": "water",
+   "label": "Tümpel, Gräben, Salzwiese",
+   "group": "Flächen"
+  },
+  {
+   "key": "sea",
+   "label": "Meer / Watt",
+   "group": "Flächen"
+  },
+  {
+   "key": "ruhezone",
+   "label": "Ruhezone",
+   "group": "Flächen"
   },
   {
    "key": "bench",
@@ -144,18 +134,28 @@
    "group": "Punkte"
   },
   {
-   "key": "shelter",
-   "label": "Schutzhütten",
-   "group": "Punkte"
-  },
-  {
    "key": "gate",
    "label": "Tore / Durchlässe",
    "group": "Punkte"
   },
   {
+   "key": "shelter",
+   "label": "Schutzhütten",
+   "group": "Punkte"
+  },
+  {
    "key": "info",
    "label": "Infotafeln, Wegweiser, Gedenkstätten",
+   "group": "Punkte"
+  },
+  {
+   "key": "summits",
+   "label": "Dünenkuppen mit Höhe",
+   "group": "Punkte"
+  },
+  {
+   "key": "pits",
+   "label": "Gruben / Bombentrichter",
    "group": "Punkte"
   },
   {
@@ -184,13 +184,13 @@
    "group": "Karte"
   },
   {
-   "key": "north",
-   "label": "Nordlinien",
+   "key": "lupen",
+   "label": "Lupen (Ausschnittvergrößerungen)",
    "group": "Karte"
   },
   {
-   "key": "lupen",
-   "label": "Lupen (Ausschnittvergrößerungen)",
+   "key": "north",
+   "label": "Nordlinien",
    "group": "Karte"
   },
   {

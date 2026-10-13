@@ -10,7 +10,7 @@
     "color": "karten/uebersicht_color.svg",
     "bw": "karten/uebersicht_bw.svg"
    },
-   "kb": 3575
+   "kb": 3572
   },
   {
    "id": "detail_west",
@@ -21,7 +21,7 @@
     "color": "karten/detail_west_color.svg",
     "bw": "karten/detail_west_bw.svg"
    },
-   "kb": 2149
+   "kb": 2142
   },
   {
    "id": "detail_mitte",
@@ -43,7 +43,7 @@
     "color": "karten/detail_ost_color.svg",
     "bw": "karten/detail_ost_bw.svg"
    },
-   "kb": 3127
+   "kb": 3119
   },
   {
    "id": "detail_sued",
@@ -54,7 +54,7 @@
     "color": "karten/detail_sued_color.svg",
     "bw": "karten/detail_sued_bw.svg"
    },
-   "kb": 2721
+   "kb": 2714
   }
  ],
  "layers": [

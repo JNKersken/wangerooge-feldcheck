@@ -38,6 +38,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700;letter-spacing:.02em;text-transform:none}
 .p-open{background:var(--chip);color:var(--muted)} .p-ok{background:var(--ok);color:#fff} .p-bad{background:var(--bad);color:#fff} .p-move{background:var(--move);color:#1b1305} .p-sure{background:var(--chip);color:var(--ink)}
 h2{margin:0;font-size:19px;line-height:1.25;text-wrap:balance}
+.find{margin:0;font-size:15px;line-height:1.45}
 .meta{color:var(--muted);font-size:13.5px;line-height:1.45}
 .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .act{border:0;border-radius:var(--r);padding:12px 6px;font-weight:700;font-size:15px;display:grid;gap:2px;justify-items:center}
@@ -74,6 +75,21 @@ pre{white-space:pre-wrap;word-break:break-all;font-size:11px;background:var(--ch
 .pgrp{display:grid;gap:6px}
 .big{width:100%;padding:12px;font-weight:700;background:var(--accent);color:var(--accent-ink);border:0;border-radius:var(--r);font-size:15px}
 .big:disabled{opacity:.6}
+.tour{position:fixed;inset:0;z-index:1000;pointer-events:none}
+.tour .blk{position:fixed;background:rgba(12,14,20,.6);pointer-events:auto}
+.tour .ring{position:fixed;border-radius:12px;box-shadow:0 0 0 3px var(--accent),0 0 0 8px rgba(255,255,255,.28);pointer-events:none;transition:all .25s ease}
+.tour .card{position:fixed;left:12px;right:12px;max-width:430px;margin:0 auto;background:var(--panel);color:var(--ink);border-radius:16px;padding:16px 16px 12px;box-shadow:0 14px 44px #0007;pointer-events:auto;display:grid;gap:10px;transition:top .25s ease,bottom .25s ease}
+.tour .card h3{margin:0;font-size:18px;line-height:1.25}
+.tour .card p{margin:0;font-size:14.5px;line-height:1.45;color:var(--ink)}
+.tour .card .hint{font-size:13px;color:var(--accent);font-weight:700}
+.tour .tnav{display:flex;gap:8px;align-items:center}
+.tour .tnav .sp{flex:1}
+.tour .dots{display:flex;gap:5px}
+.tour .dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.tour .dots i.on{background:var(--accent)}
+.tour label{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.tour .skip{border:0;background:transparent;color:var(--muted);font-size:13.5px;padding:6px 2px;text-decoration:underline}
+@media (prefers-reduced-motion: reduce){.tour .ring,.tour .card{transition:none}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -144,10 +160,11 @@ let verdicts = {};             // confirmed from store (or local when no store)
 let pending = LS.get('fc_pending', {});   // local writes not yet confirmed
 let news = {}; let pendingNew = LS.get('fc_pendingNew', {});
 let selId = null, mode = null, addType = null, draft = [], draftLine = null, formDraft = null, showForm = false;
-let showAll = LS.get('fc_showAll', false), catOff = new Set(LS.get('fc_catOff', [])), me = LS.get('fc_me', null), meMarker = null;
+let addOpen = false, showAll = LS.get('fc_showAll', false), catOff = new Set(LS.get('fc_catOff', [])), me = LS.get('fc_me', null), meMarker = null;
 let db = null, storeState = 'connecting';
 let gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}, follow = false, rec = null, accLayer = null;
 // ---------- Briefkasten (GitHub): results go to branch "eingang", a GitHub Action merges them and asks the owner to approve ----------
+const TILE_CACHE = 'fc-tiles';   // build_site appends the tile version, same name as in sw.js
 const GH = {owner: 'JNKersken', repo: 'wangerooge-feldcheck', branch: 'eingang', dir: 'karte/data/feldcheck/eingang'};
 let box = LS.get('fc_box', null);   // {key, name}
 // iOS gives a Home-Screen app its own storage and copies only cookies from Safari when the icon is added.
@@ -167,7 +184,13 @@ if (IS_APP && !box) { const m = document.cookie.match(/(?:^|;\s*)fc_box=([^;]+)/
 
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -2, maxZoom: 3, zoomSnap: .25, zoomDelta: .5, attributionControl: false, zoomControl: false, maxBoundsViscosity: .8});
 const B = L.latLngBounds(ll(X0, Y1 - H), ll(X0 + W, Y1));
-map.setMaxBounds(B.pad(.15));
+function updateBounds(z){   // keep the map in reach, but let every edge be panned out from under the bottom sheet / side panel
+  const sh = $('sheet'), wide = window.innerWidth >= 820, s = Math.pow(2, z === undefined ? map.getZoom() : z);
+  const px = (wide && sh ? sh.offsetWidth : 0) / s + W * .15, py = (!wide && sh ? sh.offsetHeight : 0) / s + H * .15;
+  map.setMaxBounds(L.latLngBounds(ll(X0 - px, Y1 - H - py), ll(X0 + W + px, Y1 + py)));
+}
+updateBounds(0); map.on('zoomend', () => updateBounds()); window.addEventListener('resize', () => updateBounds());
+if (window.ResizeObserver) new ResizeObserver(() => updateBounds()).observe($('sheet'));
 const Tiles = L.TileLayer.extend({getTileUrl(c){return `t${c.z + 2}_${c.x}_${c.y}.png`}});
 new Tiles('', {tileSize: 512, minZoom: -2, maxZoom: 3, minNativeZoom: -2, maxNativeZoom: 1, bounds: B, noWrap: true,
   errorTileUrl: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}).addTo(map);
@@ -250,12 +273,13 @@ function saveNew(id, n){
 }
 function setStore(s, code){
   storeState = s;
-  const el = document.querySelector('#sheet .status');
-  if (el) { el.textContent = storeText(); el.className = 'status' + (s === 'err' || s === 'local' ? ' warn' : ''); }
+  const el = document.querySelector('#sheet .storest');
+  if (el) { el.textContent = storeText(); el.className = 'status storest' + (storeWarn() ? ' warn' : ''); }
 }
+const storeWarn = () => storeState === 'err' || (storeState === 'local' && !IS_APP);
 function storeText(){
   return {connecting: 'Verbinde mit Speicher …', ok: 'Gespeichert – Claude sieht deine Einträge.', err: 'Speichern gerade nicht möglich. Einträge bleiben auf dem Handy und werden nachgereicht.',
-    local: IS_APP ? 'Auf diesem Handy gespeichert (auch offline). Am Ende „Mehr → Ergebnis teilen“ und die Datei an Claude schicken.' : 'Nur auf diesem Gerät gespeichert. Am Ende über „Mehr → Ergebnis kopieren“ an Claude schicken.'}[storeState];
+    local: IS_APP ? 'Auf diesem Handy gespeichert, auch offline. Am Ende „Mehr → Ans Kartenteam senden“.' : 'Nur auf diesem Gerät gespeichert. Am Ende über „Mehr → Ergebnis kopieren“ an Claude schicken.'}[storeState];
 }
 async function initStore(){
   try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch(e) { db = null; }
@@ -363,12 +387,12 @@ function renderStatus(){
   if (rec) { const r = document.querySelector('#recN'); if (r) r.textContent = `${rec.pts.length} Punkte · ${Math.round(rec.pts.reduce((s, p, i) => i ? s + dist(p, rec.pts[i - 1]) : 0, 0))} m`; }
 }
 const hereBtn = (id, label) => IS_APP && gps.on ? `<button class="a-here" id="${id}" type="button" data-here ${gps.pos ? '' : 'disabled'}>📍 ${label} <small style="font-weight:400">${gps.pos ? '± ' + Math.round(gps.acc) + ' m' : 'kein Signal'}</small></button>` : '';
-function panToMe(zoom){   // centre the position in the part of the map not covered by the bottom sheet
-  if (!gps.pos) return; const sh = $('sheet'), wide = window.innerWidth >= 820;
-  if (zoom !== undefined) map.setZoom(zoom, {animate: false});
-  const pt = map.project(ll(gps.pos[0], gps.pos[1])).add(wide ? [sh.offsetWidth / 2, 0] : [0, sh.offsetHeight / 2]);
-  map.panTo(map.unproject(pt), {animate: true});
+function panToVisible(p, zoom){   // centre a point in the part of the map not covered by the bottom sheet (side panel on wide screens)
+  const sh = $('sheet'), wide = window.innerWidth >= 820, z = zoom === undefined ? map.getZoom() : zoom;
+  const off = sh ? (wide ? [sh.offsetWidth / 2, 0] : [0, sh.offsetHeight / 2]) : [0, 0];
+  updateBounds(z); map.setView(map.unproject(map.project(ll(p[0], p[1]), z).add(off), z), z, {animate: true});
 }
+function panToMe(zoom){ if (gps.pos) panToVisible(gps.pos, zoom); }
 const hereNow = () => gps.pos ? {e: gps.pos[0], n: gps.pos[1], acc: Math.round(gps.acc), src: 'gps'} : null;
 const noteVal = () => { const t = $('note'); return t ? t.value.trim() : ''; };
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
@@ -377,7 +401,7 @@ function nextOpen(){
   const from = selId ? posOf(byId[selId]) : (me || en(map.getCenter()));
   const cand = DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k) && i.id !== selId);
   cand.sort((a, b) => dist(posOf(a), from) - dist(posOf(b), from));
-  if (cand[0]) { select(cand[0].id); const p = posOf(cand[0]); map.panTo(ll(p[0], p[1])); }
+  if (cand[0]) { select(cand[0].id); panToVisible(posOf(cand[0]), Math.max(map.getZoom(), 1)); }
 }
 
 function renderSheet(){
@@ -426,7 +450,7 @@ function renderSheet(){
       ${n.pts ? '' : hereBtn('nHere', 'Pin auf meine Position')}
       <div class="row"><button class="ib" id="nSave" type="button">Speichern</button>${n.pts ? '' : '<button class="ib" id="nMove" type="button">Pin verschieben</button>'}<button class="ib" id="nDel" type="button">Löschen</button></div>
       <p class="meta" style="margin:0">${n.src === 'gps' ? `Position per GPS${n.acc ? ` (± ${n.acc} m)` : ''}` : (n.pts ? `${n.pts.length} Punkte` : 'Position per Antippen')}</p>
-      <div class="status">${storeText()}</div>`;
+      <div class="status storest">${storeText()}</div>`;
     let typ = n.typ;
     S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
     $('nSave').onclick = () => { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), t: Date.now()}); $('nSave').textContent = 'Gespeichert'; };
@@ -436,26 +460,29 @@ function renderSheet(){
     return;
   }
   if (!selId){
-    S.innerHTML = `<div class="kicker">So geht's</div>
-      <p class="meta" style="margin:0">Tippe einen <b>weißen Marker</b> an, prüfe das Objekt vor Ort und wähle <b>Stimmt</b>, <b>Fehlt</b> oder <b>Woanders</b>. <b>Dunkle Marker</b> sind schon sicher, du kannst sie aber genauso korrigieren (sichtbar ab näherem Zoom). ${IS_APP ? 'Der blaue Punkt ist deine GPS-Position, ◎ links hält die Karte bei dir.' : 'Hier gibt es kein GPS – dafür die Feldcheck-Web-App nutzen. Standort bei Bedarf per Antippen setzen.'}</p>
-      <div class="row"><button class="ib" id="bNew" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">+ Neuer Landmarker</button><button class="ib" id="bPath" type="button">+ Schleichpfad zeichnen</button></div>
-      ${IS_APP && gps.on ? '<div class="row"><button class="ib" id="bRec" type="button" data-here>● Pfad per GPS aufzeichnen</button></div>' : ''}
-      <div class="row"><button class="ib" id="bNext" type="button">Nächstes offenes Objekt</button>${IS_APP && gps.on ? '' : `<button class="ib" id="bMe" type="button">${me ? 'Standort neu setzen' : 'Standort setzen'}</button>`}</div>
+    S.innerHTML = `<div class="row"><button class="ib" id="bNext" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700">Nächstes offenes Objekt</button>
+        <button class="ib" id="bAdd" type="button" aria-expanded="${addOpen}" style="flex:0 0 auto">+ Neu</button>
+        <button class="ib" id="bHelp" type="button" style="flex:0 0 auto" title="Einführung" aria-label="Einführung zeigen">?</button></div>
+      ${addOpen ? `<div class="row"><button class="ib" id="bNew" type="button">Landmarker</button><button class="ib" id="bPath" type="button">Pfad zeichnen</button>${IS_APP && gps.on ? '<button class="ib" id="bRec" type="button" data-here>● Pfad per GPS</button>' : ''}</div>
+        ${IS_APP && gps.on ? '' : `<div class="row"><button class="ib" id="bMe" type="button">${me ? 'Standort neu setzen' : 'Standort per Antippen setzen'}</button></div>`}` : ''}
       ${IS_APP ? `<div class="status gpsst">${gpsText()}</div>` : ''}
-      <div class="status ${storeState === 'local' || storeState === 'err' ? 'warn' : ''}">${storeText()}</div>`;
+      <div class="status storest ${storeWarn() ? 'warn' : ''}">${storeText()}</div>`;
+    $('bAdd').onclick = () => { addOpen = !addOpen; renderSheet(); };
+    $('bHelp').onclick = () => startTour();
     $('bNext').onclick = nextOpen;
     if ($('bMe')) $('bMe').onclick = () => setMode('me', 'Tippe auf deinen Standort');
     if ($('bRec')) $('bRec').onclick = () => { rec = {pts: gps.pos ? [gps.pos.slice()] : []}; drawDraft(rec.pts); renderSheet(); };
-    $('bNew').onclick = () => { showForm = true; formDraft = null; renderSheet(); };
-    $('bPath').onclick = () => { draft = []; setMode('path', 'Pfad Punkt für Punkt antippen'); renderSheet(); };
+    if ($('bNew')) $('bNew').onclick = () => { showForm = true; formDraft = null; addOpen = false; renderSheet(); };
+    if ($('bPath')) $('bPath').onclick = () => { draft = []; addOpen = false; setMode('path', 'Pfad Punkt für Punkt antippen'); renderSheet(); };
     return;
   }
   const it = byId[selId], v = vOf(selId), st = stateOf(it), c = CAT[it.k] || CAT['Kleinobjekt'];
   const pill = {open: ['p-open', 'offen'], sure: ['p-sure', 'sicher (2 Quellen)'], ok: ['p-ok', 'stimmt · vor Ort bestätigt'], fehlt: ['p-bad', 'fehlt · wird entfernt'], woanders: ['p-move', 'woanders · neue Lage gilt']}[st];
   const d = me ? Math.round(dist(posOf(it), me)) : null;
-  S.innerHTML = `<div class="kicker"><span class="pill ${pill[0]}">${pill[1]}</span> ${esc(it.id)} · ${esc(c[0])}${it.z ? ' · ' + esc(it.z) : ''}${d !== null ? ` · ${d} m von dir` : ''}</div>
-    <h2>${esc(it.n || (it.t && it.t !== it.k ? it.t : c[0]))}</h2>
-    <p class="meta" style="margin:0">${esc(it.no || '')}<br>Quelle: ${esc(it.q || '')}${it.s === 'sicher' && !v ? '<br><b>Schon sicher</b> – korrigiere nur, wenn es vor Ort nicht stimmt.' : ''}</p>
+  S.innerHTML = `<div class="kicker"><span class="pill ${pill[0]}">${pill[1]}</span> ${esc(c[0])} · ${esc(it.id)}${d !== null ? ` · ${d} m von dir` : ''}</div>
+    <h2>${esc(it.n || c[0])}</h2>
+    ${it.f ? `<p class="find">${esc(it.f)}</p>` : ''}
+    <p class="meta" style="margin:0">${it.wo ? `<b>Wo:</b> ${esc(it.wo)}<br>` : ''}${it.z ? `<b>${esc(it.z)}:</b> nur von den erlaubten Wegen aus prüfen.<br>` : ''}${it.w ? `<b>Warum prüfen:</b> ${esc(it.w)}<br>` : ''}${it.no ? `<b>Beschreibung:</b> ${esc(it.no)}<br>` : ''}${it.s === 'sicher' && !v ? `<b>Schon sicher</b> (${esc(it.q || '')}) – korrigiere nur, wenn es vor Ort nicht stimmt.` : ''}</p>
     <div class="acts">
       <button class="act a-ok" id="vOk" type="button">✓ Stimmt<span>ist da</span></button>
       <button class="act a-bad" id="vBad" type="button">✗ Fehlt<span>nicht vorhanden</span></button>
@@ -465,7 +492,7 @@ function renderSheet(){
     <textarea id="note" placeholder="Beschreibung / Notiz (optional), z. B. „Bank 10 m weiter am Pfad, mit Lehne“">${esc(v && v.note || '')}</textarea>
     <div class="row"><button class="ib" id="bNext2" type="button">Nächstes offenes →</button>${v ? '<button class="ib" id="vUndo" type="button">Bewertung zurücknehmen</button>' : ''}</div>
     ${IS_APP ? `<div class="status gpsst">${gpsText()}</div>` : ''}
-    <div class="status ${storeState === 'local' || storeState === 'err' ? 'warn' : ''}">${storeText()}</div>`;
+    <div class="status storest ${storeWarn() ? 'warn' : ''}">${storeText()}</div>`;
   $('vOk').onclick = () => { saveVerdict(selId, {st: 'ok', note: noteVal(), t: Date.now()}); renderSheet(); };
   $('vBad').onclick = () => { saveVerdict(selId, {st: 'fehlt', note: noteVal(), t: Date.now()}); renderSheet(); };
   $('vMove').onclick = () => setMode('move', 'Tippe die richtige Position');
@@ -484,7 +511,7 @@ function renderList(){
   open.sort((a, b) => dist(posOf(a), from) - dist(posOf(b), from));
   $('listPanel').innerHTML = `<h3>${open.length} offene Objekte · sortiert nach Entfernung ${me ? 'zu deinem Standort' : 'zur Kartenmitte'}</h3>
     <div class="list">${open.slice(0, 150).map(i => { const c = CAT[i.k] || CAT['Kleinobjekt']; return `<button class="li" type="button" data-id="${esc(i.id)}"><svg class="ico" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#fff" stroke="#7d7787" stroke-width="1.4"/><path d="${c[1]}" fill="none" stroke="#1f1d24" stroke-width="1.8" stroke-linecap="round"/></svg><span>${esc(i.n || c[0])}<br><small>${esc(i.id)}</small></span><span class="d">${Math.round(dist(posOf(i), from))} m</span></button>`; }).join('')}</div>`;
-  $('listPanel').querySelectorAll('.li').forEach(b => b.onclick = () => { openPanel(null); $('listPanel').hidden = true; const it = byId[b.dataset.id]; select(it.id); const p = posOf(it); map.setView(ll(p[0], p[1]), Math.max(map.getZoom(), 1)); });
+  $('listPanel').querySelectorAll('.li').forEach(b => b.onclick = () => { openPanel(null); $('listPanel').hidden = true; const it = byId[b.dataset.id]; select(it.id); panToVisible(posOf(it), Math.max(map.getZoom(), 1)); });
 }
 function renderMenu(){
   const cats = [...new Set(DATA.items.map(i => i.k).concat(['Pfad']))];
@@ -493,6 +520,7 @@ function renderMenu(){
   $('menuPanel').innerHTML = `<h3>Anzeigen</h3>
     <div class="chips">${cats.map(k => `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${!catOff.has(k)}">${esc((CAT[k] || [k])[0])}</button>`).join('')}</div>
     <div class="row"><button class="chip" type="button" id="tAll" aria-pressed="${showAll}">Sichere Objekte immer zeigen</button></div><p class="meta" style="margin:0">Sonst erscheinen sichere Objekte erst beim Hineinzoomen.</p><div class="row"></div>
+    <h3>Einführung</h3><div class="row"><button class="ib" id="bTour" type="button">Einführung noch einmal ansehen</button></div>
     <h3>Legende</h3>
     <div class="legend"><div><span class="dot" style="background:#fff"></span>offen</div><div><span class="dot" style="background:#2e9d57;border-color:#0003"></span>stimmt</div>
     <div><span class="dot" style="background:#cf4136;border-color:#0003"></span>fehlt</div><div><span class="dot" style="background:#d98a1c;border-color:#0003"></span>woanders</div>
@@ -500,11 +528,11 @@ function renderMenu(){
     <p class="meta" style="margin:0">Alles, was du hier bestätigst, korrigierst oder neu einträgst, übernehme ich in Version 2 als <b>sicher</b> (Quelle: Feldbegehung).</p>
     <p class="meta" style="margin:0">Gestrichelte violette Linien sind Pfade, die im Luftbild kaum sichtbar sind.</p>
     <h3>Ergebnis</h3>
-    <p class="meta" style="margin:0">${Object.keys(res.verdicts).length} Bewertungen, ${Object.keys(res.neu).length} neue Objekte. ${db ? 'Alles liegt im Speicher dieser Seite – Claude liest es direkt.' : (IS_APP ? 'Teile die Datei mit Claude (z. B. in den Chat) – ich übernehme sie ins Artefakt.' : 'Kopiere das Ergebnis und füge es im Chat ein.')}</p>
+    <p class="meta" style="margin:0">${Object.keys(res.verdicts).length} Bewertungen, ${Object.keys(res.neu).length} neue Objekte. ${db ? 'Alles liegt im Speicher dieser Seite – Claude liest es direkt.' : (IS_APP ? (box && box.key ? 'Mit „Ans Kartenteam senden“ landet alles im Briefkasten.' : 'Ohne Einladung: Datei teilen und ans Kartenteam schicken.') : 'Kopiere das Ergebnis und füge es im Chat ein.')}</p>
     ${IS_APP ? (box && box.key ? `<div class="row"><button class="ib" id="bSend" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Ans Kartenteam senden</button></div>
       <p class="status" id="sendSt">${esc(sentText())}</p>` : `<p class="meta" style="margin:0">Zum direkten Senden brauchst du einen Einladungslink vom Kartenteam. Bis dahin: Datei teilen.</p>`) : ''}
     <div class="row">${IS_APP ? '<button class="ib" id="bShare" type="button">Ergebnis teilen (Datei)</button>' : ''}<button class="ib" id="bCopy" type="button">Ergebnis kopieren</button></div>
-    <pre id="exportTxt">${esc(txt)}</pre>
+    <pre id="exportTxt"${IS_APP ? ' hidden' : ''}>${esc(txt)}</pre>
     ${!IS_APP && db ? `<h3>Aus der Web-App übernehmen</h3><p class="meta" style="margin:0">Ergebnis-Text aus der Feldcheck-Web-App hier einfügen – Bewertungen und neue Objekte landen im Speicher dieser Seite (neuere Einträge gewinnen).</p>
       <textarea id="impTxt" placeholder='{"verdicts": …, "neu": …}'></textarea><div class="row"><button class="ib" id="bImp" type="button">Übernehmen</button></div><p class="status" id="impSt"></p>` : ''}
     ${IS_APP ? `<h3>Briefkasten</h3>
@@ -528,6 +556,7 @@ function renderMenu(){
     ${IS_APP ? `<h3>Offline</h3><p class="meta" style="margin:0" id="offSt">Lädt alle Kartenkacheln und die Karten für den PDF-Export aufs Handy, damit beides auch ohne Netz geht (ca. 15 MB).</p><div class="row"><button class="ib" id="bOff" type="button">Karte offline speichern</button></div>
       <h3>Tipp</h3><p class="meta" style="margin:0">In Safari „Teilen → Zum Home-Bildschirm“: Dann startet der Feldcheck wie eine App, ohne Adressleiste, und die Einträge bleiben dauerhaft gespeichert. Achtung: Die App auf dem Home-Bildschirm hat ihren eigenen Speicher – vor dem Löschen des Symbols alles senden.</p>` : ''}`;
   $('menuPanel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const k = b.dataset.k; catOff.has(k) ? catOff.delete(k) : catOff.add(k); LS.set('fc_catOff', [...catOff]); b.setAttribute('aria-pressed', !catOff.has(k)); redrawAll(); });
+  $('bTour').onclick = () => startTour();
   $('tAll').onclick = (e) => { showAll = !showAll; LS.set('fc_showAll', showAll); e.currentTarget.setAttribute('aria-pressed', showAll); redrawAll(); };
   if ($('bPdf')) $('bPdf').onclick = () => { openPanel('pdfPanel'); renderPdfPanel(); };
   if ($('bSend')) $('bSend').onclick = () => sendBox(res);
@@ -561,7 +590,7 @@ function renderMenu(){
   if ($('bOff')) $('bOff').onclick = async () => {
     const st = $('offSt'), b = $('bOff'); b.disabled = true;
     try {
-      let list = await (await fetch('tiles.json')).json(); const c = await caches.open('fc-tiles'); let k = 0;
+      let list = await (await fetch('tiles.json')).json(); const c = await caches.open(TILE_CACHE); let k = 0;
       try { const M = await kartenMeta(); list = list.concat(['karten/layers.json', 'lib/jspdf.umd.min.js', 'lib/svg2pdf.umd.min.js'], M.sheets.map(s => s.files.color)); } catch(e) {}
       for (let i = 0; i < list.length; i += 6) {
         await Promise.all(list.slice(i, i + 6).map(async (u) => { if (!(await c.match(u))) { const r = await fetch(u); if (r.ok) await c.put(u, r); } k++; }));
@@ -570,7 +599,7 @@ function renderMenu(){
       st.textContent = `Fertig: alle ${list.length} Kacheln offline verfügbar.`; b.textContent = 'Offline gespeichert';
     } catch(e) { st.textContent = 'Offline-Speichern hat nicht geklappt – mit Netz erneut versuchen.'; b.disabled = false; }
   };
-  $('bCopy').onclick = () => { navigator.clipboard.writeText(txt).then(() => { $('bCopy').textContent = 'Kopiert'; }).catch(() => { const r = document.createRange(); r.selectNodeContents($('exportTxt')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('bCopy').textContent = 'Text markiert – jetzt kopieren'; }); };
+  $('bCopy').onclick = () => { navigator.clipboard.writeText(txt).then(() => { $('bCopy').textContent = 'Kopiert'; }).catch(() => { $('exportTxt').hidden = false; const r = document.createRange(); r.selectNodeContents($('exportTxt')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('bCopy').textContent = 'Text markiert – jetzt kopieren'; }); };
 }
 
 if (IS_APP){
@@ -686,9 +715,81 @@ async function makePdf(){
   btn.disabled = false;
 }
 
+
+// ---------- Einführung (tour): spotlight on the controls, step by step; the highlighted control stays usable ----------
+let tour = null;
+const TOUR_STEPS = () => [
+  {t: 'Willkommen beim Feldcheck', x: 'Mit dieser App prüfst du vor Ort, ob die Landmarken der OL-Karte stimmen, und trägst ein, was fehlt. Die Einführung dauert eine Minute.'},
+  {sel: '#map', t: 'Die Karte', x: 'Weiße Marker sind offen und warten auf dich. Dunkle sind schon sicher – sie erscheinen beim Hineinzoomen. Nach deiner Bewertung färben sich die Marker: grün stimmt, rot fehlt, orange woanders, blau neu erfasst.', pad: -10},
+  IS_APP && {sel: '#btnGps', t: 'GPS einschalten', x: 'Damit siehst du dich als blauen Punkt auf der Karte. Mit ◎ links folgt die Karte deiner Position.', hint: 'Tipp jetzt auf „GPS“ – oder weiter.', tap: true},
+  {sel: '#bNext', t: 'Nächstes offenes Objekt', x: 'Springt zum nächsten offenen Marker in deiner Nähe. Du kannst auch direkt einen Marker auf der Karte antippen.', hint: 'Probier es aus – oder weiter.', tap: true},
+  {sel: '#sheet', t: 'Prüfen', before: () => { if (!selId) nextOpen(); }, x: 'Hier steht, was du suchst und wo es ungefähr ist. Vor Ort tippst du Stimmt, Fehlt oder Woanders (dann die richtige Stelle antippen oder per GPS). Eine kurze Notiz hilft.'},
+  {sel: '#bAdd', before: () => { if (selId) { selId = null; redrawSel(); renderSheet(); } }, t: 'Neues erfassen', x: 'Findling, Schild, Pfahl, Trampelpfad … alles, was auf der Karte fehlt. Pfade kannst du auch mit GPS ablaufen.'},
+  {sel: '#btnList', t: 'Liste', x: 'Alle offenen Objekte, sortiert nach Entfernung – praktisch, um eine Runde zu planen.'},
+  {sel: '#btnMenu', t: 'Mehr', x: IS_APP ? 'Ergebnisse ans Kartenteam senden, Karte als PDF erstellen, Karte offline speichern, Filter und Legende.' : 'Ergebnis, Filter und Legende.'},
+  {t: 'Und am Ende?', x: IS_APP ? 'Unter „Mehr → Ans Kartenteam senden“ schickst du deine Ergebnisse ab. Bis dahin bleibt alles auf dem Handy gespeichert – auch ohne Netz.' : 'Deine Einträge landen direkt im Speicher dieser Seite.', last: true},
+].filter(Boolean);
+function startTour(){
+  endTour(); openPanel(null);
+  const steps = TOUR_STEPS().filter(st => !st.sel || (document.querySelector(st.sel) && !document.querySelector(st.sel).hidden) || st.before);
+  const el = document.createElement('div'); el.className = 'tour'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
+  el.innerHTML = '<div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="ring"></div><div class="card" aria-live="polite"></div>';
+  document.body.appendChild(el);
+  tour = {el, steps, i: 0, tapOff: null};
+  window.addEventListener('resize', placeTour); showStep(0);
+}
+function endTour(){
+  if (!tour) return;
+  if (tour.tapOff) tour.tapOff();
+  window.removeEventListener('resize', placeTour); tour.el.remove(); tour = null;
+}
+function showStep(i){
+  if (!tour) return;
+  if (tour.tapOff) { tour.tapOff(); tour.tapOff = null; }
+  if (i >= tour.steps.length) return endTour();
+  tour.i = i; const st = tour.steps[i];
+  if (st.before) st.before();
+  const off = LS.get('fc_tour_off', false), n = tour.steps.length;
+  const card = tour.el.querySelector('.card');
+  card.innerHTML = `<div class="tnav"><div class="dots">${tour.steps.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div><span class="sp"></span><button class="skip" type="button" id="tSkip">${st.last ? '' : 'Überspringen'}</button></div>
+    <h3>${esc(st.t)}</h3><p>${esc(st.x)}</p>${st.hint ? `<div class="hint">${esc(st.hint)}</div>` : ''}
+    <label><input type="checkbox" id="tOff" ${off ? 'checked' : ''}> Beim Start nicht mehr zeigen</label>
+    <div class="tnav">${i ? '<button class="ib" type="button" id="tBack" style="flex:0 0 auto">Zurück</button>' : ''}<span class="sp"></span>
+      <button class="ib" type="button" id="tNext" style="flex:0 0 auto;background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700">${st.last ? 'Los geht’s' : (i ? 'Weiter' : 'Einführung starten')}</button></div>`;
+  card.querySelector('#tOff').onchange = (e) => LS.set('fc_tour_off', e.target.checked);
+  card.querySelector('#tNext').onclick = () => showStep(i + 1);
+  if (card.querySelector('#tBack')) card.querySelector('#tBack').onclick = () => showStep(i - 1);
+  if (!st.last) card.querySelector('#tSkip').onclick = endTour; else card.querySelector('#tSkip').remove();
+  if (st.tap && st.sel) {   // tapping the highlighted control does its job and moves the tour on
+    const t = document.querySelector(st.sel), h = () => setTimeout(() => showStep(i + 1), 350);
+    if (t) { t.addEventListener('click', h); tour.tapOff = () => t.removeEventListener('click', h); }
+  }
+  placeTour(); setTimeout(placeTour, 120); setTimeout(placeTour, 400);
+  card.querySelector('#tNext').focus({preventScroll: true});
+}
+function placeTour(){
+  if (!tour) return;
+  const st = tour.steps[tour.i], [b0, b1, b2, b3] = tour.el.querySelectorAll('.blk'), ring = tour.el.querySelector('.ring'), card = tour.el.querySelector('.card');
+  const W_ = window.innerWidth, H_ = window.innerHeight, t = st.sel && document.querySelector(st.sel);
+  const set = (e, l, tp, w, h) => Object.assign(e.style, {left: l + 'px', top: tp + 'px', width: Math.max(0, w) + 'px', height: Math.max(0, h) + 'px'});
+  if (!t || !t.offsetWidth) {   // no target: dim everything, card in the middle
+    set(b0, 0, 0, W_, H_); [b1, b2, b3].forEach(b => set(b, 0, 0, 0, 0)); ring.style.display = 'none';
+    Object.assign(card.style, {top: Math.max(16, (H_ - card.offsetHeight) / 2) + 'px', bottom: 'auto'}); return;
+  }
+  const r = t.getBoundingClientRect(), pd = st.pad === undefined ? 6 : st.pad;
+  const L_ = Math.max(0, r.left - pd), T_ = Math.max(0, r.top - pd), R_ = Math.min(W_, r.right + pd), B_ = Math.min(H_, r.bottom + pd);
+  set(b0, 0, 0, W_, T_); set(b1, 0, B_, W_, H_ - B_); set(b2, 0, T_, L_, B_ - T_); set(b3, R_, T_, W_ - R_, B_ - T_);
+  ring.style.display = ''; set(ring, L_, T_, R_ - L_, B_ - T_);
+  const ch = card.offsetHeight, below = H_ - B_, above = T_;
+  if (below >= ch + 24) Object.assign(card.style, {top: (B_ + 14) + 'px', bottom: 'auto'});
+  else if (above >= ch + 24) Object.assign(card.style, {top: (T_ - ch - 14) + 'px', bottom: 'auto'});
+  else Object.assign(card.style, {top: Math.max(12, (H_ - ch) / 2) + 'px', bottom: 'auto'});   // big target (map): card floats over it
+}
+
 fetch('data.json').then(r => r.json()).then(d => {
   DATA = d; DATA.items.forEach(i => byId[i.id] = i); DATA.paths.forEach(p => byId[p.id] = p);
   redrawAll(); drawMe(); renderSheet(); initStore();
+  if (!LS.get('fc_tour_off', false)) setTimeout(startTour, 700);
 }).catch(() => { $('sheet').innerHTML = '<p class="status warn">Die Objektliste konnte nicht geladen werden. Bitte Seite neu laden.</p>'; });
 })();
 </script>

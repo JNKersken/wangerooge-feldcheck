@@ -1,5 +1,5 @@
 // Feldcheck Wangerooge – offline cache. Core files: network first (always newest data), tiles: cache first.
-const CORE = 'fc-core-v3', TILES = 'fc-tiles';
+const CORE = 'fc-core-v3', TILES = 'fc-tiles-20a1e591';
 const CORE_FILES = ['./', 'index.html', 'data.json', 'leaflet.js', 'tiles.json', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CORE).then((c) => c.addAll(CORE_FILES)).catch(() => {})); self.skipWaiting(); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CORE && k !== TILES).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });

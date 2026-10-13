@@ -1,6 +1,6 @@
 """Field-check site: data.json from points_v1 + tile pyramid from the field render + index.html from the template."""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); from base import BASE
-import sys, json, math, os; None
+import sys, json, math, os, re; None
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 BASE = BASE + ''; SITE = BASE + '/web/site'
@@ -16,8 +16,13 @@ for wid, st in json.load(open(BASE + '/data/path_status_v1.json' if os.path.exis
     if g is None or g.geom_type != 'LineString': continue
     g = g.intersection(_F)
     if g.is_empty or g.geom_type != 'LineString': continue
-    _paths.append(dict(id=f'PF{wid}', k='Pfad', t=t.get('highway', ''), n=t.get('name', ''), s='prüfen', c=[[round(x, 1), round(y, 1)] for x, y in g.coords],
-                       no=f"Belag {t.get('surface', 'unbekannt')}, Länge {round(g.length)} m, {st.get('why', '')}", q='OSM; im Luftbild kaum sichtbar'))
+    _hw = {'footway': 'Fußweg', 'path': 'Pfad', 'track': 'Feldweg', 'cycleway': 'Radweg', 'service': 'Zufahrt', 'steps': 'Treppe', 'bridleway': 'Reitweg'}.get(t.get('highway', ''), 'Weg')
+    _bel = {'dirt': 'Erde', 'sand': 'Sand', 'grass': 'Gras', 'ground': 'Naturboden', 'unpaved': 'unbefestigt', 'paving_stones': 'Pflaster', 'concrete': 'Beton', 'asphalt': 'Asphalt', 'wood': 'Holz', 'compacted': 'Schotter', 'fine_gravel': 'Feinschotter', 'gravel': 'Schotter'}.get(t.get('surface', ''))
+    _m = re.search(r'sichtbar (\d+)%', st.get('why', ''))
+    _paths.append(dict(id=f'PF{wid}', k='Pfad', t=t.get('highway', ''), n=(f"{_hw} „{t['name']}“" if t.get('name') else _hw), s='prüfen', c=[[round(x, 1), round(y, 1)] for x, y in g.coords],
+                       f=f"{_hw}{' (' + _bel + ')' if _bel else ''}, etwa {round(g.length, -1):.0f} m lang. Geh ihn ab: Ist er da und gut begehbar, oder zugewachsen bzw. verschwunden?",
+                       w='In OpenStreetMap eingetragen, im Luftbild aber kaum zu sehen' + (f' (nur auf {_m.group(1)} % der Strecke).' if _m else '.'),
+                       no='', q='OSM; im Luftbild kaum sichtbar'))
 old = dict(paths=_paths); os.makedirs(SITE, exist_ok=True)
 def nice_name(p):
     k, n = p['kategorie'], p['name']
@@ -27,11 +32,16 @@ def nice_name(p):
     if k == 'Buhne' and n: return f'Buhne {n}'
     if k == 'Haltepunkt' and n: return f'Haltepunkt {n}'
     return n
+import feld_text as FT, render_map as _RM
+ANCH = FT.anchors_from([(f['properties'], f['geometry']['coordinates']) for f in F], _RM.LABELS)
 items = []
 for f in F:
     p = f['properties']; e, n = f['geometry']['coordinates']
-    items.append(dict(id=p['id'], k=p['kategorie'], t=p['typ'], n=nice_name(p), s=p['status'], e=round(e, 1), nn=round(n, 1), q=p['quellen'], no=(p.get('notiz') or '')[:260], z=p.get('zone', '')))
-json.dump(dict(items=items, paths=old['paths'], merged=[i['id'] for i in items if i['id'].startswith('F')] + [f['properties']['id'] for f in (json.load(open(BASE + '/data/feldcheck_pfade.geojson'))['features'] if os.path.exists(BASE + '/data/feldcheck_pfade.geojson') else [])]),
+    ti, hint = FT.title_hint(p)
+    items.append(dict(id=p['id'], k=p['kategorie'], t=p['typ'], n=ti, f=hint, w=FT.why(p), wo=FT.where(e, n, ANCH, (p['name'] or '').strip()), s=p['status'],
+                      e=round(e, 1), nn=round(n, 1), q=p['quellen'], no=FT.description(p)[:300], z=p.get('zone', '')))
+for _p in old['paths']: _p['wo'] = FT.where(*_p['c'][len(_p['c']) // 2], ANCH)
+json.dump(dict(items=items, paths=old['paths'], merged=[i['id'] for i in items if i['id'].startswith('F') and 'Feldbegehung' in (i['q'] or '')] + [f['properties']['id'] for f in (json.load(open(BASE + '/data/feldcheck_pfade.geojson'))['features'] if os.path.exists(BASE + '/data/feldcheck_pfade.geojson') else [])]),
           open(SITE + '/data.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 print('items', len(items), 'paths', len(old['paths']))
 if '--tiles' in sys.argv:
@@ -60,7 +70,14 @@ for f in glob.glob(SITE + '/t*.png') + [SITE + '/data.json']: shutil.copy(f, APP
 for f in ('sw.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon-32.png'): shutil.copy(BASE + '/web/' + f, APP)
 shutil.copy(BASE + '/fonts/leaflet/package/dist/leaflet.js', APP + '/leaflet.js')
 json.dump(sorted(os.path.basename(f) for f in glob.glob(APP + '/t*.png')), open(APP + '/tiles.json', 'w'))
-body = tpl.replace('<!--LEAFLETJS-->', '<script src="leaflet.js"></script>').replace('/*ISAPP*/false', 'true')
+# tile version: the service worker keeps tiles cache-first, so a new map gets a new cache name (old one is dropped on update)
+import hashlib
+_h = hashlib.md5()
+for f in sorted(glob.glob(APP + '/t*.png')): _h.update(os.path.basename(f).encode()); _h.update(open(f, 'rb').read())
+TILE_CACHE = 'fc-tiles-' + _h.hexdigest()[:8]
+open(APP + '/sw.js', 'w').write(open(BASE + '/web/sw.js').read().replace("TILES = 'fc-tiles'", f"TILES = '{TILE_CACHE}'"))
+print('Kachel-Cache', TILE_CACHE)
+body = tpl.replace('<!--LEAFLETJS-->', '<script src="leaflet.js"></script>').replace('/*ISAPP*/false', 'true').replace("const TILE_CACHE = 'fc-tiles';", f"const TILE_CACHE = '{TILE_CACHE}';")
 cut = body.index('</style>') + len('</style>')
 head = ('<!doctype html><html lang="de"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'

@@ -1,0 +1,13 @@
+{
+ "name": "JNK",
+ "gesendet": "2026-10-13T16:26:46.630Z",
+ "geraet": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Mobile/15",
+ "verdicts": {
+  "U008": {
+   "st": "ok",
+   "note": "",
+   "t": 1791908767152
+  }
+ },
+ "neu": {}
+}

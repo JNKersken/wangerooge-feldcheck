@@ -131,7 +131,8 @@ textarea{min-height:46px;resize:vertical}
 .li .d{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px}
 pre{white-space:pre-wrap;word-break:break-all;font-size:11px;background:var(--field);padding:10px;border-radius:12px;max-height:160px;overflow:auto;margin:0}
 details summary{cursor:pointer;color:var(--muted);font-size:14px;font-weight:600}
-.ico{width:24px;height:24px}
+.ico{width:24px;height:24px;display:block}
+.leaflet-marker-icon > svg{display:block;width:100%;height:100%}
 .legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;font-size:14px}
 .legend div{display:flex;gap:8px;align-items:center}
 .dot{width:14px;height:14px;border-radius:50%;border:2px solid #8f8a96;flex:none}
@@ -327,11 +328,11 @@ function drawItem(it){
       .on('click', (e) => { L.DomEvent.stop(e); onTap(e.latlng, it.id); }).addTo(map);
     return;
   }
-  if (markers[it.id]) { map.removeLayer(markers[it.id]); delete markers[it.id]; }
   if (moveLines[it.id]) { map.removeLayer(moveLines[it.id]); delete moveLines[it.id]; }
-  if (!visible(it)) return;
-  const v = vOf(it.id);
-  markers[it.id] = L.marker(ll(it.e, it.nn), {icon: icon(it, sel), keyboard: false, zIndexOffset: sel ? 1000 : (it.s === 'sicher' ? 0 : 100)})
+  if (!visible(it)) { if (markers[it.id]) { map.removeLayer(markers[it.id]); delete markers[it.id]; } return; }
+  const v = vOf(it.id), zi = sel ? 1000 : (it.s === 'sicher' ? 0 : 100);
+  if (markers[it.id]) { markers[it.id].setIcon(icon(it, sel)); markers[it.id].setZIndexOffset(zi); }   // swap the look in place – the marker never leaves its spot
+  else markers[it.id] = L.marker(ll(it.e, it.nn), {icon: icon(it, sel), keyboard: false, zIndexOffset: zi})
     .on('click', (e) => { L.DomEvent.stop(e); onTap(e.latlng, it.id); }).addTo(map);
   if (v && v.st === 'woanders' && v.e){
     moveLines[it.id] = L.layerGroup([

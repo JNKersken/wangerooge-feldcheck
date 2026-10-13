@@ -69,4 +69,19 @@ head = ('<!doctype html><html lang="de"><head><meta charset="utf-8">'
         '<link rel="icon" href="icon-192.png"><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>')
 open(APP + '/index.html', 'w').write(head + body[:cut] + '</head><body>' + body[cut:] + '</body></html>')
 open(APP + '/.nojekyll', 'w').write('')
+# layered map SVGs + layer list for "Karte als PDF" in the app
+import datetime, render_map
+K = APP + '/karten'; os.makedirs(K, exist_ok=True)
+sheets = []
+for name in ('uebersicht', 'detail_west', 'detail_mitte', 'detail_ost', 'detail_sued'):
+    cfg = render_map.SHEETS[name]; files = {}
+    for m in ('color', 'bw'):
+        src = f'{BASE}/out/svg/{name}_{m}.svg'
+        if os.path.exists(src): shutil.copy(src, f'{K}/{name}_{m}.svg'); files[m] = f'karten/{name}_{m}.svg'
+    if files: sheets.append(dict(id=name, title=cfg['sub'], scale=cfg['scale'], orient=cfg['orient'], files=files, kb=round(os.path.getsize(f'{K}/{name}_color.svg') / 1024) if 'color' in files else 0))
+json.dump(dict(stand=datetime.date.today().isoformat(), sheets=sheets, layers=[dict(key=k, label=l, group=g) for k, l, g in render_map.LAYERS]),
+          open(K + '/layers.json', 'w'), ensure_ascii=False, indent=1)
+for f in ('jspdf.umd.min.js', 'svg2pdf.umd.min.js'):
+    if os.path.exists(BASE + '/web/lib/' + f): os.makedirs(APP + '/lib', exist_ok=True); shutil.copy(BASE + '/web/lib/' + f, APP + '/lib/' + f)
+print('karten', len(sheets), 'Blätter')
 print('app ok', len(os.listdir(APP)), 'Dateien')

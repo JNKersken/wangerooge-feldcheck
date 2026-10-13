@@ -1,0 +1,197 @@
+{
+ "stand": "2026-10-13",
+ "sheets": [
+  {
+   "id": "uebersicht",
+   "title": "Übersicht",
+   "scale": 15000,
+   "orient": "L",
+   "files": {
+    "color": "karten/uebersicht_color.svg",
+    "bw": "karten/uebersicht_bw.svg"
+   },
+   "kb": 3579
+  },
+  {
+   "id": "detail_west",
+   "title": "Blatt 1 · Westen & Westgroden",
+   "scale": 5000,
+   "orient": "L",
+   "files": {
+    "color": "karten/detail_west_color.svg",
+    "bw": "karten/detail_west_bw.svg"
+   },
+   "kb": 2149
+  },
+  {
+   "id": "detail_mitte",
+   "title": "Blatt 2 · Norddünen Mitte",
+   "scale": 5000,
+   "orient": "L",
+   "files": {
+    "color": "karten/detail_mitte_color.svg",
+    "bw": "karten/detail_mitte_bw.svg"
+   },
+   "kb": 1746
+  },
+  {
+   "id": "detail_ost",
+   "title": "Blatt 3 · Norddünen Ost",
+   "scale": 5000,
+   "orient": "L",
+   "files": {
+    "color": "karten/detail_ost_color.svg",
+    "bw": "karten/detail_ost_bw.svg"
+   },
+   "kb": 3127
+  },
+  {
+   "id": "detail_sued",
+   "title": "Blatt 4 · Inselheim bis Westanleger",
+   "scale": 7500,
+   "orient": "P",
+   "files": {
+    "color": "karten/detail_sued_color.svg",
+    "bw": "karten/detail_sued_bw.svg"
+   },
+   "kb": 2721
+  }
+ ],
+ "layers": [
+  {
+   "key": "contours",
+   "label": "Höhenlinien",
+   "group": "Gelände"
+  },
+  {
+   "key": "summits",
+   "label": "Dünenkuppen mit Höhe",
+   "group": "Gelände"
+  },
+  {
+   "key": "steep",
+   "label": "Steilhänge",
+   "group": "Gelände"
+  },
+  {
+   "key": "pits",
+   "label": "Gruben / Bombentrichter",
+   "group": "Gelände"
+  },
+  {
+   "key": "sea",
+   "label": "Meer / Watt",
+   "group": "Flächen & Wasser"
+  },
+  {
+   "key": "water",
+   "label": "Tümpel, Gräben, Salzwiese",
+   "group": "Flächen & Wasser"
+  },
+  {
+   "key": "open",
+   "label": "Offene Wiese",
+   "group": "Flächen & Wasser"
+  },
+  {
+   "key": "veg",
+   "label": "Gebüsch / Wäldchen",
+   "group": "Flächen & Wasser"
+  },
+  {
+   "key": "sand",
+   "label": "Sand / Strand",
+   "group": "Flächen & Wasser"
+  },
+  {
+   "key": "ruhezone",
+   "label": "Ruhezone",
+   "group": "Flächen & Wasser"
+  },
+  {
+   "key": "roads",
+   "label": "Straßen / Hauptwege",
+   "group": "Wege & Bauwerke"
+  },
+  {
+   "key": "paths",
+   "label": "Fußwege, Pfade, Treppen, Stege",
+   "group": "Wege & Bauwerke"
+  },
+  {
+   "key": "rail",
+   "label": "Inselbahn mit Haltepunkten & km-Steinen",
+   "group": "Wege & Bauwerke"
+  },
+  {
+   "key": "buildings",
+   "label": "Gebäude & Sportplätze",
+   "group": "Wege & Bauwerke"
+  },
+  {
+   "key": "structures",
+   "label": "Deiche, Zäune, Buhnen",
+   "group": "Wege & Bauwerke"
+  },
+  {
+   "key": "bench",
+   "label": "Bänke",
+   "group": "Punkte"
+  },
+  {
+   "key": "rescue",
+   "label": "SOS-Schilder mit Nummer",
+   "group": "Punkte"
+  },
+  {
+   "key": "shelter",
+   "label": "Schutzhütten",
+   "group": "Punkte"
+  },
+  {
+   "key": "gate",
+   "label": "Tore / Durchlässe",
+   "group": "Punkte"
+  },
+  {
+   "key": "info",
+   "label": "Infotafeln, Wegweiser, Gedenkstätten",
+   "group": "Punkte"
+  },
+  {
+   "key": "landmarks",
+   "label": "Leuchttürme, Sternwarte, Aussichtsdüne, Gastronomie",
+   "group": "Punkte"
+  },
+  {
+   "key": "facilities",
+   "label": "WC, Rettungsringe, Feuerstellen, Spiel & Sport",
+   "group": "Punkte"
+  },
+  {
+   "key": "small",
+   "label": "Hydranten, Container, Fahrradständer, Trafo",
+   "group": "Punkte"
+  },
+  {
+   "key": "labels",
+   "label": "Ortsnamen",
+   "group": "Karte"
+  },
+  {
+   "key": "north",
+   "label": "Nordlinien",
+   "group": "Karte"
+  },
+  {
+   "key": "lupen",
+   "label": "Lupen (Ausschnittvergrößerungen)",
+   "group": "Karte"
+  },
+  {
+   "key": "sheetindex",
+   "label": "Blattschnitte (nur Übersicht)",
+   "group": "Karte"
+  }
+ ]
+}

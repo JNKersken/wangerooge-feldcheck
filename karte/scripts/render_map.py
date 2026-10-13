@@ -44,6 +44,36 @@ PAL = {
                green='#444444', purple='#555555', sand='#777777', paper='#ffffff', marsh='#555555', count='#000000', contour='#b2b2b2', pit='#7c7c7c'),
 }
 
+# ---------- map layers: every drawn artist gets an SVG id "L-<layer>-<n>" so the web app can switch layers on/off ----------
+LAYERS = [  # (key, label, group)
+    ('contours', 'Höhenlinien', 'Gelände'), ('summits', 'Dünenkuppen mit Höhe', 'Gelände'), ('steep', 'Steilhänge', 'Gelände'), ('pits', 'Gruben / Bombentrichter', 'Gelände'),
+    ('sea', 'Meer / Watt', 'Flächen & Wasser'), ('water', 'Tümpel, Gräben, Salzwiese', 'Flächen & Wasser'), ('open', 'Offene Wiese', 'Flächen & Wasser'),
+    ('veg', 'Gebüsch / Wäldchen', 'Flächen & Wasser'), ('sand', 'Sand / Strand', 'Flächen & Wasser'), ('ruhezone', 'Ruhezone', 'Flächen & Wasser'),
+    ('roads', 'Straßen / Hauptwege', 'Wege & Bauwerke'), ('paths', 'Fußwege, Pfade, Treppen, Stege', 'Wege & Bauwerke'), ('rail', 'Inselbahn mit Haltepunkten & km-Steinen', 'Wege & Bauwerke'),
+    ('buildings', 'Gebäude & Sportplätze', 'Wege & Bauwerke'), ('structures', 'Deiche, Zäune, Buhnen', 'Wege & Bauwerke'),
+    ('bench', 'Bänke', 'Punkte'), ('rescue', 'SOS-Schilder mit Nummer', 'Punkte'), ('shelter', 'Schutzhütten', 'Punkte'), ('gate', 'Tore / Durchlässe', 'Punkte'),
+    ('info', 'Infotafeln, Wegweiser, Gedenkstätten', 'Punkte'), ('landmarks', 'Leuchttürme, Sternwarte, Aussichtsdüne, Gastronomie', 'Punkte'),
+    ('facilities', 'WC, Rettungsringe, Feuerstellen, Spiel & Sport', 'Punkte'), ('small', 'Hydranten, Container, Fahrradständer, Trafo', 'Punkte'),
+    ('labels', 'Ortsnamen', 'Karte'), ('north', 'Nordlinien', 'Karte'), ('lupen', 'Lupen (Ausschnittvergrößerungen)', 'Karte'), ('sheetindex', 'Blattschnitte (nur Übersicht)', 'Karte'),
+]
+KIND_LAYER = dict(bench='bench', rescue='rescue', shelter='shelter', gate='gate', info='info', flag='info', memorial='info',
+                  lighthouse='landmarks', observatory='landmarks', peak='landmarks', food='landmarks',
+                  toilet='facilities', ring='facilities', fire='facilities', picnic='facilities', playground='facilities', fitness='facilities', mast='facilities', tree='facilities', dot='facilities', ferry='landmarks',
+                  hydrant='small', recycling='small', bike='small', substation='small', milestone='rail', railx='rail', station='rail',
+                  groyne='structures', summit='summits', pit='pits', bush='veg')
+_TAGN = [0]
+class _Tag:
+    """Tag every artist added to ax inside the block (nested tags win; ids stay stable within one render)."""
+    def __init__(self, ax, key): self.ax, self.key = ax, key
+    def _lists(self): a = self.ax; return (a.lines, a.patches, a.collections, a.texts, a.images)
+    def __enter__(self): self.n = [len(l) for l in self._lists()]; return self
+    def __exit__(self, *exc):
+        for lst, n0 in zip(self._lists(), self.n):
+            for art in list(lst)[n0:]:
+                if not (art.get_gid() or '').startswith('L-'):
+                    _TAGN[0] += 1; art.set_gid(f'L-{self.key}-{_TAGN[0]}')
+def tag(S, key): return _Tag(S.ax, key)
+
 def mix(c, paper, t):
     """Blend colour c towards paper by fraction t (0 = unchanged)."""
     if not t: return c
@@ -216,9 +246,10 @@ def base_geom():
 def layer_base(S):
     P = S.P
     lowg, sea = base_geom()
-    S.fill(lowg, P['sea'], z=0.5)
-    for i, ln in enumerate(sea):
-        if ln.length > 60 and ln.intersects(S.clip): S.gline(ln, f'shore{i}', P['blue'], 0.45, amp=0.3)
+    with tag(S, 'sea'):
+        S.fill(lowg, P['sea'], z=0.5)
+        for i, ln in enumerate(sea):
+            if ln.length > 60 and ln.intersects(S.clip): S.gline(ln, f'shore{i}', P['blue'], 0.45, amp=0.3)
     S.lowg = lowg
 
 def osm_polys(pred):
@@ -235,33 +266,42 @@ def osm_polys(pred):
 
 def layer_areas(S):
     P = S.P
-    for k, g in osm_polys(lambda t: t.get('landuse') in ('meadow', 'grass', 'greenery') or t.get('natural') == 'grassland' or t.get('leisure') in ('park', 'pitch')):
-        S.fill(g, P['open'], z=0.8)
+    with tag(S, 'open'):
+        for k, g in osm_polys(lambda t: t.get('landuse') in ('meadow', 'grass', 'greenery') or t.get('natural') == 'grassland' or t.get('leisure') in ('park', 'pitch')):
+            S.fill(g, P['open'], z=0.8)
     SA = json.load(open(BASE + '/data/sand.geojson'))['features']
-    for i, f in enumerate(SA):
-        g = shape(f['geometry'])
-        if g.intersects(S.lowg) and g.intersection(S.lowg).area > 0.95 * g.area: continue  # sandbanks in the Watt
-        if g.intersects(S.clip): S.stipple(g, f'sand{i}', P['sand'], dens=2.2 if S.dense else 1.3, size=0.45 if S.dense else 0.3)
-    for k, g in osm_polys(lambda t: t.get('natural') == 'scrub'):
-        S.hatch(g, k, P['green'], spacing=1.6, angle=50, lw=0.3, z=1.5, alpha=0.8)
-    for k, g in osm_polys(lambda t: t.get('landuse') == 'forest' or t.get('natural') == 'wood'):
-        S.hatch(g, k, P['green'], spacing=1.1, angle=50, lw=0.35, z=1.5, cross=True, alpha=0.9)
-    for k, g in osm_polys(lambda t: t.get('natural') == 'wetland' or t.get('wetland')):
-        if g.area > 5e5: continue  # huge tidal-flat relations
-        g = g.difference(S.lowg)
-        S.hatch(g, k, P['marsh'], spacing=1.6, angle=0, lw=0.3, z=1.4, alpha=0.5)
-    for k, g in osm_polys(lambda t: t.get('natural') == 'water'):
-        if g.area < 15: continue
-        S.fill(g, P['water'], z=1.6); S.gline(g, k, P['blue'], 0.45, amp=0.12, double=False, z=1.7)
-    for k, g in osm_polys(lambda t: t.get('landuse') == 'cemetery'):
-        S.gline(g, k, P['ink'], 0.4, amp=0.15, double=False, z=2)
-        c = g.representative_point()
-        for dx in (-1, 1): S.sym('memorial', c.x + dx * 2 * S.m, c.y, P['ink'], k + str(dx), 0.8)
+    with tag(S, 'sand'):
+        for i, f in enumerate(SA):
+            g = shape(f['geometry'])
+            if g.intersects(S.lowg) and g.intersection(S.lowg).area > 0.95 * g.area: continue  # sandbanks in the Watt
+            if g.intersects(S.clip): S.stipple(g, f'sand{i}', P['sand'], dens=2.2 if S.dense else 1.3, size=0.45 if S.dense else 0.3)
+    with tag(S, 'veg'):
+        for k, g in osm_polys(lambda t: t.get('natural') == 'scrub'):
+            S.hatch(g, k, P['green'], spacing=1.6, angle=50, lw=0.3, z=1.5, alpha=0.8)
+        for k, g in osm_polys(lambda t: t.get('landuse') == 'forest' or t.get('natural') == 'wood'):
+            S.hatch(g, k, P['green'], spacing=1.1, angle=50, lw=0.35, z=1.5, cross=True, alpha=0.9)
+    with tag(S, 'water'):
+        for k, g in osm_polys(lambda t: t.get('natural') == 'wetland' or t.get('wetland')):
+            if g.area > 5e5: continue  # huge tidal-flat relations
+            g = g.difference(S.lowg)
+            S.hatch(g, k, P['marsh'], spacing=1.6, angle=0, lw=0.3, z=1.4, alpha=0.5)
+        for k, g in osm_polys(lambda t: t.get('natural') == 'water'):
+            if g.area < 15: continue
+            S.fill(g, P['water'], z=1.6); S.gline(g, k, P['blue'], 0.45, amp=0.12, double=False, z=1.7)
+    with tag(S, 'info'):
+        for k, g in osm_polys(lambda t: t.get('landuse') == 'cemetery'):
+            S.gline(g, k, P['ink'], 0.4, amp=0.15, double=False, z=2)
+            c = g.representative_point()
+            for dx in (-1, 1): S.sym('memorial', c.x + dx * 2 * S.m, c.y, P['ink'], k + str(dx), 0.8)
 
 def layer_contours(S):
     P = S.P
     C = json.load(open(BASE + '/data/contours.geojson'))['features']
     lab_done = 0
+    with tag(S, 'contours'): _contour_lines(S, C)
+
+def _contour_lines(S, C):
+    P = S.P
     for i, f in enumerate(C):
         g = shape(f['geometry']); idx = f['properties']['index']
         if not g.intersects(S.clip): continue
@@ -279,12 +319,26 @@ def layer_ruhezone(S):
     g = rel_geom(16774424)
     if g is None: return
     band = g.difference(g.buffer(-3.2 * S.m))
-    S.hatch(band, 'rz', P['purple'], spacing=1.4, angle=-60, lw=0.35, z=2.5, alpha=0.6)
-    S.gline(g, 'rzb', P['purple'], 0.9, amp=0.25, dashes=(4, 2.5), z=2.6, double=False)
+    with tag(S, 'ruhezone'):
+        S.hatch(band, 'rz', P['purple'], spacing=1.4, angle=-60, lw=0.35, z=2.5, alpha=0.6)
+        S.gline(g, 'rzb', P['purple'], 0.9, amp=0.25, dashes=(4, 2.5), z=2.6, double=False)
+
+_PS = {}
+def way_layer(t):
+    if t.get('man_made') in ('dyke', 'groyne', 'breakwater', 'pier') or t.get('barrier') in ('fence', 'wall'): return 'structures'
+    if t.get('waterway'): return 'water'
+    if t.get('railway'): return 'rail'
+    h = t.get('highway')
+    if h in ('unclassified', 'residential', 'pedestrian', 'service', 'track'): return 'roads'
+    return 'paths'
 
 def layer_lines(S):
-    P = S.P; ps = json.load(open(BASE + '/data/path_status.json'))
     for wid, w in W.items():
+        with tag(S, way_layer(w['tags'])): _lines(S, {wid: w})
+
+def _lines(S, WW):
+    P = S.P; ps = _PS.get('ps') or _PS.setdefault('ps', json.load(open(BASE + '/data/path_status.json')))
+    for wid, w in WW.items():
         t = w['tags']; key = f'w{wid}'
         g = None
         def G():
@@ -341,6 +395,7 @@ def layer_lines(S):
 def layer_extras(S):
     P = S.P
     # steep banks: brown line + ticks downslope (OL earth bank)
+    _st = tag(S, 'steep'); _st.__enter__()
     for i, f in enumerate(json.load(open(BASE + '/data/steep_lines.geojson'))['features']):
         g = shape(f['geometry'])
         if not g.intersects(S.clip): continue
@@ -348,11 +403,17 @@ def layer_extras(S):
         dx, dy = f['properties']['dx'], f['properties']['dy']
         for d_ in np.arange(0.4 * S.m, g.length, 1.0 * S.m):
             q = g.interpolate(d_); S.ax.plot([q.x, q.x + dx * 0.7 * S.m], [q.y, q.y + dy * 0.7 * S.m], color=P['brown'], lw=0.6, zorder=2.4)
+    _st.__exit__(None, None, None)
     for wid, w in W.items():
         t = w['tags']
+        with tag(S, 'buildings' if t.get('leisure') == 'pitch' else 'paths'): _extra_way(S, wid, t)
+
+def _extra_way(S, wid, t):
+    P = S.P
+    if True:
         if t.get('bridge') == 'yes' or t.get('tunnel') == 'culvert':
             g = way_geom(wid)
-            if g is None or g.geom_type != 'LineString' or not g.intersects(S.clip): continue
+            if g is None or g.geom_type != 'LineString' or not g.intersects(S.clip): return
             col = P['ink'] if t.get('bridge') == 'yes' else P['blue']
             L_ = max(g.length, 2.2 * S.m); mid = g.interpolate(0.5, normalized=True)
             a_ = g.interpolate(max(0, g.length / 2 - 0.1)); b_ = g.interpolate(min(g.length, g.length / 2 + 0.1)); ang = math.atan2(b_.y - a_.y, b_.x - a_.x)
@@ -363,7 +424,7 @@ def layer_extras(S):
                 S.ax.plot(xs, ys, color=col, lw=0.55, zorder=4.2, solid_joinstyle='miter')
         if t.get('surface') == 'wood' and t.get('highway') in ('path', 'footway'):
             g = way_geom(wid)
-            if g is None or g.geom_type != 'LineString' or not g.intersects(S.clip): continue
+            if g is None or g.geom_type != 'LineString' or not g.intersects(S.clip): return
             for sgn in (1, -1):
                 o = g.parallel_offset(0.45 * S.m, 'left' if sgn > 0 else 'right')
                 for q in getattr(o, 'geoms', [o]):
@@ -373,6 +434,8 @@ def layer_extras(S):
             if g is not None and g.geom_type == 'Polygon' and g.intersects(S.clip): S.ax.plot(*g.exterior.xy, color=P['ink'], lw=0.35, zorder=2.6)
 
 def layer_buildings(S):
+    with tag(S, 'buildings'): _buildings(S)
+def _buildings(S):
     P = S.P
     for rid, rr in R.items():   # multipolygon buildings (e.g. Inselheim Rüstringen)
         if 'building' in rr['tags']:
@@ -415,10 +478,12 @@ def layer_points(S):
         if sk: items.append(dict(x=x, y=y, p=p, kind=sk[0], size=sk[1], group=sk[2], sure=True))
     S.drawn = group_items(S, items)
     stack_levels(S, pits)
-    for d in pits:
-        S.sym('pit', d['x'], d['y'], P['brown'], d['members'][0]['p']['id'], d['size'], z=d['z'], light=d['light'], halo_z=HALO_Z)
+    with tag(S, 'pits'):
+        for d in pits:
+            S.sym('pit', d['x'], d['y'], P['brown'], d['members'][0]['p']['id'], d['size'], z=d['z'], light=d['light'], halo_z=HALO_Z)
     S.numreq = []
-    for d in S.drawn: draw_item(S, d)
+    for d in S.drawn:
+        with tag(S, KIND_LAYER.get(d['kind'], 'facilities')): draw_item(S, d)
     place_numbers(S)
 
 SINGLE = {'lighthouse', 'observatory', 'food', 'peak', 'ferry'}
@@ -598,12 +663,14 @@ def place_numbers(S):
             if best is None or c < best[0]: best = (c, ox, oy, bx)
             if c < 0.03: break
         _, ox, oy, bx = best; placed.append(bx)
+        _tg = tag(S, KIND_LAYER.get(d['kind'], 'facilities')); _tg.__enter__()
         if rq['kind'] == 'roman' and d['n'] <= 6:
             symbols2.draw_dots(S.ax, x + ox * m, y + oy * m, d['n'], m, rq['col'], paper=S.P['paper'])
         elif rq['kind'] == 'roman':
             draw_roman(S, x + ox * m + 0.06 * h * m, y + oy * m, d['n'], rq['col'], h)
         else:
-            S.ax.text(x + ox * m, y + oy * m, rq.get('txt') or d['members'][0]['p']['name'], fontproperties=SERIF, fontsize=4.8, color=rq['col'], ha='left', va='center_baseline', zorder=10, gid='sos')
+            _t = S.ax.text(x + ox * m, y + oy * m, rq.get('txt') or d['members'][0]['p']['name'], fontproperties=SERIF, fontsize=4.8, color=rq['col'], ha='left', va='center_baseline', zorder=10); _t._sos = True
+        _tg.__exit__(None, None, None)
 
 # ======================= insets ("Lupen") =======================
 def find_hotspots(S):
@@ -878,10 +945,10 @@ def draw_insets(S, name):
     for i in [i for i in range(len(plans)) if rects[i] is not None]:
         I, r, L = plans[i], rects[i], mine[i]['L']
         done.append((L, I, r))
-        T = sub_sheet(S, I['bbox'], I['scale'], r)
+        T = sub_sheet(S, I['bbox'], I['scale'], r); T.ax.set_gid(f'L-lupen-ax{L}')
         T.ax.add_patch(MPoly([(T.x0, T.y0), (T.x1, T.y0), (T.x1, T.y1), (T.x0, T.y1)], closed=True, fc=S.P['paper'], ec='none', zorder=0.1))
         T.lowg = S.lowg
-        T.fill(S.lowg, S.P['sea'], z=0.5)
+        with tag(T, 'sea'): T.fill(S.lowg, S.P['sea'], z=0.5)
         layer_areas(T); layer_contours(T); layer_ruhezone(T); layer_lines(T); layer_buildings(T); layer_points(T)
         T.line([(T.x0, T.y0), (T.x1, T.y0), (T.x1, T.y1), (T.x0, T.y1), (T.x0, T.y0)], 'if' + L, S.P['purple'], 1.2, amp=0.1, z=40, double=False)
         T.ax.add_patch(MPoly([(T.x0, T.y1 - 3.8 * T.m), (T.x1, T.y1 - 3.8 * T.m), (T.x1, T.y1), (T.x0, T.y1)], closed=True, fc=S.P['paper'], ec='none', alpha=0.9, zorder=39))
@@ -894,6 +961,7 @@ def draw_insets(S, name):
         T.ax.text(bx + sbm + 1.2 * T.m, by, f'{sbm} m', fontproperties=SERIF, fontsize=5.5, ha='left', va='center', zorder=41, color=S.P['ink'])
         # indicator on the main map + leader line
         x0, y0, x1, y1 = I['bbox']
+        _tg = tag(S, 'lupen'); _tg.__enter__()
         S.ax.plot([x0, x1, x1, x0, x0], [y0, y0, y1, y1, y0], color=S.P['purple'], lw=0.7, zorder=7.5, solid_joinstyle='miter')
         S.fig.canvas.draw(); rend = S.fig.canvas.get_renderer()
         others = [t.get_window_extent(rend) for t in S.ax.texts if t.get_text().strip()]
@@ -913,6 +981,7 @@ def draw_insets(S, name):
                 best_ = (c_, tl)
             else: tl.remove()
             if c_ < 0.5: break
+        _tg.__exit__(None, None, None)
     return done
 
 LABELS = [  # (text, x, y, dx_mm, dy_mm, size_overview, size_detail, bold)
@@ -937,6 +1006,8 @@ LABELS = [  # (text, x, y, dx_mm, dy_mm, size_overview, size_detail, bold)
     ('Standort alter Westturm', 424272, 5960834, 2.2, 0.0, 5.5, 7, False),
 ]
 def layer_labels(S):
+    with tag(S, 'labels'): _labels(S)
+def _labels(S):
     """Place labels; try the configured offset first, then alternatives, avoiding other texts and symbols."""
     P = S.P
     OV = {'Inselheim Rüstringen\nmit Sternwarte': (-2.0, -2.6, 'right'), 'Westturm (DJH)': (2.4, -2.6, 'left')}
@@ -1015,11 +1086,15 @@ def layer_labels(S):
         occupied.append(best[2])
 
 def layer_northlines(S):
+    with tag(S, 'north'): _northlines(S)
+def _northlines(S):
     P = S.P; sp = 250 if S.dense else 500
     for x in np.arange(math.ceil(S.x0 / sp) * sp, S.x1, sp):
         S.line([(x, S.y0), (x, S.y1)], f'nl{x}', P['blue'] if S.mode == 'color' else '#999999', 0.35, amp=0.08, double=False, z=6, alpha=0.6)
 
 def layer_sheet_index(S):
+    with tag(S, 'sheetindex'): _sheet_index(S)
+def _sheet_index(S):
     P = S.P
     for i, (k, lab) in enumerate((('detail_west', 'Blatt 1'), ('detail_mitte', 'Blatt 2'), ('detail_ost', 'Blatt 3'), ('detail_sued', 'Blatt 4'))):
         x0, y0, x1, y1 = SHEETS[k]['bbox']
@@ -1061,6 +1136,9 @@ def frame_and_margin(S, name):
     a.add_patch(MPoly([(0, 1.0), (-0.45, -0.6), (0, -0.25), (0.45, -0.6)], fc=P['ink'], ec=P['ink'], lw=0.5))
     a.text(0, 1.3, 'N', fontproperties=HANDB, fontsize=10, ha='center', va='center', color=P['ink'])
 
+LEG_LAYER = dict(road='roads', foot='paths', path='paths', board='paths', steps='paths', bridge='paths', rail='rail', railx='rail', fence='structures', dyke='structures',
+                 cont='contours', steep='steep', summit='summits', pit='pits', water='water', open='open', scrub='veg', forest='veg', sand='sand', rz='ruhezone',
+                 bld='buildings', pitch='buildings', lupe='lupen', group='bench', groyne='structures')
 def legend(S, lx, ty, width=54):
     P = S.P; fig = S.fig; pw, ph = S.pw, S.ph
     cols = [[
@@ -1083,6 +1161,7 @@ def legend(S, lx, ty, width=54):
     for ci, items in enumerate(cols):
         for r, (k, txt) in enumerate(items):
             x = ci * col_w; y = -r * h - 1.5
+            _tg = _Tag(a, LEG_LAYER.get(k, KIND_LAYER.get(k, 'facilities'))); _tg.__enter__()
             sx, ex = x + 0.5, x + 6.5; cx = (sx + ex) / 2
             def ln(color, lw, dashes=None, amp=0.18):
                 M.line([(sx, y), (ex, y)], k, color, lw, amp=amp, dashes=dashes, double=lw >= 0.5)
@@ -1152,6 +1231,7 @@ def legend(S, lx, ty, width=54):
             elif k in ('lighthouse',): M.sym(k, cx, y, P['ink'], k, 0.85)
             else: M.sym(k, cx, y, P['ink'], k)
             a.text(ex + 0.9, y, txt, fontproperties=HAND, fontsize=7.0, va='center', color=P['ink'])
+            _tg.__exit__(None, None, None)
     yb = ty - h * NR - 5.5
     fig.text(lx / pw, yb / ph, 'Ruhezone: Wege nicht verlassen!', fontproperties=HANDB, fontsize=7.2, color=P['purple'])
 
@@ -1162,7 +1242,7 @@ def render(name, mode, out, png=None):
     if name == 'uebersicht': layer_sheet_index(S)
     S.insets = draw_insets(S, name)
     for t in list(S.ax.texts):   # SOS numbers inside a Lupe indicator are shown in the Lupe itself
-        if t.get_gid() == 'sos' and any(I['bbox'][0] <= t.get_position()[0] - 1.5 * S.m <= I['bbox'][2] and I['bbox'][1] <= t.get_position()[1] <= I['bbox'][3] for _, I, _ in S.insets): t.remove()
+        if getattr(t, '_sos', False) and any(I['bbox'][0] <= t.get_position()[0] - 1.5 * S.m <= I['bbox'][2] and I['bbox'][1] <= t.get_position()[1] <= I['bbox'][3] for _, I, _ in S.insets): t.remove()
     frame_and_margin(S, name)
     try:
         S.fig.canvas.draw(); rend = S.fig.canvas.get_renderer()
@@ -1188,7 +1268,24 @@ def render(name, mode, out, png=None):
     print(name, mode, 'Lupen:', [(L, I['scale'], I['n']) for L, I, r in S.insets], 'Gruppen:', sum(1 for d in S.drawn if d['n'] > 1))
     S.fig.savefig(out, facecolor=S.P['paper'])
     if png: S.fig.savefig(png, dpi=DPI, facecolor=S.P['paper'])
+    if SVG_OUT: save_svg(S, SVG_OUT)
     plt.close(S.fig)
+
+SVG_OUT = None
+def save_svg(S, path):
+    """Layered SVG for the web app: groups carry ids L-<layer>-<n>; text as paths (no fonts needed)."""
+    import matplotlib as _mpl
+    with _mpl.rc_context({'svg.fonttype': 'path', 'svg.hashsalt': 'wangerooge', 'svg.id': 'wangerooge'}):
+        S.fig.savefig(path, format='svg', facecolor=S.P['paper'], metadata={'Date': None})
+    # bake glyph scale transforms into the path data: svg2pdf (PDF export in the app) drops some <use>d glyphs that carry their own transform
+    import re
+    def _bake(m):
+        sc = float(m.group(3))
+        d = re.sub(r'-?\d+(?:\.\d+)?(?:e-?\d+)?', lambda n: ('%.4f' % (float(n.group(0)) * sc)).rstrip('0').rstrip('.'), m.group(2))
+        return f'<path id="{m.group(1)}" d="{d}"/>'
+    txt = open(path).read()
+    txt = re.sub(r'<path id="([^"]+)" d="([^"]*)"\s*transform="scale\(([\d.e-]+)\)"\s*/>', _bake, txt)
+    open(path, 'w').write(txt)
 
 def render_check(bbox, png, scale=5000, pxm=2.5):
     """QA: map symbols/lines over the DOP20 aerial image at true positions."""
@@ -1226,4 +1323,5 @@ def render_field(png, pxm=2):
 if __name__ == '__main__':
     name, mode, out = sys.argv[1:4]; png = sys.argv[4] if len(sys.argv) > 4 else None
     DPI = int(sys.argv[5]) if len(sys.argv) > 5 else 110
+    SVG_OUT = sys.argv[6] if len(sys.argv) > 6 else None
     render(name, mode, out, png)

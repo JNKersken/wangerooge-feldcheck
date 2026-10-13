@@ -68,6 +68,12 @@ pre{white-space:pre-wrap;word-break:break-all;font-size:11px;background:var(--ch
 .ctl[aria-pressed="true"]{background:var(--sel);color:#fff;border-color:var(--sel)}
 .a-here{background:var(--sel);color:#fff;border:0;border-radius:var(--r);padding:11px 8px;font-weight:700;font-size:14.5px}
 .rec{color:var(--bad);font-weight:700}
+#pv{border:1px solid var(--line);border-radius:8px;background:#fffdf7;overflow:hidden;min-height:120px;display:grid;place-items:center}
+#pv svg{width:100%;height:auto;display:block}
+.pvwrap{position:sticky;top:-14px;z-index:3;background:var(--panel);padding:8px 0 6px;display:grid;gap:6px;box-shadow:0 8px 10px -8px #0003}
+.pgrp{display:grid;gap:6px}
+.big{width:100%;padding:12px;font-weight:700;background:var(--accent);color:var(--accent-ink);border:0;border-radius:var(--r);font-size:15px}
+.big:disabled{opacity:.6}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -84,6 +90,7 @@ pre{white-space:pre-wrap;word-break:break-all;font-size:11px;background:var(--ch
   <section class="sheet" id="sheet" aria-live="polite"></section>
   <section class="panel" id="listPanel" hidden></section>
   <section class="panel" id="menuPanel" hidden></section>
+  <section class="panel" id="pdfPanel" hidden></section>
 </div>
 
 <!--LEAFLETJS-->
@@ -450,7 +457,7 @@ function renderSheet(){
 }
 
 // ---------- list & menu ----------
-function openPanel(id){ for (const p of ['listPanel', 'menuPanel']) $(p).hidden = p !== id || !$(p).hidden; }
+function openPanel(id){ for (const p of ['listPanel', 'menuPanel', 'pdfPanel']) $(p).hidden = p !== id || !$(p).hidden; }
 $('btnList').onclick = () => { renderList(); openPanel('listPanel'); };
 $('btnMenu').onclick = () => { renderMenu(); openPanel('menuPanel'); };
 function renderList(){
@@ -480,10 +487,13 @@ function renderMenu(){
     <pre id="exportTxt">${esc(txt)}</pre>
     ${!IS_APP && db ? `<h3>Aus der Web-App übernehmen</h3><p class="meta" style="margin:0">Ergebnis-Text aus der Feldcheck-Web-App hier einfügen – Bewertungen und neue Objekte landen im Speicher dieser Seite (neuere Einträge gewinnen).</p>
       <textarea id="impTxt" placeholder='{"verdicts": …, "neu": …}'></textarea><div class="row"><button class="ib" id="bImp" type="button">Übernehmen</button></div><p class="status" id="impSt"></p>` : ''}
-    ${IS_APP ? `<h3>Offline</h3><p class="meta" style="margin:0" id="offSt">Lädt alle Kartenkacheln aufs Handy, damit die Karte auch ohne Netz geht (ca. 3,5 MB).</p><div class="row"><button class="ib" id="bOff" type="button">Karte offline speichern</button></div>
+    ${IS_APP ? `<h3>Karte als PDF</h3><p class="meta" style="margin:0">Blätter und Kartenebenen auswählen (z. B. ohne Höhenlinien oder Trichter) und als PDF aufs Handy laden – mit dem aktuellen Datenstand.</p>
+      <div class="row"><button class="ib" id="bPdf" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Karte zusammenstellen</button></div>` : ''}
+    ${IS_APP ? `<h3>Offline</h3><p class="meta" style="margin:0" id="offSt">Lädt alle Kartenkacheln und die Karten für den PDF-Export aufs Handy, damit beides auch ohne Netz geht (ca. 15 MB).</p><div class="row"><button class="ib" id="bOff" type="button">Karte offline speichern</button></div>
       <h3>Tipp</h3><p class="meta" style="margin:0">In Safari „Teilen → Zum Home-Bildschirm“: Dann startet der Feldcheck wie eine App, ohne Adressleiste, und die Einträge bleiben dauerhaft gespeichert.</p>` : ''}`;
   $('menuPanel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const k = b.dataset.k; catOff.has(k) ? catOff.delete(k) : catOff.add(k); LS.set('fc_catOff', [...catOff]); b.setAttribute('aria-pressed', !catOff.has(k)); redrawAll(); });
   $('tAll').onclick = (e) => { showAll = !showAll; LS.set('fc_showAll', showAll); e.currentTarget.setAttribute('aria-pressed', showAll); redrawAll(); };
+  if ($('bPdf')) $('bPdf').onclick = () => { openPanel('pdfPanel'); renderPdfPanel(); };
   if ($('bShare')) $('bShare').onclick = async () => {
     const name = 'feldcheck_' + new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-') + '.json';
     const file = new File([JSON.stringify({...res, exportiert: new Date().toISOString(), quelle: 'Feldcheck-Web-App'}, null, 1)], name, {type: 'application/json'});
@@ -500,7 +510,8 @@ function renderMenu(){
   if ($('bOff')) $('bOff').onclick = async () => {
     const st = $('offSt'), b = $('bOff'); b.disabled = true;
     try {
-      const list = await (await fetch('tiles.json')).json(), c = await caches.open('fc-tiles'); let k = 0;
+      let list = await (await fetch('tiles.json')).json(); const c = await caches.open('fc-tiles'); let k = 0;
+      try { const M = await kartenMeta(); list = list.concat(['karten/layers.json', 'lib/jspdf.umd.min.js', 'lib/svg2pdf.umd.min.js'], M.sheets.map(s => s.files.color)); } catch(e) {}
       for (let i = 0; i < list.length; i += 6) {
         await Promise.all(list.slice(i, i + 6).map(async (u) => { if (!(await c.match(u))) { const r = await fetch(u); if (r.ok) await c.put(u, r); } k++; }));
         st.textContent = `Lade Kacheln … ${k}/${list.length}`;
@@ -523,6 +534,79 @@ if (IS_APP){
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
   if (LS.get('fc_gps', false) && navigator.permissions) navigator.permissions.query({name: 'geolocation'}).then(r => { if (r.state === 'granted') { startGps(); renderSheet(); } }).catch(() => {});
 }
+// ---------- Karte als PDF (web app): layered SVGs from the map pipeline, layers switchable, PDF built on the phone ----------
+let KM = null, pdfSel = LS.get('fc_pdfSel', {sheets: ['detail_west'], mode: 'color', off: []}), pvToken = 0;
+const pvCache = {};
+async function kartenMeta(){ if (!KM) KM = await (await fetch('karten/layers.json', {cache: 'no-cache'})).json(); return KM; }
+async function svgText(url){ if (!pvCache[url]) pvCache[url] = await (await fetch(url)).text(); return pvCache[url]; }
+function loadScript(src){ return new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const el = document.createElement('script'); el.src = src; el.onload = res; el.onerror = rej; document.head.appendChild(el); }); }
+const hideSel = (keys) => keys.map(k => `[id^="L-${k}-"]`).join(',');
+function savePdfSel(){ LS.set('fc_pdfSel', pdfSel); }
+async function renderPdfPanel(){
+  const P = $('pdfPanel');
+  P.innerHTML = '<p class="meta">Lade Kartendaten …</p>';
+  let M; try { M = await kartenMeta(); } catch(e) { P.innerHTML = '<p class="status warn">Kartendaten nicht erreichbar – einmal mit Netz öffnen.</p>'; return; }
+  pdfSel.sheets = pdfSel.sheets.filter(id => M.sheets.some(s => s.id === id)); if (!pdfSel.sheets.length) pdfSel.sheets = [M.sheets[0].id];
+  const groups = [...new Set(M.layers.map(l => l.group))];
+  P.innerHTML = `<div class="row" style="justify-content:space-between"><h3>Karte als PDF</h3><button class="ib" id="pdfClose" type="button">Schließen</button></div>
+    <p class="meta" style="margin:0">Datenstand ${esc(M.stand.split('-').reverse().join('.'))}. Neue Feldcheck-Einträge erscheinen hier, sobald Claude sie eingearbeitet hat.</p>
+    <div class="kicker">Blätter</div>
+    <div class="chips">${M.sheets.map(s => `<button class="chip" type="button" data-sh="${s.id}" aria-pressed="${pdfSel.sheets.includes(s.id)}">${esc(s.title)}</button>`).join('')}</div>
+    <div class="kicker">Druck</div>
+    <div class="chips"><button class="chip" type="button" data-md="color" aria-pressed="${pdfSel.mode === 'color'}">Farbe</button><button class="chip" type="button" data-md="bw" aria-pressed="${pdfSel.mode === 'bw'}">Schwarzweiß</button></div>
+    <div class="pvwrap"><div class="kicker">Vorschau <span id="pvName"></span></div><div id="pv"><p class="meta">…</p></div></div><style id="pvStyle"></style>
+    ${groups.map(g => `<div class="pgrp"><div class="kicker">${esc(g)}</div><div class="chips">${M.layers.filter(l => l.group === g).map(l => `<button class="chip" type="button" data-ly="${l.key}" aria-pressed="${!pdfSel.off.includes(l.key)}">${esc(l.label)}</button>`).join('')}</div></div>`).join('')}
+    <div class="row"><button class="ib" id="lyAll" type="button">Alle Ebenen an</button><button class="ib" id="lyMin" type="button">Nur Wege &amp; Punkte</button></div>
+    <button class="big" id="pdfGo" type="button">PDF erzeugen</button>
+    <p class="status" id="pdfSt">Ausgeblendete Ebenen fehlen in Karte, Lupen und Legende. Das PDF entsteht auf dem Handy, auch offline.</p>`;
+  $('pdfClose').onclick = () => { P.hidden = true; };
+  P.querySelectorAll('[data-sh]').forEach(b => b.onclick = () => { const id = b.dataset.sh; const on = pdfSel.sheets.includes(id);
+    if (on && pdfSel.sheets.length === 1) return; pdfSel.sheets = on ? pdfSel.sheets.filter(x => x !== id) : M.sheets.map(s => s.id).filter(x => x === id || pdfSel.sheets.includes(x));
+    b.setAttribute('aria-pressed', !on); savePdfSel(); preview(); });
+  P.querySelectorAll('[data-md]').forEach(b => b.onclick = () => { pdfSel.mode = b.dataset.md; P.querySelectorAll('[data-md]').forEach(x => x.setAttribute('aria-pressed', x === b)); savePdfSel(); preview(); });
+  P.querySelectorAll('[data-ly]').forEach(b => b.onclick = () => { const k = b.dataset.ly; pdfSel.off = pdfSel.off.includes(k) ? pdfSel.off.filter(x => x !== k) : pdfSel.off.concat(k);
+    b.setAttribute('aria-pressed', !pdfSel.off.includes(k)); savePdfSel(); applyHide(); });
+  $('lyAll').onclick = () => { pdfSel.off = []; savePdfSel(); renderPdfPanel(); };
+  $('lyMin').onclick = () => { pdfSel.off = ['contours', 'summits', 'steep', 'pits', 'veg', 'sand', 'open', 'small', 'facilities', 'north']; savePdfSel(); renderPdfPanel(); };
+  $('pdfGo').onclick = makePdf;
+  preview();
+}
+function applyHide(){ const st = $('pvStyle'); if (st) st.textContent = pdfSel.off.length ? `#pv :is(${hideSel(pdfSel.off)}){display:none}` : ''; }
+async function preview(){
+  const M = await kartenMeta(), sh = M.sheets.find(s => s.id === pdfSel.sheets[0]), url = sh.files[pdfSel.mode] || sh.files.color, tok = ++pvToken;
+  $('pvName').textContent = '· ' + sh.title; $('pv').innerHTML = '<p class="meta">Lade Vorschau …</p>'; applyHide();
+  try { const t = await svgText(url); if (tok !== pvToken) return; $('pv').innerHTML = t.replace(/^[\s\S]*?(<svg)/, '$1'); }
+  catch(e) { $('pv').innerHTML = '<p class="status warn">Vorschau nicht geladen – Netz prüfen.</p>'; }
+}
+async function makePdf(){
+  const M = await kartenMeta(), btn = $('pdfGo'), st = $('pdfSt'); btn.disabled = true;
+  try {
+    st.textContent = 'Lade PDF-Werkzeug …'; await loadScript('lib/jspdf.umd.min.js'); await loadScript('lib/svg2pdf.umd.min.js');
+    const host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-99999px;top:0;width:10px;height:10px;overflow:hidden'; document.body.appendChild(host);
+    let pdf = null; const list = M.sheets.filter(s => pdfSel.sheets.includes(s.id));
+    for (let i = 0; i < list.length; i++){
+      const sh = list[i]; st.textContent = `Erzeuge ${sh.title} (${i + 1}/${list.length}) …`;
+      const txt = await svgText(sh.files[pdfSel.mode] || sh.files.color);
+      const svg = new DOMParser().parseFromString(txt, 'image/svg+xml').documentElement;
+      if (pdfSel.off.length) svg.querySelectorAll(hideSel(pdfSel.off)).forEach(e => {   // keep shared <defs> (glyphs, markers) that other groups reuse
+        e.querySelectorAll('defs').forEach(d => svg.appendChild(d)); e.remove(); });
+      host.appendChild(svg);
+      const Wd = parseFloat(svg.getAttribute('width')), Hd = parseFloat(svg.getAttribute('height')), ori = Wd > Hd ? 'landscape' : 'portrait';
+      if (!pdf) pdf = new window.jspdf.jsPDF({orientation: ori, unit: 'pt', format: [Wd, Hd], compress: true}); else pdf.addPage([Wd, Hd], ori);
+      await pdf.svg(svg, {x: 0, y: 0, width: Wd, height: Hd}); host.removeChild(svg);
+      await new Promise(r => setTimeout(r, 30));
+    }
+    host.remove();
+    const off = pdfSel.off.length ? '_ohne-' + pdfSel.off.length + '-Ebenen' : '';
+    const name = `Wangerooge_West_${list.length === M.sheets.length ? 'alle-Blaetter' : list.map(s => s.id.replace('detail_', '')).join('-')}_${pdfSel.mode === 'bw' ? 'SW' : 'Farbe'}${off}.pdf`;
+    const file = new File([pdf.output('blob')], name, {type: 'application/pdf'});
+    st.textContent = `Fertig: ${name} (${(file.size / 1048576).toFixed(1)} MB)`;
+    try { if (navigator.canShare && navigator.canShare({files: [file]})) { await navigator.share({files: [file], title: name}); btn.disabled = false; return; } } catch(e) { if (e && e.name === 'AbortError') { btn.disabled = false; return; } }
+    const a = document.createElement('a'); a.href = URL.createObjectURL(file); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  } catch(e) { st.textContent = 'PDF konnte nicht erzeugt werden: ' + (e && e.message || e); st.className = 'status warn'; }
+  btn.disabled = false;
+}
+
 fetch('data.json').then(r => r.json()).then(d => {
   DATA = d; DATA.items.forEach(i => byId[i.id] = i); DATA.paths.forEach(p => byId[p.id] = p);
   redrawAll(); drawMe(); renderSheet(); initStore();

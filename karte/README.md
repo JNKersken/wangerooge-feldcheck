@@ -18,6 +18,13 @@ Ergebnisse:
 | `out/Wangerooge_West_OL_v1_Farbe.pdf` / `_SW.pdf` | Übersicht 1:15.000 + Blätter 1–4 (1:5.000 / 1:7.500) mit Lupen |
 | `out/Wangerooge_West_Landmarken_v1.xlsx` | Landmarkenliste mit Status, Quellen, Koordinaten |
 | Repo-Wurzel (`index.html`, `t*.png`, `data.json` …) | Feldcheck-Web-App für GitHub Pages (GPS, offline) |
+| Repo-Wurzel `karten/*.svg`, `karten/layers.json` | Blätter als Ebenen-SVG für „Karte als PDF“ in der App |
+
+## Karte als PDF in der App
+
+`render_map.py` schreibt neben PDF/PNG ein SVG, in dem jedes Kartenelement einer Ebene zugeordnet ist (`id="L-<ebene>-<n>"`, Liste in `render_map.LAYERS`).
+Die App lädt diese SVGs, blendet abgewählte Ebenen aus und baut das PDF direkt im Browser (jsPDF + svg2pdf.js, `web/lib/`).
+Neue Ebene: Schlüssel in `LAYERS` ergänzen und die Zeichenbefehle in `with tag(S, '<schlüssel>'):` einschließen.
 
 `run_all.sh` schreibt die Web-App direkt in die Repo-Wurzel. Danach committen und pushen, GitHub Pages veröffentlicht automatisch.
 
@@ -57,7 +64,7 @@ Diese Dateien sind Ergebnis längerer oder teils manueller Schritte. `run_all.sh
 8. `render_map.build_lupen_registry()` – Lupen-Bereiche und Buchstaben über alle Blätter
 9. `render_map.py <blatt> <color|bw> …` – Blätter rendern (PDF + PNG)
 10. `merge_pdfs.py` – Gesamt-PDFs
-11. `build_site.py --tiles` – Feldcheck-Daten, Kartenkacheln, Web-App (Wurzel) und Artefakt-Seite (`web/site/`)
+11. `build_site.py --tiles` – Feldcheck-Daten, Kartenkacheln, Ebenen-SVGs, Web-App (Wurzel) und Artefakt-Seite (`web/site/`)
 12. `make_xlsx.py` – Landmarkenliste
 
 ## Wo man was einstellt
@@ -75,4 +82,4 @@ Hilfsskripte ohne Einfluss auf die Ergebnisse: `view_*.py`, `symbol_*.py`, `fami
 
 ## Schriften
 
-Caveat, Patrick Hand, PT Serif – SIL Open Font License (`fonts/licenses/`). Leaflet 1.9.4 – BSD-2-Clause.
+Caveat, Patrick Hand, PT Serif – SIL Open Font License (`fonts/licenses/`). Leaflet 1.9.4 – BSD-2-Clause. jsPDF 2.5.2 und svg2pdf.js 2.2.4 – MIT (`web/lib/`).

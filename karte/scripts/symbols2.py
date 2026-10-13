@@ -215,11 +215,19 @@ def shapes(kind, fam='B', variant=None):
         S += [('L', [(0, -0.6), (0, 0.5)], 0.32, 'purple'), ('C', 0, 0.58, 0.16, True, 0, 'purple')]
     elif kind == 'beachaccess':    # numbered beach access: short steps
         S += [('L', [(-0.6, -0.55), (-0.2, -0.55), (-0.2, -0.15), (0.2, -0.15), (0.2, 0.25), (0.6, 0.25)], 0.22)]
+    elif kind == 'pond':           # small pond recorded in the field
+        S += [('C', 0, 0, 0.5, True, 0, 'blue')]
+    elif kind == 'steeppt':        # short steep bank recorded as a point: bar with downslope ticks
+        S += [('L', [(-0.7, 0.25), (0.7, 0.25)], 0.26, 'brown')] + [('L', [(x, 0.25), (x, -0.35)], 0.16, 'brown') for x in (-0.5, 0, 0.5)]
+    elif kind == 'sandfence':      # sand fence: line with posts
+        S += [('L', [(-0.85, 0), (0.85, 0)], 0.16)] + [('L', [(x, -0.3), (x, 0.3)], 0.2) for x in (-0.6, 0, 0.6)]
+    elif kind == 'boardwalk':      # short boardwalk: double line
+        S += [('L', [(-0.8, 0.22), (0.8, 0.22)], 0.18), ('L', [(-0.8, -0.22), (0.8, -0.22)], 0.18)] + [('L', [(x, -0.22), (x, 0.22)], 0.12) for x in (-0.45, 0, 0.45)]
     elif kind == 'dot':
         S += [('C', 0, 0, 0.25, True, 0)]
     return S
 
-def draw(ax, kind, x, y, m, color, fam='B', size=1.0, paper='#fffdf7', variant=None, z=9, brown='#b0662a', green='#3f9b4a', knock=True, gray=None, halo_z=None):
+def draw(ax, kind, x, y, m, color, fam='B', size=1.0, paper='#fffdf7', variant=None, z=9, brown='#b0662a', green='#3f9b4a', knock=True, gray=None, halo_z=None, blue='#2f7fc1'):
     sc = m * size
     P = lambda pts: [(x + px * sc, y + py * sc) for px, py in pts]
     lwpt = lambda wmm: max(0.1, wmm * size * PT)
@@ -230,12 +238,13 @@ def draw(ax, kind, x, y, m, color, fam='B', size=1.0, paper='#fffdf7', variant=N
         if role == 'brown': return color if gray else brown
         if role == 'green': return color if gray else green
         if role == 'purple': return color if gray else '#9b3fb5'
+        if role == 'blue': return color if gray else blue
         return color
     if knock: halo_patch(ax, knock_geom(kind, x, y, m, size, fam, variant), paper, (z - 0.05) if halo_z is None else halo_z)
     for pas in (2,):
         for sh in prims:
             t = sh[0]
-            role = sh[-1] if isinstance(sh[-1], str) and sh[-1] in ('neg', 'brown', 'green', 'purple') else None
+            role = sh[-1] if isinstance(sh[-1], str) and sh[-1] in ('neg', 'brown', 'green', 'purple', 'blue') else None
             if role == 'neg' and pas == 1: continue
             col = paper if pas == 1 else colour(role)
             zz = (z - 0.05) if pas == 1 else (z + (0.1 if role == 'neg' else 0))

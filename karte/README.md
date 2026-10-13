@@ -28,6 +28,24 @@ Neue Ebene: Schlüssel in `LAYERS` ergänzen und die Zeichenbefehle in `with tag
 
 `run_all.sh` schreibt die Web-App direkt in die Repo-Wurzel. Danach committen und pushen, GitHub Pages veröffentlicht automatisch.
 
+## Feldcheck-Briefkasten (Einsendungen aus der App)
+
+1. Helfer tippen in der App „Mehr → Briefkasten → Senden“. Die App legt eine JSON-Datei in den Zweig `eingang`
+   (`karte/data/feldcheck/eingang/<zeit>_<name>_<zufall>.json`) und meldet das per `repository_dispatch`.
+   Dafür braucht jedes Handy einen eigenen Fine-grained-Token (nur dieses Repo, „Contents: Read and write“);
+   der Einladungslink `…/#key=<token>&name=<name>` richtet das Handy ein und wird danach aus der Adresszeile entfernt.
+2. Der Workflow `.github/workflows/feldcheck.yml` holt alle Einsendungen, die noch nicht in `main` sind,
+   rechnet die ganze Kette neu (`run_all.sh`), erzeugt Bericht und Vorschaubilder (`feldcheck_report.py`)
+   und legt den Pull Request `feldcheck-update` an (bzw. aktualisiert ihn). Zusätzlich läuft er täglich und von Hand.
+3. Zusammenführen (Merge) = freigeben: Karten, Liste und App in `main` sind aktualisiert, GitHub Pages veröffentlicht.
+   Schließen ohne Merge = ablehnen: die Einsendungen wandern nach `eingang/abgelehnt/` und werden nicht mehr angefasst.
+
+Einarbeitung (`build_layers.py`): pro Objekt gilt die jüngste Einsendung. „passt“ → sicher, Quelle „Feldbegehung“;
+„fehlt“ → entfernt; „woanders“ → neue Lage, sicher. Neue Objekte bekommen die ID `F<id>`, neue Pfade landen in
+`data/feldcheck_pfade.geojson`, Pfad-Urteile in `data/path_status_v1.json`, das Protokoll in `data/feldcheck_log.json`.
+
+Hinweis: Das Repo ist öffentlich – Einsendungen (Name, Notizen) sind darin für alle lesbar.
+
 ## Rohdaten (`data/`)
 
 | Ordner/Datei | Quelle | Lizenz |
@@ -77,6 +95,7 @@ Diese Dateien sind Ergebnis längerer oder teils manueller Schritte. `run_all.sh
 | Ortsnamen-Beschriftungen | `scripts/render_map.py` → `LABELS` |
 | Lupen-Regeln, manuelle Lupe Westanleger | `scripts/render_map.py` → `OVERLAP_NEW`, `MANUAL_LUPEN` |
 | Feldcheck-Oberfläche | `web/page_template.html` |
+| App-Logo | `scripts/app_icon.py` → `web/icon-*.png`, `web/apple-touch-icon.png` |
 
 Hilfsskripte ohne Einfluss auf die Ergebnisse: `view_*.py`, `symbol_*.py`, `family_demo.py`, `overview.py`, `trails.py`, `depressions.py`, `lrm.py`, `craters.py`, `meadow_craters.py` (frühere Varianten der Trichtererkennung).
 

@@ -10,7 +10,7 @@ from geom import W, way_geom
 from shapely.geometry import box as _box
 _F = _box(423750, 5958850, 427150, 5961650)
 _paths = []
-for wid, st in json.load(open(BASE + '/data/path_status.json')).items():
+for wid, st in json.load(open(BASE + '/data/path_status_v1.json' if os.path.exists(BASE + '/data/path_status_v1.json') else BASE + '/data/path_status.json')).items():
     if st.get('status') != 'prüfen' or int(wid) not in W: continue
     t = W[int(wid)]['tags']; g = way_geom(int(wid))
     if g is None or g.geom_type != 'LineString': continue
@@ -31,7 +31,8 @@ items = []
 for f in F:
     p = f['properties']; e, n = f['geometry']['coordinates']
     items.append(dict(id=p['id'], k=p['kategorie'], t=p['typ'], n=nice_name(p), s=p['status'], e=round(e, 1), nn=round(n, 1), q=p['quellen'], no=(p.get('notiz') or '')[:260], z=p.get('zone', '')))
-json.dump(dict(items=items, paths=old['paths']), open(SITE + '/data.json', 'w'), ensure_ascii=False, separators=(',', ':'))
+json.dump(dict(items=items, paths=old['paths'], merged=[i['id'] for i in items if i['id'].startswith('F')] + [f['properties']['id'] for f in (json.load(open(BASE + '/data/feldcheck_pfade.geojson'))['features'] if os.path.exists(BASE + '/data/feldcheck_pfade.geojson') else [])]),
+          open(SITE + '/data.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 print('items', len(items), 'paths', len(old['paths']))
 if '--tiles' in sys.argv:
     import render_map
@@ -56,7 +57,7 @@ import shutil, glob
 APP = os.environ.get('APP_OUT') or BASE + '/web/app'; os.makedirs(APP, exist_ok=True)
 for f in glob.glob(APP + '/t*.png'): os.remove(f)
 for f in glob.glob(SITE + '/t*.png') + [SITE + '/data.json']: shutil.copy(f, APP)
-for f in ('sw.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'): shutil.copy(BASE + '/web/' + f, APP)
+for f in ('sw.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon-32.png'): shutil.copy(BASE + '/web/' + f, APP)
 shutil.copy(BASE + '/fonts/leaflet/package/dist/leaflet.js', APP + '/leaflet.js')
 json.dump(sorted(os.path.basename(f) for f in glob.glob(APP + '/t*.png')), open(APP + '/tiles.json', 'w'))
 body = tpl.replace('<!--LEAFLETJS-->', '<script src="leaflet.js"></script>').replace('/*ISAPP*/false', 'true')
@@ -66,7 +67,7 @@ head = ('<!doctype html><html lang="de"><head><meta charset="utf-8">'
         '<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">'
         '<meta name="apple-mobile-web-app-title" content="Feldcheck"><meta name="apple-mobile-web-app-status-bar-style" content="default">'
         '<meta name="theme-color" content="#fffdf7"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">'
-        '<link rel="icon" href="icon-192.png"><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>')
+        '<link rel="icon" href="favicon-32.png" sizes="32x32"><link rel="icon" href="icon-192.png" sizes="192x192"><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>')
 open(APP + '/index.html', 'w').write(head + body[:cut] + '</head><body>' + body[cut:] + '</body></html>')
 open(APP + '/.nojekyll', 'w').write('')
 # layered map SVGs + layer list for "Karte als PDF" in the app
@@ -81,7 +82,7 @@ for name in ('uebersicht', 'detail_west', 'detail_mitte', 'detail_ost', 'detail_
     if files: sheets.append(dict(id=name, title=cfg['sub'], scale=cfg['scale'], orient=cfg['orient'], files=files, kb=round(os.path.getsize(f'{K}/{name}_color.svg') / 1024) if 'color' in files else 0))
 json.dump(dict(stand=datetime.date.today().isoformat(), sheets=sheets, layers=[dict(key=k, label=l, group=g) for k, l, g in render_map.LAYERS]),
           open(K + '/layers.json', 'w'), ensure_ascii=False, indent=1)
-for f in ('jspdf.umd.min.js', 'svg2pdf.umd.min.js'):
+for f in ('jspdf.umd.min.js', 'svg2pdf.umd.min.js', 'qrcode.js'):
     if os.path.exists(BASE + '/web/lib/' + f): os.makedirs(APP + '/lib', exist_ok=True); shutil.copy(BASE + '/web/lib/' + f, APP + '/lib/' + f)
 print('karten', len(sheets), 'Blätter')
 print('app ok', len(os.listdir(APP)), 'Dateien')

@@ -54,7 +54,7 @@ for f in sorted(C, key=lambda f: (-f['properties']['y'] // 100, f['properties'][
     if p['klasse'] == 'Luftbild': q = 'Luftbild (manuell ausgewertet)'; s = 'sicher' if p['dop'] == 'ja' else 'prüfen'
     lat, lon = ll(p['x'], p['y'])
     pts.append(dict(id=f'TR{n:03d}', kategorie='Trichter', typ='Grube/Trichter', name='', lat=round(lat, 6), lon=round(lon, 6), utm_e=p['x'], utm_n=p['y'],
-                    zone='', quellen=q, osm=p['osm'], osm_stand='', status=s,
+                    zone='', quellen=q, osm=p['osm'], osm_stand='', status=s, d=p['d'],
                     notiz=(f"Ø {p['d']} m, Tiefe {p['tiefe']} m, Form {p['klasse']}, Luftbild {p.get('dop')}" if p['klasse'] != 'Luftbild' else f"Ø ca. {p['d']} m, im Luftbild als Grube mit Bewuchs sichtbar")))
 # terrain / aerial derived points
 for d in json.load(open(BASE + '/data/derived_points.json')):
@@ -115,10 +115,72 @@ _cnt = _co.Counter(r['name'] for r in pts if r['kategorie'] == 'Rettungspunkt' a
 for r in pts:
     if r['kategorie'] == 'Rettungspunkt' and _cnt[r['name']] > 1:
         r['status'] = 'prüfen'; r['notiz'] = (r['notiz'] + ' | ' if r['notiz'] else '') + f"Nr. {r['name']} ist in OSM {_cnt[r['name']]}x an verschiedenen Stellen eingetragen – vor Ort klären, welche stimmt"
+# ---------- field check: submissions from the app (data/feldcheck/eingang/*.json), newest entry per object wins ----------
+import glob, datetime
+FTYP = {   # app type -> (kategorie, typ)   ('Feldobjekt' typ = symbol kind)
+    'Ruhezonen-Schild': ('Feldobjekt', 'rzsign'), 'Ruhezonen-Pfahl': ('Feldobjekt', 'rzpost'), 'Strandaufgang (Nr.)': ('Feldobjekt', 'beachaccess'),
+    'Findling / Stein': ('Feldobjekt', 'boulder'), 'Pfahl / Pfosten': ('Feldobjekt', 'post'), 'Fahnenmast': ('Feldobjekt', 'flagpole'),
+    'Einzelbaum': ('Baum', 'Einzelbaum'), 'Schild (sonstiges)': ('Feldobjekt', 'sign'), 'Bank': ('Bank', 'Bank'), 'SOS-Schild': ('Rettungspunkt', 'SOS-Schild'),
+    'Markanter Busch': ('Busch', 'Markanter Busch'), 'Grube / Trichter': ('Trichter', 'Grube/Trichter'), 'Tümpel': ('Feldobjekt', 'pond'),
+    'Dünenkuppe': ('Kuppe', 'Dünenkuppe'), 'Steilhang / Abbruch': ('Feldobjekt', 'steeppt'), 'Dünenübergang': ('Feldobjekt', 'beachaccess'),
+    'Tor / Durchlass': ('Durchgang', 'gate'), 'Infotafel': ('Kleinobjekt', 'Infotafel'), 'Schutzhütte': ('Bauwerk', 'Schutzhütte'),
+    'Sandfangzaun': ('Feldobjekt', 'sandfence'), 'Holzsteg': ('Feldobjekt', 'boardwalk'), 'Sonstiges': ('Feldobjekt', 'dot')}
+verd, neu = {}, {}
+for fn in sorted(glob.glob(BASE + '/data/feldcheck/eingang/*.json')):
+    try: d = json.load(open(fn))
+    except Exception as e: print('Feldcheck-Datei unlesbar', fn, e); continue
+    who = (d.get('name') or '').strip() or 'Feldcheck'
+    for id_, v in (d.get('verdicts') or {}).items():
+        if isinstance(v, dict) and v.get('st') in ('ok', 'fehlt', 'woanders') and (id_ not in verd or v.get('t', 0) >= verd[id_].get('t', 0)): verd[id_] = dict(v, who=who)
+    for id_, n_ in (d.get('neu') or {}).items():
+        if isinstance(n_, dict) and (id_ not in neu or n_.get('t', 0) >= neu[id_].get('t', 0)): neu[id_] = dict(n_, who=who)
+def _src(v): return f"Feldbegehung {v['who']} {datetime.datetime.fromtimestamp(v.get('t', 0) / 1000).strftime('%d.%m.%Y')}"
+byid = {r['id']: r for r in pts}; removed = []; log = []
+for id_, v in verd.items():
+    r = byid.get(id_)
+    if r is None: continue   # paths (PF…) are handled below
+    note = (v.get('note') or '').strip()
+    if note: r['notiz'] = (r['notiz'] + ' | ' if r['notiz'] else '') + 'vor Ort: ' + note
+    if v['st'] == 'ok':
+        r['status'] = 'sicher'; r['quellen'] = r['quellen'] + ' + ' + _src(v)
+    elif v['st'] == 'fehlt':
+        removed.append(r)
+    elif v['st'] == 'woanders' and v.get('e'):
+        r['utm_e'], r['utm_n'] = round(float(v['e']), 1), round(float(v['n']), 1); la, lo = ll(r['utm_e'], r['utm_n']); r['lat'], r['lon'] = round(la, 6), round(lo, 6)
+        r['status'] = 'sicher'; r['quellen'] = r['quellen'] + ' + ' + _src(v) + ' (Lage korrigiert' + (f", GPS ± {v['acc']} m" if v.get('acc') else '') + ')'
+    log.append(dict(id=id_, aktion=v['st'], name=r['name'] or r['typ'], kategorie=r['kategorie'], von=v['who'], notiz=note, e=r['utm_e'], n=r['utm_n']))
+pts = [r for r in pts if r not in removed]
+fpaths = []
+for id_, n_ in neu.items():
+    if n_.get('pts'):
+        if len(n_['pts']) >= 2: fpaths.append(dict(type='Feature', geometry=dict(type='LineString', coordinates=[[float(a), float(b)] for a, b in n_['pts']]),
+                                                  properties=dict(id='F' + id_, typ='Schleichpfad', quelle=_src(n_), notiz=n_.get('note', ''))))
+        log.append(dict(id='F' + id_, aktion='neu', name='Schleichpfad', kategorie='Pfad', von=n_['who'], notiz=n_.get('note', ''), e=n_['pts'][0][0], n=n_['pts'][0][1]))
+        continue
+    if n_.get('e') is None: continue
+    kat, typ = FTYP.get(n_.get('typ'), ('Feldobjekt', 'dot'))
+    nm = (n_.get('name') or '').strip()
+    if kat == 'Rettungspunkt':   # SOS sign: number from the name if given
+        import re as _re; mm = _re.search(r'\d+', nm); nm = mm.group(0) if mm else ''
+    la, lo = ll(float(n_['e']), float(n_['n']))
+    pts.append(dict(id='F' + id_, kategorie=kat, typ=typ, name=nm or ('' if kat in ('Bank', 'Trichter', 'Kuppe', 'Busch', 'Durchgang') else n_.get('typ', '')),
+                    lat=round(la, 6), lon=round(lo, 6), utm_e=round(float(n_['e']), 1), utm_n=round(float(n_['n']), 1), zone='', status='sicher',
+                    quellen=_src(n_) + (f" (GPS ± {n_['acc']} m)" if n_.get('acc') else ''), osm='', osm_stand='', notiz=(n_.get('note') or '').strip(), d=5 if kat == 'Trichter' else ''))
+    log.append(dict(id='F' + id_, aktion='neu', name=nm or n_.get('typ', ''), kategorie=kat, von=n_['who'], notiz=n_.get('note', ''), e=n_['e'], n=n_['n']))
+json.dump(dict(type='FeatureCollection', features=fpaths), open(BASE + '/data/feldcheck_pfade.geojson', 'w'))
+ps1 = dict(paths)
+for id_, v in verd.items():
+    if id_.startswith('PF') and id_[2:] in ps1:
+        if v['st'] == 'ok': ps1[id_[2:]] = dict(ps1[id_[2:]], status='sicher', why='vor Ort bestätigt (' + _src(v) + ')')
+        elif v['st'] == 'fehlt': ps1[id_[2:]] = dict(ps1[id_[2:]], status='entfernt', why='vor Ort nicht vorhanden (' + _src(v) + ')')
+        log.append(dict(id=id_, aktion=v['st'], name='Pfad', kategorie='Pfad', von=v['who'], notiz=v.get('note', ''), e='', n=''))
+json.dump(ps1, open(BASE + '/data/path_status_v1.json', 'w'), ensure_ascii=False)
+json.dump(log, open(BASE + '/data/feldcheck_log.json', 'w'), ensure_ascii=False, indent=0)
+print('Feldcheck:', len(verd), 'Bewertungen,', len(neu), 'neue Objekte,', len(removed), 'entfernt,', len(fpaths), 'neue Pfade')
 I32 = rel_geom(16774424)
 for r in pts:
     if r['kategorie'] == 'Trichter' and I32.contains(Point(float(r['utm_e']), float(r['utm_n']))): r['zone'] = 'Ruhezone I/32'
-flds = ['id', 'kategorie', 'typ', 'name', 'status', 'quellen', 'lat', 'lon', 'utm_e', 'utm_n', 'zone', 'notiz', 'osm', 'osm_stand', 'prom', 'z']
+flds = ['id', 'kategorie', 'typ', 'name', 'status', 'quellen', 'lat', 'lon', 'utm_e', 'utm_n', 'zone', 'notiz', 'osm', 'osm_stand', 'prom', 'z', 'd']
 with open(BASE + '/out/landmarken_v1.csv', 'w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=flds, extrasaction='ignore'); w.writeheader(); w.writerows(pts)
 json.dump(dict(type='FeatureCollection', features=[dict(type='Feature', geometry=dict(type='Point', coordinates=[float(r['utm_e']), float(r['utm_n'])]),

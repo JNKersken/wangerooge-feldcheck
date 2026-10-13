@@ -54,13 +54,16 @@ LAYERS = [  # (key, label, group)
     ('bench', 'Bänke', 'Punkte'), ('rescue', 'SOS-Schilder mit Nummer', 'Punkte'), ('shelter', 'Schutzhütten', 'Punkte'), ('gate', 'Tore / Durchlässe', 'Punkte'),
     ('info', 'Infotafeln, Wegweiser, Gedenkstätten', 'Punkte'), ('landmarks', 'Leuchttürme, Sternwarte, Aussichtsdüne, Gastronomie', 'Punkte'),
     ('facilities', 'WC, Rettungsringe, Feuerstellen, Spiel & Sport', 'Punkte'), ('small', 'Hydranten, Container, Fahrradständer, Trafo', 'Punkte'),
+    ('field', 'Findlinge, Pfähle, Schilder (vor Ort erfasst)', 'Punkte'),
     ('labels', 'Ortsnamen', 'Karte'), ('north', 'Nordlinien', 'Karte'), ('lupen', 'Lupen (Ausschnittvergrößerungen)', 'Karte'), ('sheetindex', 'Blattschnitte (nur Übersicht)', 'Karte'),
 ]
 KIND_LAYER = dict(bench='bench', rescue='rescue', shelter='shelter', gate='gate', info='info', flag='info', memorial='info',
                   lighthouse='landmarks', observatory='landmarks', peak='landmarks', food='landmarks',
                   toilet='facilities', ring='facilities', fire='facilities', picnic='facilities', playground='facilities', fitness='facilities', mast='facilities', tree='facilities', dot='facilities', ferry='landmarks',
                   hydrant='small', recycling='small', bike='small', substation='small', milestone='rail', railx='rail', station='rail',
-                  groyne='structures', summit='summits', pit='pits', bush='veg')
+                  groyne='structures', summit='summits', pit='pits', bush='veg',
+                  rzsign='ruhezone', rzpost='ruhezone', beachaccess='paths', boardwalk='paths', boulder='field', post='field', flagpole='field', sign='field',
+                  pond='water', steeppt='steep', sandfence='structures')
 _TAGN = [0]
 class _Tag:
     """Tag every artist added to ax inside the block (nested tags win; ids stay stable within one render)."""
@@ -335,9 +338,15 @@ def way_layer(t):
 def layer_lines(S):
     for wid, w in W.items():
         with tag(S, way_layer(w['tags'])): _lines(S, {wid: w})
+    fp = BASE + '/data/feldcheck_pfade.geojson'   # trails recorded in the field (GPS or tapped)
+    if os.path.exists(fp):
+        with tag(S, 'paths'):
+            for f in json.load(open(fp))['features']:
+                g = shape(f['geometry'])
+                if g.intersects(S.clip): S.gline(g, f['properties']['id'], S.P['ink'], 0.6, amp=0.22, z=4, dashes=(1.8, 1.4), double=False)
 
 def _lines(S, WW):
-    P = S.P; ps = _PS.get('ps') or _PS.setdefault('ps', json.load(open(BASE + '/data/path_status.json')))
+    P = S.P; ps = _PS.get('ps') or _PS.setdefault('ps', json.load(open(BASE + '/data/path_status_v1.json' if os.path.exists(BASE + '/data/path_status_v1.json') else BASE + '/data/path_status.json')))
     for wid, w in WW.items():
         t = w['tags']; key = f'w{wid}'
         g = None
@@ -371,6 +380,7 @@ def _lines(S, WW):
             g = G()
             if g is None or g.geom_type != 'LineString' or not g.intersects(S.clip): continue
             h = t['highway']; st = ps.get(str(wid), {}).get('status', 'sicher')
+            if st == 'entfernt': continue   # field check: not there
             if getattr(S, 'field', False) and st != 'sicher': continue
             st = 'sicher'; col = P['ink']   # map = final look; open questions live on the field-check page
             surf = t.get('surface', '')
@@ -455,20 +465,18 @@ def _buildings(S):
 def layer_points(S):
     P = S.P
     F = json.load(open(BASE + '/data/points_v1.geojson'))['features']
-    CR = json.load(open(BASE + '/data/craters.geojson'))['features']
-    # craters
+    # craters (Trichter rows of points_v1: field-check removals/moves already applied there)
     placed = []; pits = []
-    for f in sorted(CR, key=lambda f: -float(f['properties']['d'])):
-        p = f['properties']; x, y = p['x'], p['y']
+    CR = [f for f in F if f['properties']['kategorie'] == 'Trichter']
+    for f in sorted(CR, key=lambda f: -float(f['properties'].get('d') or 5)):
+        p = f['properties']; x, y = f['geometry']['coordinates']; dd = float(p.get('d') or 5)
         if not S.clip.contains(Point(x, y)): continue
-        if not p.get('show', True): continue
-        sure = bool(p.get('sure'))
-        if p['quelle'] == 'OSM(Wasser)': continue  # drawn as water polygons
+        sure = p['status'] == 'sicher'
         if not S.dense:
-            if float(p['d']) < 8 or any(math.hypot(x - a, y - b) < 2.2 * S.m for a, b in placed): continue
+            if dd < 8 or any(math.hypot(x - a, y - b) < 2.2 * S.m for a, b in placed): continue
         if getattr(S, 'field', False) and not sure: continue
         placed.append((x, y))
-        pits.append(dict(kind='pit', x=x, y=y, size=0.95 if S.dense else 0.8, n=1, sure=True, members=[dict(p=dict(id=f'cr{x:.0f}{y:.0f}', name=''))]))
+        pits.append(dict(kind='pit', x=x, y=y, size=0.95 if S.dense else 0.8, n=1, sure=True, members=[dict(p=dict(id=p['id'], name=''))]))
     items = []
     for f in F:
         p = f['properties']; x, y = f['geometry']['coordinates']
@@ -489,7 +497,7 @@ def layer_points(S):
 SINGLE = {'lighthouse', 'observatory', 'food', 'peak', 'ferry'}
 HALFW = dict(bench=0.85, rescue=0.6, shelter=0.85, gate=0.6, info=0.55, flag=0.75, fire=0.6, picnic=0.9, mast=0.4, memorial=0.45, toilet=0.75, ring=0.55, dot=0.3, tree=0.6,
              milestone=0.3, groyne=0.15, railx=0.5, station=0.6, hydrant=0.5, playground=0.75, fitness=0.75, recycling=0.65, bike=0.75, substation=0.4, summit=0.32, bush=0.36,
-             boulder=0.6, post=0.3, flagpole=0.55, sign=0.45, rzsign=0.5, rzpost=0.3, beachaccess=0.6)
+             boulder=0.6, post=0.3, flagpole=0.55, sign=0.45, rzsign=0.5, rzpost=0.3, beachaccess=0.6, pond=0.5, steeppt=0.7, sandfence=0.85, boardwalk=0.8)
 def draw_roman(S, x, y, n, color, h_mm=1.25):
     """Straight vector roman numeral with continuous top/bottom bars (clock style), left edge at x, centred on y."""
     txt = roman(n); m = S.m; h = h_mm * m; wI, wV = 0.32 * h, 0.62 * h; gap = 0.12 * h
@@ -531,6 +539,7 @@ def sym_kind(p, S):
         if not S.dense and k not in ('Haltepunkt', 'km-Stein'): return None
         return (NEWK[k], sz * (0.8 if k == 'Bahnübergang' else 1.0), k not in ('Haltepunkt',))
     if k == 'Buhne': return ('groyne', sz, False) if S.dense else None
+    if k == 'Feldobjekt': return (t, sz, True) if (S.dense or t in ('rzsign', 'boulder')) else None
     if k == 'Kuppe':
         if not S.dense and float(p.get('prom') or 0) < 4: return None
         return ('summit', sz, False)

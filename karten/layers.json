@@ -10,7 +10,7 @@
     "color": "karten/uebersicht_color.svg",
     "bw": "karten/uebersicht_bw.svg"
    },
-   "kb": 3579
+   "kb": 3575
   },
   {
    "id": "detail_west",
@@ -171,6 +171,11 @@
   {
    "key": "small",
    "label": "Hydranten, Container, Fahrradständer, Trafo",
+   "group": "Punkte"
+  },
+  {
+   "key": "field",
+   "label": "Findlinge, Pfähle, Schilder (vor Ort erfasst)",
    "group": "Punkte"
   },
   {

@@ -75,7 +75,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* bottom card (side card on wide screens) */
 .sheetbox{position:fixed;z-index:10;left:10px;right:10px;bottom:calc(var(--sab) + 10px);border-radius:28px;max-height:min(60vh,600px);overflow:hidden;display:flex;flex-direction:column}
 .sheet{flex:0 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:16px;display:grid;gap:12px;align-content:start}
-@media (min-width:820px){.sheetbox{left:auto;right:12px;top:calc(var(--sat) + 70px);bottom:12px;width:380px;max-height:none}.sheet{flex:1 1 auto}}
+@media (min-width:820px){.sheetbox{left:auto;right:12px;top:calc(var(--sat) + 70px);bottom:auto;width:380px;max-height:calc(100vh - var(--sat) - 82px);max-height:calc(100dvh - var(--sat) - 82px)}
+  .leaflet-right{right:392px}}
 .ihead{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);min-width:0}
 .ihead .cat{font-weight:600;color:var(--ink)}
 .ihead .id{margin-left:auto;font-variant-numeric:tabular-nums}
@@ -463,7 +464,7 @@ function gpsText(){
   if (gps.err) return gps.err;
   if (!gps.pos) return 'Suche GPS …';
   const age = Math.round((Date.now() - gps.t) / 1000);
-  return `GPS ± ${Math.round(gps.acc)} m${age > 15 ? `, Position vor ${age} s` : ''}${inFrame(gps.pos) ? '' : ', du bist außerhalb der Karte'}`;
+  return `${gps.acc > 100 ? 'Ungefähre Position (WLAN)' : 'GPS'} ± ${Math.round(gps.acc)} m${age > 15 ? `, Position vor ${age} s` : ''}${inFrame(gps.pos) ? '' : ', du bist außerhalb der Karte'}`;
 }
 function toast(msg, ms = 6000){   // short notice under the top bar
   document.querySelectorAll('.toast').forEach(t => t.remove());
@@ -480,13 +481,17 @@ function startGps(){
     if (DOE && typeof DOE.requestPermission === 'function') DOE.requestPermission().then(r => { if (r === 'granted') listen(); }).catch(() => {});
     else if (DOE) listen();
   } catch(e) {}
-  gps.watch = navigator.geolocation.watchPosition(onPos, (e) => {
-    if (e.code === 1) { stopGps(); toast('GPS ist nicht erlaubt. Freigeben unter Einstellungen → Datenschutz → Ortungsdienste.'); return; }
-    gps.err = 'Kein GPS-Signal, suche weiter …'; gpsBtn(); renderStatus();
-  }, {enableHighAccuracy: true, maximumAge: 2000, timeout: 30000});
+  const onErr = (e) => {
+    if (e.code === 1) { stopGps(); toast('Ortung ist nicht erlaubt. Freigeben unter Einstellungen → Datenschutz → Ortungsdienste.'); return; }
+    if (!gps.on) return;
+    // no fix yet: also take the coarse position (WLAN/Mobilfunk) – an iPad without GPS chip only has that
+    if (gps.coarse === undefined) gps.coarse = navigator.geolocation.watchPosition(onPos, () => {}, {enableHighAccuracy: false, maximumAge: 30000, timeout: 60000});
+    if (!gps.pos) { gps.err = 'Kein GPS-Signal, suche weiter …'; gpsBtn(); renderStatus(); }
+  };
+  gps.watch = navigator.geolocation.watchPosition(onPos, onErr, {enableHighAccuracy: true, maximumAge: 2000, timeout: 20000});
   LS.set('fc_gps', true); try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch(e) {}
 }
-function stopGps(){ if (gps.watch !== null) navigator.geolocation.clearWatch(gps.watch); gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}; follow = false;
+function stopGps(){ if (gps.watch !== null) navigator.geolocation.clearWatch(gps.watch); if (gps.coarse !== undefined) navigator.geolocation.clearWatch(gps.coarse); gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}; follow = false;
   window.removeEventListener('deviceorientation', onOrient, true); LS.set('fc_gps', false); me = LS.get('fc_me', null); drawMe(); gpsBtn(); renderSheet(); }
 let lastHeadDraw = 0;
 function onOrient(ev){
@@ -498,7 +503,10 @@ function onOrient(ev){
   const t = performance.now(); if (t - lastHeadDraw > 150) { lastHeadDraw = t; drawMe(); }
 }
 function onPos(p){
-  const c = p.coords; gps.pos = toUTM(c.latitude, c.longitude); gps.acc = c.accuracy; gps.t = Date.now(); gps.err = null;
+  const c = p.coords;
+  if (!gps.on) return;
+  if (gps.pos && Date.now() - gps.t < 15000 && c.accuracy > 2 * gps.acc) return;   // keep a recent precise fix instead of a coarse one
+  gps.pos = toUTM(c.latitude, c.longitude); gps.acc = c.accuracy; gps.t = Date.now(); gps.err = null;
   if (c.heading !== null && !isNaN(c.heading) && c.speed > 0.8 && !window.__hasCompass) gps.head = c.heading - 0.9;
   me = gps.pos; drawMe(); gpsBtn();
   if (follow) panToMe();

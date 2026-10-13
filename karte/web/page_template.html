@@ -160,6 +160,7 @@ details summary{cursor:pointer;color:var(--muted);font-size:14px;font-weight:600
 .pvwrap{position:sticky;top:60px;z-index:3;background:var(--solid);padding:8px 0 8px;display:grid;gap:6px;border-radius:0 0 16px 16px}
 .pgrp{display:grid;gap:8px}
 
+.toast{position:fixed;z-index:30;top:calc(var(--sat) + 66px);left:12px;right:12px;max-width:420px;margin:0 auto;padding:12px 16px;border-radius:18px;font-size:14.5px;line-height:1.35}
 /* tour */
 .tour{position:fixed;inset:0;z-index:1000;pointer-events:none}
 .tour .blk{position:fixed;background:rgba(0,0,0,.42);pointer-events:auto}
@@ -323,12 +324,17 @@ map.on('zoomend', () => { const v = map.getZoom() >= SURE_ZOOM; if (DATA && v !=
 
 function drawItem(it){
   const sel = it.id === selId;
-  if (it.c){ // path
-    const st = stateOf(it), col = st === 'open' ? '#6f4aa0' : FILL[st];
+  if (it.c){ // path: white casing + coloured line, a wide invisible band for fingers, and a marker in the middle to tap
+    const st = stateOf(it), col = st === 'open' ? '#7b4fb0' : FILL[st];
     if (lines[it.id]) map.removeLayer(lines[it.id]);
-    if (!visible(it)) return;
-    lines[it.id] = L.polyline(it.c.map(p => ll(p[0], p[1])), {color: sel ? '#2b6fd6' : col, weight: sel ? 7 : 5, opacity: .85, dashArray: st === 'open' ? '8 7' : null})
-      .on('click', (e) => { L.DomEvent.stop(e); onTap(e.latlng, it.id); }).addTo(map);
+    if (!visible(it)) { delete lines[it.id]; return; }
+    const pts = it.c.map(p => ll(p[0], p[1])), tap = (e) => { L.DomEvent.stop(e); onTap(e.latlng, it.id); };
+    lines[it.id] = L.layerGroup([
+      L.polyline(pts, {color: '#ffffff', weight: sel ? 12 : 9, opacity: .8, interactive: false}),
+      L.polyline(pts, {color: sel ? '#0a7aff' : col, weight: sel ? 7 : 5, opacity: .95, dashArray: st === 'open' ? '9 7' : null, interactive: false}),
+      L.polyline(pts, {color: '#000000', weight: 32, opacity: 0}).on('click', tap),
+      L.marker(ll(...posOf(it)), {icon: icon(it, sel), keyboard: false, zIndexOffset: sel ? 1000 : 100}).on('click', tap),
+    ]).addTo(map);
     return;
   }
   if (moveLines[it.id]) { map.removeLayer(moveLines[it.id]); delete moveLines[it.id]; }
@@ -459,8 +465,13 @@ function gpsText(){
   const age = Math.round((Date.now() - gps.t) / 1000);
   return `GPS ± ${Math.round(gps.acc)} m${age > 15 ? `, Position vor ${age} s` : ''}${inFrame(gps.pos) ? '' : ', du bist außerhalb der Karte'}`;
 }
+function toast(msg, ms = 6000){   // short notice under the top bar
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const t = document.createElement('div'); t.className = 'toast glass-strong'; t.setAttribute('role', 'status'); t.textContent = msg;
+  t.onclick = () => t.remove(); $('app').appendChild(t); setTimeout(() => t.remove(), ms);
+}
 function startGps(){
-  if (!navigator.geolocation){ gps.err = 'Dieses Gerät liefert keine GPS-Position.'; gps.on = true; gpsBtn(); renderSheet(); return; }
+  if (!navigator.geolocation){ toast('Dieses Gerät liefert keine GPS-Position.'); return; }
   gps.on = true; gps.err = null; gpsBtn();
   // compass needs a tap-triggered permission on iOS
   try {
@@ -470,8 +481,8 @@ function startGps(){
     else if (DOE) listen();
   } catch(e) {}
   gps.watch = navigator.geolocation.watchPosition(onPos, (e) => {
-    gps.err = e.code === 1 ? 'GPS nicht erlaubt. In den iPhone-Einstellungen unter Ortungsdienste freigeben.' : 'Kein GPS-Signal, suche weiter …';
-    gpsBtn(); renderStatus();
+    if (e.code === 1) { stopGps(); toast('GPS ist nicht erlaubt. Freigeben unter Einstellungen → Datenschutz → Ortungsdienste.'); return; }
+    gps.err = 'Kein GPS-Signal, suche weiter …'; gpsBtn(); renderStatus();
   }, {enableHighAccuracy: true, maximumAge: 2000, timeout: 30000});
   LS.set('fc_gps', true); try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch(e) {}
 }
@@ -599,18 +610,18 @@ function renderSheet(){
     <h2>${esc(it.n || c[0])}</h2>
     ${it.f ? `<p class="find">${esc(it.f)}</p>` : ''}
     <div class="facts">${fact('pin', it.wo)}${it.z ? fact('leaf', 'Ruhezone: nur von Wegen aus prüfen', 'zone') : ''}${fact('info', it.s === 'sicher' && !v ? 'Schon sicher – nur ändern, wenn es nicht stimmt.' : it.w)}${fact('text', it.no)}</div>
-    <div class="acts">
+    <div class="acts" ${it.c ? 'style="grid-template-columns:1fr 1fr"' : ''}>
       <button class="act a-ok" id="vOk" type="button">${svgI('check')}Stimmt</button>
       <button class="act a-bad" id="vBad" type="button">${svgI('x')}Fehlt</button>
-      <button class="act a-move" id="vMove" type="button">${svgI('move')}Woanders</button>
+      ${it.c ? '' : `<button class="act a-move" id="vMove" type="button">${svgI('move')}Woanders</button>`}
     </div>
-    ${hereBtn('vHere', 'Woanders: steht hier')}
+    ${it.c ? `<p class="meta">${ti('Anderer Verlauf? Mit [plus] richtig einzeichnen und diesen hier auf „Fehlt“ setzen.')}</p>` : hereBtn('vHere', 'Woanders: steht hier')}
     <textarea id="note" placeholder="Notiz (optional)" rows="1">${esc(v && v.note || '')}</textarea>
     <div class="row"><button class="ib grow" id="bNext2" type="button">Nächstes offenes${svgI('next')}</button>${v ? `<button class="ib icon" id="vUndo" type="button" aria-label="Bewertung zurücknehmen" title="Bewertung zurücknehmen">${svgI('undo')}</button>` : ''}<button class="ib icon" id="vClose" type="button" aria-label="Schließen" title="Schließen">${svgI('down')}</button></div>
     ${gpsLine()}${storeLine()}`;
   $('vOk').onclick = () => { saveVerdict(selId, {st: 'ok', note: noteVal(), t: Date.now()}); renderSheet(); };
   $('vBad').onclick = () => { saveVerdict(selId, {st: 'fehlt', note: noteVal(), t: Date.now()}); renderSheet(); };
-  $('vMove').onclick = () => setMode('move', 'Richtige Position antippen');
+  if ($('vMove')) $('vMove').onclick = () => setMode('move', 'Richtige Position antippen');
   if ($('vHere')) $('vHere').onclick = () => { const h = hereNow(); if (!h) return; saveVerdict(selId, {st: 'woanders', ...h, note: noteVal(), t: Date.now()}); renderSheet(); };
   $('bNext2').onclick = nextOpen;
   $('vClose').onclick = () => { selId = null; redrawSel(); renderSheet(); };

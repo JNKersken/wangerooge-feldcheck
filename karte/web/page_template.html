@@ -150,11 +150,20 @@ let gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: 
 // ---------- Briefkasten (GitHub): results go to branch "eingang", a GitHub Action merges them and asks the owner to approve ----------
 const GH = {owner: 'JNKersken', repo: 'wangerooge-feldcheck', branch: 'eingang', dir: 'karte/data/feldcheck/eingang'};
 let box = LS.get('fc_box', null);   // {key, name}
+// iOS gives a Home-Screen app its own storage and copies only cookies from Safari when the icon is added.
+// So the key also goes into a cookie: open the invitation link in Safari, then "Zum Home-Bildschirm" – the app is set up.
+const BOX_PATH = location.pathname.replace(/[^/]*$/, '');
+function boxCookie(b){ try { document.cookie = 'fc_box=' + (b ? encodeURIComponent(JSON.stringify(b)) + '; Max-Age=31536000' : '; Max-Age=0') + '; Path=' + BOX_PATH + '; SameSite=Strict' + (location.protocol === 'https:' ? '; Secure' : ''); } catch(e) {} }
+function parseInvite(s){   // full invitation link or bare key
+  s = (s || '').trim(); if (!s.includes('key=')) return s ? {key: s} : null;
+  const h = new URLSearchParams(s.slice(s.indexOf('#') + 1).replace(/^[^?]*\?/, '')); return h.get('key') ? {key: h.get('key').trim(), name: (h.get('name') || '').trim()} : null;
+}
 if (IS_APP && location.hash.includes('key=')) {
-  const h = new URLSearchParams(location.hash.slice(1));
-  if (h.get('key')) { box = {key: h.get('key').trim(), name: (h.get('name') || box && box.name || '').trim()}; LS.set('fc_box', box); }
+  const b = parseInvite(location.hash);
+  if (b) { box = {key: b.key, name: b.name || box && box.name || ''}; LS.set('fc_box', box); boxCookie(box); }
   history.replaceState(null, '', location.pathname + location.search);   // key never stays in the address bar
 }
+if (IS_APP && !box) { const m = document.cookie.match(/(?:^|;\s*)fc_box=([^;]+)/); if (m) { try { box = JSON.parse(decodeURIComponent(m[1])); if (box && box.key) LS.set('fc_box', box); else box = null; } catch(e) { box = null; } } }
 
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -2, maxZoom: 3, zoomSnap: .25, zoomDelta: .5, attributionControl: false, zoomControl: false, maxBoundsViscosity: .8});
 const B = L.latLngBounds(ll(X0, Y1 - H), ll(X0 + W, Y1));
@@ -502,13 +511,13 @@ function renderMenu(){
       ${box && box.key ? `<p class="meta" style="margin:0">Eingerichtet für <b>${esc(box.name || 'ohne Namen')}</b>. Gesendete Ergebnisse arbeitet GitHub automatisch ein; das Kartenteam gibt sie frei.</p>
         <div class="row"><input id="boxName" type="text" value="${esc(box.name || '')}" placeholder="Dein Name" style="flex:1;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)"><button class="ib" id="boxNameSave" type="button" style="flex:0">Name speichern</button></div>
         <div class="row"><button class="ib" id="boxOff" type="button">Schlüssel von diesem Handy entfernen</button></div>`
-      : `<p class="meta" style="margin:0">Noch nicht eingerichtet. Öffne den Einladungslink vom Kartenteam – oder trag Name und Schlüssel hier ein.</p>
+      : `<p class="meta" style="margin:0">Noch nicht eingerichtet. Öffne den Einladungslink vom Kartenteam in Safari und lege die App danach auf den Home-Bildschirm – oder füge Link bzw. Schlüssel hier ein.</p>
         <input id="boxName" type="text" placeholder="Dein Name" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
-        <input id="boxKey" type="password" placeholder="Schlüssel (github_pat_…)" autocomplete="off" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
+        <input id="boxKey" type="password" placeholder="Einladungslink oder Schlüssel (github_pat_…)" autocomplete="off" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
         <div class="row"><button class="ib" id="boxSave" type="button">Einrichten</button></div>`}
       <details><summary class="meta">Helfer einladen (Kartenteam)</summary>
         <div style="display:grid;gap:8px;margin-top:8px">
-          <p class="meta" style="margin:0">Schlüssel auf github.com erstellen (Fine-grained token, nur dieses Repo, „Contents: Read and write“), dann hier Name und Schlüssel eintragen. Der Link richtet die App beim Helfer mit einem Tipp ein.</p>
+          <p class="meta" style="margin:0">Schlüssel auf github.com erstellen (Fine-grained token, nur dieses Repo, „Contents: Read and write“), dann hier Name und Schlüssel eintragen. Der Helfer öffnet den Link in Safari (Android: Chrome) und legt die App danach auf den Home-Bildschirm – dann ist sie eingerichtet.</p>
           <input id="invName" type="text" placeholder="Name des Helfers" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
           <input id="invKey" type="password" placeholder="Schlüssel (github_pat_…)" autocomplete="off" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)">
           <div class="row"><button class="ib" id="invMake" type="button">Einladungslink erzeugen</button></div>
@@ -517,14 +526,14 @@ function renderMenu(){
     ${IS_APP ? `<h3>Karte als PDF</h3><p class="meta" style="margin:0">Blätter und Kartenebenen auswählen (z. B. ohne Höhenlinien oder Trichter) und als PDF aufs Handy laden – mit dem aktuellen Datenstand.</p>
       <div class="row"><button class="ib" id="bPdf" type="button" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Karte zusammenstellen</button></div>` : ''}
     ${IS_APP ? `<h3>Offline</h3><p class="meta" style="margin:0" id="offSt">Lädt alle Kartenkacheln und die Karten für den PDF-Export aufs Handy, damit beides auch ohne Netz geht (ca. 15 MB).</p><div class="row"><button class="ib" id="bOff" type="button">Karte offline speichern</button></div>
-      <h3>Tipp</h3><p class="meta" style="margin:0">In Safari „Teilen → Zum Home-Bildschirm“: Dann startet der Feldcheck wie eine App, ohne Adressleiste, und die Einträge bleiben dauerhaft gespeichert.</p>` : ''}`;
+      <h3>Tipp</h3><p class="meta" style="margin:0">In Safari „Teilen → Zum Home-Bildschirm“: Dann startet der Feldcheck wie eine App, ohne Adressleiste, und die Einträge bleiben dauerhaft gespeichert. Achtung: Die App auf dem Home-Bildschirm hat ihren eigenen Speicher – vor dem Löschen des Symbols alles senden.</p>` : ''}`;
   $('menuPanel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const k = b.dataset.k; catOff.has(k) ? catOff.delete(k) : catOff.add(k); LS.set('fc_catOff', [...catOff]); b.setAttribute('aria-pressed', !catOff.has(k)); redrawAll(); });
   $('tAll').onclick = (e) => { showAll = !showAll; LS.set('fc_showAll', showAll); e.currentTarget.setAttribute('aria-pressed', showAll); redrawAll(); };
   if ($('bPdf')) $('bPdf').onclick = () => { openPanel('pdfPanel'); renderPdfPanel(); };
   if ($('bSend')) $('bSend').onclick = () => sendBox(res);
-  if ($('boxSave')) $('boxSave').onclick = () => { const k = $('boxKey').value.trim(); if (!k) return; box = {key: k, name: $('boxName').value.trim()}; LS.set('fc_box', box); renderMenu(); };
-  if ($('boxNameSave')) $('boxNameSave').onclick = () => { box.name = $('boxName').value.trim(); LS.set('fc_box', box); $('boxNameSave').textContent = 'Gespeichert'; };
-  if ($('boxOff')) $('boxOff').onclick = () => { box = null; LS.set('fc_box', null); renderMenu(); };
+  if ($('boxSave')) $('boxSave').onclick = () => { const b = parseInvite($('boxKey').value); if (!b) return; box = {key: b.key, name: $('boxName').value.trim() || b.name || ''}; LS.set('fc_box', box); boxCookie(box); renderMenu(); };
+  if ($('boxNameSave')) $('boxNameSave').onclick = () => { box.name = $('boxName').value.trim(); LS.set('fc_box', box); boxCookie(box); $('boxNameSave').textContent = 'Gespeichert'; };
+  if ($('boxOff')) $('boxOff').onclick = () => { box = null; LS.set('fc_box', null); boxCookie(null); renderMenu(); };
   if ($('invMake')) $('invMake').onclick = async () => {
     const nm = $('invName').value.trim(), k = $('invKey').value.trim(); if (!k) { $('invOut').innerHTML = '<p class="status warn">Schlüssel fehlt.</p>'; return; }
     const url = location.origin + location.pathname + '#' + new URLSearchParams({key: k, name: nm}).toString();
@@ -533,7 +542,7 @@ function renderMenu(){
     $('invOut').innerHTML = `<div style="max-width:240px;background:#fff;padding:6px;border-radius:8px">${qr}</div>
       <div class="row"><button class="ib" id="invShare" type="button">Link teilen</button><button class="ib" id="invCopy" type="button">Link kopieren</button></div>
       <p class="meta" style="margin:0">Wer diesen Link hat, kann in den Briefkasten senden. Nur an die Person schicken, für die der Schlüssel ist.</p>`;
-    $('invShare').onclick = () => { if (navigator.share) navigator.share({title: 'Feldcheck Wangerooge', text: `Feldcheck-App für ${nm || 'dich'} – einmal öffnen, dann ist alles eingerichtet:`, url}).catch(() => {}); };
+    $('invShare').onclick = () => { if (navigator.share) navigator.share({title: 'Feldcheck Wangerooge', text: `Feldcheck-App für ${nm || 'dich'}: Link in Safari öffnen, dann „Teilen → Zum Home-Bildschirm“ – fertig eingerichtet.`, url}).catch(() => {}); };
     $('invCopy').onclick = () => navigator.clipboard.writeText(url).then(() => { $('invCopy').textContent = 'Kopiert'; });
   };
   if ($('bShare')) $('bShare').onclick = async () => {

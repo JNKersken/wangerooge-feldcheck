@@ -4,7 +4,8 @@ import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abs
 from base import BASE, FRAME, SHEET_ORDER, DETAIL_ORDER, VERSION, VERSION_DATE, GRID_TO_MAG, GRID_TO_TRUE
 import sys, json, math, os, re, glob, shutil, hashlib, datetime
 from PIL import Image
-from shapely.geometry import box
+from shapely.geometry import box, Point
+from shapely.ops import unary_union, nearest_points
 from geom import W, way_geom
 import feld_text as FT, render_map as RM
 Image.MAX_IMAGE_PIXELS = None
@@ -41,6 +42,20 @@ for f in F:
               e=round(e, 1), nn=round(n, 1), q=p['quellen'], no=FT.description(p), z=p.get('zone', ''))
     if p.get('nf'): it['nf'] = int(p['nf'])
     items.append(it)
+# Ruhezone: helpers stay on the paths. For each object there: the nearest point on a path (wp) and its distance (wd).
+# More than RZ_SIGHT m away -> cannot be checked from a path; the app leaves it out of the field to-do (aerial image only).
+RZ_SIGHT = 40
+WALK = {'footway', 'path', 'track', 'service', 'residential', 'unclassified', 'cycleway', 'pedestrian', 'steps', 'bridleway', 'living_street', 'tertiary', 'secondary'}
+walk = unary_union([g for g in (way_geom(wid) for wid, w in W.items() if w['tags'].get('highway') in WALK and w['tags'].get('access') not in ('no', 'private'))
+                    if g is not None and g.geom_type == 'LineString'])
+for it in items:
+    if not it['z']: continue
+    pt = Point(it['e'], it['nn']); d = walk.distance(pt)
+    if d <= 5: continue
+    q = nearest_points(walk, pt)[0]; it['wp'] = [round(q.x, 1), round(q.y, 1)]; it['wd'] = round(d)
+    if d > RZ_SIGHT: it['luft'] = 1
+print('Ruhezone:', sum(1 for i in items if i['z']), 'Objekte,', sum(1 for i in items if i.get('wp') and not i.get('luft')), 'vom Weg aus,',
+      sum(1 for i in items if i.get('luft')), 'nur Luftbild')
 for p in paths: p['wo'] = FT.where(*p['c'][len(p['c']) // 2], ANCH)
 fpaths = rd(BASE + '/data/feldcheck_pfade.geojson')['features'] if os.path.exists(BASE + '/data/feldcheck_pfade.geojson') else []
 stand_fc = rd(BASE + '/data/feldcheck_stand.json') if os.path.exists(BASE + '/data/feldcheck_stand.json') else {}

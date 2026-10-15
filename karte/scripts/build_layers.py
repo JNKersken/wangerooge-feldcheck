@@ -127,7 +127,7 @@ FTYP = {   # app type -> (kategorie, typ)   ('Feldobjekt' typ = symbol kind)
     'Sandfangzaun': ('Feldobjekt', 'sandfence'), 'Holzsteg': ('Feldobjekt', 'boardwalk'), 'Sonstiges': ('Feldobjekt', 'dot')}
 FC = FM.load()
 verd, neu = FC['verd'], FC['neu']
-def _src(v): return f"Feldbegehung {v['who']} {FM.day(v['t'])}"
+def _src(v): return f"Feldbegehung {FM.kurz(v['who'])} {FM.day(v['t'])}"   # public outputs carry initials only
 def _add_vor_ort(r, txt): r['vor_ort'] = (r.get('vor_ort') + ' | ' if r.get('vor_ort') else '') + txt
 log = [dict(id=x['id'], aktion='übersprungen', name='', kategorie='', von='', notiz=f"{x['datei']}: {x['grund']}", e='', n='', datei=x['datei']) for x in FC['skipped']]
 # 1) new objects first, so verdicts on already merged field objects (F…) find them
@@ -136,7 +136,7 @@ for id_, n_ in sorted(neu.items(), key=lambda kv: kv[1]['t']):
     if n_.get('pts'):
         fpaths.append(dict(type='Feature', geometry=dict(type='LineString', coordinates=[list(p) for p in n_['pts']]),
                            properties=dict(id='F' + id_, typ='Schleichpfad', quelle=_src(n_), notiz=n_['note'])))
-        log.append(dict(id='F' + id_, aktion='neu', name='Schleichpfad', kategorie='Pfad', von=n_['who'], notiz=n_['note'], e=n_['pts'][0][0], n=n_['pts'][0][1], datei=n_['datei']))
+        log.append(dict(id='F' + id_, aktion='neu', name='Schleichpfad', kategorie='Pfad', von=FM.kurz(n_['who']), notiz=n_['note'], e=n_['pts'][0][0], n=n_['pts'][0][1], datei=n_['datei']))
         continue
     kat, typ = FTYP.get(n_['typ'], ('Feldobjekt', 'dot'))
     nm = n_['name']
@@ -146,14 +146,14 @@ for id_, n_ in sorted(neu.items(), key=lambda kv: kv[1]['t']):
     pts.append(dict(id='F' + id_, kategorie=kat, typ=typ, name=nm or ('' if kat in ('Bank', 'Trichter', 'Kuppe', 'Busch', 'Durchgang') else n_['typ']),
                     lat=round(la, 6), lon=round(lo, 6), utm_e=round(n_['e'], 1), utm_n=round(n_['n'], 1), zone='', status='sicher',
                     quellen=_src(n_) + (f" (GPS ± {n_['acc']:.0f} m)" if n_.get('acc') else ''), osm='', osm_stand='', notiz='', vor_ort=n_['note'], d=5 if kat == 'Trichter' else ''))
-    log.append(dict(id='F' + id_, aktion='neu', name=nm or n_['typ'], kategorie=kat, von=n_['who'], notiz=n_['note'], e=n_['e'], n=n_['n'], acc=n_.get('acc'), datei=n_['datei']))
+    log.append(dict(id='F' + id_, aktion='neu', name=nm or n_['typ'], kategorie=kat, von=FM.kurz(n_['who']), notiz=n_['note'], e=n_['e'], n=n_['n'], acc=n_.get('acc'), datei=n_['datei']))
 json.dump(dict(type='FeatureCollection', features=fpaths), open(BASE + '/data/feldcheck_pfade.geojson', 'w'))
 # 2) verdicts on points
 byid = {r['id']: r for r in pts}; removed = set()
 for id_, v in sorted(verd.items()):
     r = byid.get(id_)
     if r is None: continue   # paths (PF…) are handled below; unknown ids are ignored
-    if v['note']: _add_vor_ort(r, f"{v['note']} ({v['who']}, {FM.day(v['t'])})")
+    if v['note']: _add_vor_ort(r, f"{v['note']} ({FM.kurz(v['who'])}, {FM.day(v['t'])})")
     act = v['st']
     if act == 'ok':
         r['status'] = 'sicher'; r['quellen'] = r['quellen'] + ' + ' + _src(v)
@@ -164,11 +164,11 @@ for id_, v in sorted(verd.items()):
         r['utm_e'], r['utm_n'] = round(v['e'], 1), round(v['n'], 1); la, lo = ll(r['utm_e'], r['utm_n']); r['lat'], r['lon'] = round(la, 6), round(lo, 6)
     if act == 'woanders':
         r['status'] = 'sicher'
-        r['quellen'] = r['quellen'] + ' + ' + _src(v) + ' (Lage korrigiert' + (f" von {v['lage_von']}" if v.get('lage_von') and v['lage_von'] != v['who'] else '') + (f", GPS ± {v['acc']:.0f} m" if v.get('acc') else '') + ')'
+        r['quellen'] = r['quellen'] + ' + ' + _src(v) + ' (Lage korrigiert' + (f" von {FM.kurz(v['lage_von'])}" if v.get('lage_von') and v['lage_von'] != v['who'] else '') + (f", GPS ± {v['acc']:.0f} m" if v.get('acc') else '') + ')'
         if v.get('bestaetigt'): act = 'ok'
     elif act == 'nf':
-        r['nf'] = len(v['nf_von']); _add_vor_ort(r, 'nicht gefunden: ' + ', '.join(v['nf_von']))
-    log.append(dict(id=id_, aktion=act, name=r['name'] or r['typ'], kategorie=r['kategorie'], von=v['who'], notiz=v['note'], e=r['utm_e'], n=r['utm_n'],
+        r['nf'] = len(v['nf_von']); _add_vor_ort(r, 'nicht gefunden: ' + ', '.join(FM.kurz(w) for w in v['nf_von']))
+    log.append(dict(id=id_, aktion=act, name=r['name'] or r['typ'], kategorie=r['kategorie'], von=FM.kurz(v['who']), notiz=v['note'], e=r['utm_e'], n=r['utm_n'],
                     e0=e0, n0=n0, acc=v.get('acc'), d=v.get('d'), datei=v['datei']))
 pts = [r for r in pts if r['id'] not in removed]
 # 3) verdicts on paths
@@ -177,8 +177,8 @@ for id_, v in sorted(verd.items()):
     if id_.startswith('PF') and id_[2:] in ps1:
         if v['st'] == 'ok': ps1[id_[2:]] = dict(ps1[id_[2:]], status='sicher', why='vor Ort bestätigt (' + _src(v) + ')')
         elif v['st'] == 'fehlt': ps1[id_[2:]] = dict(ps1[id_[2:]], status='entfernt', why='vor Ort nicht vorhanden (' + _src(v) + ')')
-        elif v['st'] == 'nf': ps1[id_[2:]] = dict(ps1[id_[2:]], why=ps1[id_[2:]].get('why', '') + '; nicht gefunden: ' + ', '.join(v['nf_von']))
-        log.append(dict(id=id_, aktion=v['st'], name='Pfad', kategorie='Pfad', von=v['who'], notiz=v['note'], e='', n='', d=v.get('d'), datei=v['datei']))
+        elif v['st'] == 'nf': ps1[id_[2:]] = dict(ps1[id_[2:]], why=ps1[id_[2:]].get('why', '') + '; nicht gefunden: ' + ', '.join(FM.kurz(w) for w in v['nf_von']))
+        log.append(dict(id=id_, aktion=v['st'], name='Pfad', kategorie='Pfad', von=FM.kurz(v['who']), notiz=v['note'], e='', n='', d=v.get('d'), datei=v['datei']))
 json.dump(ps1, open(BASE + '/data/path_status_v1.json', 'w'), ensure_ascii=False)
 json.dump(log, open(BASE + '/data/feldcheck_log.json', 'w'), ensure_ascii=False, indent=0)
 json.dump(FC['stand'], open(BASE + '/data/feldcheck_stand.json', 'w'), sort_keys=True)   # per device: newest merged entry per object (app cleans up its local copies)

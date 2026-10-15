@@ -4,7 +4,7 @@
 // copy is never stale. These two caches survive app updates; on activation only copies that are no longer in KEEP are dropped.
 const CORE = 'fc-core', TILES = 'fc-tiles', PDF = 'fc-pdf';
 const KEEP = [];
-const CORE_FILES = ['./', 'index.html', 'data.json', 'leaflet.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon-32.png'];
+const CORE_FILES = ['./', 'index.html', 'data.json', 'briefkasten.json', 'leaflet.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon-32.png'];
 // install fails (and the old version stays) if one core file cannot be loaded – never a half-filled cache
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CORE).then((c) => c.addAll(CORE_FILES.map((u) => new Request(u, {cache: 'reload'})))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => {

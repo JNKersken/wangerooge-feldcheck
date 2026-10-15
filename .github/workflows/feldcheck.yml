@@ -17,6 +17,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  statuses: write               # Ergebnis der Prüfung am Vorschlag
 
 concurrency:
   group: feldcheck
@@ -32,32 +33,52 @@ jobs:
         with:
           ref: main
 
-      - name: Abgelehnte Einsendungen beiseitelegen
+      - name: Briefkasten öffnen
         env:
-          GH_TOKEN: ${{ github.token }}
+          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
         run: |
           set -euo pipefail
           git config --global user.name "Feldcheck-Bot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch -q --depth=50 origin eingang || { echo "Noch kein Zweig eingang."; exit 0; }
+          # briefkasten.json: wohin die App sendet. Eigenes (privates) Repo = Eingangs-Repo, gelesen mit Secret INBOX_TOKEN
+          read -r REPO ZWEIG ORDNER < <(python3 -c "import json; d = json.load(open('briefkasten.json')); print(d['repo'], d['zweig'], d['ordner'])")
+          Q="$RUNNER_TEMP/quelle"
+          if [ "$REPO" != "${{ github.repository }}" ]; then
+            [ -n "${INBOX_TOKEN:-}" ] || { echo "::error::briefkasten.json nennt $REPO, aber das Secret INBOX_TOKEN fehlt"; exit 1; }
+            git -c http.https://github.com/.extraheader= clone -q --depth 50 --branch "$ZWEIG" \
+              "https://x-access-token:${INBOX_TOKEN}@github.com/${REPO}.git" "$Q" || { echo "::error::Eingangs-Repo $REPO nicht lesbar"; exit 1; }
+            echo "Q_ANON=--anon" >> "$GITHUB_ENV"
+          else
+            git fetch -q --depth=50 origin "$ZWEIG" || { echo "Noch kein Zweig $ZWEIG."; echo "Q_NONE=1" >> "$GITHUB_ENV"; exit 0; }
+            git worktree add -q --detach "$Q" FETCH_HEAD
+            echo "Q_ANON=" >> "$GITHUB_ENV"
+          fi
+          { echo "Q=$Q"; echo "Q_DIR=$ORDNER"; echo "Q_BRANCH=$ZWEIG"; } >> "$GITHUB_ENV"
+
+      - name: Abgelehnte Einsendungen beiseitelegen
+        if: env.Q_NONE != '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W="$GITHUB_WORKSPACE"; P=karte/data/feldcheck/eingang
           # Vorschläge, die ohne Merge geschlossen wurden (die letzten 20)
           gh pr list --head feldcheck-update --state closed --limit 20 --json number,mergedAt \
             -q '.[] | select(.mergedAt == null) | .number' > "$RUNNER_TEMP/abgelehnt.txt" || true
           [ -s "$RUNNER_TEMP/abgelehnt.txt" ] || { echo "Keine abgelehnten Vorschläge."; exit 0; }
-          git worktree add -q --detach "$RUNNER_TEMP/eingang" FETCH_HEAD
-          cd "$RUNNER_TEMP/eingang"
           refs=""
           while read -r n; do
-            git fetch -q --depth=1 origin "refs/pull/$n/head:refs/abgelehnt/$n" && refs="$refs refs/abgelehnt/$n"
+            git -C "$W" fetch -q --depth=1 origin "refs/pull/$n/head:refs/abgelehnt/$n" && refs="$refs refs/abgelehnt/$n"
           done < "$RUNNER_TEMP/abgelehnt.txt"
-          mkdir -p karte/data/feldcheck/eingang/abgelehnt
+          cd "$Q"; mkdir -p "$Q_DIR/abgelehnt"
           moved=0
-          for f in karte/data/feldcheck/eingang/*.json; do
+          for f in "$Q_DIR"/*.json; do
             [ -e "$f" ] || continue
-            git cat-file -e "main:$f" 2>/dev/null && continue                  # in main = freigegeben
+            pub="$P/$(python3 "$W/karte/scripts/feldcheck_inbox.py" name "$f" $Q_ANON)"   # Name der Datei im öffentlichen Repo
+            git -C "$W" cat-file -e "main:$pub" 2>/dev/null && continue               # in main = freigegeben
             for r in $refs; do
-              if git cat-file -e "$r:$f" 2>/dev/null; then                      # steckte in einem abgelehnten Vorschlag
-                git mv "$f" karte/data/feldcheck/eingang/abgelehnt/; moved=$((moved + 1)); break
+              if git -C "$W" cat-file -e "$r:$pub" 2>/dev/null; then                   # steckte in einem abgelehnten Vorschlag
+                git mv "$f" "$Q_DIR/abgelehnt/"; moved=$((moved + 1)); break
               fi
             done
           done
@@ -66,10 +87,10 @@ jobs:
           git commit -q -m "Abgelehnte Feldcheck-Einsendungen beiseitegelegt ($moved)"
           # Helfer können gleichzeitig senden: dann neu aufsetzen und noch einmal
           for i in 1 2 3 4 5; do
-            git push -q origin HEAD:eingang && exit 0
-            sleep $((i * 3)); git fetch -q --depth=50 origin eingang && git rebase -q FETCH_HEAD
+            git push -q origin "HEAD:$Q_BRANCH" && exit 0
+            sleep $((i * 3)); git fetch -q --depth=50 origin "$Q_BRANCH" && git rebase -q FETCH_HEAD
           done
-          echo "::error::Zweig eingang konnte nicht aktualisiert werden"; exit 1
+          echo "::error::Briefkasten ($Q_BRANCH) konnte nicht aktualisiert werden"; exit 1
 
       - name: Neue Einsendungen holen
         id: neu
@@ -78,10 +99,11 @@ jobs:
         run: |
           set -euo pipefail
           L="$RUNNER_TEMP/neu.txt"; : > "$L"
-          git fetch -q --depth=50 origin eingang || { echo "keine=1" >> "$GITHUB_OUTPUT"; exit 0; }
-          # alles aus eingang übernehmen, auch eingang/abgelehnt/ (damit main abgelehnte Einträge kennt und
-          # die App sie aufräumen kann); neu sind nur Dateien direkt in eingang/, die main noch nicht hat
-          git checkout FETCH_HEAD -- karte/data/feldcheck/eingang/ 2>/dev/null || true
+          [ "${Q_NONE:-}" != 1 ] || { echo "keine=1" >> "$GITHUB_OUTPUT"; exit 0; }
+          # alles übernehmen, auch abgelehnt/ (damit main abgelehnte Einträge kennt und die App aufräumen kann);
+          # aus einem privaten Eingangs-Repo nur mit Kürzeln statt Namen. Neu sind Dateien direkt in eingang/, die main nicht hat.
+          python3 karte/scripts/feldcheck_inbox.py import "$Q/$Q_DIR" karte/data/feldcheck/eingang $Q_ANON
+          git add -A karte/data/feldcheck/eingang
           git status --porcelain --untracked-files=all -- karte/data/feldcheck/eingang | awk '{print $NF}' \
             | grep '\.json$' | grep -v '/abgelehnt/' > "$L" || true
           echo "Neue Einsendungen:"; cat "$L"
@@ -96,13 +118,13 @@ jobs:
       - uses: actions/setup-python@v5
         if: steps.neu.outputs.keine == '0'
         with:
-          python-version: '3.12'
+          python-version: '3.13'
           cache: pip
-          cache-dependency-path: karte/requirements.txt
+          cache-dependency-path: karte/requirements.lock
 
       - name: Pakete
         if: steps.neu.outputs.keine == '0'
-        run: pip install -r karte/requirements.txt
+        run: pip install -r karte/requirements.lock
 
       - name: Karten, Liste und App neu berechnen
         if: steps.neu.outputs.keine == '0'
@@ -124,21 +146,49 @@ jobs:
           cd "$RUNNER_TEMP/vorschau"
           git add -A && git commit -q -m "Vorschau zu Lauf ${{ github.run_id }}" && git push -q -f origin HEAD:vorschau
 
+      - uses: actions/setup-node@v4
+        if: steps.neu.outputs.keine == '0'
+        with:
+          node-version: '22'
+
+      - name: Prüfung vor dem Vorschlag
+        id: pruefung
+        if: steps.neu.outputs.keine == '0'
+        run: |
+          set +e
+          LOG="$RUNNER_TEMP/pruefung.log"
+          { python -m unittest discover -s karte/tests && python karte/scripts/check.py; } > "$LOG" 2>&1; py=$?
+          { npm install --no-save --no-package-lock playwright@1.56.1 && npx playwright install --with-deps chromium; } > /dev/null 2>&1
+          python3 -m http.server 8000 --bind 127.0.0.1 > /dev/null 2>&1 &
+          sleep 1; node karte/tests/smoke.js http://127.0.0.1:8000/index.html >> "$LOG" 2>&1; js=$?
+          cat "$LOG"
+          if [ $py = 0 ] && [ $js = 0 ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "ok=0" >> "$GITHUB_OUTPUT"; fi
+
       - name: Änderungsvorschlag anlegen
         if: steps.neu.outputs.keine == '0'
         env:
           GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           set -euo pipefail
+          B="$RUNNER_TEMP/body.md"
+          if [ "${{ steps.pruefung.outputs.ok }}" = 1 ]; then
+            printf '\n✓ Automatische Prüfung bestanden (Regeln, Zusammenhang der Daten, App im Browser).\n' >> "$B"; ST=success
+          else
+            { printf '> [!WARNING]\n> **Automatische Prüfung fehlgeschlagen – bitte nicht zusammenführen.** [Protokoll](%s)\n\n```\n' "$RUN_URL"
+              { grep -E 'FAIL|fehlgeschlagen|^ - |Error|error' "$RUNNER_TEMP/pruefung.log" || true; } | head -20; printf '```\n\n'; cat "$B"; } > "$B.neu"; mv "$B.neu" "$B"; ST=failure
+          fi
           T="$(cat "$RUNNER_TEMP/titel.txt")"
           git switch -q -c feldcheck-update
           git add -A
           git commit -q -m "$T"
           git push -q -f origin feldcheck-update
+          gh api "repos/${{ github.repository }}/statuses/$(git rev-parse HEAD)" -f state="$ST" -f context="Feldcheck-Prüfung" \
+            -f description="$([ "$ST" = success ] && echo 'Prüfung bestanden' || echo 'Prüfung fehlgeschlagen')" -f target_url="$RUN_URL" > /dev/null || true
           if [ "$(gh pr view feldcheck-update --json state -q .state 2>/dev/null || true)" = "OPEN" ]; then
-            gh pr edit feldcheck-update --title "$T" --body-file "$RUNNER_TEMP/body.md"
+            gh pr edit feldcheck-update --title "$T" --body-file "$B"
             gh pr comment feldcheck-update --body "Neue Einsendung eingearbeitet – Vorschlag aktualisiert."
           else
-            gh pr create --base main --head feldcheck-update --title "$T" --body-file "$RUNNER_TEMP/body.md"
+            gh pr create --base main --head feldcheck-update --title "$T" --body-file "$B"
             gh pr edit feldcheck-update --add-reviewer "${{ github.repository_owner }}" || true
           fi

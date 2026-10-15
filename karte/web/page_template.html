@@ -90,6 +90,7 @@ h2{margin:0;font-size:21px;line-height:1.2;font-weight:700;letter-spacing:-.015e
 .fact svg{width:16px;height:16px;margin-top:1px;color:var(--muted)}
 .fact.zone,.fact.zone svg{color:#2f8a4a}
 .meta{color:var(--muted);font-size:13.5px;line-height:1.4;margin:0}
+.meta a{color:var(--sel)}
 .ii{display:inline-grid;place-items:center;width:1.5em;height:1.25em;vertical-align:-.28em;border-radius:.45em;background:var(--fill);color:var(--ink)}
 .ii svg{width:.95em;height:.95em}
 .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -301,7 +302,16 @@ const vurl = (p) => OFFLINE && OFFLINE.files[p] ? p + '?v=' + OFFLINE.files[p] :
 const DEV = LS.get('fc_dev', null) || (() => { const d = 'd-' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36)); LS.set('fc_dev', d); return d; })();
 let sentLog = LS.get('fc_sentLog', {v: {}, n: {}});   // what this phone already sent: {v: {id: {t, z}}, n: {...}} (z = withdrawal)
 let wd = LS.get('fc_wd', {v: {}, n: {}});              // withdrawals of already sent entries, not sent yet: {v: {id: t}, n: {nid: t}}
-const GH = {owner: 'JNKersken', repo: 'wangerooge-feldcheck', branch: 'eingang', dir: 'karte/data/feldcheck/eingang'};
+// where results go: briefkasten.json next to the app (repo, zweig, ordner, melden) – switching to a private inbox repo
+// needs no new app build; the built-in values are the fallback
+const GH = {owner: 'JNKersken', repo: 'wangerooge-feldcheck', branch: 'eingang', dir: 'karte/data/feldcheck/eingang', notify: true};
+function setInbox(c){
+  if (!c || typeof c.repo !== 'string' || !/^[\w.-]+\/[\w.-]+$/.test(c.repo)) return;
+  [GH.owner, GH.repo] = c.repo.split('/');
+  if (typeof c.zweig === 'string' && /^[\w./-]+$/.test(c.zweig)) GH.branch = c.zweig;
+  if (typeof c.ordner === 'string' && /^[\w./-]+$/.test(c.ordner)) GH.dir = c.ordner.replace(/\/$/, '');
+  GH.notify = c.melden !== false;
+}
 let box = LS.get('fc_box', null);   // {key, name}
 // iOS gives a Home-Screen app its own storage and copies only cookies from Safari when the icon is added.
 // So the key also goes into a cookie: open the invitation link in Safari, then "Zum Home-Bildschirm" – the app is set up.
@@ -902,7 +912,7 @@ function renderMenu(){
       <div class="row" style="flex-wrap:nowrap">${inp('boxName', 'Dein Name', box.name || '')}<button class="ib" id="boxNameSave" type="button" style="flex:0 0 auto">Speichern</button></div>
       <details><summary>Helfer einladen</summary>
         <div style="display:grid;gap:8px;margin-top:10px">
-          <p class="meta">Schlüssel auf github.com erstellen (Fine-grained, nur dieses Repo, „Contents: Read and write“). Helfer öffnet den Link in Safari und legt die App auf den Home-Bildschirm.</p>
+          <p class="meta">Schlüssel auf <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com</a> erstellen: Fine-grained, nur Repo ${esc(GH.repo)}, „Contents: Read and write“. Helfer öffnet den Link in Safari und legt die App auf den Home-Bildschirm.</p>
           ${inp('invName', 'Name des Helfers')}${inp('invKey', 'Schlüssel (github_pat_…)', '', 'password')}
           ${(DATA.sheets || []).length ? `<p class="sub">Gebiet (optional)</p><div class="chips" id="invArea">${[{id: '', title: 'Ganze Karte'}].concat(DATA.sheets).map(a => `<button class="chip" type="button" data-ia="${esc(a.id)}" aria-pressed="${!a.id}">${esc(a.title)}</button>`).join('')}</div>` : ''}
           <button class="ib" id="invMake" type="button">Einladungslink erzeugen</button>
@@ -997,7 +1007,7 @@ async function sendBox(quiet){
       for (const [id, x] of Object.entries(u.neu)) { sentLog.n[id] = {t: x.t, z: !!x.geloescht}; if (wd.n[id] === x.t) delete wd.n[id]; }
       LS.set('fc_sentLog', sentLog); LS.set('fc_wd', wd); LS.set('fc_outbox', false); LS.set('fc_sent', {t: Date.now(), nv, nn});
       // wake the GitHub Action (runs from main); if this fails the daily run picks the file up
-      fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/dispatches`, {method: 'POST', headers: hdr, body: JSON.stringify({event_type: 'feldcheck'})}).catch(() => {});
+      if (GH.notify) fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/dispatches`, {method: 'POST', headers: hdr, body: JSON.stringify({event_type: 'feldcheck'})}).catch(() => {});
       say(`Gesendet (${nv + nn}). Nach der Freigabe erscheint alles in Karte und App.`, quiet ? false : null);
     }
     else if (r.status === 401) { LS.set('fc_outbox', false); say('Schlüssel ungültig oder abgelaufen. Neuen Einladungslink anfordern.', true); }
@@ -1200,6 +1210,7 @@ function placeTour(){
   else Object.assign(card.style, {top: Math.max(12, (H_ - ch) / 2) + 'px', bottom: 'auto'});   // big target (map): card floats over it
 }
 
+if (IS_APP) fetch('briefkasten.json').then(r => r.ok ? r.json() : null).then(setInbox).catch(() => {});
 fetch('data.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
   DATA = d; DATA.items.forEach(i => byId[i.id] = i); DATA.paths.forEach(p => byId[p.id] = p);
   if (IS_APP) cleanupMerged();

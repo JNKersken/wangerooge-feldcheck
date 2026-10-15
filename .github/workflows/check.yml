@@ -1,0 +1,61 @@
+# Prüfung jedes Änderungsvorschlags: Regeln für Einsendungen, Zusammenhang von App/Daten/Exporten, App im Browser,
+# und ob die eingecheckten Ergebnisse zu den Skripten passen. (Vorschläge des Feldcheck-Bots prüft feldcheck.yml selbst.)
+name: Prüfung
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pruefen:
+    name: Daten und App
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install openpyxl==3.1.5
+      - name: Regeln für Einsendungen
+        run: python -m unittest discover -s karte/tests -v
+      - name: Passt alles zusammen?
+        run: python karte/scripts/check.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Browser bereitstellen
+        run: npm install --no-save --no-package-lock playwright@1.56.1 && npx playwright install --with-deps chromium
+      - name: App im Browser
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/dev/null 2>&1 &
+          sleep 1
+          node karte/tests/smoke.js http://127.0.0.1:8000/index.html
+
+  kette:
+    name: Kette läuft und Ergebnisse sind aktuell
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: karte/requirements.lock
+      - run: pip install -r karte/requirements.lock
+      - name: Ganze Kette
+        run: cd karte && JOBS=4 ./run_all.sh
+      - name: Eingecheckte Daten passen zu den Skripten?
+        run: |
+          git status --short | head -40
+          git diff --exit-code --stat -- data.json karte/data/points_v1.geojson karte/out/landmarken_v1.csv \
+            karte/out/ol/Wangerooge_West_Posten.xml karte/out/ol/Wangerooge_West_Landmarken.gpx karte/out/ol/Wangerooge_West_Landmarken.kml \
+            || { echo "::error::Eingecheckte Ergebnisse passen nicht zu den Skripten – run_all.sh laufen lassen und committen"; exit 1; }

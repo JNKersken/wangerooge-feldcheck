@@ -1,0 +1,29 @@
+# Exakte Versionen für reproduzierbare Läufe (GitHub Actions nutzt diese Datei; geprüft mit Python 3.13).
+# Neu erzeugen: pip install -r requirements.txt, dann Versionen hier eintragen.
+numpy==2.5.3
+scipy==1.18.1
+shapely==2.2.0
+pyproj==3.8.0
+rasterio==1.5.2
+scikit-image==0.26.0
+matplotlib==3.11.2
+pillow==12.3.0
+pypdf==5.9.0
+openpyxl==3.1.5
+fonttools==4.65.0
+contourpy==1.4.0
+cycler==0.12.1
+kiwisolver==1.5.1
+pyparsing==3.3.2
+packaging==26.3
+python-dateutil==2.9.0.post0
+six==1.17.0
+affine==3.0.1
+attrs==26.1.0
+certifi==2026.7.22
+click==8.5.0
+imageio==2.37.4
+tifffile==2026.9.15
+lazy-loader==0.5
+networkx==3.6.1
+et-xmlfile==2.0.0

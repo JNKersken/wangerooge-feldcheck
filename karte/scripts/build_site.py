@@ -1,7 +1,7 @@
 """Field-check app: data.json from points_v1, tile pyramid from the field render, layered sheet SVGs for the PDF export,
 the web app (index.html, sw.js, …) into APP_OUT (repo root) and the claude.ai artifact page into web/site."""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-from base import BASE, FRAME, SHEET_ORDER, DETAIL_ORDER, VERSION, VERSION_DATE
+from base import BASE, FRAME, SHEET_ORDER, DETAIL_ORDER, VERSION, VERSION_DATE, GRID_TO_MAG, GRID_TO_TRUE
 import sys, json, math, os, re, glob, shutil, hashlib, datetime
 from PIL import Image
 from shapely.geometry import box
@@ -74,6 +74,8 @@ if '--tiles' in sys.argv:
 # ---------- page template ----------
 tpl = sub(open(BASE + '/web/page_template.html', encoding='utf-8').read(), '/*LEAFLET*/', open(BASE + '/web/leaflet.min.css').read())
 tpl = sub(tpl, "const APP_VERSION = '';", f"const APP_VERSION = '{VERSION}';")
+tpl = sub(tpl, "const HEAD_CORR = 4.6;", f"const HEAD_CORR = {GRID_TO_MAG};")   # one angle for map and compass (base.py)
+tpl = sub(tpl, "const GRID_CORR = 0.9;", f"const GRID_CORR = {GRID_TO_TRUE};")
 # 1) claude.ai artifact (no GPS, no offline)
 open(SITE + '/index.html', 'w').write(sub(sub(tpl, '<!--LEAFLETJS-->', '<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>'), '/*ISAPP*/false', 'false'))
 

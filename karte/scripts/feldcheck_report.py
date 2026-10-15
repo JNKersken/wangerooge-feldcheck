@@ -12,7 +12,7 @@ import feldcheck_merge as FM
 files = [l.strip() for l in open(sys.argv[1]) if l.strip().endswith('.json')]
 run = sys.argv[2] if len(sys.argv) > 2 else '0'
 title_file = sys.argv[3]
-RAW = f'https://raw.githubusercontent.com/{GH_REPO}/feldcheck-update/karte/out/vorschau'
+RAW = f'https://raw.githubusercontent.com/{GH_REPO}/vorschau'   # the workflow puts the images on their own branch, never into main
 md = lambda s: re.sub(r'([\\`*_\[\]<>|#])', r'\\\1', str(s or ''))   # helper names and notes are plain text, not Markdown
 
 new = {os.path.basename(f) for f in files}

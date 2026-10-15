@@ -62,7 +62,15 @@ src = [('Quellen', ''), (f'OpenStreetMap (Abruf {de_date(OSM_DATE)})', '© OpenS
 for i, (a, b) in enumerate(src): wo.cell(s + i, 1, a).font = A(bold=(i == 0), size=10); wo.cell(s + i, 2, b).font = A(size=10)
 wo.column_dimensions['A'].width = 34
 for c in 'BCD': wo.column_dimensions[c].width = 12
-# fixed document times, so an unchanged list gives an identical file
-import datetime as _dt
-wb.properties.created = wb.properties.modified = _dt.datetime.fromisoformat(VERSION_DATE + 'T12:00:00')
-wb.save(BASE + '/out/Wangerooge_West_Landmarken_v1.xlsx'); print('ok', len(rows), len(paths))
+# same data -> byte-identical file: fixed document times and zip entry times (openpyxl stamps 'now' on save)
+import datetime as _dt, io as _io, re as _re, zipfile as _zf
+wb.properties.created = _dt.datetime.fromisoformat(VERSION_DATE + 'T12:00:00')
+buf = _io.BytesIO(); wb.save(buf); src = _zf.ZipFile(buf)
+ZT = tuple(int(v) for v in VERSION_DATE.split('-')) + (12, 0, 0)
+with _zf.ZipFile(BASE + '/out/Wangerooge_West_Landmarken_v1.xlsx', 'w', _zf.ZIP_DEFLATED) as z:
+    for zi in src.infolist():
+        data = src.read(zi.filename)
+        if zi.filename == 'docProps/core.xml':
+            data = _re.sub(rb'(<dcterms:modified[^>]*>)[^<]*', rb'\g<1>' + VERSION_DATE.encode() + b'T12:00:00Z', data)
+        n = _zf.ZipInfo(zi.filename, ZT); n.compress_type = _zf.ZIP_DEFLATED; z.writestr(n, data)
+print('ok', len(rows), len(paths))

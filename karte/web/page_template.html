@@ -216,8 +216,8 @@ function toUTM(lat, lon){
   const Nn = k0 * (M + N * Math.tan(phi) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A ** 4 / 24 + (61 - 58 * T + T * T + 600 * C - 330 * ep2) * A ** 6 / 720));
   return [Math.round(E * 10) / 10, Math.round(Nn * 10) / 10];
 }
-const HEAD_CORR = 4.4;   // magnetic -> grid north on Wangerooge: declination ~+3.5° plus grid convergence ~+0.9°
-const GRID_CORR = 0.9;   // true (GPS course) -> grid north
+const HEAD_CORR = 4.6;   // compass (magnetic) -> grid bearing; build_site fills in base.GRID_TO_MAG
+const GRID_CORR = 0.9;   // GPS course (true) -> grid bearing; build_site fills in base.GRID_TO_TRUE
 const ll = (e, n) => L.latLng(n - Y1, e - X0);
 const en = (p) => [Math.round((p.lng + X0) * 10) / 10, Math.round((p.lat + Y1) * 10) / 10];
 const $ = (id) => document.getElementById(id);

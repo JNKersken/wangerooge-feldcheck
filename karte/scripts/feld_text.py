@@ -108,12 +108,25 @@ def why(p):
     return ' '.join(bits) or 'Bisher nur aus einer Quelle bekannt.'
 
 def description(p):
-    """Free-text description worth showing (OSM description of SOS points / memorials, or the helper's own note)."""
-    k, no = p['kategorie'], p.get('notiz') or ''
-    if k in ('Rettungspunkt', 'Historisch') or 'Feldbegehung' in (p.get('quellen') or ''):
+    """Free text worth showing: OSM description of SOS points / memorials, plus what helpers noted on site."""
+    k, no, vo = p['kategorie'], p.get('notiz') or '', (p.get('vor_ort') or '').strip()
+    s = ''
+    if k in ('Rettungspunkt', 'Historisch'):
         s = re.split(r' \| (?:OSM-Hinweis|Nr\. )', no)[0].strip()
-        return s if s and '=' not in s else ''
-    return ''
+        if '=' in s: s = ''
+    if vo: s = (s + ' · ' if s else '') + 'Vor Ort: ' + vo
+    return s[:300]
+
+HW = {'footway': 'Fußweg', 'path': 'Pfad', 'track': 'Feldweg', 'cycleway': 'Radweg', 'service': 'Zufahrt', 'steps': 'Treppe', 'bridleway': 'Reitweg'}
+SURF = {'dirt': 'Erde', 'sand': 'Sand', 'grass': 'Gras', 'ground': 'Naturboden', 'unpaved': 'unbefestigt', 'paving_stones': 'Pflaster', 'concrete': 'Beton',
+        'asphalt': 'Asphalt', 'wood': 'Holz', 'compacted': 'Schotter', 'fine_gravel': 'Feinschotter', 'gravel': 'Schotter'}
+def path_texts(tags, length_m, why_status):
+    """(title, what to look for, why) for an OSM way that is hard to see in the aerial image."""
+    hw = HW.get(tags.get('highway', ''), 'Weg'); bel = SURF.get(tags.get('surface', ''))
+    m = re.search(r'sichtbar (\d+)%', why_status or '')
+    return ((f"{hw} „{tags['name']}“" if tags.get('name') else hw),
+            f"{hw}{' (' + bel + ')' if bel else ''}, ca. {round(length_m, -1):.0f} m. Noch begehbar?",
+            'Im Luftbild kaum sichtbar' + (f' (auf {m.group(1)} % der Strecke).' if m else '.'))
 
 DIRS = ['nördlich', 'nordöstlich', 'östlich', 'südöstlich', 'südlich', 'südwestlich', 'westlich', 'nordwestlich']
 def where(e, n, anchors, self_name=''):

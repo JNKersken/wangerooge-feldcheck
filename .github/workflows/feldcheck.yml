@@ -1,5 +1,7 @@
 # Feldcheck-Briefkasten: neue Einsendungen aus der App (Zweig "eingang") einarbeiten, Karten neu berechnen
-# und als Änderungsvorschlag (Pull Request) zur Freigabe vorlegen.
+# und als Änderungsvorschlag (Pull Request "feldcheck-update") zur Freigabe vorlegen.
+# Jeder Lauf erledigt alles, was ansteht (abgelehnte beiseitelegen, neue einarbeiten). Deshalb schadet es nicht,
+# wenn GitHub einen wartenden Lauf zugunsten eines neueren verwirft.
 name: Feldcheck einarbeiten
 
 on:
@@ -9,13 +11,12 @@ on:
   schedule:
     - cron: '17 4 * * *'        # täglich nachsehen, falls eine Meldung verloren ging
   pull_request:
-    types: [closed]             # abgelehnte Vorschläge beiseitelegen
+    types: [closed]             # freigegeben oder abgelehnt: danach Rest einarbeiten bzw. beiseitelegen
     branches: [main]
 
 permissions:
   contents: write
   pull-requests: write
-  actions: write
 
 concurrency:
   group: feldcheck
@@ -23,7 +24,7 @@ concurrency:
 
 jobs:
   einarbeiten:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.ref == 'feldcheck-update'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -31,25 +32,66 @@ jobs:
         with:
           ref: main
 
+      - name: Abgelehnte Einsendungen beiseitelegen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config --global user.name "Feldcheck-Bot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch -q --depth=50 origin eingang || { echo "Noch kein Zweig eingang."; exit 0; }
+          # Vorschläge, die ohne Merge geschlossen wurden (die letzten 20)
+          gh pr list --head feldcheck-update --state closed --limit 20 --json number,mergedAt \
+            -q '.[] | select(.mergedAt == null) | .number' > "$RUNNER_TEMP/abgelehnt.txt" || true
+          [ -s "$RUNNER_TEMP/abgelehnt.txt" ] || { echo "Keine abgelehnten Vorschläge."; exit 0; }
+          git worktree add -q --detach "$RUNNER_TEMP/eingang" FETCH_HEAD
+          cd "$RUNNER_TEMP/eingang"
+          refs=""
+          while read -r n; do
+            git fetch -q --depth=1 origin "refs/pull/$n/head:refs/abgelehnt/$n" && refs="$refs refs/abgelehnt/$n"
+          done < "$RUNNER_TEMP/abgelehnt.txt"
+          mkdir -p karte/data/feldcheck/eingang/abgelehnt
+          moved=0
+          for f in karte/data/feldcheck/eingang/*.json; do
+            [ -e "$f" ] || continue
+            git cat-file -e "main:$f" 2>/dev/null && continue                  # in main = freigegeben
+            for r in $refs; do
+              if git cat-file -e "$r:$f" 2>/dev/null; then                      # steckte in einem abgelehnten Vorschlag
+                git mv "$f" karte/data/feldcheck/eingang/abgelehnt/; moved=$((moved + 1)); break
+              fi
+            done
+          done
+          echo "Beiseitegelegt: $moved"
+          [ "$moved" -gt 0 ] || exit 0
+          git commit -q -m "Abgelehnte Feldcheck-Einsendungen beiseitegelegt ($moved)"
+          # Helfer können gleichzeitig senden: dann neu aufsetzen und noch einmal
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:eingang && exit 0
+            sleep $((i * 3)); git fetch -q --depth=50 origin eingang && git rebase -q FETCH_HEAD
+          done
+          echo "::error::Zweig eingang konnte nicht aktualisiert werden"; exit 1
+
       - name: Neue Einsendungen holen
         id: neu
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git fetch --depth=1 origin eingang || { echo "keine=1" >> "$GITHUB_OUTPUT"; exit 0; }
-          git checkout origin/eingang -- karte/data/feldcheck/eingang/ 2>/dev/null || true
-          git rm -r -q --cached --ignore-unmatch karte/data/feldcheck/eingang/abgelehnt >/dev/null
-          rm -rf karte/data/feldcheck/eingang/abgelehnt
-          git status --porcelain --untracked-files=all -- karte/data/feldcheck/eingang | awk '{print $NF}' | grep '\.json$' > /tmp/neu.txt || true
-          echo "Neue Einsendungen:"; cat /tmp/neu.txt
-          # täglicher Lauf: nichts tun, wenn alle Einsendungen schon im offenen Vorschlag stecken
-          if [ -s /tmp/neu.txt ] && [ "${{ github.event_name }}" = schedule ] \
-             && [ "$(gh pr view feldcheck-update --json state -q .state 2>/dev/null)" = OPEN ] \
+          set -euo pipefail
+          L="$RUNNER_TEMP/neu.txt"; : > "$L"
+          git fetch -q --depth=50 origin eingang || { echo "keine=1" >> "$GITHUB_OUTPUT"; exit 0; }
+          # alles aus eingang übernehmen, auch eingang/abgelehnt/ (damit main abgelehnte Einträge kennt und
+          # die App sie aufräumen kann); neu sind nur Dateien direkt in eingang/, die main noch nicht hat
+          git checkout FETCH_HEAD -- karte/data/feldcheck/eingang/ 2>/dev/null || true
+          git status --porcelain --untracked-files=all -- karte/data/feldcheck/eingang | awk '{print $NF}' \
+            | grep '\.json$' | grep -v '/abgelehnt/' > "$L" || true
+          echo "Neue Einsendungen:"; cat "$L"
+          # nichts tun, wenn alle schon im offenen Vorschlag stecken
+          if [ -s "$L" ] && [ "$(gh pr view feldcheck-update --json state -q .state 2>/dev/null || true)" = OPEN ] \
              && git fetch -q --depth=1 origin feldcheck-update; then
-            alle=1; while read -r f; do git cat-file -e "origin/feldcheck-update:$f" 2>/dev/null || alle=0; done < /tmp/neu.txt
-            if [ "$alle" = 1 ]; then echo "Schon im offenen Vorschlag."; : > /tmp/neu.txt; fi
+            alle=1; while read -r f; do git cat-file -e "FETCH_HEAD:$f" 2>/dev/null || alle=0; done < "$L"
+            if [ "$alle" = 1 ]; then echo "Schon im offenen Vorschlag."; : > "$L"; fi
           fi
-          if [ -s /tmp/neu.txt ]; then echo "keine=0" >> "$GITHUB_OUTPUT"; else echo "keine=1" >> "$GITHUB_OUTPUT"; fi
+          if [ -s "$L" ]; then echo "keine=0" >> "$GITHUB_OUTPUT"; else echo "keine=1" >> "$GITHUB_OUTPUT"; fi
 
       - uses: actions/setup-python@v5
         if: steps.neu.outputs.keine == '0'
@@ -68,50 +110,25 @@ jobs:
 
       - name: Bericht und Vorschaubilder
         if: steps.neu.outputs.keine == '0'
-        run: python karte/scripts/feldcheck_report.py /tmp/neu.txt "${{ github.run_id }}" > /tmp/body.md && cat /tmp/titel.txt
+        run: |
+          python karte/scripts/feldcheck_report.py "$RUNNER_TEMP/neu.txt" "${{ github.run_id }}" "$RUNNER_TEMP/titel.txt" > "$RUNNER_TEMP/body.md"
+          cat "$RUNNER_TEMP/titel.txt"
 
       - name: Änderungsvorschlag anlegen
         if: steps.neu.outputs.keine == '0'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git config user.name "Feldcheck-Bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -c feldcheck-update
+          set -euo pipefail
+          T="$(cat "$RUNNER_TEMP/titel.txt")"
+          git switch -q -c feldcheck-update
           git add -A
-          git commit -q -m "$(cat /tmp/titel.txt)"
-          git push -f origin feldcheck-update
-          if [ "$(gh pr view feldcheck-update --json state -q .state 2>/dev/null)" = "OPEN" ]; then
-            gh pr edit feldcheck-update --title "$(cat /tmp/titel.txt)" --body-file /tmp/body.md
+          git commit -q -m "$T"
+          git push -q -f origin feldcheck-update
+          if [ "$(gh pr view feldcheck-update --json state -q .state 2>/dev/null || true)" = "OPEN" ]; then
+            gh pr edit feldcheck-update --title "$T" --body-file "$RUNNER_TEMP/body.md"
             gh pr comment feldcheck-update --body "Neue Einsendung eingearbeitet – Vorschlag aktualisiert."
           else
-            gh pr create --base main --head feldcheck-update --title "$(cat /tmp/titel.txt)" --body-file /tmp/body.md
+            gh pr create --base main --head feldcheck-update --title "$T" --body-file "$RUNNER_TEMP/body.md"
             gh pr edit feldcheck-update --add-reviewer "${{ github.repository_owner }}" || true
           fi
-
-  abgelehnt:
-    if: github.event_name == 'pull_request' && github.event.pull_request.merged == false && github.event.pull_request.head.ref == 'feldcheck-update'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: eingang
-      - name: Abgelehnte Einsendungen beiseitelegen
-        env:
-          GH_TOKEN: ${{ github.token }}
-          KOPF: ${{ github.event.pull_request.head.sha }}
-        run: |
-          git fetch -q --depth=1 origin main "$KOPF"
-          mkdir -p karte/data/feldcheck/eingang/abgelehnt
-          rest=0
-          for f in karte/data/feldcheck/eingang/*.json; do
-            [ -e "$f" ] || continue
-            git cat-file -e "origin/main:$f" 2>/dev/null && continue               # schon übernommen
-            if git cat-file -e "$KOPF:$f" 2>/dev/null; then                        # war im abgelehnten Vorschlag
-              git mv "$f" karte/data/feldcheck/eingang/abgelehnt/
-            else rest=1; fi                                                       # kam später, noch nicht geprüft
-          done
-          git config user.name "Feldcheck-Bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git commit -q -m "Abgelehnte Feldcheck-Einsendungen beiseitegelegt"; then git push origin eingang; fi
-          if [ "$rest" = 1 ]; then gh workflow run feldcheck.yml --ref main; fi

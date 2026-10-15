@@ -1,9 +1,9 @@
-"""Merge OSM landmarks, bench verdicts, craters, path status -> data/points_v1.geojson + out/landmarken_v1.csv"""
+"""Merge OSM landmarks, bench verdicts, craters, path status and field-check submissions -> data/points_v1.geojson + out/landmarken_v1.csv"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); from base import BASE
-import sys, json, csv, math; None
+import json, csv, math, re
 from shapely.geometry import shape, Point, mapping
 from geom import *
-L = list(csv.DictReader(open(BASE + '/out/landmarken_v0.csv')))
+L = list(csv.DictReader(open(BASE + '/out/landmarken_v0.csv', encoding='utf-8')))
 bench = json.load(open(BASE + '/data/bench_dop_verdict.json'))
 paths = json.load(open(BASE + '/data/path_status.json'))
 C = json.load(open(BASE + '/data/craters.geojson'))['features']
@@ -36,7 +36,6 @@ def st_for(r):
     if k in ('Buhne', 'Haltepunkt', 'Bahnübergang', 'Spielplatz', 'Sportplatz', 'Brücke'): return 'sicher', 'OSM + Luftbild'
     return 'prüfen', 'nur OSM'
 for r in L:
-    if r['kategorie'] == 'Gewässer' and r['osm'] in crater_osm: pass
     s, q = st_for(r)
     r['status'], r['quellen'] = s, q
     if r['kategorie'] == 'Gewässer':
@@ -115,8 +114,9 @@ _cnt = _co.Counter(r['name'] for r in pts if r['kategorie'] == 'Rettungspunkt' a
 for r in pts:
     if r['kategorie'] == 'Rettungspunkt' and _cnt[r['name']] > 1:
         r['status'] = 'prüfen'; r['notiz'] = (r['notiz'] + ' | ' if r['notiz'] else '') + f"Nr. {r['name']} ist in OSM {_cnt[r['name']]}x an verschiedenen Stellen eingetragen – vor Ort klären, welche stimmt"
-# ---------- field check: submissions from the app (data/feldcheck/eingang/*.json), newest entry per object wins ----------
-import glob, datetime
+# ---------- field check: submissions from the app (rules in feldcheck_merge.py) ----------
+import feldcheck_merge as FM
+from geom import ruhezone
 FTYP = {   # app type -> (kategorie, typ)   ('Feldobjekt' typ = symbol kind)
     'Ruhezonen-Schild': ('Feldobjekt', 'rzsign'), 'Ruhezonen-Pfahl': ('Feldobjekt', 'rzpost'), 'Strandaufgang (Nr.)': ('Feldobjekt', 'beachaccess'),
     'Findling / Stein': ('Feldobjekt', 'boulder'), 'Pfahl / Pfosten': ('Feldobjekt', 'post'), 'Fahnenmast': ('Feldobjekt', 'flagpole'),
@@ -125,62 +125,69 @@ FTYP = {   # app type -> (kategorie, typ)   ('Feldobjekt' typ = symbol kind)
     'Dünenkuppe': ('Kuppe', 'Dünenkuppe'), 'Steilhang / Abbruch': ('Feldobjekt', 'steeppt'), 'Dünenübergang': ('Feldobjekt', 'beachaccess'),
     'Tor / Durchlass': ('Durchgang', 'gate'), 'Infotafel': ('Kleinobjekt', 'Infotafel'), 'Schutzhütte': ('Bauwerk', 'Schutzhütte'),
     'Sandfangzaun': ('Feldobjekt', 'sandfence'), 'Holzsteg': ('Feldobjekt', 'boardwalk'), 'Sonstiges': ('Feldobjekt', 'dot')}
-verd, neu = {}, {}
-for fn in sorted(glob.glob(BASE + '/data/feldcheck/eingang/*.json')):
-    try: d = json.load(open(fn))
-    except Exception as e: print('Feldcheck-Datei unlesbar', fn, e); continue
-    who = (d.get('name') or '').strip() or 'Feldcheck'
-    for id_, v in (d.get('verdicts') or {}).items():
-        if isinstance(v, dict) and v.get('st') in ('ok', 'fehlt', 'woanders') and (id_ not in verd or v.get('t', 0) >= verd[id_].get('t', 0)): verd[id_] = dict(v, who=who)
-    for id_, n_ in (d.get('neu') or {}).items():
-        if isinstance(n_, dict) and (id_ not in neu or n_.get('t', 0) >= neu[id_].get('t', 0)): neu[id_] = dict(n_, who=who)
-def _src(v): return f"Feldbegehung {v['who']} {datetime.datetime.fromtimestamp(v.get('t', 0) / 1000).strftime('%d.%m.%Y')}"
-byid = {r['id']: r for r in pts}; removed = []; log = []
-for id_, v in verd.items():
-    r = byid.get(id_)
-    if r is None: continue   # paths (PF…) are handled below
-    note = (v.get('note') or '').strip()
-    if note: r['notiz'] = (r['notiz'] + ' | ' if r['notiz'] else '') + 'vor Ort: ' + note
-    if v['st'] == 'ok':
-        r['status'] = 'sicher'; r['quellen'] = r['quellen'] + ' + ' + _src(v)
-    elif v['st'] == 'fehlt':
-        removed.append(r)
-    elif v['st'] == 'woanders' and v.get('e'):
-        r['utm_e'], r['utm_n'] = round(float(v['e']), 1), round(float(v['n']), 1); la, lo = ll(r['utm_e'], r['utm_n']); r['lat'], r['lon'] = round(la, 6), round(lo, 6)
-        r['status'] = 'sicher'; r['quellen'] = r['quellen'] + ' + ' + _src(v) + ' (Lage korrigiert' + (f", GPS ± {v['acc']} m" if v.get('acc') else '') + ')'
-    log.append(dict(id=id_, aktion=v['st'], name=r['name'] or r['typ'], kategorie=r['kategorie'], von=v['who'], notiz=note, e=r['utm_e'], n=r['utm_n']))
-pts = [r for r in pts if r not in removed]
+FC = FM.load()
+verd, neu = FC['verd'], FC['neu']
+def _src(v): return f"Feldbegehung {v['who']} {FM.day(v['t'])}"
+def _add_vor_ort(r, txt): r['vor_ort'] = (r.get('vor_ort') + ' | ' if r.get('vor_ort') else '') + txt
+log = [dict(id=x['id'], aktion='übersprungen', name='', kategorie='', von='', notiz=f"{x['datei']}: {x['grund']}", e='', n='', datei=x['datei']) for x in FC['skipped']]
+# 1) new objects first, so verdicts on already merged field objects (F…) find them
 fpaths = []
-for id_, n_ in neu.items():
+for id_, n_ in sorted(neu.items(), key=lambda kv: kv[1]['t']):
     if n_.get('pts'):
-        if len(n_['pts']) >= 2: fpaths.append(dict(type='Feature', geometry=dict(type='LineString', coordinates=[[float(a), float(b)] for a, b in n_['pts']]),
-                                                  properties=dict(id='F' + id_, typ='Schleichpfad', quelle=_src(n_), notiz=n_.get('note', ''))))
-        log.append(dict(id='F' + id_, aktion='neu', name='Schleichpfad', kategorie='Pfad', von=n_['who'], notiz=n_.get('note', ''), e=n_['pts'][0][0], n=n_['pts'][0][1]))
+        fpaths.append(dict(type='Feature', geometry=dict(type='LineString', coordinates=[list(p) for p in n_['pts']]),
+                           properties=dict(id='F' + id_, typ='Schleichpfad', quelle=_src(n_), notiz=n_['note'])))
+        log.append(dict(id='F' + id_, aktion='neu', name='Schleichpfad', kategorie='Pfad', von=n_['who'], notiz=n_['note'], e=n_['pts'][0][0], n=n_['pts'][0][1], datei=n_['datei']))
         continue
-    if n_.get('e') is None: continue
-    kat, typ = FTYP.get(n_.get('typ'), ('Feldobjekt', 'dot'))
-    nm = (n_.get('name') or '').strip()
+    kat, typ = FTYP.get(n_['typ'], ('Feldobjekt', 'dot'))
+    nm = n_['name']
     if kat == 'Rettungspunkt':   # SOS sign: number from the name if given
-        import re as _re; mm = _re.search(r'\d+', nm); nm = mm.group(0) if mm else ''
-    la, lo = ll(float(n_['e']), float(n_['n']))
-    pts.append(dict(id='F' + id_, kategorie=kat, typ=typ, name=nm or ('' if kat in ('Bank', 'Trichter', 'Kuppe', 'Busch', 'Durchgang') else n_.get('typ', '')),
-                    lat=round(la, 6), lon=round(lo, 6), utm_e=round(float(n_['e']), 1), utm_n=round(float(n_['n']), 1), zone='', status='sicher',
-                    quellen=_src(n_) + (f" (GPS ± {n_['acc']} m)" if n_.get('acc') else ''), osm='', osm_stand='', notiz=(n_.get('note') or '').strip(), d=5 if kat == 'Trichter' else ''))
-    log.append(dict(id='F' + id_, aktion='neu', name=nm or n_.get('typ', ''), kategorie=kat, von=n_['who'], notiz=n_.get('note', ''), e=n_['e'], n=n_['n']))
+        mm = re.search(r'\d+', nm); nm = mm.group(0) if mm else ''
+    la, lo = ll(n_['e'], n_['n'])
+    pts.append(dict(id='F' + id_, kategorie=kat, typ=typ, name=nm or ('' if kat in ('Bank', 'Trichter', 'Kuppe', 'Busch', 'Durchgang') else n_['typ']),
+                    lat=round(la, 6), lon=round(lo, 6), utm_e=round(n_['e'], 1), utm_n=round(n_['n'], 1), zone='', status='sicher',
+                    quellen=_src(n_) + (f" (GPS ± {n_['acc']:.0f} m)" if n_.get('acc') else ''), osm='', osm_stand='', notiz='', vor_ort=n_['note'], d=5 if kat == 'Trichter' else ''))
+    log.append(dict(id='F' + id_, aktion='neu', name=nm or n_['typ'], kategorie=kat, von=n_['who'], notiz=n_['note'], e=n_['e'], n=n_['n'], acc=n_.get('acc'), datei=n_['datei']))
 json.dump(dict(type='FeatureCollection', features=fpaths), open(BASE + '/data/feldcheck_pfade.geojson', 'w'))
+# 2) verdicts on points
+byid = {r['id']: r for r in pts}; removed = set()
+for id_, v in sorted(verd.items()):
+    r = byid.get(id_)
+    if r is None: continue   # paths (PF…) are handled below; unknown ids are ignored
+    if v['note']: _add_vor_ort(r, f"{v['note']} ({v['who']}, {FM.day(v['t'])})")
+    act = v['st']
+    if act == 'ok':
+        r['status'] = 'sicher'; r['quellen'] = r['quellen'] + ' + ' + _src(v)
+    elif act == 'fehlt':
+        removed.add(id_); act = 'fehlt (2× nicht gefunden)' if v.get('zwei_nf') else 'fehlt'
+    e0, n0 = float(r['utm_e']), float(r['utm_n'])
+    if v.get('e') is not None:   # corrected position (also kept when someone confirmed or did not find it afterwards)
+        r['utm_e'], r['utm_n'] = round(v['e'], 1), round(v['n'], 1); la, lo = ll(r['utm_e'], r['utm_n']); r['lat'], r['lon'] = round(la, 6), round(lo, 6)
+    if act == 'woanders':
+        r['status'] = 'sicher'
+        r['quellen'] = r['quellen'] + ' + ' + _src(v) + ' (Lage korrigiert' + (f" von {v['lage_von']}" if v.get('lage_von') and v['lage_von'] != v['who'] else '') + (f", GPS ± {v['acc']:.0f} m" if v.get('acc') else '') + ')'
+        if v.get('bestaetigt'): act = 'ok'
+    elif act == 'nf':
+        r['nf'] = len(v['nf_von']); _add_vor_ort(r, 'nicht gefunden: ' + ', '.join(v['nf_von']))
+    log.append(dict(id=id_, aktion=act, name=r['name'] or r['typ'], kategorie=r['kategorie'], von=v['who'], notiz=v['note'], e=r['utm_e'], n=r['utm_n'],
+                    e0=e0, n0=n0, acc=v.get('acc'), d=v.get('d'), datei=v['datei']))
+pts = [r for r in pts if r['id'] not in removed]
+# 3) verdicts on paths
 ps1 = dict(paths)
-for id_, v in verd.items():
+for id_, v in sorted(verd.items()):
     if id_.startswith('PF') and id_[2:] in ps1:
         if v['st'] == 'ok': ps1[id_[2:]] = dict(ps1[id_[2:]], status='sicher', why='vor Ort bestätigt (' + _src(v) + ')')
         elif v['st'] == 'fehlt': ps1[id_[2:]] = dict(ps1[id_[2:]], status='entfernt', why='vor Ort nicht vorhanden (' + _src(v) + ')')
-        log.append(dict(id=id_, aktion=v['st'], name='Pfad', kategorie='Pfad', von=v['who'], notiz=v.get('note', ''), e='', n=''))
+        elif v['st'] == 'nf': ps1[id_[2:]] = dict(ps1[id_[2:]], why=ps1[id_[2:]].get('why', '') + '; nicht gefunden: ' + ', '.join(v['nf_von']))
+        log.append(dict(id=id_, aktion=v['st'], name='Pfad', kategorie='Pfad', von=v['who'], notiz=v['note'], e='', n='', d=v.get('d'), datei=v['datei']))
 json.dump(ps1, open(BASE + '/data/path_status_v1.json', 'w'), ensure_ascii=False)
 json.dump(log, open(BASE + '/data/feldcheck_log.json', 'w'), ensure_ascii=False, indent=0)
-print('Feldcheck:', len(verd), 'Bewertungen,', len(neu), 'neue Objekte,', len(removed), 'entfernt,', len(fpaths), 'neue Pfade')
-I32 = rel_geom(16774424)
+json.dump(FC['stand'], open(BASE + '/data/feldcheck_stand.json', 'w'), sort_keys=True)   # per device: newest merged entry per object (app cleans up its local copies)
+print('Feldcheck:', len(verd), 'Bewertungen,', len(neu), 'neue Objekte,', len(removed), 'entfernt,', len(fpaths), 'neue Pfade,', len(FC['skipped']), 'übersprungen')
+# Ruhezone for every point (also moved and new ones)
+I32 = ruhezone()
 for r in pts:
-    if r['kategorie'] == 'Trichter' and I32.contains(Point(float(r['utm_e']), float(r['utm_n']))): r['zone'] = 'Ruhezone I/32'
-flds = ['id', 'kategorie', 'typ', 'name', 'status', 'quellen', 'lat', 'lon', 'utm_e', 'utm_n', 'zone', 'notiz', 'osm', 'osm_stand', 'prom', 'z', 'd']
+    r['zone'] = 'Ruhezone I/32' if I32 is not None and I32.contains(Point(float(r['utm_e']), float(r['utm_n']))) else ''
+flds = ['id', 'kategorie', 'typ', 'name', 'status', 'quellen', 'lat', 'lon', 'utm_e', 'utm_n', 'zone', 'notiz', 'vor_ort', 'nf', 'osm', 'osm_stand', 'prom', 'z', 'd']
 with open(BASE + '/out/landmarken_v1.csv', 'w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=flds, extrasaction='ignore'); w.writeheader(); w.writerows(pts)
 json.dump(dict(type='FeatureCollection', features=[dict(type='Feature', geometry=dict(type='Point', coordinates=[float(r['utm_e']), float(r['utm_n'])]),

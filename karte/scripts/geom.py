@@ -30,5 +30,9 @@ def rel_geom(rid):
     g = unary_union(po)
     if pi: g = g.difference(unary_union(pi))
     return g
+def ruhezone():
+    """Ruhezone I/32 as polygon, or None if the relation is missing from the OSM extract."""
+    from base import RUHEZONE_REL
+    return rel_geom(RUHEZONE_REL) if RUHEZONE_REL in R else None
 def ll(x, y):
     lon, lat = TI.transform(x, y); return lat, lon

@@ -1,7 +1,7 @@
 """Hand-drawn style orienteering map renderer (A4 PDF/PNG).
 Usage: render_map.py <sheet> <color|bw> <out.pdf> [png]
 Sheets defined in SHEETS. All symbol sizes are in paper millimetres."""
-import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); from base import BASE
+import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); from base import BASE, SOURCES
 import sys, os, json, math, hashlib
 None
 import numpy as np
@@ -83,21 +83,22 @@ def mix(c, paper, t):
     a, b = to_rgb(c), to_rgb(paper)
     return to_hex(tuple(a[i] * (1 - t) + b[i] * t for i in range(3)))
 
+def sheet_layout(name):
+    """Paper geometry of a sheet in mm: page size, map frame offset (mx, my from lower left), metres per mm."""
+    cfg = SHEETS[name]; x0, y0, x1, y1 = cfg['bbox']; m = cfg['scale'] / 1000.0
+    pw, ph = (297, 210) if cfg['orient'] == 'L' else (210, 297)
+    mw, mh = (x1 - x0) / m, (y1 - y0) / m
+    mx, my = (8, (ph - mh) / 2) if name == 'uebersicht' else ((pw - mw) / 2, 22)
+    return dict(bbox=cfg['bbox'], m=m, pw=pw, ph=ph, mw=mw, mh=mh, mx=mx, my=my, sub=cfg['sub'])
+
 class Sheet:
     def __init__(s, name, mode):
         cfg = SHEETS[name]; s.cfg = cfg; s.mode = mode; s.P = PAL[mode]
         s.x0, s.y0, s.x1, s.y1 = cfg['bbox']; s.scale = cfg['scale']
-        s.pw, s.ph = (297, 210) if cfg['orient'] == 'L' else (210, 297)
-        s.m = s.scale / 1000.0  # metres per paper-mm
-        s.mw, s.mh = (s.x1 - s.x0) / s.m, (s.y1 - s.y0) / s.m  # map size in mm
+        lay = sheet_layout(name)
+        s.pw, s.ph, s.m, s.mw, s.mh, s.mx, s.my = lay['pw'], lay['ph'], lay['m'], lay['mw'], lay['mh'], lay['mx'], lay['my']
         s.fig = plt.figure(figsize=(s.pw / 25.4, s.ph / 25.4))
         s.fig.patch.set_facecolor(s.P['paper'])
-        if name == 'uebersicht':
-            s.mx, s.my = 8, (s.ph - s.mh) / 2
-        elif cfg['orient'] == 'L':
-            s.mx, s.my = (s.pw - s.mw) / 2, 22
-        else:
-            s.mx, s.my = (s.pw - s.mw) / 2, 22
         s.ax = s.fig.add_axes([s.mx / s.pw, s.my / s.ph, s.mw / s.pw, s.mh / s.ph])
         s.ax.set_xlim(s.x0, s.x1); s.ax.set_ylim(s.y0, s.y1); s.ax.set_aspect('equal'); s.ax.axis('off')
         s.ax.set_facecolor(s.P['paper'])
@@ -1136,7 +1137,7 @@ def frame_and_margin(S, name):
         T(S.mx, 12, cfg['title'] + '  –  ' + cfg['sub'], 15, True)
         T(S.mx, 6.5, f'1 : {S.scale:,}'.replace(',', '.') + '  ·  Äquidistanz 2,5 m  ·  Nordlinien 250 m', 8.5)
         scalebar(S.mx + S.mw - 60, 8, 250)
-    T(pw - 4, 3 if name == 'uebersicht' else ph - 5, 'Daten: © OpenStreetMap-Mitwirkende (ODbL) · LGLN (2026) DGM1 & DOP20 (19.10.2025), CC BY 4.0 · Version 1.4 vom 12.10.2026',
+    T(pw - 4, 3 if name == 'uebersicht' else ph - 5, SOURCES,
       5, ha='right', font=PRINT, color=P['gray'])
     # north arrow
     nx, ny = (S.mx + S.mw - 8, S.my + S.mh - 14) if name != 'uebersicht' else (S.mx + S.mw - 9, S.my + S.mh - 16)

@@ -1,5 +1,6 @@
-# Feldcheck-Briefkasten: neue Einsendungen aus der App (Zweig "eingang") einarbeiten, Karten neu berechnen
-# und als Änderungsvorschlag (Pull Request "feldcheck-update") zur Freigabe vorlegen.
+# Feldcheck-Briefkasten: neue Einsendungen aus der App einarbeiten (Zweig "eingang" oder privates Eingangs-Repo,
+# siehe briefkasten.json und karte/BRIEFKASTEN.md), Karten neu berechnen, prüfen und als Änderungsvorschlag
+# (Pull Request "feldcheck-update") zur Freigabe vorlegen.
 # Jeder Lauf erledigt alles, was ansteht (abgelehnte beiseitelegen, neue einarbeiten). Deshalb schadet es nicht,
 # wenn GitHub einen wartenden Lauf zugunsten eines neueren verwirft.
 name: Feldcheck einarbeiten

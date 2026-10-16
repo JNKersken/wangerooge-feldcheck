@@ -1,60 +1,76 @@
 {
- "stand": "2026-10-13",
+ "stand": "2026-10-15",
+ "version": "1.5",
  "sheets": [
   {
    "id": "uebersicht",
    "title": "Übersicht",
-   "scale": 15000,
-   "orient": "L",
+   "bbox": [
+    423750,
+    5958850,
+    427150,
+    5961650
+   ],
    "files": {
     "color": "karten/uebersicht_color.svg",
     "bw": "karten/uebersicht_bw.svg"
-   },
-   "kb": 3616
+   }
   },
   {
    "id": "detail_west",
    "title": "Blatt 1 · Westen & Westgroden",
-   "scale": 5000,
-   "orient": "L",
+   "bbox": [
+    423950,
+    5960080,
+    425335,
+    5960970
+   ],
    "files": {
     "color": "karten/detail_west_color.svg",
     "bw": "karten/detail_west_bw.svg"
-   },
-   "kb": 2142
+   }
   },
   {
    "id": "detail_mitte",
    "title": "Blatt 2 · Norddünen Mitte",
-   "scale": 5000,
-   "orient": "L",
+   "bbox": [
+    424735,
+    5960450,
+    426120,
+    5961340
+   ],
    "files": {
     "color": "karten/detail_mitte_color.svg",
     "bw": "karten/detail_mitte_bw.svg"
-   },
-   "kb": 1746
+   }
   },
   {
    "id": "detail_ost",
    "title": "Blatt 3 · Norddünen Ost",
-   "scale": 5000,
-   "orient": "L",
+   "bbox": [
+    425765,
+    5960380,
+    427150,
+    5961270
+   ],
    "files": {
     "color": "karten/detail_ost_color.svg",
     "bw": "karten/detail_ost_bw.svg"
-   },
-   "kb": 3119
+   }
   },
   {
    "id": "detail_sued",
    "title": "Blatt 4 · Inselheim bis Westanleger",
-   "scale": 7500,
-   "orient": "P",
+   "bbox": [
+    424160,
+    5958870,
+    425570,
+    5960850
+   ],
    "files": {
     "color": "karten/detail_sued_color.svg",
     "bw": "karten/detail_sued_bw.svg"
-   },
-   "kb": 2714
+   }
   }
  ],
  "layers": [

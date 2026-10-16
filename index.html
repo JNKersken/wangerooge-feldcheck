@@ -3,7 +3,7 @@
 /* Feldcheck – the map is the screen; controls float above it as glass (iOS "Liquid Glass"): a top bar, a bottom card for the selected object, sheets for list and menu.
    One accent: OL-course magenta. System font (SF Pro on iPhone) for crisp text; rounded variant only for the app name. */
 :root{
-  --ink:#1c1c1e; --muted:#6e6e73; --hair:rgba(60,60,67,.14);
+  --ink:#1c1c1e; --muted:#636366; --hair:rgba(60,60,67,.14);
   --glass:rgba(246,246,248,.62); --glass-strong:rgba(248,248,250,.86); --edge:rgba(255,255,255,.75); --sheen:rgba(255,255,255,.55);
   --fill:rgba(118,118,128,.12); --fill-2:rgba(118,118,128,.2); --field:rgba(118,118,128,.1);
   --accent:#d0176c; --accent-ink:#fff; --ok:#2c9a4e; --bad:#e0352d; --move:#f09a12; --sel:#0a7aff; --sure:#4b4458;
@@ -39,12 +39,13 @@ body{background:var(--paper);color:var(--ink);font:15px/1.4 var(--f-ui);-webkit-
 .pring circle{fill:none;stroke-width:3.2}
 .pring .pt{stroke:var(--fill-2)} .pring .pf{stroke:var(--ok);stroke-linecap:round;transition:stroke-dasharray .4s}
 .top .sp{flex:1}
-.tools{display:flex;align-items:center;height:48px;padding:0 3px;border-radius:24px}
-.tb{display:flex;align-items:center;justify-content:center;gap:5px;min-width:42px;height:42px;padding:0 9px;border:0;border-radius:21px;background:transparent;color:var(--ink);font:600 14px var(--f-ui)}
+.tools{display:flex;align-items:center;height:48px;padding:0 2px;border-radius:24px}
+.tb{position:relative;display:flex;align-items:center;justify-content:center;gap:5px;min-width:44px;height:44px;padding:0 10px;border:0;border-radius:22px;background:transparent;color:var(--ink);font:600 14px var(--f-ui)}
 .tb svg{width:21px;height:21px;flex:none}
 .tb:active{background:var(--fill)}
 .tb .tl{white-space:nowrap;font-size:13px}
 .tb .tl:empty{display:none}
+.badge{position:absolute;top:2px;right:1px;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9px;background:var(--accent);color:#fff;font:700 11px/18px var(--f-ui);text-align:center;font-variant-numeric:tabular-nums;box-shadow:0 0 0 2px var(--glass-strong)}
 .gpsb[data-st="on"]{color:var(--sel)} .gpsb[data-st="wait"]{color:var(--sel);opacity:.7} .gpsb[data-st="err"]{color:var(--bad)}
 .gpsb[data-st="on"] .tl{font-variant-numeric:tabular-nums}
 .gpsb[data-st="on"] svg path{fill:currentColor}
@@ -81,7 +82,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .ihead .cat{font-weight:600;color:var(--ink)}
 .ihead .id{margin-left:auto;font-variant-numeric:tabular-nums}
 .pill{display:inline-flex;align-items:center;height:22px;border-radius:11px;padding:0 9px;font-size:12px;font-weight:700}
-.p-open{background:var(--fill);color:var(--ink)} .p-ok{background:var(--ok);color:#fff} .p-bad{background:var(--bad);color:#fff} .p-move{background:var(--move);color:#231500} .p-sure{background:var(--sure);color:#fff} .p-new{background:var(--sel);color:#fff} .p-rec{background:var(--bad);color:#fff}
+.p-open{background:var(--fill);color:var(--ink)} .p-ok{background:var(--ok);color:#fff} .p-bad{background:var(--bad);color:#fff} .p-move{background:var(--move);color:#231500} .p-sure{background:var(--sure);color:#fff} .p-new{background:var(--sel);color:#fff} .p-rec{background:var(--bad);color:#fff} .p-nf{background:#8e8e93;color:#fff}
 h2{margin:0;font-size:21px;line-height:1.2;font-weight:700;letter-spacing:-.015em;text-wrap:balance}
 .find{margin:0;font-size:15.5px;line-height:1.4}
 .facts{display:grid;gap:6px}
@@ -104,7 +105,8 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--sel)}
 textarea{min-height:46px;resize:vertical}
 ::placeholder{color:var(--muted);opacity:.85}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:0;background:var(--fill);border-radius:17px;min-height:34px;padding:0 13px;font:500 14px var(--f-ui);color:var(--ink)}
+.chip{position:relative;border:0;background:var(--fill);border-radius:19px;min-height:38px;padding:0 14px;font:500 14px var(--f-ui);color:var(--ink)}
+.chip::after{content:"";position:absolute;inset:-3px -3px}   /* 44 px touch target without wider gaps */
 .chip[aria-pressed="false"]{color:var(--muted)}
 .chip[aria-pressed="true"]{background:var(--tint);color:var(--ink);box-shadow:inset 0 0 0 1px var(--tint-edge)}
 /* map SVGs from matplotlib carry a global '*{stroke-linecap:butt}' – keep our icons round */
@@ -120,7 +122,7 @@ textarea{min-height:46px;resize:vertical}
 .panel{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 16px 18px;display:grid;gap:14px;align-content:start}
 .phead{position:sticky;top:0;z-index:4;display:flex;align-items:center;gap:10px;margin:0 -16px;padding:14px 12px 10px 18px;background:var(--solid);box-shadow:0 .5px 0 var(--hair)}
 .phead h2{flex:1;font-size:22px}
-.x{width:36px;height:36px;border-radius:18px;border:0;background:var(--fill);display:grid;place-items:center;color:var(--muted);flex:none}
+.x{width:44px;height:44px;border-radius:22px;border:0;background:var(--fill);display:grid;place-items:center;color:var(--muted);flex:none}
 .x svg{width:15px;height:15px}
 .grp{display:grid;gap:10px;padding:14px;border-radius:20px;background:var(--fill)}
 .grp h3{margin:0;font-size:15px;font-weight:700}
@@ -177,7 +179,7 @@ details summary{cursor:pointer;color:var(--muted);font-size:14px;font-weight:600
 .tour .dots i.on{background:var(--accent);width:16px;border-radius:3px}
 .tour label{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--muted)}
 .tour label input{width:18px;height:18px;accent-color:var(--accent)}
-.tour .skip{border:0;background:transparent;color:var(--muted);font-size:14px;font-weight:600;padding:6px 4px}
+.tour .skip{border:0;background:transparent;color:var(--muted);font-size:14px;font-weight:600;min-height:44px;padding:0 6px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style></head><body>
 
@@ -214,7 +216,8 @@ function toUTM(lat, lon){
   const Nn = k0 * (M + N * Math.tan(phi) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A ** 4 / 24 + (61 - 58 * T + T * T + 600 * C - 330 * ep2) * A ** 6 / 720));
   return [Math.round(E * 10) / 10, Math.round(Nn * 10) / 10];
 }
-const HEAD_CORR = 4.4;   // magnetic -> grid north on Wangerooge (declination ~+3.5°, convergence ~-0.9°)
+const HEAD_CORR = 4.4;   // magnetic -> grid north on Wangerooge: declination ~+3.5° plus grid convergence ~+0.9°
+const GRID_CORR = 0.9;   // true (GPS course) -> grid north
 const ll = (e, n) => L.latLng(n - Y1, e - X0);
 const en = (p) => [Math.round((p.lng + X0) * 10) / 10, Math.round((p.lat + Y1) * 10) / 10];
 const $ = (id) => document.getElementById(id);
@@ -246,15 +249,18 @@ const CAT = {
   'Spielplatz':['Spielplatz','M5 15L8 5H12L15 15M8 5V10'], 'Sportplatz':['Sportplatz','M4 6H16V14H4ZM10 6V14'], 'Fitness':['Fitness','M8 12L12 8M4.5 12.5L7.5 15.5M12.5 4.5L15.5 7.5'],
   'Recycling':['Container','M5 8H15L14 15H6ZM8 6H12'], 'Fahrradständer':['Fahrradständer','M4 13a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M11 13a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M6.5 13L10 8L13.5 13'],
   'Umspannstation':['Trafostation','M11 4L7 11H11L9 16L14 9H10Z'],
+  'Feldobjekt':['Vor Ort erfasst','M10 15V5M6.5 8.5H13.5'], 'Baum':['Baum','M10 16V11M6 8.5a4 4 0 1 0 8 0a4 4 0 1 0 -8 0'],
   'Neu':['Neu','M10 4L12 9H17L13 12L14.5 17L10 14L5.5 17L7 12L3 9H8Z'],
 };
 const CAT_GROUPS = [   // filter order like the map legend: lines, points by usefulness for orienteering, then buildings & facilities
   ['Wege & Linien', ['Pfad', 'Dünenübergang', 'Brücke', 'Bahnübergang', 'Buhne', 'Steilhang']],
-  ['Orientierungspunkte', ['Bank', 'Rettungspunkt', 'Durchgang', 'Bauwerk', 'Kleinobjekt', 'Historisch', 'Kuppe', 'Trichter', 'Gewässer', 'Busch', 'km-Stein', 'Haltepunkt']],
+  ['Orientierungspunkte', ['Bank', 'Rettungspunkt', 'Durchgang', 'Bauwerk', 'Kleinobjekt', 'Historisch', 'Feldobjekt', 'Kuppe', 'Trichter', 'Gewässer', 'Busch', 'Baum', 'km-Stein', 'Haltepunkt']],
   ['Gebäude & Ausstattung', ['Unterkunft', 'Gebäude', 'Gastronomie', 'Einrichtung', 'Gelände', 'Vegetation', 'Spielplatz', 'Sportplatz', 'Fitness', 'Hydrant', 'Recycling', 'Fahrradständer', 'Umspannstation']]];
-const FILL = {open:'#ffffff', ok:'#2e9d57', fehlt:'#cf4136', woanders:'#d98a1c', sure:'#4a3f55', neu:'#2b6fd6'};
+const FILL = {open:'#ffffff', ok:'#2e9d57', fehlt:'#cf4136', woanders:'#d98a1c', nf:'#8e8e93', nfm:'#8e8e93', sure:'#4a3f55', neu:'#2b6fd6'};
+// state -> pill in the card (nf = I did not find it, nfm = someone else did not find it, still on the map)
+const STATES = {open: ['p-open', 'offen'], sure: ['p-sure', 'sicher'], ok: ['p-ok', 'stimmt'], fehlt: ['p-bad', 'fehlt'], woanders: ['p-move', 'woanders'], nf: ['p-nf', 'nicht gefunden'], nfm: ['p-nf', 'nicht gefunden']};
+const VERDICTS = ['ok', 'fehlt', 'woanders', 'nf'];
 const SURE_ZOOM = 0;
-const VERB = {ok:'Stimmt', fehlt:'Fehlt', woanders:'Woanders'};
 const NEWGROUPS = [
   ['Nur vor Ort zu sehen', ['Ruhezonen-Schild','Ruhezonen-Pfahl','Strandaufgang (Nr.)','Findling / Stein','Pfahl / Pfosten','Fahnenmast','Einzelbaum','Schild (sonstiges)']],
   ['Weitere Landmarken', ['Bank','SOS-Schild','Markanter Busch','Grube / Trichter','Tümpel','Dünenkuppe','Steilhang / Abbruch','Dünenübergang','Tor / Durchlass','Infotafel','Schutzhütte','Sandfangzaun','Holzsteg','Sonstiges']]];
@@ -270,25 +276,36 @@ let addOpen = false, showAll = LS.get('fc_showAll', false), catOff = new Set(LS.
 let db = null, storeState = 'connecting';
 let gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}, follow = false, rec = null, accLayer = null;
 // ---------- Briefkasten (GitHub): results go to branch "eingang", a GitHub Action merges them and asks the owner to approve ----------
-const TILE_CACHE = 'fc-tiles-20a1e591';   // build_site appends the tile version, same name as in sw.js
+const TILE_CACHE = 'fc-tiles', PDF_CACHE = 'fc-pdf';   // same names as in sw.js; their files are addressed by content
+const APP_VERSION = '1.5';
+const OFFLINE = {"bytes":30840629,"files":{"karten/detail_mitte_bw.svg":"6d4d6c5040","karten/detail_mitte_color.svg":"dbd9fcc9b5","karten/detail_ost_bw.svg":"a6bc542444","karten/detail_ost_color.svg":"c46fee45dc","karten/detail_sued_bw.svg":"cb0fdbaae6","karten/detail_sued_color.svg":"9aeda8f657","karten/detail_west_bw.svg":"c398ce0771","karten/detail_west_color.svg":"e761d89e7b","karten/layers.json":"6e587aef58","karten/uebersicht_bw.svg":"6a4e1f2e45","karten/uebersicht_color.svg":"dee97edef3","lib/jspdf.umd.min.js":"e6c65801ec","lib/qrcode.js":"6e6189e2b1","lib/svg2pdf.umd.min.js":"9f9cf4055c","t0_0_0.png":"7d61f4cd20","t0_0_1.png":"f73b97c032","t0_1_0.png":"0c903b6df0","t0_1_1.png":"32c519e66f","t1_0_0.png":"6d00ecf4c1","t1_0_1.png":"495bbfe3ee","t1_0_2.png":"e48a7fbf29","t1_1_0.png":"b16491106c","t1_1_1.png":"9e48e2f461","t1_1_2.png":"92252e71ce","t1_2_0.png":"1f0c1453e1","t1_2_1.png":"3014b83710","t1_2_2.png":"026ae08aef","t1_3_0.png":"928bc0a10e","t1_3_1.png":"d600bb5130","t1_3_2.png":"4bac19b20c","t2_0_0.png":"0b88d0fab2","t2_0_1.png":"5e235fbe08","t2_0_2.png":"824c41dfe8","t2_0_3.png":"44df46edde","t2_0_4.png":"6f6a2029a5","t2_0_5.png":"811534f97f","t2_1_0.png":"966fe8207c","t2_1_1.png":"763505bcb3","t2_1_2.png":"24ff801ec7","t2_1_3.png":"84565e6aa9","t2_1_4.png":"132d5efe0d","t2_1_5.png":"425f631022","t2_2_0.png":"eaf927cf47","t2_2_1.png":"7b048d71c0","t2_2_2.png":"8f806b7db0","t2_2_3.png":"5319db7722","t2_2_4.png":"193473849a","t2_2_5.png":"ba00c31cfd","t2_3_0.png":"e71bc97497","t2_3_1.png":"3bd99395af","t2_3_2.png":"5344c0b600","t2_3_3.png":"a18e438b82","t2_3_4.png":"d808e1c883","t2_3_5.png":"31b0fb4029","t2_4_0.png":"e152bcccec","t2_4_1.png":"5d322e0d42","t2_4_2.png":"199e593303","t2_4_3.png":"fec20cb0c5","t2_4_4.png":"132d5efe0d","t2_4_5.png":"d54d1b57ca","t2_5_0.png":"3a9bffeb4e","t2_5_1.png":"0fb4959d76","t2_5_2.png":"3f84775efb","t2_5_3.png":"06cf7ff962","t2_5_4.png":"132d5efe0d","t2_5_5.png":"e4e731ad5a","t2_6_0.png":"1924ea8fde","t2_6_1.png":"36f5e89b86","t2_6_2.png":"80ffa25898","t2_6_3.png":"95840c92bc","t2_6_4.png":"460150c95d","t2_6_5.png":"08b6397842","t3_0_0.png":"eb4c1d090e","t3_0_1.png":"4410e55181","t3_0_10.png":"81488910fc","t3_0_2.png":"616ceb3d6c","t3_0_3.png":"ceaf302a72","t3_0_4.png":"2b04a3c648","t3_0_5.png":"1645eb8d9d","t3_0_6.png":"c7be6ff642","t3_0_7.png":"66f5828d41","t3_0_8.png":"809f037dbb","t3_0_9.png":"1b73787cb8","t3_10_0.png":"4cd0ce36f4","t3_10_1.png":"7e6608eddd","t3_10_10.png":"3023f8434c","t3_10_2.png":"d1445aac66","t3_10_3.png":"a89caf4424","t3_10_4.png":"01531a85d7","t3_10_5.png":"be7b91dd86","t3_10_6.png":"92cc3017fa","t3_10_7.png":"132d5efe0d","t3_10_8.png":"132d5efe0d","t3_10_9.png":"132d5efe0d","t3_11_0.png":"70a37ee387","t3_11_1.png":"78728998ed","t3_11_10.png":"7473a77de0","t3_11_2.png":"e55a4e0347","t3_11_3.png":"e3fb26193f","t3_11_4.png":"dca47b41ef","t3_11_5.png":"1a1aa5c5e3","t3_11_6.png":"26d5c1bcaf","t3_11_7.png":"132d5efe0d","t3_11_8.png":"132d5efe0d","t3_11_9.png":"132d5efe0d","t3_12_0.png":"9aff159001","t3_12_1.png":"a5411ead8f","t3_12_10.png":"1a338b7aa7","t3_12_2.png":"e42cfbe6ae","t3_12_3.png":"170effd2d5","t3_12_4.png":"1a786bc546","t3_12_5.png":"2c82695bf2","t3_12_6.png":"cea2fb4120","t3_12_7.png":"132d5efe0d","t3_12_8.png":"132d5efe0d","t3_12_9.png":"132d5efe0d","t3_13_0.png":"e4336a820d","t3_13_1.png":"27fef89245","t3_13_10.png":"2236100c6e","t3_13_2.png":"4cd79f6d66","t3_13_3.png":"b2a4e66dc5","t3_13_4.png":"6acf45e928","t3_13_5.png":"f64c59048e","t3_13_6.png":"4470d4aeae","t3_13_7.png":"eadff72a1d","t3_13_8.png":"95e8e6bc3c","t3_13_9.png":"05182a0398","t3_1_0.png":"9cc4263589","t3_1_1.png":"132d5efe0d","t3_1_10.png":"399997c1e6","t3_1_2.png":"f325f4a898","t3_1_3.png":"1471fcbea8","t3_1_4.png":"301bcb38c6","t3_1_5.png":"d1fd799590","t3_1_6.png":"99e6715ca4","t3_1_7.png":"132d5efe0d","t3_1_8.png":"132d5efe0d","t3_1_9.png":"132d5efe0d","t3_2_0.png":"1d7c878d10","t3_2_1.png":"132d5efe0d","t3_2_10.png":"d3fba420d6","t3_2_2.png":"0b32ea40d8","t3_2_3.png":"506a908ef1","t3_2_4.png":"cb3bacdd3f","t3_2_5.png":"55e1477ae2","t3_2_6.png":"7a05018948","t3_2_7.png":"132d5efe0d","t3_2_8.png":"132d5efe0d","t3_2_9.png":"132d5efe0d","t3_3_0.png":"700b916258","t3_3_1.png":"f588934af3","t3_3_10.png":"799cdb65c5","t3_3_2.png":"788f0575cf","t3_3_3.png":"fd492ba325","t3_3_4.png":"eb563cb5e7","t3_3_5.png":"a5646dffe0","t3_3_6.png":"ba5c19c71f","t3_3_7.png":"ddf2bfce1e","t3_3_8.png":"132d5efe0d","t3_3_9.png":"132d5efe0d","t3_4_0.png":"ff1cbd0186","t3_4_1.png":"132d5efe0d","t3_4_10.png":"9d32abcc86","t3_4_2.png":"9c90c3c38f","t3_4_3.png":"205370c3de","t3_4_4.png":"74393649b1","t3_4_5.png":"64ffc9e2b2","t3_4_6.png":"84a9db1ac6","t3_4_7.png":"69182684a0","t3_4_8.png":"5c89186045","t3_4_9.png":"132d5efe0d","t3_5_0.png":"2e4df5a157","t3_5_1.png":"13253131be","t3_5_10.png":"b80320ad9a","t3_5_2.png":"959a2f616f","t3_5_3.png":"d430597d5b","t3_5_4.png":"21ff8ff099","t3_5_5.png":"ec17887b80","t3_5_6.png":"23b9433f6f","t3_5_7.png":"d0e9948298","t3_5_8.png":"12b3392c07","t3_5_9.png":"5487d4b8e3","t3_6_0.png":"5bc32d3b82","t3_6_1.png":"236ffd03de","t3_6_10.png":"c8f754c325","t3_6_2.png":"b17e06476e","t3_6_3.png":"79fccc7b7d","t3_6_4.png":"127a7e69fb","t3_6_5.png":"c89c7ece21","t3_6_6.png":"4de14bddc7","t3_6_7.png":"5f029d4d81","t3_6_8.png":"5ebdb6df87","t3_6_9.png":"9b9e63071e","t3_7_0.png":"5b3e881d6a","t3_7_1.png":"bc11640dac","t3_7_10.png":"b187052707","t3_7_2.png":"17e530c3be","t3_7_3.png":"9ac57f87da","t3_7_4.png":"b98a55f9e9","t3_7_5.png":"947b8d212e","t3_7_6.png":"e19b300174","t3_7_7.png":"1c438c328a","t3_7_8.png":"67a42ae309","t3_7_9.png":"d5b68f5782","t3_8_0.png":"39a632a518","t3_8_1.png":"7d4b815179","t3_8_10.png":"fb3ea35941","t3_8_2.png":"f1da2e509c","t3_8_3.png":"a85d2d057e","t3_8_4.png":"a0d279ae96","t3_8_5.png":"e7142f75da","t3_8_6.png":"33921b4f57","t3_8_7.png":"bf7ff61dcd","t3_8_8.png":"132d5efe0d","t3_8_9.png":"132d5efe0d","t3_9_0.png":"ba1e66baa1","t3_9_1.png":"6915aef5c5","t3_9_10.png":"5bbce0c353","t3_9_2.png":"b90b5aa0a9","t3_9_3.png":"25614a035a","t3_9_4.png":"5f7eb518a0","t3_9_5.png":"4a96b9b609","t3_9_6.png":"384d18a5cb","t3_9_7.png":"132d5efe0d","t3_9_8.png":"132d5efe0d","t3_9_9.png":"132d5efe0d"}};   // build_site: {files: {path: hash}, bytes} – map tiles and PDF data that can be stored on the phone
+const vurl = (p) => OFFLINE && OFFLINE.files[p] ? p + '?v=' + OFFLINE.files[p] : p;
+// one id per phone: the merge keeps each device's newest entry per object, so withdrawals of one helper never touch another's
+const DEV = LS.get('fc_dev', null) || (() => { const d = 'd-' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36)); LS.set('fc_dev', d); return d; })();
+let sentLog = LS.get('fc_sentLog', {v: {}, n: {}});   // what this phone already sent: {v: {id: {t, z}}, n: {...}} (z = withdrawal)
+let wd = LS.get('fc_wd', {v: {}, n: {}});              // withdrawals of already sent entries, not sent yet: {v: {id: t}, n: {nid: t}}
 const GH = {owner: 'JNKersken', repo: 'wangerooge-feldcheck', branch: 'eingang', dir: 'karte/data/feldcheck/eingang'};
 let box = LS.get('fc_box', null);   // {key, name}
 // iOS gives a Home-Screen app its own storage and copies only cookies from Safari when the icon is added.
 // So the key also goes into a cookie: open the invitation link in Safari, then "Zum Home-Bildschirm" – the app is set up.
 const BOX_PATH = location.pathname.replace(/[^/]*$/, '');
 function boxCookie(b){ try { document.cookie = 'fc_box=' + (b ? encodeURIComponent(JSON.stringify(b)) + '; Max-Age=31536000' : '; Max-Age=0') + '; Path=' + BOX_PATH + '; SameSite=Strict' + (location.protocol === 'https:' ? '; Secure' : ''); } catch(e) {} }
+const cleanKey = (k) => (k || '').replace(/[^A-Za-z0-9_]/g, '');   // copied keys may carry invisible characters
 function parseInvite(s){   // full invitation link or bare key
-  s = (s || '').trim(); if (!s.includes('key=')) return s ? {key: s} : null;
-  const h = new URLSearchParams(s.slice(s.indexOf('#') + 1).replace(/^[^?]*\?/, '')); return h.get('key') ? {key: h.get('key').trim(), name: (h.get('name') || '').trim()} : null;
+  s = (s || '').trim(); if (!s.includes('key=')) return cleanKey(s) ? {key: cleanKey(s)} : null;
+  const h = new URLSearchParams(s.slice(s.indexOf('#') + 1).replace(/^[^?]*\?/, ''));
+  return cleanKey(h.get('key')) ? {key: cleanKey(h.get('key')), name: (h.get('name') || '').trim().slice(0, 60), gebiet: (h.get('gebiet') || '').replace(/[^a-z_]/g, '')} : null;
 }
 if (IS_APP && location.hash.includes('key=')) {
   const b = parseInvite(location.hash);
-  if (b) { box = {key: b.key, name: b.name || box && box.name || ''}; LS.set('fc_box', box); boxCookie(box); }
+  if (b) { box = {key: b.key, name: b.name || box && box.name || '', gebiet: b.gebiet || ''}; LS.set('fc_box', box); boxCookie(box); if (b.gebiet) LS.set('fc_area', b.gebiet); }
   history.replaceState(null, '', location.pathname + location.search);   // key never stays in the address bar
 }
-if (IS_APP && !box) { const m = document.cookie.match(/(?:^|;\s*)fc_box=([^;]+)/); if (m) { try { box = JSON.parse(decodeURIComponent(m[1])); if (box && box.key) LS.set('fc_box', box); else box = null; } catch(e) { box = null; } } }
+if (IS_APP && !box) { const m = document.cookie.match(/(?:^|;\s*)fc_box=([^;]+)/); if (m) { try { box = JSON.parse(decodeURIComponent(m[1])); if (box && cleanKey(box.key)) { box.key = cleanKey(box.key); LS.set('fc_box', box); if (box.gebiet) LS.set('fc_area', box.gebiet); } else box = null; } catch(e) { box = null; } } }
+if (box && box.key !== cleanKey(box.key)) { box.key = cleanKey(box.key); LS.set('fc_box', box); }
+let area = LS.get('fc_area', '');   // optional working area (sheet id) – list, next and progress stay inside it
 
-$('btnList').innerHTML = svgI('list'); $('btnMenu').innerHTML = svgI('more');
+$('btnList').innerHTML = svgI('list'); $('btnMenu').innerHTML = svgI('more') + '<span class="badge" id="badge" hidden></span>';
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -2, maxZoom: 3, zoomSnap: .25, zoomDelta: .5, attributionControl: false, zoomControl: false, maxBoundsViscosity: .8});
 const B = L.latLngBounds(ll(X0, Y1 - H), ll(X0 + W, Y1));
 function visibleBox(){   // screen part of the map not covered by the top bar and the bottom card (side card on wide screens)
@@ -304,17 +321,17 @@ function updateBounds(z){   // keep the map in reach, but let every edge be pann
 }
 updateBounds(0); map.on('zoomend', () => updateBounds()); window.addEventListener('resize', () => updateBounds());
 if (window.ResizeObserver) new ResizeObserver(() => updateBounds()).observe($('sheet'));
-const Tiles = L.TileLayer.extend({getTileUrl(c){return `t${c.z + 2}_${c.x}_${c.y}.png`}});
+const Tiles = L.TileLayer.extend({getTileUrl(c){return vurl(`t${c.z + 2}_${c.x}_${c.y}.png`)}});
 new Tiles('', {tileSize: 512, minZoom: -2, maxZoom: 3, minNativeZoom: -2, maxNativeZoom: 1, bounds: B, noWrap: true,
   errorTileUrl: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}).addTo(map);
 L.control.zoom({position: 'topright'}).addTo(map);
 map.fitBounds(L.latLngBounds(ll(424150, 5960050), ll(425350, 5961000)));
 
 const vOf = (id) => pending[id] || verdicts[id] || null;
-function stateOf(it){ const v = vOf(it.id); if (v) return v.st; return it.s === 'sicher' ? 'sure' : 'open'; }
+function stateOf(it){ const v = vOf(it.id); if (v) return v.st; if (it.nf) return 'nfm'; return it.s === 'sicher' ? 'sure' : 'open'; }
 function icon(it, selected){
   const st = stateOf(it), c = CAT[it.k] || CAT['Kleinobjekt'];
-  const sz = st === 'sure' ? (it.k === 'Trichter' ? 16 : 19) : (it.k === 'Trichter' ? 20 : 24), glyph = (st === 'ok' || st === 'fehlt' || st === 'sure') ? '#ffffff' : '#1f1d24';
+  const sz = st === 'sure' ? (it.k === 'Trichter' ? 16 : 19) : (it.k === 'Trichter' ? 20 : 24), glyph = ['ok', 'fehlt', 'sure', 'nf', 'nfm'].includes(st) ? '#ffffff' : '#1f1d24';
   const ring = selected ? '#2b6fd6' : (st === 'open' ? '#7d7787' : (st === 'sure' ? '#ffffff' : 'rgba(0,0,0,.35)'));
   const html = `<svg class="ico" width="${sz}" height="${sz}" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="${FILL[st]}" stroke="${ring}" stroke-width="${selected ? 2.4 : 1.4}"/><path d="${c[1]}" fill="none" stroke="${glyph}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   return L.divIcon({html, className: '', iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2]});
@@ -366,16 +383,24 @@ function drawNews(){
 }
 function redrawAll(){ DATA.items.forEach(drawItem); DATA.paths.forEach(drawItem); drawNews(); progress(); }
 
+const areaBox = () => { const s_ = area && DATA && (DATA.sheets || []).find(s => s.id === area); return s_ ? s_.bbox : null; };
+function inArea(it){ const b = areaBox(); if (!b) return true; const p = posOf(it); return p[0] >= b[0] && p[0] <= b[2] && p[1] >= b[1] && p[1] <= b[3]; }
+let areaLayer = null;
+function drawArea(){ if (areaLayer) map.removeLayer(areaLayer); areaLayer = null; const b = areaBox(); if (b) areaLayer = L.rectangle(L.latLngBounds(ll(b[0], b[1]), ll(b[2], b[3])), {color: '#d0176c', weight: 2, dashArray: '6 6', fill: false, interactive: false}).addTo(map); }
 function progress(){
-  const todo = DATA.items.filter(i => i.s !== 'sicher').concat(DATA.paths);
+  const todo = DATA.items.filter(i => i.s !== 'sicher').concat(DATA.paths).filter(inArea);
   const done = todo.filter(i => vOf(i.id)).length;
-  $('progTxt').textContent = `${done}/${todo.length}`; $('progTxt').title = `${done} von ${todo.length} Objekten geprüft`;
-  $('meterFill').setAttribute('stroke-dasharray', `${(100 * done / todo.length).toFixed(1)} 100`);
+  $('progTxt').textContent = `${done}/${todo.length}`; $('progTxt').title = `${done} von ${todo.length} Objekten geprüft` + (areaBox() ? ' (im gewählten Gebiet)' : '');
+  $('meterFill').setAttribute('stroke-dasharray', `${(100 * done / Math.max(1, todo.length)).toFixed(1)} 100`);
 }
 
 // ---------- store ----------
+function inTour(){ if (!tour) return false; toast('Übung – in der Einführung wird nichts gespeichert.', 3000); return true; }
 function saveVerdict(id, v){
+  if (inTour()) return;
   pending[id] = v; LS.set('fc_pending', pending); drawItem(byId[id]); progress();
+  if (wd.v[id]) { delete wd.v[id]; LS.set('fc_wd', wd); }
+  updateBadge();
   if (!db) { verdicts[id] = v; return; }
   queueWrite(id, () => v === null ? db.collection('pruefung').doc(id).delete() : db.collection('pruefung').doc(id).set(v));
 }
@@ -385,9 +410,42 @@ function queueWrite(key, fn){
     .catch((e) => { setStore('err', e && e.code); });
 }
 function saveNew(id, n){
+  if (inTour()) return;
   pendingNew[id] = n; LS.set('fc_pendingNew', pendingNew); drawNews();
+  if (wd.n[id]) { delete wd.n[id]; LS.set('fc_wd', wd); }
+  updateBadge();
   if (!db) { news[id] = n; return; }
   queueWrite('neu/' + id, () => db.collection('neu').doc(id).set(n));
+}
+// taking back: if the entry already went out, the map team gets a withdrawal with the next send
+function undoVerdict(id){
+  if (inTour()) return;
+  delete pending[id]; delete verdicts[id]; LS.set('fc_pending', pending);
+  const s_ = sentLog.v[id]; if (s_ && !s_.z) { wd.v[id] = Date.now(); LS.set('fc_wd', wd); }
+  if (db) queueWrite(id, () => db.collection('pruefung').doc(id).delete());
+  if (byId[id]) drawItem(byId[id]); progress(); updateBadge();
+}
+function deleteNew(id){
+  if (inTour()) return;
+  delete pendingNew[id]; delete news[id]; LS.set('fc_pendingNew', pendingNew);
+  const s_ = sentLog.n[id]; if (s_ && !s_.z) { wd.n[id] = Date.now(); LS.set('fc_wd', wd); }
+  if (db) queueWrite('neu/' + id, () => db.collection('neu').doc(id).delete());
+  drawNews(); updateBadge();
+}
+function unsent(){   // what the next send carries: new or changed entries and withdrawals
+  const v = {}, n = {};
+  for (const [id, x] of Object.entries(pending)) { const s_ = sentLog.v[id]; if (!s_ || s_.z || s_.t !== x.t) v[id] = x; }
+  for (const [id, t] of Object.entries(wd.v)) v[id] = {st: 'zurueck', t};
+  for (const [id, x] of Object.entries(pendingNew)) { const s_ = sentLog.n[id]; if (!s_ || s_.z || s_.t !== x.t) n[id] = x; }
+  for (const [id, t] of Object.entries(wd.n)) n[id] = {geloescht: true, t};
+  return {verdicts: v, neu: n};
+}
+const nUnsent = () => { const u = unsent(); return Object.keys(u.verdicts).length + Object.keys(u.neu).length; };
+const nWaiting = () => Object.values(sentLog.v).concat(Object.values(sentLog.n)).filter(s_ => !s_.z).length;
+function updateBadge(){
+  const b = $('badge'), n = IS_APP ? nUnsent() : 0; if (!b) return;
+  b.hidden = !n; b.textContent = n > 99 ? '99+' : String(n);
+  $('btnMenu').setAttribute('aria-label', n ? `Menü, ${n} ungesendet` : 'Menü');
 }
 function setStore(s, code){
   storeState = s;
@@ -399,6 +457,21 @@ const storeShown = () => storeWarn() || !IS_APP;   // in the app "saved on this 
 function storeText(){
   return {connecting: 'Verbinde mit Speicher …', ok: 'Gespeichert – Claude sieht deine Einträge.', err: 'Speichern gerade nicht möglich. Einträge bleiben auf dem Handy und werden nachgereicht.',
     local: IS_APP ? 'Auf diesem Handy gespeichert. Am Ende im Menü [more] senden.' : 'Nur auf diesem Gerät gespeichert. Am Ende im Menü [more] „Ergebnis kopieren“ und an Claude schicken.'}[storeState];
+}
+function cleanupMerged(){   // data.json lists, per phone, what is now part of the map (v, n) and what the map team turned down (x)
+  const mine = (DATA.feld || {})[DEV] || {}, mv = mine.v || {}, mn = mine.n || {}, mx = mine.x || {};
+  let merged = 0, rejected = 0, ch = false;
+  const sweep = (local, mirror, log, done) => {
+    for (const [id, x] of Object.entries(local)) {
+      if (mx[id] === x.t) { delete local[id]; delete mirror[id]; delete log[id]; rejected++; }
+      else if (done[id] >= x.t) { delete local[id]; delete mirror[id]; delete log[id]; merged++; }
+    }
+    for (const [id, s_] of Object.entries(log)) if (!local[id] && (done[id] >= s_.t || mx[id] >= s_.t)) { delete log[id]; ch = true; }
+  };
+  sweep(pending, verdicts, sentLog.v, mv); sweep(pendingNew, news, sentLog.n, mn);
+  if (merged || rejected || ch) { LS.set('fc_pending', pending); LS.set('fc_pendingNew', pendingNew); LS.set('fc_sentLog', sentLog); }
+  if (merged || rejected) toast([merged === 1 ? 'Ein Eintrag von dir ist jetzt in der Karte.' : merged ? `${merged} Einträge von dir sind jetzt in der Karte.` : '',
+    rejected === 1 ? 'Einen Eintrag hat das Kartenteam nicht übernommen – das Objekt ist wieder offen.' : rejected ? `${rejected} Einträge hat das Kartenteam nicht übernommen – sie sind wieder offen.` : ''].join(' ').trim(), 7000);
 }
 async function initStore(){
   try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch(e) { db = null; }
@@ -421,6 +494,7 @@ async function initStore(){
 
 // ---------- interaction ----------
 function onTap(latlng, id){
+  if (mode && !inFrame(en(latlng))) { toast('Diese Stelle liegt außerhalb der Karte.', 3000); return; }
   if (mode === 'move' && selId){ const [e, n] = en(latlng); setMode(null); saveVerdict(selId, {st: 'woanders', e, n, note: noteVal(), t: Date.now()}); renderSheet(); return; }
   if (mode === 'add'){ const [e, n] = en(latlng); const nid = 'N' + Date.now().toString(36); setMode(null); saveNew(nid, {...formDraft, e, n, t: Date.now()}); formDraft = null; selectNew(nid); return; }
   if (mode === 'movenew' && selNewId){ const [e, n] = en(latlng); const cur = pendingNew[selNewId] || news[selNewId]; setMode(null); if (cur) saveNew(selNewId, {...cur, e, n, t: Date.now()}); renderSheet(); return; }
@@ -471,16 +545,20 @@ function toast(msg, ms = 6000){   // short notice under the top bar
   const t = document.createElement('div'); t.className = 'toast glass-strong'; t.setAttribute('role', 'status'); t.textContent = msg;
   t.onclick = () => t.remove(); $('app').appendChild(t); setTimeout(() => t.remove(), ms);
 }
-function startGps(){
-  if (!navigator.geolocation){ toast('Dieses Gerät liefert keine GPS-Position.'); return; }
-  gps.on = true; gps.err = null; gpsBtn();
-  // compass needs a tap-triggered permission on iOS
+const ORIENT_EV = 'ondeviceorientationabsolute' in window ? 'deviceorientationabsolute' : 'deviceorientation';
+let compassAsked = false;
+function askCompass(){   // iOS only grants the compass from a tap; elsewhere it just starts listening
+  if (compassAsked) return; compassAsked = true;
   try {
-    const DOE = window.DeviceOrientationEvent;
-    const listen = () => window.addEventListener('deviceorientation', onOrient, true);
+    const DOE = window.DeviceOrientationEvent, listen = () => window.addEventListener(ORIENT_EV, onOrient, true);
     if (DOE && typeof DOE.requestPermission === 'function') DOE.requestPermission().then(r => { if (r === 'granted') listen(); }).catch(() => {});
     else if (DOE) listen();
   } catch(e) {}
+}
+function startGps(fromTap){
+  if (!navigator.geolocation){ toast('Dieses Gerät liefert keine GPS-Position.'); return; }
+  gps.on = true; gps.err = null; gps.buf = []; gpsBtn();
+  if (fromTap) askCompass(); else document.addEventListener('click', askCompass, {once: true, capture: true});
   const onErr = (e) => {
     if (e.code === 1) { stopGps(); toast('Ortung ist nicht erlaubt. Freigeben unter Einstellungen → Datenschutz → Ortungsdienste.'); return; }
     if (!gps.on) return;
@@ -492,7 +570,7 @@ function startGps(){
   LS.set('fc_gps', true); try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch(e) {}
 }
 function stopGps(){ if (gps.watch !== null) navigator.geolocation.clearWatch(gps.watch); if (gps.coarse !== undefined) navigator.geolocation.clearWatch(gps.coarse); gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}; follow = false;
-  window.removeEventListener('deviceorientation', onOrient, true); LS.set('fc_gps', false); me = LS.get('fc_me', null); drawMe(); gpsBtn(); renderSheet(); }
+  window.removeEventListener(ORIENT_EV, onOrient, true); compassAsked = false; LS.set('fc_gps', false); me = LS.get('fc_me', null); drawMe(); gpsBtn(); renderSheet(); }
 let lastHeadDraw = 0;
 function onOrient(ev){
   let h = null;
@@ -500,18 +578,19 @@ function onOrient(ev){
   else if (ev.absolute && typeof ev.alpha === 'number') h = 360 - ev.alpha + HEAD_CORR;
   if (h === null || !gps.pos) return;
   gps.head = (h + 360) % 360;
-  const t = performance.now(); if (t - lastHeadDraw > 150) { lastHeadDraw = t; drawMe(); }
+  const t = performance.now(); if (t - lastHeadDraw > 150) { lastHeadDraw = t; drawMe(); updateDir(); }
 }
 function onPos(p){
   const c = p.coords;
   if (!gps.on) return;
   if (gps.pos && Date.now() - gps.t < 15000 && c.accuracy > 2 * gps.acc) return;   // keep a recent precise fix instead of a coarse one
   gps.pos = toUTM(c.latitude, c.longitude); gps.acc = c.accuracy; gps.t = Date.now(); gps.err = null;
-  if (c.heading !== null && !isNaN(c.heading) && c.speed > 0.8 && !window.__hasCompass) gps.head = c.heading - 0.9;
+  if (c.heading !== null && !isNaN(c.heading) && c.speed > 0.8 && !window.__hasCompass) gps.head = (c.heading + GRID_CORR) % 360;
+  gps.buf = (gps.buf || []).concat([{p: gps.pos.slice(), acc: c.accuracy, t: gps.t}]).filter(f => gps.t - f.t < 20000);
   me = gps.pos; drawMe(); gpsBtn();
   if (follow) panToMe();
-  if (rec && c.accuracy <= 20){ const last = rec.pts[rec.pts.length - 1]; if (!last || dist(last, gps.pos) >= 4) { rec.pts.push(gps.pos.slice()); drawDraft(rec.pts); } }
-  renderStatus();
+  if (rec && c.accuracy <= 20){ const last = rec.pts[rec.pts.length - 1]; if (!last || dist(last, gps.pos) >= 4) { rec.pts.push(gps.pos.slice()); LS.set('fc_rec', rec); drawDraft(rec.pts); } }
+  renderStatus(); updateDir();
 }
 function renderStatus(){
   const el = document.querySelector('#sheet .gpsst'); if (el) el.textContent = gpsText();
@@ -525,29 +604,56 @@ function panToVisible(p, zoom){   // centre a point in the visible part of the m
   updateBounds(z); map.setView(map.unproject(map.project(ll(p[0], p[1]), z).add(off), z), z, {animate: true});
 }
 function panToMe(zoom){ if (gps.pos) panToVisible(gps.pos, zoom); }
-const hereNow = () => gps.pos ? {e: gps.pos[0], n: gps.pos[1], acc: Math.round(gps.acc), src: 'gps'} : null;
+function measureHere(btn, done){   // one dune fix is often ±15–30 m: collect 5 s of fixes and average them (weight 1/acc²)
+  if (!gps.pos || btn.disabled) return;
+  // each fix counts once (a phone standing still may report rarely); fixes older than 15 s are not used
+  const t0 = Date.now(), got = [], take = () => { if (gps.pos && Date.now() - gps.t < 15000 && !got.some(f => f.t === gps.t)) got.push({p: gps.pos.slice(), acc: gps.acc, t: gps.t}); };
+  take(); btn.disabled = true;
+  const iv = setInterval(() => {
+    take(); const left = 5 - Math.floor((Date.now() - t0) / 1000);
+    if (left > 0) { btn.innerHTML = `${svgI('loc')}Messe Position … ${left} s`; return; }
+    clearInterval(iv); btn.disabled = false;
+    if (!got.length) { toast('Kein GPS-Signal – bitte erneut versuchen.'); renderSheet(); return; }
+    let sw = 0, se = 0, sn = 0; for (const f of got) { const w = 1 / Math.max(1, f.acc) ** 2; sw += w; se += f.p[0] * w; sn += f.p[1] * w; }
+    const acc = Math.max(2, Math.round(Math.min(...got.map(f => f.acc)) / Math.sqrt(Math.min(got.length, 4))));
+    const h = {e: Math.round(se / sw * 10) / 10, n: Math.round(sn / sw * 10) / 10, acc, src: 'gps'};
+    if (!inFrame([h.e, h.n])) { toast('Du bist außerhalb der Karte – Position nicht übernommen.'); renderSheet(); return; }
+    if (acc > 10) toast(`Position ungenau (± ${acc} m). Wenn möglich kurz warten und erneut messen.`, 5000);
+    done(h);
+  }, 1000);
+}
 const noteVal = () => { const t = $('note'); return t ? t.value.trim() : ''; };
+const fresh = () => IS_APP && gps.on && gps.pos && Date.now() - gps.t < 30000;
+const withD = (v, it) => fresh() && it ? {...v, d: Math.round(dist(gps.pos, posOf(it)))} : v;   // how far away the helper stood
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 function posOf(it){ return it.c ? it.c[Math.floor(it.c.length / 2)] : [it.e, it.nn]; }
+const openItems = () => DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k) && inArea(i));
 function nextOpen(){
-  const from = selId ? posOf(byId[selId]) : (me || en(map.getCenter()));
-  const cand = DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k) && i.id !== selId);
+  const from = selId && byId[selId] ? posOf(byId[selId]) : (me || en(map.getCenter()));
+  const cand = openItems().filter(i => i.id !== selId);
   cand.sort((a, b) => dist(posOf(a), from) - dist(posOf(b), from));
   if (cand[0]) { select(cand[0].id); panToVisible(posOf(cand[0]), Math.max(map.getZoom(), 1)); }
+  else toast(areaBox() ? 'Im gewählten Gebiet ist alles geprüft. Anderes Gebiet im Menü unter „Anzeigen“.' : 'Alles geprüft – danke!', 5000);
 }
+function updateDir(){   // live distance to the selected object while walking (no full re-render)
+  const el = document.querySelector('#sheet [data-dist]'); if (!el || !selId || !byId[selId] || !me) return;
+  el.textContent = fmtDist(dist(posOf(byId[selId]), me));
+}
+const fmtDist = (m) => m < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1).replace('.', ',')} km`;
 
 function renderSheet(){
   const S = $('sheet');
-  const gpsLine = () => IS_APP && gps.on ? `<p class="status gpsst">${gpsText()}</p>` : '';
+  const gpsLine = () => IS_APP && gps.on && (gps.err || !gps.pos || !inFrame(gps.pos) || gps.acc > 25) ? `<p class="status gpsst">${gpsText()}</p>` : '';
   const storeLine = () => `<p class="status storest ${storeWarn() ? 'warn' : ''}" ${storeShown() ? '' : 'hidden'}>${ti(storeText())}</p>`;
   if (rec){
     S.innerHTML = `<div class="ihead"><span class="pill p-rec">● Aufnahme</span><span class="cat">Pfad per GPS</span></div>
       <h2 id="recN">${rec.pts.length} Punkte</h2>
-      <p class="meta">Lauf den Pfad ab. Punkte kommen automatisch dazu.</p>
+      <p class="meta">Lauf den Pfad ab. Punkte kommen automatisch dazu, sobald das GPS auf ± 20 m genau ist.</p>
+      ${IS_APP && !gps.on ? `<p class="status warn">${ti('GPS ist aus – oben [loc] antippen, um weiter aufzuzeichnen.')}</p>` : ''}
       <div class="row"><button class="ib pri" id="rStop" type="button">Stopp &amp; speichern</button><button class="ib" id="rCancel" type="button">Verwerfen</button></div>
       ${gpsLine()}`;
-    $('rStop').onclick = () => { const pts = rec.pts; rec = null; drawDraft([]); if (pts.length >= 2) { const nid = 'N' + Date.now().toString(36); saveNew(nid, {typ: 'Schleichpfad', pts, note: '', src: 'gps', t: Date.now()}); selectNew(nid); } else renderSheet(); };
-    $('rCancel').onclick = () => { rec = null; drawDraft([]); renderSheet(); };
+    $('rStop').onclick = () => { const pts = rec.pts; rec = null; LS.set('fc_rec', null); drawDraft([]); if (pts.length >= 2) { const nid = 'N' + Date.now().toString(36); saveNew(nid, {typ: 'Schleichpfad', pts, note: '', src: 'gps', t: Date.now()}); selectNew(nid); } else { toast('Zu wenige Punkte – nichts gespeichert.', 3000); renderSheet(); } };
+    $('rCancel').onclick = () => { rec = null; LS.set('fc_rec', null); drawDraft([]); renderSheet(); };
     renderStatus(); return;
   }
   if (mode === 'path'){
@@ -569,15 +675,15 @@ function renderSheet(){
       ${gpsLine()}`;
     let typ = cur.typ;
     S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
-    if ($('fHere')) $('fHere').onclick = () => { const h = hereNow(); if (!h) return; const nid = 'N' + Date.now().toString(36); showForm = false;
-      saveNew(nid, {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), ...h, t: Date.now()}); formDraft = null; selectNew(nid); };
+    if ($('fHere')) $('fHere').onclick = () => { if (inTour()) return; const f = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()};
+      measureHere($('fHere'), (h) => { const nid = 'N' + Date.now().toString(36); showForm = false; saveNew(nid, {...f, ...h, t: Date.now()}); formDraft = null; selectNew(nid); }); };
     $('fPin').onclick = () => { formDraft = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()}; showForm = false; setMode('add', `Position antippen: ${typ}`); renderSheet(); };
     $('fCancel').onclick = () => { showForm = false; formDraft = null; renderSheet(); };
     return;
   }
   if (selNewId){
     const n = pendingNew[selNewId] || news[selNewId]; if (!n) { selNewId = null; return renderSheet(); }
-    S.innerHTML = `<div class="ihead"><span class="pill p-new">neu</span><span class="cat">vor Ort erfasst</span><span class="id">${n.src === 'gps' ? `GPS${n.acc ? ` ± ${n.acc} m` : ''}` : (n.pts ? `${n.pts.length} Punkte` : 'angetippt')}</span></div>
+    S.innerHTML = `<div class="ihead"><span class="pill p-new">neu</span><span class="cat">vor Ort erfasst</span><span class="id">${n.src === 'gps' ? `GPS${n.acc ? ` ± ${esc(Math.round(n.acc))} m` : ''}` : (n.pts ? `${n.pts.length} Punkte` : 'angetippt')}</span></div>
       <div id="typChips" style="display:grid;gap:6px">${n.pts ? `<div class="chips"><button class="chip" type="button" data-t="Schleichpfad" aria-pressed="true">Schleichpfad</button></div>` : typeChips(n.typ)}</div>
       <input id="nName" type="text" placeholder="Name (optional)" value="${esc(n.name || '')}">
       <textarea id="nDesc" placeholder="Woran erkennt man es?">${esc(n.note || '')}</textarea>
@@ -590,8 +696,9 @@ function renderSheet(){
     $('nSave').onclick = () => { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), t: Date.now()}); $('nSave').textContent = 'Gespeichert'; };
     $('nDone').onclick = () => { selNewId = null; drawNews(); renderSheet(); };
     if (!n.pts) $('nMove').onclick = () => setMode('movenew', 'Neue Position antippen');
-    if ($('nHere')) $('nHere').onclick = () => { const h = hereNow(); if (h) { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), ...h, t: Date.now()}); renderSheet(); } };
-    $('nDel').onclick = () => { const id = selNewId; delete pendingNew[id]; delete news[id]; LS.set('fc_pendingNew', pendingNew); if (db) queueWrite('neu/' + id, () => db.collection('neu').doc(id).delete()); selNewId = null; drawNews(); renderSheet(); };
+    if ($('nHere')) $('nHere').onclick = () => { const id = selNewId, f = {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()};
+      measureHere($('nHere'), (h) => { saveNew(id, {...f, ...h, t: Date.now()}); renderSheet(); }); };
+    $('nDel').onclick = () => { if (inTour()) return; deleteNew(selNewId); selNewId = null; renderSheet(); };
     return;
   }
   if (!selId){
@@ -605,19 +712,19 @@ function renderSheet(){
     $('bHelp').onclick = () => startTour();
     $('bNext').onclick = nextOpen;
     if ($('bMe')) $('bMe').onclick = () => { addOpen = false; setMode('me', 'Tippe auf deinen Standort'); renderSheet(); };
-    if ($('bRec')) $('bRec').onclick = () => { addOpen = false; rec = {pts: gps.pos ? [gps.pos.slice()] : []}; drawDraft(rec.pts); renderSheet(); };
+    if ($('bRec')) $('bRec').onclick = () => { addOpen = false; rec = {pts: gps.pos && gps.acc <= 20 && fresh() ? [gps.pos.slice()] : []}; LS.set('fc_rec', rec); drawDraft(rec.pts); renderSheet(); };
     if ($('bNew')) $('bNew').onclick = () => { showForm = true; formDraft = null; addOpen = false; renderSheet(); };
     if ($('bPath')) $('bPath').onclick = () => { draft = []; addOpen = false; setMode('path', 'Pfad Punkt für Punkt antippen'); renderSheet(); };
     return;
   }
   const it = byId[selId], v = vOf(selId), st = stateOf(it), c = CAT[it.k] || CAT['Kleinobjekt'];
-  const pill = {open: ['p-open', 'offen'], sure: ['p-sure', 'sicher'], ok: ['p-ok', 'stimmt'], fehlt: ['p-bad', 'fehlt'], woanders: ['p-move', 'woanders']}[st];
-  const d = me ? Math.round(dist(posOf(it), me)) : null;
+  const pill = STATES[st] || STATES.open;
+  const d = me ? dist(posOf(it), me) : null;
   const fact = (ic, txt, cls = '') => txt ? `<div class="fact ${cls}">${svgI(ic)}<span>${esc(txt)}</span></div>` : '';
-  S.innerHTML = `<div class="ihead"><span class="pill ${pill[0]}">${pill[1]}</span><span class="cat">${esc(c[0])}</span><span class="id">${d !== null ? `${d} m` : esc(it.id)}</span></div>
+  S.innerHTML = `<div class="ihead"><span class="pill ${pill[0]}">${pill[1]}</span><span class="cat">${esc(c[0])}</span><span class="id" ${d !== null ? 'data-dist' : ''}>${d !== null ? fmtDist(d) : esc(it.id)}</span></div>
     <h2>${esc(it.n || c[0])}</h2>
     ${it.f ? `<p class="find">${esc(it.f)}</p>` : ''}
-    <div class="facts">${fact('pin', it.wo)}${it.z ? fact('leaf', 'Ruhezone: nur von Wegen aus prüfen', 'zone') : ''}${fact('info', it.s === 'sicher' && !v ? 'Schon sicher – nur ändern, wenn es nicht stimmt.' : it.w)}${fact('text', it.no)}</div>
+    <div class="facts">${fact('pin', it.wo)}${it.z ? fact('leaf', 'Ruhezone: nur von Wegen aus prüfen', 'zone') : ''}${fact('info', it.s === 'sicher' && !v ? 'Schon sicher – nur ändern, wenn es nicht stimmt.' : (st === 'nfm' ? `Schon ${it.nf}× nicht gefunden. Bitte genau nachsehen.` : it.w))}${fact('text', it.no)}</div>
     <div class="acts" ${it.c ? 'style="grid-template-columns:1fr 1fr"' : ''}>
       <button class="act a-ok" id="vOk" type="button">${svgI('check')}Stimmt</button>
       <button class="act a-bad" id="vBad" type="button">${svgI('x')}Fehlt</button>
@@ -627,26 +734,41 @@ function renderSheet(){
     <textarea id="note" placeholder="Notiz (optional)" rows="1">${esc(v && v.note || '')}</textarea>
     <div class="row"><button class="ib grow" id="bNext2" type="button">Nächstes offenes${svgI('next')}</button>${v ? `<button class="ib icon" id="vUndo" type="button" aria-label="Bewertung zurücknehmen" title="Bewertung zurücknehmen">${svgI('undo')}</button>` : ''}<button class="ib icon" id="vClose" type="button" aria-label="Schließen" title="Schließen">${svgI('down')}</button></div>
     ${gpsLine()}${storeLine()}`;
-  $('vOk').onclick = () => { saveVerdict(selId, {st: 'ok', note: noteVal(), t: Date.now()}); renderSheet(); };
-  $('vBad').onclick = () => { saveVerdict(selId, {st: 'fehlt', note: noteVal(), t: Date.now()}); renderSheet(); };
+  $('vOk').onclick = () => { saveVerdict(selId, withD({st: 'ok', note: noteVal(), t: Date.now()}, it)); renderSheet(); };
+  $('vBad').onclick = () => { saveVerdict(selId, withD({st: 'fehlt', note: noteVal(), t: Date.now()}, it)); renderSheet(); };
   if ($('vMove')) $('vMove').onclick = () => setMode('move', 'Richtige Position antippen');
-  if ($('vHere')) $('vHere').onclick = () => { const h = hereNow(); if (!h) return; saveVerdict(selId, {st: 'woanders', ...h, note: noteVal(), t: Date.now()}); renderSheet(); };
+  if ($('vHere')) $('vHere').onclick = () => { if (inTour()) return; const id = selId, note = noteVal();
+    measureHere($('vHere'), (h) => { saveVerdict(id, {st: 'woanders', ...h, note, t: Date.now()}); renderSheet(); }); };
   $('bNext2').onclick = nextOpen;
   $('vClose').onclick = () => { selId = null; redrawSel(); renderSheet(); };
-  if (v) $('vUndo').onclick = () => { delete pending[selId]; LS.set('fc_pending', pending); delete verdicts[selId]; if (db) queueWrite(selId, () => db.collection('pruefung').doc(selId).delete()); drawItem(it); progress(); renderSheet(); };
+  if (v) $('vUndo').onclick = () => { undoVerdict(selId); renderSheet(); };
 }
 
 // ---------- list & menu ----------
-function openPanel(id){ for (const p of ['listPanel', 'menuPanel', 'pdfPanel']) { const box = $(p).parentElement; box.hidden = p !== id || !box.hidden; } }
+let panelFrom = null;
+function openPanel(id){
+  if (id && !document.querySelector('.pbox:not([hidden])')) panelFrom = document.activeElement;
+  for (const p of ['listPanel', 'menuPanel', 'pdfPanel']) { const box = $(p).parentElement; box.hidden = p !== id || !box.hidden; }
+  const open = document.querySelector('.pbox:not([hidden])');
+  if (open) setTimeout(() => { const x = open.querySelector('.x'); if (x) x.focus({preventScroll: true}); }, 0);
+  else if (panelFrom && panelFrom.focus) { panelFrom.focus({preventScroll: true}); panelFrom = null; }
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (tour) endTour();
+  else if (document.querySelector('.pbox:not([hidden])')) openPanel(null);
+  else if (mode) $('bannerCancel').click();
+  else if (selId || selNewId) { selId = null; selNewId = null; redrawSel(); drawNews(); renderSheet(); }
+});
 $('btnList').onclick = () => { renderList(); openPanel('listPanel'); };
 $('btnMenu').onclick = () => { renderMenu(); openPanel('menuPanel'); };
 function renderList(){
-  const from = me || en(map.getCenter());
-  const open = DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k));
+  const from = me || en(map.getCenter()), ar = areaBox() && DATA.sheets.find(s_ => s_.id === area);
+  const open = openItems();
   open.sort((a, b) => dist(posOf(a), from) - dist(posOf(b), from));
   $('listPanel').innerHTML = `<div class="phead"><h2>${open.length} offen</h2><button class="x" type="button" data-close aria-label="Schließen">${svgI('x')}</button></div>
-    <p class="meta" style="margin-top:-8px">Nach Entfernung ${me ? 'zu dir' : 'zur Kartenmitte'}</p>
-    <div class="list">${open.map(i => { const c = CAT[i.k] || CAT['Kleinobjekt']; const dd = Math.round(dist(posOf(i), from)); return `<button class="li" type="button" data-id="${esc(i.id)}"><svg class="ico" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#fff" stroke="#8e8e93" stroke-width="1.2"/><path d="${c[1]}" fill="none" stroke="#1c1c1e" stroke-width="1.8" stroke-linecap="round"/></svg><span>${esc(i.n || c[0])}<small>${esc(c[0])}</small></span><span class="d">${dd < 1000 ? dd + ' m' : (dd / 1000).toFixed(1).replace('.', ',') + ' km'}</span></button>`; }).join('')}</div>`;
+    <p class="meta" style="margin-top:-8px">Nach Entfernung ${me ? 'zu dir' : 'zur Kartenmitte'}${ar ? ` · nur ${esc(ar.title)}` : ''}</p>
+    <div class="list">${open.map(i => { const c = CAT[i.k] || CAT['Kleinobjekt']; const dd = Math.round(dist(posOf(i), from)); return `<button class="li" type="button" data-id="${esc(i.id)}"><svg class="ico" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#fff" stroke="#8e8e93" stroke-width="1.2"/><path d="${c[1]}" fill="none" stroke="#1c1c1e" stroke-width="1.8" stroke-linecap="round"/></svg><span>${esc(i.n || c[0])}<small>${esc(c[0])}</small></span><span class="d">${fmtDist(dd)}</span></button>`; }).join('')}</div>`;
   $('listPanel').querySelector('[data-close]').onclick = () => openPanel(null);
   $('listPanel').querySelectorAll('.li').forEach(b => b.onclick = () => { openPanel(null); const it = byId[b.dataset.id]; select(it.id); panToVisible(posOf(it), Math.max(map.getZoom(), 1)); });
 }
@@ -659,12 +781,13 @@ function renderMenu(){
   const cats = [...new Set(DATA.items.map(i => i.k).concat(['Pfad']))];
   const res = {verdicts: {...verdicts, ...pending}, neu: {...news, ...pendingNew}};
   const txt = JSON.stringify(res);
-  const nv = Object.keys(res.verdicts).length, nn = Object.keys(res.neu).length;
+  const nv = Object.keys(res.verdicts).length, nn = Object.keys(res.neu).length, nu = nUnsent(), nw = nWaiting();
+  const sendInfo = nu ? `${nu} ${nu === 1 ? 'Eintrag' : 'Einträge'} noch nicht gesendet` : (nv + nn ? 'Alles gesendet' : 'Noch nichts erfasst');
   const inp = (id, ph, val = '', type = 'text') => `<input id="${id}" type="${type}" placeholder="${ph}" value="${esc(val)}" autocomplete="off">`;
   $('menuPanel').innerHTML = `<div class="phead"><h2>Menü</h2><button class="x" type="button" data-close aria-label="Schließen">${svgI('x')}</button></div>
     ${IS_APP ? `<section class="grp"><h3>Ergebnis senden</h3>
-      <p class="meta">${nv} Bewertungen, ${nn} neue Objekte</p>
-      ${box && box.key ? `<button class="ib pri" id="bSend" type="button">${svgI('send')}Ans Kartenteam senden</button><p class="status" id="sendSt">${esc(sentText())}</p>`
+      <p class="meta">${sendInfo}${nw ? ` · ${nw} warten auf Freigabe` : ''}</p>
+      ${box && box.key ? `<button class="ib pri" id="bSend" type="button" ${nu ? '' : 'disabled'}>${svgI('send')}Ans Kartenteam senden</button><p class="status" id="sendSt">${esc(sentText())}</p>`
         : `<p class="meta">Noch nicht eingerichtet. Einladungslink vom Kartenteam in Safari öffnen – oder hier einfügen:</p>
           ${inp('boxName', 'Dein Name')}${inp('boxKey', 'Einladungslink oder Schlüssel', '', 'password')}
           <button class="ib" id="boxSave" type="button">Einrichten</button>`}
@@ -675,22 +798,26 @@ function renderMenu(){
     ${IS_APP ? `<section class="grp"><h3>Karte</h3>
       <button class="ib pri" id="bPdf" type="button">${svgI('doc')}Karte als PDF</button>
       <p class="meta">Blätter und Ebenen wählen, z. B. ohne Höhenlinien.</p>
-      <button class="ib" id="bOff" type="button">${svgI('cloud')}Offline speichern</button>
-      <p class="meta" id="offSt">Karte und PDF-Daten aufs Handy laden (ca. 15 MB).</p>
+      <button class="ib" id="bOff" type="button">${svgI('cloud')}${LS.get('fc_offline', false) ? 'Offline-Daten prüfen' : 'Offline speichern'}</button>
+      <p class="meta" id="offSt">${LS.get('fc_offline', false) ? 'Prüfe …' : `Karte und alle PDF-Blätter aufs Handy laden (ca. ${OFFLINE ? Math.round(OFFLINE.bytes / 1e6) : 40} MB).`}</p>
     </section>` : ''}
     <section class="grp"><h3>Anzeigen</h3>
       ${catGroups(cats).map(([h, ks]) => `<p class="sub">${esc(h)}</p><div class="chips">${ks.map(k => `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${!catOff.has(k)}">${esc((CAT[k] || [k])[0])}</button>`).join('')}</div>`).join('')}
       <label class="tog">Sichere Objekte immer zeigen<input class="sw" type="checkbox" id="tAll" ${showAll ? 'checked' : ''}></label>
+      ${(DATA.sheets || []).length ? `<p class="sub">Mein Gebiet</p><div class="chips">${[{id: '', title: 'Ganze Karte'}].concat(DATA.sheets).map(a => `<button class="chip" type="button" data-area="${esc(a.id)}" aria-pressed="${a.id === (areaBox() ? area : '')}">${esc(a.title)}</button>`).join('')}</div>
+      <p class="meta">Liste, „Nächstes offenes“ und Fortschritt bleiben im Gebiet.</p>` : ''}
     </section>
     <section class="grp"><h3>Legende</h3>
       <div class="legend"><div><span class="dot" style="background:#fff"></span>offen</div><div><span class="dot" style="background:#4a3f55;border-color:#fff"></span>sicher</div>
       <div><span class="dot" style="background:#2e9d57;border-color:#0003"></span>stimmt</div><div><span class="dot" style="background:#cf4136;border-color:#0003"></span>fehlt</div>
-      <div><span class="dot" style="background:#d98a1c;border-color:#0003"></span>woanders</div><div><span class="dot" style="background:#2b6fd6;border-color:#fff"></span>neu</div></div>
+      <div><span class="dot" style="background:#d98a1c;border-color:#0003"></span>woanders</div><div><span class="dot" style="background:#8e8e93;border-color:#0003"></span>nicht gefunden</div>
+      <div><span class="dot" style="background:#2b6fd6;border-color:#fff"></span>neu</div></div>
       <p class="meta">Gestrichelt violett: Pfad, im Luftbild kaum sichtbar.</p>
     </section>
     <section class="grp"><h3>Hilfe</h3>
       <button class="ib" id="bTour" type="button">${svgI('help')}Einführung ansehen</button>
       ${IS_APP ? `<p class="meta">Tipp: In Safari „Teilen → Zum Home-Bildschirm“. Die App dort hat eigenen Speicher – vor dem Löschen des Symbols alles senden.</p>` : ''}
+      <p class="meta">Version ${esc(APP_VERSION || DATA.version || '–')} · Kartenstand ${esc(String(DATA.stand || '').split('-').reverse().join('.'))}</p>
     </section>
     ${IS_APP && box && box.key ? `<section class="grp"><h3>Briefkasten</h3>
       <div class="row" style="flex-wrap:nowrap">${inp('boxName', 'Dein Name', box.name || '')}<button class="ib" id="boxNameSave" type="button" style="flex:0 0 auto">Speichern</button></div>
@@ -698,6 +825,7 @@ function renderMenu(){
         <div style="display:grid;gap:8px;margin-top:10px">
           <p class="meta">Schlüssel auf github.com erstellen (Fine-grained, nur dieses Repo, „Contents: Read and write“). Helfer öffnet den Link in Safari und legt die App auf den Home-Bildschirm.</p>
           ${inp('invName', 'Name des Helfers')}${inp('invKey', 'Schlüssel (github_pat_…)', '', 'password')}
+          ${(DATA.sheets || []).length ? `<p class="sub">Gebiet (optional)</p><div class="chips" id="invArea">${[{id: '', title: 'Ganze Karte'}].concat(DATA.sheets).map(a => `<button class="chip" type="button" data-ia="${esc(a.id)}" aria-pressed="${!a.id}">${esc(a.title)}</button>`).join('')}</div>` : ''}
           <button class="ib" id="invMake" type="button">Einladungslink erzeugen</button>
           <div id="invOut"></div>
         </div></details>
@@ -707,14 +835,18 @@ function renderMenu(){
   $('menuPanel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const k = b.dataset.k; catOff.has(k) ? catOff.delete(k) : catOff.add(k); LS.set('fc_catOff', [...catOff]); b.setAttribute('aria-pressed', !catOff.has(k)); redrawAll(); });
   $('bTour').onclick = () => startTour();
   $('tAll').onchange = (e) => { showAll = e.target.checked; LS.set('fc_showAll', showAll); redrawAll(); };
+  $('menuPanel').querySelectorAll('[data-area]').forEach(b => b.onclick = () => { setArea(b.dataset.area); $('menuPanel').querySelectorAll('[data-area]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+  $('menuPanel').querySelectorAll('[data-ia]').forEach(b => b.onclick = () => $('menuPanel').querySelectorAll('[data-ia]').forEach(x => x.setAttribute('aria-pressed', x === b)));
+  if (IS_APP && LS.get('fc_offline', false) && $('offSt')) offlineMissing().then(m => { const st = $('offSt'); if (st) st.textContent = offText(m); }).catch(() => {});
   if ($('bPdf')) $('bPdf').onclick = () => { openPanel('pdfPanel'); renderPdfPanel(); };
-  if ($('bSend')) $('bSend').onclick = () => sendBox(res);
+  if ($('bSend')) $('bSend').onclick = () => sendBox(false);
   if ($('boxSave')) $('boxSave').onclick = () => { const b = parseInvite($('boxKey').value); if (!b) return; box = {key: b.key, name: $('boxName').value.trim() || b.name || ''}; LS.set('fc_box', box); boxCookie(box); renderMenu(); };
   if ($('boxNameSave')) $('boxNameSave').onclick = () => { box.name = $('boxName').value.trim(); LS.set('fc_box', box); boxCookie(box); $('boxNameSave').textContent = 'Gespeichert'; };
   if ($('boxOff')) $('boxOff').onclick = () => { box = null; LS.set('fc_box', null); boxCookie(null); renderMenu(); };
   if ($('invMake')) $('invMake').onclick = async () => {
     const nm = $('invName').value.trim(), k = $('invKey').value.trim(); if (!k) { $('invOut').innerHTML = '<p class="status warn">Schlüssel fehlt.</p>'; return; }
-    const url = location.origin + location.pathname + '#' + new URLSearchParams({key: k, name: nm}).toString();
+    const ia = $('menuPanel').querySelector('[data-ia][aria-pressed="true"]'), gb = ia ? ia.dataset.ia : '';
+    const url = location.origin + location.pathname + '#' + new URLSearchParams(Object.assign({key: k, name: nm}, gb ? {gebiet: gb} : {})).toString();
     let qr = '';
     try { await loadScript('lib/qrcode.js'); const q = window.qrcode(0, 'M'); q.addData(url); q.make(); qr = q.createSvgTag({cellSize: 4, margin: 2, scalable: true}); } catch(e) {}
     $('invOut').innerHTML = `<div style="max-width:220px;background:#fff;padding:8px;border-radius:14px">${qr}</div>
@@ -725,7 +857,7 @@ function renderMenu(){
   };
   if ($('bShare')) $('bShare').onclick = async () => {
     const name = 'feldcheck_' + new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-') + '.json';
-    const file = new File([JSON.stringify({...res, exportiert: new Date().toISOString(), quelle: 'Feldcheck-Web-App'}, null, 1)], name, {type: 'application/json'});
+    const file = new File([JSON.stringify({name: box && box.name || '', geraet_id: DEV, app: APP_VERSION, ...res, exportiert: new Date().toISOString(), quelle: 'Feldcheck-Web-App'}, null, 1)], name, {type: 'application/json'});
     try { if (navigator.canShare && navigator.canShare({files: [file]})) { await navigator.share({files: [file], title: 'Feldcheck Wangerooge'}); $('bShare').textContent = 'Geteilt'; return; } } catch(e) { if (e && e.name === 'AbortError') return; }
     const a = document.createElement('a'); a.href = URL.createObjectURL(file); a.download = name; document.body.appendChild(a); a.click(); a.remove(); $('bShare').textContent = 'Datei gespeichert';
   };
@@ -737,66 +869,114 @@ function renderMenu(){
     $('impSt').textContent = `${nv} Bewertungen und ${nn} neue Objekte übernommen.`; redrawAll();
   };
   if ($('bOff')) $('bOff').onclick = async () => {
-    const st = $('offSt'), b = $('bOff'); b.disabled = true;
-    try {
-      let list = await (await fetch('tiles.json')).json(); const c = await caches.open(TILE_CACHE); let k = 0;
-      try { const M = await kartenMeta(); list = list.concat(['karten/layers.json', 'lib/jspdf.umd.min.js', 'lib/svg2pdf.umd.min.js'], M.sheets.map(s => s.files.color)); } catch(e) {}
-      for (let i = 0; i < list.length; i += 6) {
-        await Promise.all(list.slice(i, i + 6).map(async (u) => { if (!(await c.match(u))) { const r = await fetch(u); if (r.ok) await c.put(u, r); } k++; }));
-        st.textContent = `Lade … ${k}/${list.length}`;
-      }
-      st.textContent = `Fertig – ${list.length} Dateien offline verfügbar.`; b.textContent = 'Offline gespeichert';
-    } catch(e) { st.textContent = 'Hat nicht geklappt – mit Netz erneut versuchen.'; b.disabled = false; }
+    const st = $('offSt'), b = $('bOff'); b.disabled = true; st.className = 'meta';
+    try { navigator.storage && navigator.storage.persist && await navigator.storage.persist(); } catch(e) {}
+    const r = await offlineSync((k, n) => { st.textContent = `Lade … ${k}/${n}`; });
+    if (r && !r.failed) { LS.set('fc_offline', true); st.textContent = offText([]); b.innerHTML = svgI('cloud') + 'Offline-Daten prüfen'; }
+    else { st.className = 'status warn'; st.textContent = r ? `${r.failed} von ${r.total} Dateien fehlen – mit Netz erneut versuchen.` : 'Offline speichern geht in diesem Browser nicht.'; }
+    b.disabled = false;
   };
   if ($('bCopy')) $('bCopy').onclick = () => { navigator.clipboard.writeText(txt).then(() => { $('bCopy').textContent = 'Kopiert'; }).catch(() => { $('exportTxt').hidden = false; const r = document.createRange(); r.selectNodeContents($('exportTxt')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('bCopy').textContent = 'Text markiert – jetzt kopieren'; }); };
 }
 
 if (IS_APP){
   $('btnGps').hidden = false; gpsBtn();
-  $('btnGps').onclick = () => { gps.on ? stopGps() : startGps(); renderSheet(); };
+  $('btnGps').onclick = () => { gps.on ? stopGps() : startGps(true); renderSheet(); };
   const Follow = L.Control.extend({onAdd(){ const b = L.DomUtil.create('button', 'ctl leaflet-bar'); b.id = 'ctlFollow'; b.type = 'button'; b.title = 'Karte folgt mir'; b.setAttribute('aria-label', 'Karte folgt mir'); b.innerHTML = svgI('follow'); b.setAttribute('aria-pressed', 'false');
     L.DomEvent.disableClickPropagation(b);
-    b.onclick = () => { if (!gps.on) startGps(); follow = !follow; if (follow && gps.pos) panToMe(Math.max(map.getZoom(), 1)); gpsBtn(); };
+    b.onclick = () => { if (!gps.on) startGps(true); follow = !follow; if (follow && gps.pos) panToMe(Math.max(map.getZoom(), 1)); gpsBtn(); };
     return b; }});
   new Follow({position: 'topright'}).addTo(map);
   map.on('dragstart', () => { if (follow) { follow = false; gpsBtn(); } });
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  window.addEventListener('online', autoSend);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') autoSend(); });
   if (LS.get('fc_gps', false) && navigator.permissions) navigator.permissions.query({name: 'geolocation'}).then(r => { if (r.state === 'granted') { startGps(); renderSheet(); } }).catch(() => {});
 }
 function sentText(){ const s = LS.get('fc_sent', null); return s ? `Zuletzt gesendet am ${new Date(s.t).toLocaleString('de-DE', {dateStyle: 'short', timeStyle: 'short'})}.` : 'Noch nichts gesendet.'; }
 function b64utf8(str){ const b = new TextEncoder().encode(str); let s = ''; for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(s); }
-async function sendBox(res){
-  const st = $('sendSt'), btn = $('bSend'); const nv = Object.keys(res.verdicts).length, nn = Object.keys(res.neu).length;
-  if (!nv && !nn) { st.textContent = 'Noch nichts zum Senden.'; return; }
-  btn.disabled = true; st.className = 'status'; st.textContent = 'Sende …';
-  const who = (box.name || 'ohne-name'), slug = who.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'helfer';
+// Sends only what is new since the last send. Without network the send waits and goes out by itself later
+// (when the phone is online again or the app comes back to the foreground).
+let sending = false;
+async function sendBox(quiet){
+  if (sending || !IS_APP || !box || !box.key) return;
+  const say = (txt, warn) => { const st = $('sendSt'); if (st) { st.className = 'status' + (warn ? ' warn' : ''); st.textContent = txt; } else if (quiet && warn !== null) toast(txt); };
+  const u = unsent(), nv = Object.keys(u.verdicts).length, nn = Object.keys(u.neu).length;
+  if (!nv && !nn) { LS.set('fc_outbox', false); if (!quiet) say('Alles gesendet.', null); return; }
+  sending = true; const btn = $('bSend'); if (btn) btn.disabled = true; if (!quiet) say('Sende …', null);
+  const who = (box.name || 'ohne Name'), slug = who.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'helfer';
   const now = new Date(), stamp = now.toISOString().slice(0, 16).replace(/[:T]/g, '-');
   const path = `${GH.dir}/${stamp}_${slug}_${Math.random().toString(36).slice(2, 6)}.json`;
-  const body = JSON.stringify({name: who, gesendet: now.toISOString(), geraet: navigator.userAgent.slice(0, 120), verdicts: res.verdicts, neu: res.neu}, null, 1);
+  const body = JSON.stringify({name: who, gesendet: now.toISOString(), geraet_id: DEV, app: APP_VERSION, verdicts: u.verdicts, neu: u.neu}, null, 1);
+  const hdr = {'Authorization': 'Bearer ' + box.key, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'};
   try {
-    const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${path}`, {method: 'PUT',
-      headers: {'Authorization': 'Bearer ' + box.key, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'},
+    const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${path}`, {method: 'PUT', headers: hdr,
       body: JSON.stringify({message: `Feldcheck von ${who}: ${nv} Bewertungen, ${nn} neue Objekte`, content: b64utf8(body), branch: GH.branch})});
     if (r.status === 201 || r.status === 200) {
-      LS.set('fc_sent', {t: Date.now(), nv, nn});
+      for (const [id, x] of Object.entries(u.verdicts)) { sentLog.v[id] = {t: x.t, z: x.st === 'zurueck'}; if (wd.v[id] === x.t) delete wd.v[id]; }
+      for (const [id, x] of Object.entries(u.neu)) { sentLog.n[id] = {t: x.t, z: !!x.geloescht}; if (wd.n[id] === x.t) delete wd.n[id]; }
+      LS.set('fc_sentLog', sentLog); LS.set('fc_wd', wd); LS.set('fc_outbox', false); LS.set('fc_sent', {t: Date.now(), nv, nn});
       // wake the GitHub Action (runs from main); if this fails the daily run picks the file up
-      fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/dispatches`, {method: 'POST', headers: {'Authorization': 'Bearer ' + box.key, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'},
-        body: JSON.stringify({event_type: 'feldcheck', client_payload: {datei: path}})}).catch(() => {});
-      st.textContent = 'Gesendet. Nach der Freigabe erscheint alles in Karte und App.';
+      fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/dispatches`, {method: 'POST', headers: hdr, body: JSON.stringify({event_type: 'feldcheck'})}).catch(() => {});
+      say(`Gesendet (${nv + nn}). Nach der Freigabe erscheint alles in Karte und App.`, quiet ? false : null);
     }
-    else if (r.status === 401) { st.className = 'status warn'; st.textContent = 'Schlüssel ungültig oder abgelaufen. Neuen Einladungslink anfordern.'; }
-    else if (r.status === 403 || r.status === 404) { st.className = 'status warn'; st.textContent = `Keine Berechtigung (Fehler ${r.status}). Schlüssel prüfen lassen.`; }
-    else { st.className = 'status warn'; st.textContent = `Senden fehlgeschlagen (Fehler ${r.status}). Später erneut versuchen.`; }
-  } catch(e) { st.className = 'status warn'; st.textContent = 'Kein Netz. Einträge bleiben gespeichert – später senden.'; }
-  btn.disabled = false;
+    else if (r.status === 401) { LS.set('fc_outbox', false); say('Schlüssel ungültig oder abgelaufen. Neuen Einladungslink anfordern.', true); }
+    else if (r.status === 403 || r.status === 404) { LS.set('fc_outbox', false); say(`Keine Berechtigung (Fehler ${r.status}). Schlüssel prüfen lassen.`, true); }
+    else { LS.set('fc_outbox', true); say(`Senden gerade nicht möglich (Fehler ${r.status}). Wird später automatisch wiederholt.`, quiet ? null : true); }
+  } catch(e) { LS.set('fc_outbox', true); say('Kein Netz. Wird automatisch gesendet, sobald Netz da ist.', quiet ? null : false); }
+  sending = false; if (btn && document.body.contains(btn)) btn.disabled = !nUnsent(); updateBadge();
+  const m = $('menuPanel'); if (m && !m.parentElement.hidden && !quiet) { const p_ = m.querySelector('.grp .meta'); if (p_) p_.textContent = (nUnsent() ? `${nUnsent()} noch nicht gesendet` : 'Alles gesendet') + (nWaiting() ? ` · ${nWaiting()} warten auf Freigabe` : ''); }
+}
+function autoSend(){ if (IS_APP && LS.get('fc_outbox', false) && navigator.onLine !== false) sendBox(true); }
+
+// ---------- offline: map tiles and PDF data on the phone ----------
+const offCache = (p) => /^t\d/.test(p) ? TILE_CACHE : PDF_CACHE;
+async function offlineMissing(){
+  if (!OFFLINE || !window.caches) return null;
+  const c = {[TILE_CACHE]: await caches.open(TILE_CACHE), [PDF_CACHE]: await caches.open(PDF_CACHE)}, miss = [];
+  for (const p of Object.keys(OFFLINE.files)) if (!(await c[offCache(p)].match(vurl(p)))) miss.push(p);
+  return miss;
+}
+let offBusy = false;
+async function offlineSync(onProgress){   // loads what is missing; the service worker stores each file as it passes
+  if (offBusy) return null; const miss = await offlineMissing(); if (!miss) return null;
+  offBusy = true; let k = 0, failed = 0;
+  try {
+    for (let i = 0; i < miss.length; i += 6) {
+      await Promise.all(miss.slice(i, i + 6).map(async (p) => {
+        try { const r = await fetch(vurl(p)); if (!r.ok) { failed++; return; }
+          const c = await caches.open(offCache(p)); if (!(await c.match(vurl(p)))) await c.put(vurl(p), r); }   // no service worker yet: store it here
+        catch(e) { failed++; } finally { k++; }
+      }));
+      if (onProgress) onProgress(k, miss.length);
+    }
+  } finally { offBusy = false; }
+  return {total: miss.length, failed};
+}
+function offText(miss){
+  if (!miss) return 'Offline speichern geht in diesem Browser nicht.';
+  const de = String(DATA && DATA.stand || '').split('-').reverse().join('.');
+  return miss.length ? `Neuer Kartenstand: ${miss.length} Dateien fehlen noch – „Offline-Daten prüfen“ lädt sie.` : `Offline gespeichert und aktuell (Kartenstand ${de}).`;
+}
+function setArea(id){
+  area = id || ''; LS.set('fc_area', area); drawArea(); progress();
+  const b = areaBox(); if (!b) return;
+  const v = visibleBox();
+  map.fitBounds(L.latLngBounds(ll(b[0], b[1]), ll(b[2], b[3])), {paddingTopLeft: [v.l + 12, v.t + 12], paddingBottomRight: [window.innerWidth - v.r + 12, window.innerHeight - v.b + 12]});
 }
 
 // ---------- Karte als PDF (web app): layered SVGs from the map pipeline, layers switchable, PDF built on the phone ----------
 let KM = null, pdfSel = LS.get('fc_pdfSel', {sheets: ['detail_west'], mode: 'color', off: []}), pvToken = 0;
 const pvCache = {};
-async function kartenMeta(){ if (!KM) KM = await (await fetch('karten/layers.json', {cache: 'no-cache'})).json(); return KM; }
-async function svgText(url){ if (!pvCache[url]) pvCache[url] = await (await fetch(url)).text(); return pvCache[url]; }
-function loadScript(src){ return new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const el = document.createElement('script'); el.src = src; el.onload = res; el.onerror = rej; document.head.appendChild(el); }); }
+async function getOk(url){
+  const r = await fetch(vurl(url));
+  if (!r.ok) throw new Error(r.status === 504 ? 'Nicht offline gespeichert – einmal mit Netz öffnen oder im Menü „Offline speichern“.' : `Datei nicht geladen (Fehler ${r.status}).`);
+  return r;
+}
+async function kartenMeta(){ if (!KM) KM = await (await getOk('karten/layers.json')).json(); return KM; }
+async function svgText(url){ if (!pvCache[url]) { const t = await (await getOk(url)).text(); if (!/<svg/.test(t)) throw new Error('Kartenblatt unvollständig.'); pvCache[url] = t; } return pvCache[url]; }
+function loadScript(src){ src = vurl(src); return new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const el = document.createElement('script'); el.src = src; el.onload = res;
+  el.onerror = () => { el.remove(); rej(new Error('PDF-Werkzeug nicht geladen – einmal mit Netz öffnen.')); }; document.head.appendChild(el); }); }
 const hideSel = (keys) => keys.map(k => `[id^="L-${k}-"]`).join(',');
 function savePdfSel(){ LS.set('fc_pdfSel', pdfSel); }
 async function renderPdfPanel(){
@@ -833,10 +1013,10 @@ async function preview(){
   const M = await kartenMeta(), sh = M.sheets.find(s => s.id === pdfSel.sheets[0]), url = sh.files[pdfSel.mode] || sh.files.color, tok = ++pvToken;
   $('pvName').textContent = '· ' + sh.title; $('pv').innerHTML = '<p class="meta">Lade Vorschau …</p>'; applyHide();
   try { const t = await svgText(url); if (tok !== pvToken) return; $('pv').innerHTML = t.replace(/^[\s\S]*?(<svg)/, '$1'); }
-  catch(e) { $('pv').innerHTML = '<p class="status warn">Vorschau nicht geladen – Netz prüfen.</p>'; }
+  catch(e) { if (tok === pvToken) $('pv').innerHTML = `<p class="status warn">${esc(e.message || 'Vorschau nicht geladen – Netz prüfen.')}</p>`; }
 }
 async function makePdf(){
-  const M = await kartenMeta(), btn = $('pdfGo'), st = $('pdfSt'); btn.disabled = true;
+  const M = await kartenMeta(), btn = $('pdfGo'), st = $('pdfSt'); btn.disabled = true; st.className = 'status';
   try {
     st.textContent = 'Lade PDF-Werkzeug …'; await loadScript('lib/jspdf.umd.min.js'); await loadScript('lib/svg2pdf.umd.min.js');
     const host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-99999px;top:0;width:10px;height:10px;overflow:hidden'; document.body.appendChild(host);
@@ -854,6 +1034,7 @@ async function makePdf(){
       await new Promise(r => setTimeout(r, 30));
     }
     host.remove();
+    if (!pdf) throw new Error('Kein Blatt gewählt.');
     const off = pdfSel.off.length ? '_ohne-' + pdfSel.off.length + '-Ebenen' : '';
     const name = `Wangerooge_West_${list.length === M.sheets.length ? 'alle-Blaetter' : list.map(s => s.id.replace('detail_', '')).join('-')}_${pdfSel.mode === 'bw' ? 'SW' : 'Farbe'}${off}.pdf`;
     const file = new File([pdf.output('blob')], name, {type: 'application/pdf'});
@@ -876,10 +1057,14 @@ const TOUR_STEPS = () => [
   {sel: '#bAdd', before: () => { if (selId) { selId = null; redrawSel(); renderSheet(); } }, t: 'Neu erfassen', x: 'Mit [plus] trägst du ein, was auf der Karte fehlt – auch Pfade per GPS.'},
   {sel: '#btnList', t: 'Liste', x: '[list] zeigt alle offenen Punkte, nach Entfernung sortiert.'},
   {sel: '#btnMenu', t: 'Menü', x: IS_APP ? '[more] öffnet das Menü: Ergebnis senden, Karte als PDF, offline speichern, Filter.' : '[more] öffnet das Menü: Ergebnis, Filter und Legende.'},
-  {t: 'Fertig', x: (IS_APP ? 'Am Ende im Menü [more] auf „Ans Kartenteam senden“ tippen. Bis dahin bleibt alles auf dem Handy, auch offline.' : 'Deine Einträge landen im Speicher dieser Seite.') + ' Diese Einführung gibt es jederzeit über [help].', last: true},
+  {t: 'Fertig', x: (!IS_APP ? 'Deine Einträge landen im Speicher dieser Seite.'
+      : box && box.key ? 'Am Ende im Menü [more] auf „Ans Kartenteam senden“ tippen. Ohne Netz geht es später von selbst raus.'
+      : 'Zum Senden brauchst du einen Einladungslink vom Kartenteam. Bis dahin bleibt alles auf dem Handy.') + ' Diese Einführung gibt es jederzeit über [help].', last: true},
 ].filter(Boolean);
 function startTour(){
   endTour(); openPanel(null);
+  if (mode === 'path') { draft = []; drawDraft(); }
+  setMode(null); showForm = false; addOpen = false; if (selNewId) { selNewId = null; drawNews(); } renderSheet();
   const steps = TOUR_STEPS().filter(st => !st.sel || (document.querySelector(st.sel) && !document.querySelector(st.sel).hidden) || st.before);
   const el = document.createElement('div'); el.className = 'tour'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
   el.innerHTML = '<div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="ring"></div><div class="card glass-strong" aria-live="polite"></div>';
@@ -935,10 +1120,13 @@ function placeTour(){
   else Object.assign(card.style, {top: Math.max(12, (H_ - ch) / 2) + 'px', bottom: 'auto'});   // big target (map): card floats over it
 }
 
-fetch('data.json').then(r => r.json()).then(d => {
+fetch('data.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
   DATA = d; DATA.items.forEach(i => byId[i.id] = i); DATA.paths.forEach(p => byId[p.id] = p);
-  redrawAll(); drawMe(); renderSheet(); initStore();
-  if (!LS.get('fc_tour_off', false)) setTimeout(startTour, 700);
+  if (IS_APP) cleanupMerged();
+  const r_ = IS_APP && LS.get('fc_rec', null); if (r_ && Array.isArray(r_.pts)) rec = r_;   // a GPS recording survives a reload
+  redrawAll(); drawArea(); drawMe(); if (rec) drawDraft(rec.pts); renderSheet(); initStore(); updateBadge();
+  if (IS_APP) { setTimeout(autoSend, 2500); if (LS.get('fc_offline', false) && navigator.onLine !== false) setTimeout(() => offlineSync().then(r => { if (r && r.total && !r.failed) toast(`Neuer Kartenstand offline gespeichert (${r.total} ${r.total === 1 ? 'Datei' : 'Dateien'}).`, 4000); }).catch(() => {}), 5000); }
+  if (!LS.get('fc_tour_off', false) && !rec) setTimeout(startTour, 700);
 }).catch(() => { $('sheet').innerHTML = '<p class="status warn">Die Objektliste konnte nicht geladen werden. Bitte Seite neu laden.</p>'; });
 })();
 </script>

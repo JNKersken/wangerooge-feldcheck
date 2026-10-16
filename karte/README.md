@@ -28,21 +28,39 @@ Neue Ebene: Schlüssel in `LAYERS` ergänzen und die Zeichenbefehle in `with tag
 
 `run_all.sh` schreibt die Web-App direkt in die Repo-Wurzel. Danach committen und pushen, GitHub Pages veröffentlicht automatisch.
 
+Offline: Kacheln und PDF-Daten (Blatt-SVGs farbig und SW, `lib/`) werden über ihren Inhalt adressiert (`t3_1_2.png?v=<hash>`,
+Liste `OFFLINE` in `index.html` und `KEEP` in `sw.js`, beide von `build_site.py`). Die Caches `fc-tiles` und `fc-pdf` überleben
+App-Updates; der Service Worker wirft beim Wechsel nur weg, was nicht mehr gebraucht wird, und die App lädt Geändertes nach,
+wenn „Offline speichern“ einmal benutzt wurde.
+
 ## Feldcheck-Briefkasten (Einsendungen aus der App)
 
 1. Helfer tippen in der App im Menü (•••) auf „Ans Kartenteam senden“. Die App legt eine JSON-Datei in den Zweig `eingang`
    (`karte/data/feldcheck/eingang/<zeit>_<name>_<zufall>.json`) und meldet das per `repository_dispatch`.
+   Gesendet wird nur, was seit dem letzten Senden neu ist; zurückgenommene Bewertungen gehen als `zurueck`,
+   gelöschte neue Objekte als `geloescht` mit. Ohne Netz wartet die Sendung und geht von selbst raus, sobald Netz da ist
+   (Zähler am •••-Knopf). Jedes Handy hat eine zufällige Geräte-ID (`geraet_id`).
    Dafür braucht jedes Handy einen eigenen Fine-grained-Token (nur dieses Repo, „Contents: Read and write“);
-   der Einladungslink `…/#key=<token>&name=<name>` richtet das Handy ein und wird danach aus der Adresszeile entfernt.
-2. Der Workflow `.github/workflows/feldcheck.yml` holt alle Einsendungen, die noch nicht in `main` sind,
+   der Einladungslink `…/#key=<token>&name=<name>[&gebiet=detail_west]` richtet das Handy ein und wird danach aus der
+   Adresszeile entfernt. Der Regelsatz auf `main` verhindert, dass ein Token direkt in `main` schreibt.
+2. Der Workflow `.github/workflows/feldcheck.yml` legt zuerst abgelehnte Einsendungen beiseite (Dateien aus Vorschlägen,
+   die ohne Merge geschlossen wurden → `eingang/abgelehnt/`), holt dann alle Einsendungen, die noch nicht in `main` sind,
    rechnet die ganze Kette neu (`run_all.sh`), erzeugt Bericht und Vorschaubilder (`feldcheck_report.py`)
-   und legt den Pull Request `feldcheck-update` an (bzw. aktualisiert ihn). Zusätzlich läuft er täglich und von Hand.
+   und legt den Pull Request `feldcheck-update` an (bzw. aktualisiert ihn). Er läuft bei jeder Meldung, nach jedem
+   Schließen des Vorschlags, täglich und von Hand; jeder Lauf erledigt alles, was ansteht.
 3. Zusammenführen (Merge) = freigeben: Karten, Liste und App in `main` sind aktualisiert, GitHub Pages veröffentlicht.
-   Schließen ohne Merge = ablehnen: die Einsendungen wandern nach `eingang/abgelehnt/` und werden nicht mehr angefasst.
+   Schließen ohne Merge = ablehnen: die Einsendungen wandern nach `eingang/abgelehnt/` und kommen mit dem nächsten
+   Vorschlag nach `main` – dort sorgt `feldcheck_merge.py` dafür, dass sie nicht wieder auftauchen.
+4. Die App vergleicht beim Start `data.json → feld` (pro Gerät: übernommen `v`/`n`, abgelehnt `x`) mit ihren lokalen
+   Einträgen und räumt Übernommenes und Abgelehntes auf.
 
-Einarbeitung (`build_layers.py`): pro Objekt gilt die jüngste Einsendung. „passt“ → sicher, Quelle „Feldbegehung“;
-„fehlt“ → entfernt; „woanders“ → neue Lage, sicher. Neue Objekte bekommen die ID `F<id>`, neue Pfade landen in
-`data/feldcheck_pfade.geojson`, Pfad-Urteile in `data/path_status_v1.json`, das Protokoll in `data/feldcheck_log.json`.
+Einarbeitung (`feldcheck_merge.py` → `build_layers.py`): Jede Einsendung und jeder Eintrag wird einzeln geprüft;
+Fehlerhaftes wird übersprungen und im Bericht genannt. Pro Gerät zählt der jüngste Eintrag je Objekt, über alle Geräte
+der jüngste. „passt“ → sicher, Quelle „Feldbegehung“; „fehlt“ → entfernt; „woanders“ → neue Lage, sicher – eine
+korrigierte Lage bleibt auch, wenn später jemand bestätigt. „nicht gefunden“ bleibt in der Karte und gilt erst als
+„fehlt“, wenn zwei Geräte es nicht gefunden haben. Notizen landen in `vor_ort` (App, Liste). Neue Objekte bekommen die
+ID `F<id>`, neue Pfade landen in `data/feldcheck_pfade.geojson`, Pfad-Urteile in `data/path_status_v1.json`, das
+Protokoll in `data/feldcheck_log.json`.
 
 Hinweis: Das Repo ist öffentlich – Einsendungen (Name, Notizen) sind darin für alle lesbar.
 

@@ -6,9 +6,10 @@ Alles, was die OL-Karte, die Landmarkenliste und die Feldcheck-Web-App erzeugt: 
 
 ```bash
 cd karte
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r requirements.lock   # genau die Versionen, mit denen auch GitHub Actions rechnet (Python 3.13)
 ./run_all.sh            # ca. 2–3 Minuten
 FULL=1 ./run_all.sh     # rechnet zusätzlich Trichter-, Pfad- und Sandanalyse neu
+python3 -m unittest discover -s tests && python3 scripts/check.py   # Regeln und Zusammenhang prüfen
 ```
 
 Ergebnisse:
@@ -73,7 +74,10 @@ korrigierte Lage bleibt auch, wenn später jemand bestätigt. „nicht gefunden�
 ID `F<id>`, neue Pfade landen in `data/feldcheck_pfade.geojson`, Pfad-Urteile in `data/path_status_v1.json`, das
 Protokoll in `data/feldcheck_log.json`.
 
-Hinweis: Das Repo ist öffentlich – Einsendungen (Name, Notizen) sind darin für alle lesbar.
+Öffentlich erscheinen nur Kürzel der Helfer („A. M.“). Die Einsendungen selbst liegen im Zweig `eingang` dieses öffentlichen
+Repos – oder, nach [BRIEFKASTEN.md](BRIEFKASTEN.md), in einem privaten Eingangs-Repo (`briefkasten.json` in der Repo-Wurzel
+sagt der App und dem Workflow, wohin). Vor jedem Vorschlag prüft der Workflow Regeln, Daten und App (Status „Feldcheck-Prüfung“)
+und listet Auffälliges mit Kartenausschnitt; Pull Requests von Hand prüft `.github/workflows/check.yml`.
 
 ## Rohdaten (`data/`)
 

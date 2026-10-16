@@ -139,5 +139,7 @@ keep = json.dumps(sorted(f'{p}?v={h}' for p, h in OFFLINE['files'].items()), sep
 sw = sub(sub(sw_tpl, "const CORE = 'fc-core'", f"const CORE = '{CORE}'"), 'const KEEP = [];', f'const KEEP = {keep};')
 open(APP + '/sw.js', 'w').write(sw)
 open(APP + '/.nojekyll', 'w').write('')
+if not os.path.exists(APP + '/briefkasten.json'):   # hand-kept config (see BRIEFKASTEN.md); only created when missing
+    json.dump(dict(repo='JNKersken/wangerooge-feldcheck', zweig='eingang', ordner='karte/data/feldcheck/eingang', melden=True), open(APP + '/briefkasten.json', 'w'), indent=1)
 if os.path.exists(APP + '/tiles.json'): os.remove(APP + '/tiles.json')   # tile list now lives in the app (OFFLINE)
 print('Cache', CORE, '| offline', len(off_files), 'Dateien', round(OFFLINE['bytes'] / 1e6, 1), 'MB | Blätter', len(sheets), '| App', len(os.listdir(APP)), 'Dateien')

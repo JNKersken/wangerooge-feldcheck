@@ -92,6 +92,12 @@ def read(fn):
     return d, None
 
 
+def kurz(name):
+    """Public form of a helper's name: initials ('Anna Müller' -> 'A. M.'). Full names stay in the inbox."""
+    parts = [w for w in re.split(r'[\s._-]+', text(name, 60)) if w and w[0].isalnum()]
+    return ' '.join(w[0].upper() + '.' for w in parts[:3]) or 'Feldcheck'
+
+
 def sender(d):
     """(display name, device key) of a submission; old app versions sent no device id."""
     who = text(d.get('name'), 60) or 'Feldcheck'

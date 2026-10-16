@@ -1,0 +1,4427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="wangerooge-feldcheck" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Wangerooge West – Landmarken 1.5</name>
+    <time>2026-10-15T12:00:00Z</time>
+  </metadata>
+  <wpt lat="53.7924998" lon="7.864679">
+    <name>B001 Schutzhütte</name>
+    <desc>Unterstand mit Dach. · noch zu prüfen</desc>
+    <type>Bauwerk</type>
+  </wpt>
+  <wpt lat="53.7911951" lon="7.878477">
+    <name>B002 Schutzhütte</name>
+    <desc>Unterstand mit Dach. · noch zu prüfen</desc>
+    <type>Bauwerk</type>
+  </wpt>
+  <wpt lat="53.7911687" lon="7.8935369">
+    <name>B003 Schutzhütte</name>
+    <desc>Unterstand mit Dach. · noch zu prüfen</desc>
+    <type>Bauwerk</type>
+  </wpt>
+  <wpt lat="53.7900913" lon="7.8571615">
+    <name>B004 Neuer Leuchtturm</name>
+    <desc>sicher</desc>
+    <type>Bauwerk</type>
+  </wpt>
+  <wpt lat="53.7855868" lon="7.8518651">
+    <name>B005 Inselheim Rüstringen – Sternwarte</name>
+    <desc>sicher</desc>
+    <type>Bauwerk</type>
+  </wpt>
+  <wpt lat="53.783841" lon="7.8583392">
+    <name>B006 Schutzhütte</name>
+    <desc>Unterstand mit Dach. · noch zu prüfen</desc>
+    <type>Bauwerk</type>
+  </wpt>
+  <wpt lat="53.7942656" lon="7.883777">
+    <name>BH014 Buhne K</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7935419" lon="7.8578905">
+    <name>BH015 Buhne C</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7940069" lon="7.8668244">
+    <name>BH016 Buhne D</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7939387" lon="7.875911">
+    <name>BH017 Buhne I</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7941181" lon="7.891516">
+    <name>BH018 Buhne L</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7906977" lon="7.8503502">
+    <name>BH019 Buhne B</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7904156" lon="7.8538373">
+    <name>BH020 Buhne G</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7894873" lon="7.849266">
+    <name>BH021 Buhne F</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7899735" lon="7.8511366">
+    <name>BH022 Buhne B</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7883687" lon="7.8481005">
+    <name>BH023 Buhne E</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7872013" lon="7.8466313">
+    <name>BH024 Buhne H</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7865531" lon="7.8483081">
+    <name>BH025 Buhne U</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7845036" lon="7.8513862">
+    <name>BH026 Buhne V</name>
+    <desc>Landseitiges Ende der Buhne. · sicher</desc>
+    <type>Buhne</type>
+  </wpt>
+  <wpt lat="53.7931848" lon="7.8706829">
+    <name>BK001 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7927768" lon="7.8681161">
+    <name>BK002 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7930275" lon="7.870007">
+    <name>BK003 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7929513" lon="7.8730848">
+    <name>BK004 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7930161" lon="7.8747196">
+    <name>BK005 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7923362" lon="7.8754529">
+    <name>BK006 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7917107" lon="7.8619389">
+    <name>BK007 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7916717" lon="7.8622846">
+    <name>BK008 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7921441" lon="7.8647053">
+    <name>BK009 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.791617" lon="7.870467">
+    <name>BK010 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.791407" lon="7.8751893">
+    <name>BK011 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7916142" lon="7.8762919">
+    <name>BK012 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.792069" lon="7.8789774">
+    <name>BK013 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7919965" lon="7.8812307">
+    <name>BK014 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7919376" lon="7.8838738">
+    <name>BK015 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7919997" lon="7.8845644">
+    <name>BK016 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.791797" lon="7.8907195">
+    <name>BK017 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.791942" lon="7.8908447">
+    <name>BK018 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7917859" lon="7.892039">
+    <name>BK019 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.792431" lon="7.8940502">
+    <name>BK020 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7911023" lon="7.8593974">
+    <name>BK021 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7908782" lon="7.8716208">
+    <name>BK022 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7908732" lon="7.8716635">
+    <name>BK023 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7909651" lon="7.8800346">
+    <name>BK024 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7909881" lon="7.8837456">
+    <name>BK025 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7914673" lon="7.8887">
+    <name>BK026 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7913637" lon="7.8923598">
+    <name>BK027 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7915484" lon="7.8935755">
+    <name>BK028 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7895569" lon="7.8528755">
+    <name>BK029 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Kunststoff. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7899719" lon="7.854537">
+    <name>BK030 Bank</name>
+    <desc>Sitzbank. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7903074" lon="7.8567275">
+    <name>BK031 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7900506" lon="7.8572233">
+    <name>BK032 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7898695" lon="7.8665595">
+    <name>BK033 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7900254" lon="7.8783564">
+    <name>BK034 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7900169" lon="7.8784082">
+    <name>BK035 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.788394" lon="7.8922802">
+    <name>BK036 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7883065" lon="7.8925436">
+    <name>BK037 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7867594" lon="7.8488216">
+    <name>BK038 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7872163" lon="7.8509129">
+    <name>BK039 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7859593" lon="7.8499333">
+    <name>BK040 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7859036" lon="7.8500289">
+    <name>BK041 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.785902" lon="7.8515469">
+    <name>BK042 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7867172" lon="7.8608719">
+    <name>BK043 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7849774" lon="7.8513065">
+    <name>BK044 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · sicher</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7852444" lon="7.8544123">
+    <name>BK045 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7846403" lon="7.8519608">
+    <name>BK046 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7846094" lon="7.8520148">
+    <name>BK047 Bank ohne Lehne</name>
+    <desc>Sitzbank ohne Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7840753" lon="7.8580247">
+    <name>BK048 Bank</name>
+    <desc>Sitzbank. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7840857" lon="7.8580775">
+    <name>BK049 Bank</name>
+    <desc>Sitzbank aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.78407" lon="7.858125">
+    <name>BK050 Bank</name>
+    <desc>Sitzbank aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7840311" lon="7.8580092">
+    <name>BK051 Bank</name>
+    <desc>Sitzbank aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7840163" lon="7.8580582">
+    <name>BK052 Bank</name>
+    <desc>Sitzbank aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7840267" lon="7.8581186">
+    <name>BK053 Bank</name>
+    <desc>Sitzbank aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.781511" lon="7.8608763">
+    <name>BK054 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7763336" lon="7.8676329">
+    <name>BK055 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7764745" lon="7.867705">
+    <name>BK056 Bank mit Lehne</name>
+    <desc>Sitzbank mit Lehne aus Holz. · noch zu prüfen</desc>
+    <type>Bank</type>
+  </wpt>
+  <wpt lat="53.7887163" lon="7.8745797">
+    <name>BR006 Brücke (Inselbahn)</name>
+    <desc>sicher</desc>
+    <type>Brücke</type>
+  </wpt>
+  <wpt lat="53.7872428" lon="7.872444">
+    <name>BR007 Brücke (Inselbahn)</name>
+    <desc>sicher</desc>
+    <type>Brücke</type>
+  </wpt>
+  <wpt lat="53.7874414" lon="7.8727316">
+    <name>BR008 Brücke (Inselbahn)</name>
+    <desc>sicher</desc>
+    <type>Brücke</type>
+  </wpt>
+  <wpt lat="53.7781497" lon="7.8685295">
+    <name>BR009 Durchlass</name>
+    <desc>sicher</desc>
+    <type>Brücke</type>
+  </wpt>
+  <wpt lat="53.7774409" lon="7.8684727">
+    <name>BR010 Brücke (Inselbahn)</name>
+    <desc>sicher</desc>
+    <type>Brücke</type>
+  </wpt>
+  <wpt lat="53.7912945" lon="7.874119">
+    <name>BU010 Bahnübergang</name>
+    <desc>Weg kreuzt das Gleis der Inselbahn. · sicher</desc>
+    <type>Bahnübergang</type>
+  </wpt>
+  <wpt lat="53.7887732" lon="7.8508187">
+    <name>BU011 Bahnübergang</name>
+    <desc>Weg kreuzt das Gleis der Inselbahn. · sicher</desc>
+    <type>Bahnübergang</type>
+  </wpt>
+  <wpt lat="53.7883253" lon="7.8909765">
+    <name>BU012 Bahnübergang</name>
+    <desc>Weg kreuzt das Gleis der Inselbahn. · sicher</desc>
+    <type>Bahnübergang</type>
+  </wpt>
+  <wpt lat="53.7874895" lon="7.8937157">
+    <name>BU013 Bahnübergang</name>
+    <desc>Weg kreuzt das Gleis der Inselbahn. · sicher</desc>
+    <type>Bahnübergang</type>
+  </wpt>
+  <wpt lat="53.7765313" lon="7.867916">
+    <name>BU014 Bahnübergang</name>
+    <desc>Weg kreuzt das Gleis der Inselbahn. · sicher</desc>
+    <type>Bahnübergang</type>
+  </wpt>
+  <wpt lat="53.7743062" lon="7.8668226">
+    <name>BU017 Bahnübergang</name>
+    <desc>Weg kreuzt das Gleis der Inselbahn. · sicher</desc>
+    <type>Bahnübergang</type>
+  </wpt>
+  <wpt lat="53.7934413" lon="7.8900628">
+    <name>D001 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7937091" lon="7.8900603">
+    <name>D002 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7935362" lon="7.8922555">
+    <name>D003 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7926429" lon="7.8864556">
+    <name>D004 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7919881" lon="7.89311">
+    <name>D005 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7909953" lon="7.8685026">
+    <name>D006 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7903209" lon="7.857011">
+    <name>D007 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7898184" lon="7.8663787">
+    <name>D008 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7877779" lon="7.862865">
+    <name>D009 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7866811" lon="7.860759">
+    <name>D010 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.776227" lon="7.8673869">
+    <name>D011 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7760672" lon="7.8675035">
+    <name>D012 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7765328" lon="7.8682589">
+    <name>D013 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7756934" lon="7.867421">
+    <name>D014 Dünenübergang (Treppe)</name>
+    <desc>Weg oder Treppe über die Düne zum Strand. · sicher</desc>
+    <type>Dünenübergang</type>
+  </wpt>
+  <wpt lat="53.7934842" lon="7.8705884">
+    <name>DG001 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7926189" lon="7.8864866">
+    <name>DG002 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7908011" lon="7.8745133">
+    <name>DG003 Deichscharte</name>
+    <desc>Durchfahrt im Deich, bei Sturmflut verschließbar. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7887292" lon="7.8505422">
+    <name>DG004 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7884381" lon="7.8505607">
+    <name>DG005 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7882403" lon="7.8910167">
+    <name>DG006 Deichscharte</name>
+    <desc>Durchfahrt im Deich, bei Sturmflut verschließbar. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7886071" lon="7.891511">
+    <name>DG007 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7874923" lon="7.893541">
+    <name>DG008 Deichscharte</name>
+    <desc>Durchfahrt im Deich, bei Sturmflut verschließbar. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7875347" lon="7.8936507">
+    <name>DG009 Umlaufsperre</name>
+    <desc>Versetzte Bügel quer über den Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7874432" lon="7.8937655">
+    <name>DG010 Umlaufsperre</name>
+    <desc>Versetzte Bügel quer über den Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7850639" lon="7.8560322">
+    <name>DG011 Schranke</name>
+    <desc>Schlagbaum über den Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7846479" lon="7.8520061">
+    <name>DG012 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7766618" lon="7.8676408">
+    <name>DG013 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7766623" lon="7.8677971">
+    <name>DG014 Poller</name>
+    <desc>Sperrpfosten im Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7755958" lon="7.865847">
+    <name>DG015 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7754397" lon="7.866355">
+    <name>DG016 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7745371" lon="7.8652033">
+    <name>DG017 Tor / Gatter</name>
+    <desc>Tor oder Gatter am Weg. · noch zu prüfen</desc>
+    <type>Durchgang</type>
+  </wpt>
+  <wpt lat="53.7935038" lon="7.8929365">
+    <name>E001 WC</name>
+    <desc>Öffentliche Toilette. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7921707" lon="7.8925359">
+    <name>E002 WC</name>
+    <desc>Öffentliche Toilette. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7885053" lon="7.8510037">
+    <name>E003 Wangerooger Yachtclub e.V. Lagerplatz</name>
+    <desc>sicher</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7859191" lon="7.8500543">
+    <name>E004 WC</name>
+    <desc>Öffentliche Toilette. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7848067" lon="7.8516011">
+    <name>E005 Rettungsschwimmer-Station</name>
+    <desc>Turm oder Hütte der Rettungsschwimmer, evtl. nur im Sommer. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7762676" lon="7.867785">
+    <name>E006 Rettungsring</name>
+    <desc>Rettungsring an Pfahl oder Gestell. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7763258" lon="7.8682311">
+    <name>E007 Fritz Thieme</name>
+    <desc>sicher</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7757979" lon="7.8675442">
+    <name>E008 Rettungsring</name>
+    <desc>Rettungsring an Pfahl oder Gestell. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7746009" lon="7.8654838">
+    <name>E009 Rettungsring</name>
+    <desc>Rettungsring an Pfahl oder Gestell. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7749418" lon="7.8656992">
+    <name>E010 Rettungsring</name>
+    <desc>Rettungsring an Pfahl oder Gestell. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7742838" lon="7.8669294">
+    <name>E011 Westanleger</name>
+    <desc>sicher</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7749179" lon="7.8670641">
+    <name>E012 Rettungsring</name>
+    <desc>Rettungsring an Pfahl oder Gestell. · noch zu prüfen</desc>
+    <type>Einrichtung</type>
+  </wpt>
+  <wpt lat="53.7917781" lon="7.8922639">
+    <name>FI001 Fitnessgerät</name>
+    <desc>Trainingsgerät im Freien. · noch zu prüfen</desc>
+    <type>Fitness</type>
+  </wpt>
+  <wpt lat="53.7874935" lon="7.850667">
+    <name>FR005 Fahrradständer</name>
+    <desc>Fahrradständer für ca. 14 Räder. · noch zu prüfen</desc>
+    <type>Fahrradständer</type>
+  </wpt>
+  <wpt lat="53.7844792" lon="7.857396">
+    <name>FR006 Fahrradständer</name>
+    <desc>Fahrradständer. · noch zu prüfen</desc>
+    <type>Fahrradständer</type>
+  </wpt>
+  <wpt lat="53.7937953" lon="7.8930563">
+    <name>G001 Surf-Café</name>
+    <desc>Café. Noch in Betrieb? · noch zu prüfen</desc>
+    <type>Gastronomie</type>
+  </wpt>
+  <wpt lat="53.7929867" lon="7.875522">
+    <name>G002 Inselgasthaus Jan Seedorf</name>
+    <desc>Restaurant. Noch in Betrieb? · noch zu prüfen</desc>
+    <type>Gastronomie</type>
+  </wpt>
+  <wpt lat="53.7919855" lon="7.8929203">
+    <name>G003 Kreta</name>
+    <desc>Restaurant. Noch in Betrieb? · noch zu prüfen</desc>
+    <type>Gastronomie</type>
+  </wpt>
+  <wpt lat="53.7850502" lon="7.8556258">
+    <name>G004 Westeroog</name>
+    <desc>Restaurant. Noch in Betrieb? · noch zu prüfen</desc>
+    <type>Gastronomie</type>
+  </wpt>
+  <wpt lat="53.7844538" lon="7.8577533">
+    <name>G005 DJH Bistro</name>
+    <desc>Café. Noch in Betrieb? · noch zu prüfen</desc>
+    <type>Gastronomie</type>
+  </wpt>
+  <wpt lat="53.7934839" lon="7.8944779">
+    <name>GB001 Freizeitbad Oase</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7929326" lon="7.8761732">
+    <name>GB002 Haus Saline</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7922639" lon="7.8922101">
+    <name>GB003 Kinderspielhaus Sockenland</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7921976" lon="7.8929193">
+    <name>GB004 Dünenhalle</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7894551" lon="7.8539743">
+    <name>GB005 Schullandheim Bünder e.V.</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7891753" lon="7.850574">
+    <name>GB006 Haus am Meer</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7891736" lon="7.8920244">
+    <name>GB007 Die Seenotretter DGzRS</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.78816" lon="7.8938119">
+    <name>GB008 Haus Wattblick</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7870836" lon="7.8512232">
+    <name>GB009 Mellumrat e.V. Wangerooge Weststation</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7868496" lon="7.8609002">
+    <name>GB010 Schöpfwerk Westgrodendeich</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7846782" lon="7.8575317">
+    <name>GB011 Westturm</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7761299" lon="7.867385">
+    <name>GB012 Wangerooger Yacht Club</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7766134" lon="7.8682309">
+    <name>GB013 Schiffsmeldestelle</name>
+    <desc>sicher</desc>
+    <type>Gebäude</type>
+  </wpt>
+  <wpt lat="53.7936747" lon="7.892267">
+    <name>H001 Kriegsgräberstätte</name>
+    <desc>Gedenkstein oder -tafel. · noch zu prüfen</desc>
+    <type>Historisch</type>
+  </wpt>
+  <wpt lat="53.7927043" lon="7.8863902">
+    <name>H002 Kriegsgräberstätte</name>
+    <desc>Gedenkstein oder -tafel. · sicher</desc>
+    <type>Historisch</type>
+  </wpt>
+  <wpt lat="53.7927034" lon="7.8863902">
+    <name>H003 Kriegsgrabstätte</name>
+    <desc>sicher</desc>
+    <type>Historisch</type>
+  </wpt>
+  <wpt lat="53.7905799" lon="7.888095">
+    <name>H004 Inselfriedhof</name>
+    <desc>sicher</desc>
+    <type>Historisch</type>
+  </wpt>
+  <wpt lat="53.7888108" lon="7.8510834">
+    <name>HP003 Haltepunkt Westen</name>
+    <desc>Haltestelle der Inselbahn. · sicher</desc>
+    <type>Haltepunkt</type>
+  </wpt>
+  <wpt lat="53.7746148" lon="7.867051">
+    <name>HP004 Haltepunkt Westanleger</name>
+    <desc>Haltestelle der Inselbahn. · sicher</desc>
+    <type>Haltepunkt</type>
+  </wpt>
+  <wpt lat="53.7929733" lon="7.8704609">
+    <name>HY016 Unterflurhydrant 016008</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7924331" lon="7.8753349">
+    <name>HY017 Unterflurhydrant 016006</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7914128" lon="7.8610452">
+    <name>HY018 Unterflurhydrant 016007</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7922463" lon="7.8850785">
+    <name>HY019 Unterflurhydrant 016024</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7923236" lon="7.8892437">
+    <name>HY020 Unterflurhydrant 016025</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7920189" lon="7.8900229">
+    <name>HY021 Unterflurhydrant 016026</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7917294" lon="7.892543">
+    <name>HY022 Unterflurhydrant 016102</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7908563" lon="7.8800238">
+    <name>HY023 Unterflurhydrant 016023</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7902503" lon="7.8576141">
+    <name>HY024 Unterflurhydrant 016009</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7887026" lon="7.8507691">
+    <name>HY025 Unterflurhydrant 016001</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7875668" lon="7.8507166">
+    <name>HY026 Unterflurhydrant 016002</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7879588" lon="7.8930506">
+    <name>HY027 Unterflurhydrant 016027</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7855983" lon="7.8523171">
+    <name>HY028 Unterflurhydrant 016003</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.785182" lon="7.854748">
+    <name>HY029 Unterflurhydrant 016004</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7849879" lon="7.8571044">
+    <name>HY030 Unterflurhydrant 016005</name>
+    <desc>Schild mit rotem „H“ an Pfahl oder Wand, Deckel im Boden. · noch zu prüfen</desc>
+    <type>Hydrant</type>
+  </wpt>
+  <wpt lat="53.7927953" lon="7.8917513">
+    <name>K001 Infotafel „Mein Dünenspielplatz“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7932438" lon="7.8925183">
+    <name>K002 Infotafel „Kriegsgräberstätte“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7909386" lon="7.8716435">
+    <name>K004 Infotafel „Vogelzug im Wattenmeer“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7911323" lon="7.8783937">
+    <name>K005 Infotafel „Hinweistafel“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7911267" lon="7.8869648">
+    <name>K006 Infotafel „Nationalpark Wattenmeer &quot;Zur Pflege und zum Erhalt der niedersächsischen Küstenheide&quot;“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7904801" lon="7.8873189">
+    <name>K007 Infotafel „Nationalpark Wattenmeer &quot;Aus eins mach zwei&quot;“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7906081" lon="7.8910393">
+    <name>K008 Infotafel „Der Tunnpad“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.789432" lon="7.8877034">
+    <name>K009 Infotafel</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7879238" lon="7.89305">
+    <name>K010 Infotafel</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7840505" lon="7.8580603">
+    <name>K011 Feuerstelle</name>
+    <desc>Feuer- oder Grillstelle. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7762512" lon="7.8674773">
+    <name>K012 Picknickplatz</name>
+    <desc>Tisch mit Bänken. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7762427" lon="7.8675292">
+    <name>K013 Picknickplatz</name>
+    <desc>Tisch mit Bänken. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7766386" lon="7.8676642">
+    <name>K014 Infotafel</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7767734" lon="7.8677562">
+    <name>K015 Infotafel „Herzlich willkommen im Nationalpark“</name>
+    <desc>Info- oder Schautafel. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.776423" lon="7.8680539">
+    <name>K016 Messstation „W-ooge West Pegel“</name>
+    <desc>Pegel oder Messgerät am Wasser. · noch zu prüfen</desc>
+    <type>Kleinobjekt</type>
+  </wpt>
+  <wpt lat="53.7876028" lon="7.8900241">
+    <name>KM009 km-Stein 0,6</name>
+    <desc>Kilometerstein 0,6 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7875129" lon="7.8930457">
+    <name>KM010 km-Stein 0,4</name>
+    <desc>Kilometerstein 0,4 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7864809" lon="7.8713381">
+    <name>KM011 km-Stein 2,0</name>
+    <desc>Kilometerstein 2,0 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7851203" lon="7.869362">
+    <name>KM012 km-Stein 2,2</name>
+    <desc>Kilometerstein 2,2 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7837367" lon="7.8674382">
+    <name>KM013 km-Stein 2,4</name>
+    <desc>Kilometerstein 2,4 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7802333" lon="7.867191">
+    <name>KM014 km-Stein 2,8</name>
+    <desc>Kilometerstein 2,8 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7786571" lon="7.8683854">
+    <name>KM015 km-Stein 3,0</name>
+    <desc>Kilometerstein 3,0 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7769146" lon="7.868238">
+    <name>KM016 km-Stein 3,2</name>
+    <desc>Kilometerstein 3,2 am Gleis der Inselbahn. · noch zu prüfen</desc>
+    <type>km-Stein</type>
+  </wpt>
+  <wpt lat="53.7937254" lon="7.8811695">
+    <name>KU001 Dünenkuppe 18 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.793702" lon="7.8863774">
+    <name>KU002 Dünenkuppe 17 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7937342" lon="7.8850102">
+    <name>KU003 Dünenkuppe 17 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7935367" lon="7.8840742">
+    <name>KU004 Dünenkuppe 17 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7936672" lon="7.8845717">
+    <name>KU005 Dünenkuppe 17 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7935767" lon="7.8777576">
+    <name>KU006 Dünenkuppe 17 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7936867" lon="7.892496">
+    <name>KU007 Dünenkuppe 16 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7935068" lon="7.8770156">
+    <name>KU008 Dünenkuppe 16 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.793484" lon="7.8765">
+    <name>KU009 Dünenkuppe 16 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7936452" lon="7.8793195">
+    <name>KU010 Dünenkuppe 16 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7934749" lon="7.8697901">
+    <name>KU011 Dünenkuppe 16 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7935121" lon="7.8756643">
+    <name>KU012 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7934922" lon="7.8716266">
+    <name>KU013 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7931721" lon="7.8653349">
+    <name>KU014 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.793507" lon="7.8751179">
+    <name>KU015 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7935007" lon="7.8725372">
+    <name>KU016 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7935342" lon="7.8732347">
+    <name>KU017 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.793507" lon="7.8741615">
+    <name>KU018 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7761202" lon="7.8662653">
+    <name>KU019 Dünenkuppe 15 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7830796" lon="7.8579576">
+    <name>KU020 Dünenkuppe 14 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7832831" lon="7.8576182">
+    <name>KU021 Dünenkuppe 14 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7764987" lon="7.8663614">
+    <name>KU022 Dünenkuppe 14 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7903247" lon="7.8551498">
+    <name>KU023 Dünenkuppe 14 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7907507" lon="7.8564589">
+    <name>KU024 Dünenkuppe 13 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.790917" lon="7.856925">
+    <name>KU025 Dünenkuppe 13 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7902128" lon="7.8547278">
+    <name>KU026 Dünenkuppe 13 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7917457" lon="7.8589974">
+    <name>KU027 Dünenkuppe 13 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7915329" lon="7.8583656">
+    <name>KU028 Dünenkuppe 13 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7845434" lon="7.8540474">
+    <name>KU029 Dünenkuppe 13 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7809968" lon="7.8610648">
+    <name>KU030 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7910565" lon="7.8574222">
+    <name>KU031 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.779254" lon="7.8630697">
+    <name>KU032 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7818055" lon="7.8600867">
+    <name>KU033 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7820545" lon="7.8598068">
+    <name>KU034 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7799566" lon="7.8622767">
+    <name>KU035 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7829246" lon="7.8586752">
+    <name>KU036 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7788003" lon="7.8635676">
+    <name>KU037 Dünenkuppe 12 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7905116" lon="7.8932475">
+    <name>KU038 Dünenkuppe 11 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7925543" lon="7.8905674">
+    <name>KU039 Dünenkuppe 10 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7901713" lon="7.8924064">
+    <name>KU040 Dünenkuppe 10 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7925122" lon="7.8918438">
+    <name>KU041 Dünenkuppe 10 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7862058" lon="7.8502377">
+    <name>KU042 Dünenkuppe 10 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7919066" lon="7.8769976">
+    <name>KU043 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7848089" lon="7.8564384">
+    <name>KU044 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7837771" lon="7.8547513">
+    <name>KU045 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7927179" lon="7.8849461">
+    <name>KU046 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7896094" lon="7.8909336">
+    <name>KU047 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7885258" lon="7.8923435">
+    <name>KU048 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.789566" lon="7.8920732">
+    <name>KU049 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7931622" lon="7.8815033">
+    <name>KU050 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7891722" lon="7.8883797">
+    <name>KU051 Dünenkuppe 9 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7922507" lon="7.890788">
+    <name>KU052 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7895" lon="7.889798">
+    <name>KU053 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7909071" lon="7.8787245">
+    <name>KU054 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7918812" lon="7.8868052">
+    <name>KU055 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.79227" lon="7.8783694">
+    <name>KU056 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7909582" lon="7.8909891">
+    <name>KU057 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.791645" lon="7.8635392">
+    <name>KU058 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.790756" lon="7.8924517">
+    <name>KU059 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7915635" lon="7.8884076">
+    <name>KU060 Dünenkuppe 8 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7919011" lon="7.8792901">
+    <name>KU061 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7900727" lon="7.8914678">
+    <name>KU062 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7930766" lon="7.8906751">
+    <name>KU063 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7911575" lon="7.8863082">
+    <name>KU064 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7909894" lon="7.8914437">
+    <name>KU065 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7928417" lon="7.8789462">
+    <name>KU066 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7903701" lon="7.8905795">
+    <name>KU067 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7901025" lon="7.888856">
+    <name>KU068 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7930105" lon="7.8825852">
+    <name>KU069 Dünenkuppe 7 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7909128" lon="7.8870585">
+    <name>KU070 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7893838" lon="7.8859908">
+    <name>KU071 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7851225" lon="7.860103">
+    <name>KU072 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7927574" lon="7.8728304">
+    <name>KU073 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7928586" lon="7.8778679">
+    <name>KU074 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7905093" lon="7.8900749">
+    <name>KU075 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7926203" lon="7.8831573">
+    <name>KU076 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7917568" lon="7.8840607">
+    <name>KU077 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7851291" lon="7.8608011">
+    <name>KU078 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7914818" lon="7.8892902">
+    <name>KU079 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7899568" lon="7.885748">
+    <name>KU080 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.790871" lon="7.8893367">
+    <name>KU081 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7902719" lon="7.8732917">
+    <name>KU082 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.791616" lon="7.8814837">
+    <name>KU083 Dünenkuppe 6 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7912681" lon="7.8895084">
+    <name>KU084 Dünenkuppe 5 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7851696" lon="7.8631678">
+    <name>KU085 Dünenkuppe 5 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7897126" lon="7.886559">
+    <name>KU086 Dünenkuppe 5 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7915947" lon="7.8705845">
+    <name>KU087 Dünenkuppe 5 m</name>
+    <desc>Höchster Punkt einer Düne. · sicher</desc>
+    <type>Kuppe</type>
+  </wpt>
+  <wpt lat="53.7931852" lon="7.8706237">
+    <name>R001 SOS-Schild Nr. 48</name>
+    <desc>Rettungspunkt-Schild Nr. 48 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7938574" lon="7.8845318">
+    <name>R002 SOS-Schild Nr. 32</name>
+    <desc>Rettungspunkt-Schild Nr. 32 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7937997" lon="7.889944">
+    <name>R003 SOS-Schild Nr. 30</name>
+    <desc>Rettungspunkt-Schild Nr. 30 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7936214" lon="7.8901931">
+    <name>R004 SOS-Schild Nr. 31</name>
+    <desc>Rettungspunkt-Schild Nr. 31 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7924769" lon="7.8647236">
+    <name>R005 SOS-Schild Nr. 49</name>
+    <desc>Rettungspunkt-Schild Nr. 49 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7929951" lon="7.8747855">
+    <name>R006 SOS-Schild Nr. 45</name>
+    <desc>Rettungspunkt-Schild Nr. 45 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7924633" lon="7.8854128">
+    <name>R007 SOS-Schild Nr. 40</name>
+    <desc>Rettungspunkt-Schild Nr. 40 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7925219" lon="7.8865893">
+    <name>R008 SOS-Schild Nr. 39</name>
+    <desc>Rettungspunkt-Schild Nr. 39 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.791967" lon="7.8893685">
+    <name>R009 SOS-Schild Nr. 70</name>
+    <desc>Rettungspunkt-Schild Nr. 70 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7924152" lon="7.8940946">
+    <name>R010 SOS-Schild Nr. 68</name>
+    <desc>Rettungspunkt-Schild Nr. 68 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7904837" lon="7.8576776">
+    <name>R011 SOS-Schild Nr. 51</name>
+    <desc>Rettungspunkt-Schild Nr. 51 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7908771" lon="7.8717028">
+    <name>R012 SOS-Schild Nr. 64</name>
+    <desc>Rettungspunkt-Schild Nr. 64 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7911806" lon="7.8784622">
+    <name>R013 SOS-Schild Nr. 27</name>
+    <desc>Rettungspunkt-Schild Nr. 27 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7909694" lon="7.8807783">
+    <name>R014 SOS-Schild Nr. 86</name>
+    <desc>Rettungspunkt-Schild Nr. 86 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7909883" lon="7.883776">
+    <name>R015 SOS-Schild Nr. 43</name>
+    <desc>Rettungspunkt-Schild Nr. 43 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7913643" lon="7.8869949">
+    <name>R016 SOS-Schild Nr. 42</name>
+    <desc>Rettungspunkt-Schild Nr. 42 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7913289" lon="7.8886961">
+    <name>R017 SOS-Schild Nr. 33</name>
+    <desc>Rettungspunkt-Schild Nr. 33 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.790067" lon="7.8780896">
+    <name>R018 SOS-Schild Nr. 38</name>
+    <desc>Rettungspunkt-Schild Nr. 38 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7899106" lon="7.885227">
+    <name>R019 SOS-Schild Nr. 71</name>
+    <desc>Rettungspunkt-Schild Nr. 71 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7902474" lon="7.8936431">
+    <name>R020 SOS-Schild Nr. 41</name>
+    <desc>Rettungspunkt-Schild Nr. 41 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7892346" lon="7.8502885">
+    <name>R021 SOS-Schild Nr. 63</name>
+    <desc>Rettungspunkt-Schild Nr. 63 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7895093" lon="7.8656326">
+    <name>R022 SOS-Schild Nr. 61</name>
+    <desc>Rettungspunkt-Schild Nr. 61 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.788866" lon="7.8819303">
+    <name>R023 SOS-Schild Nr. 36</name>
+    <desc>Rettungspunkt-Schild Nr. 36 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7882312" lon="7.8878991">
+    <name>R024 SOS-Schild Nr. 35</name>
+    <desc>Rettungspunkt-Schild Nr. 35 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.786798" lon="7.8610473">
+    <name>R025 SOS-Schild Nr. 65</name>
+    <desc>Rettungspunkt-Schild Nr. 65 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7877663" lon="7.8932242">
+    <name>R026 SOS-Schild Nr. 24</name>
+    <desc>Rettungspunkt-Schild Nr. 24 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7857988" lon="7.8500728">
+    <name>R027 SOS-Schild Nr. 66</name>
+    <desc>Rettungspunkt-Schild Nr. 66 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7857326" lon="7.892496">
+    <name>R028 SOS-Schild Nr. 23</name>
+    <desc>Rettungspunkt-Schild Nr. 23 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7848514" lon="7.851568">
+    <name>R029 SOS-Schild Nr. 54</name>
+    <desc>Rettungspunkt-Schild Nr. 54 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7845866" lon="7.8520806">
+    <name>R030 SOS-Schild Nr. 53</name>
+    <desc>Rettungspunkt-Schild Nr. 53 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.783874" lon="7.8544527">
+    <name>R031 SOS-Schild Nr. 54</name>
+    <desc>Rettungspunkt-Schild Nr. 54 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7838218" lon="7.8583063">
+    <name>R032 SOS-Schild Nr. 55</name>
+    <desc>Rettungspunkt-Schild Nr. 55 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7800973" lon="7.8615657">
+    <name>R033 SOS-Schild Nr. 57</name>
+    <desc>Rettungspunkt-Schild Nr. 57 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7804193" lon="7.8621625">
+    <name>R034 SOS-Schild Nr. 56</name>
+    <desc>Rettungspunkt-Schild Nr. 56 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7782828" lon="7.8645422">
+    <name>R035 SOS-Schild Nr. 67</name>
+    <desc>Rettungspunkt-Schild Nr. 67 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7766678" lon="7.8676148">
+    <name>R036 SOS-Schild Nr. 60</name>
+    <desc>Rettungspunkt-Schild Nr. 60 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7762689" lon="7.8690612">
+    <name>R037 SOS-Schild Nr. 59</name>
+    <desc>Rettungspunkt-Schild Nr. 59 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7753319" lon="7.8666417">
+    <name>R038 SOS-Schild Nr. 58</name>
+    <desc>Rettungspunkt-Schild Nr. 58 an Pfahl, Weg oder Strandaufgang. Stimmt die Nummer? · noch zu prüfen</desc>
+    <type>Rettungspunkt</type>
+  </wpt>
+  <wpt lat="53.7922953" lon="7.8755041">
+    <name>RE006 Container für Glas</name>
+    <desc>Wertstoff-Container für Glas. · noch zu prüfen</desc>
+    <type>Recycling</type>
+  </wpt>
+  <wpt lat="53.7889934" lon="7.8512848">
+    <name>RE007 Container für Glas</name>
+    <desc>Wertstoff-Container für Glas. · noch zu prüfen</desc>
+    <type>Recycling</type>
+  </wpt>
+  <wpt lat="53.7888697" lon="7.8915314">
+    <name>RE008 Wertstoff-Container</name>
+    <desc>Wertstoff-Container. · noch zu prüfen</desc>
+    <type>Recycling</type>
+  </wpt>
+  <wpt lat="53.7871903" lon="7.8508256">
+    <name>RE009 Container für Glas</name>
+    <desc>Wertstoff-Container für Glas. · noch zu prüfen</desc>
+    <type>Recycling</type>
+  </wpt>
+  <wpt lat="53.7852132" lon="7.8547213">
+    <name>RE010 Container für Glas</name>
+    <desc>Wertstoff-Container für Glas. · noch zu prüfen</desc>
+    <type>Recycling</type>
+  </wpt>
+  <wpt lat="53.7936465" lon="7.8928128">
+    <name>SH001 Steilhang</name>
+    <desc>Steile Abbruchkante an einer Düne. · sicher</desc>
+    <type>Steilhang</type>
+  </wpt>
+  <wpt lat="53.7933739" lon="7.8736808">
+    <name>SH002 Steilhang</name>
+    <desc>Steile Abbruchkante an einer Düne. · sicher</desc>
+    <type>Steilhang</type>
+  </wpt>
+  <wpt lat="53.7934534" lon="7.8841948">
+    <name>SH003 Steilhang</name>
+    <desc>Steile Abbruchkante an einer Düne. · sicher</desc>
+    <type>Steilhang</type>
+  </wpt>
+  <wpt lat="53.7875441" lon="7.8932133">
+    <name>SH004 Steilhang</name>
+    <desc>Steile Abbruchkante an einer Düne. · sicher</desc>
+    <type>Steilhang</type>
+  </wpt>
+  <wpt lat="53.7848102" lon="7.8557204">
+    <name>SH005 Steilhang</name>
+    <desc>Steile Abbruchkante an einer Düne. · sicher</desc>
+    <type>Steilhang</type>
+  </wpt>
+  <wpt lat="53.7759849" lon="7.8659275">
+    <name>SH006 Steilhang</name>
+    <desc>Steile Abbruchkante an einer Düne. · sicher</desc>
+    <type>Steilhang</type>
+  </wpt>
+  <wpt lat="53.7930002" lon="7.8919341">
+    <name>SP003 Spielplatz</name>
+    <desc>sicher</desc>
+    <type>Spielplatz</type>
+  </wpt>
+  <wpt lat="53.7919557" lon="7.8921332">
+    <name>SP004 Spielplatz</name>
+    <desc>sicher</desc>
+    <type>Spielplatz</type>
+  </wpt>
+  <wpt lat="53.7920222" lon="7.8940807">
+    <name>SPO007 Sportplatz (Tennis)</name>
+    <desc>sicher</desc>
+    <type>Sportplatz</type>
+  </wpt>
+  <wpt lat="53.7897329" lon="7.8555803">
+    <name>SPO008 Sportplatz (Mehrzweck)</name>
+    <desc>sicher</desc>
+    <type>Sportplatz</type>
+  </wpt>
+  <wpt lat="53.7885313" lon="7.851932">
+    <name>SPO009 Sportplatz (Mehrzweck)</name>
+    <desc>sicher</desc>
+    <type>Sportplatz</type>
+  </wpt>
+  <wpt lat="53.7874587" lon="7.8499394">
+    <name>SPO010 Sportplatz (Mehrzweck)</name>
+    <desc>sicher</desc>
+    <type>Sportplatz</type>
+  </wpt>
+  <wpt lat="53.78562" lon="7.8527006">
+    <name>SPO011 Sportplatz (Fußball / Basketball / Handball)</name>
+    <desc>sicher</desc>
+    <type>Sportplatz</type>
+  </wpt>
+  <wpt lat="53.784956" lon="7.854616">
+    <name>SPO012 Sportplatz (Tennis)</name>
+    <desc>sicher</desc>
+    <type>Sportplatz</type>
+  </wpt>
+  <wpt lat="53.7936295" lon="7.890199">
+    <name>T001 Aussichtsdüne</name>
+    <desc>sicher</desc>
+    <type>Gelände</type>
+  </wpt>
+  <wpt lat="53.7931692" lon="7.866929">
+    <name>TR001 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.793237" lon="7.8683998">
+    <name>TR002 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7934727" lon="7.868606">
+    <name>TR003 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7934967" lon="7.8721122">
+    <name>TR004 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7935362" lon="7.8772729">
+    <name>TR005 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7935937" lon="7.879579">
+    <name>TR006 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7935524" lon="7.8799748">
+    <name>TR007 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 1,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7932689" lon="7.8823354">
+    <name>TR008 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7937666" lon="7.8827018">
+    <name>TR009 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7937729" lon="7.8833696">
+    <name>TR010 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 2,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7933064" lon="7.8834731">
+    <name>TR011 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7935825" lon="7.8841641">
+    <name>TR012 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7937232" lon="7.884798">
+    <name>TR013 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927455" lon="7.8639497">
+    <name>TR014 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,0 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925822" lon="7.8647436">
+    <name>TR015 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,5 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926486" lon="7.8651061">
+    <name>TR016 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924911" lon="7.8655658">
+    <name>TR017 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925394" lon="7.8659137">
+    <name>TR018 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926063" lon="7.8663369">
+    <name>TR019 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 17 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923355" lon="7.867164">
+    <name>TR020 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7922662" lon="7.8683955">
+    <name>TR021 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927014" lon="7.8687937">
+    <name>TR022 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925686" lon="7.8690098">
+    <name>TR023 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926527" lon="7.8693416">
+    <name>TR024 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927206" lon="7.8698711">
+    <name>TR025 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792514" lon="7.8698918">
+    <name>TR026 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928127" lon="7.8701115">
+    <name>TR027 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7922922" lon="7.8702014">
+    <name>TR028 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925443" lon="7.8702402">
+    <name>TR029 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928431" lon="7.870475">
+    <name>TR030 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924945" lon="7.8706818">
+    <name>TR031 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928748" lon="7.8709752">
+    <name>TR032 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927493" lon="7.8710089">
+    <name>TR033 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929033" lon="7.8711414">
+    <name>TR034 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923912" lon="7.8711703">
+    <name>TR035 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929233" lon="7.8713534">
+    <name>TR036 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924748" lon="7.8714565">
+    <name>TR037 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926824" lon="7.871542">
+    <name>TR038 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924783" lon="7.8718208">
+    <name>TR039 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924734" lon="7.8722612">
+    <name>TR040 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928605" lon="7.8723267">
+    <name>TR041 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929684" lon="7.8723238">
+    <name>TR042 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928799" lon="7.872478">
+    <name>TR043 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923767" lon="7.8724915">
+    <name>TR044 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929262" lon="7.8726134">
+    <name>TR045 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923604" lon="7.8726741">
+    <name>TR046 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928284" lon="7.8727374">
+    <name>TR047 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792622" lon="7.8727733">
+    <name>TR048 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 6 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927948" lon="7.8729812">
+    <name>TR049 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923935" lon="7.873326">
+    <name>TR050 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79296" lon="7.8733412">
+    <name>TR051 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931146" lon="7.8735344">
+    <name>TR052 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927644" lon="7.8735741">
+    <name>TR053 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926486" lon="7.8736835">
+    <name>TR054 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929724" lon="7.8737052">
+    <name>TR055 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931344" lon="7.8737312">
+    <name>TR056 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931214" lon="7.8742629">
+    <name>TR057 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925386" lon="7.8744151">
+    <name>TR058 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927279" lon="7.8744708">
+    <name>TR059 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930965" lon="7.8744761">
+    <name>TR060 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929179" lon="7.8746023">
+    <name>TR061 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930993" lon="7.8747796">
+    <name>TR062 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926416" lon="7.8748526">
+    <name>TR063 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924454" lon="7.8759813">
+    <name>TR064 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923174" lon="7.8767134">
+    <name>TR065 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924073" lon="7.876711">
+    <name>TR066 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926434" lon="7.8769628">
+    <name>TR067 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925518" lon="7.8777394">
+    <name>TR068 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927319" lon="7.8777802">
+    <name>TR069 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,2 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929843" lon="7.8778494">
+    <name>TR070 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 2,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924379" lon="7.8780613">
+    <name>TR071 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930781" lon="7.8782719">
+    <name>TR072 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 2,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927017" lon="7.8783882">
+    <name>TR073 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931692" lon="7.8784061">
+    <name>TR074 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928016" lon="7.878507">
+    <name>TR075 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928849" lon="7.8787629">
+    <name>TR076 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927683" lon="7.8787812">
+    <name>TR077 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931652" lon="7.8789376">
+    <name>TR078 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,5 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931939" lon="7.879119">
+    <name>TR079 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928705" lon="7.8791428">
+    <name>TR080 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925028" lon="7.8792285">
+    <name>TR081 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927193" lon="7.8793138">
+    <name>TR082 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928012" lon="7.8794179">
+    <name>TR083 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930979" lon="7.8794252">
+    <name>TR084 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 2,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928656" lon="7.8795832">
+    <name>TR085 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 6 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929324" lon="7.8799913">
+    <name>TR086 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929794" lon="7.8802178">
+    <name>TR087 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923598" lon="7.8802798">
+    <name>TR088 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924407" lon="7.8802777">
+    <name>TR089 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924425" lon="7.880475">
+    <name>TR090 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925954" lon="7.8804861">
+    <name>TR091 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79318" lon="7.880516">
+    <name>TR092 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929881" lon="7.8811436">
+    <name>TR093 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925209" lon="7.8811712">
+    <name>TR094 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928628" lon="7.8812076">
+    <name>TR095 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924239" lon="7.8813711">
+    <name>TR096 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926041" lon="7.8814119">
+    <name>TR097 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923988" lon="7.8815692">
+    <name>TR098 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792633" lon="7.8816237">
+    <name>TR099 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924811" lon="7.8817188">
+    <name>TR100 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931019" lon="7.8817782">
+    <name>TR101 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 21 m breit, 2,2 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925992" lon="7.8818523">
+    <name>TR102 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928702" lon="7.8819969">
+    <name>TR103 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924662" lon="7.8820532">
+    <name>TR104 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929804" lon="7.882252">
+    <name>TR105 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,3 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927742" lon="7.8823031">
+    <name>TR106 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7926762" lon="7.8823967">
+    <name>TR107 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923723" lon="7.882587">
+    <name>TR108 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930948" lon="7.8829473">
+    <name>TR109 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930427" lon="7.8831461">
+    <name>TR110 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930713" lon="7.8842839">
+    <name>TR111 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928827" lon="7.8843041">
+    <name>TR112 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 2,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928323" lon="7.884685">
+    <name>TR113 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 22 m breit, 2,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925568" lon="7.8850263">
+    <name>TR114 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924507" lon="7.8852112">
+    <name>TR115 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,0 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928822" lon="7.8861866">
+    <name>TR116 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929908" lon="7.8862596">
+    <name>TR117 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929113" lon="7.8864135">
+    <name>TR118 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792868" lon="7.8865969">
+    <name>TR119 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924298" lon="7.8868362">
+    <name>TR120 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792701" lon="7.886996">
+    <name>TR121 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930705" lon="7.8871077">
+    <name>TR122 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929377" lon="7.8873237">
+    <name>TR123 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931467" lon="7.8875611">
+    <name>TR124 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7930225" lon="7.8877465">
+    <name>TR125 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929717" lon="7.8880819">
+    <name>TR126 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.793266" lon="7.8888028">
+    <name>TR127 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931947" lon="7.889837">
+    <name>TR128 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 21 m breit, 2,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931251" lon="7.8900818">
+    <name>TR129 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927163" lon="7.8905935">
+    <name>TR130 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931408" lon="7.89081">
+    <name>TR131 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7931898" lon="7.891249">
+    <name>TR132 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7929745" lon="7.8913002">
+    <name>TR133 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 22 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924967" lon="7.8921174">
+    <name>TR134 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7925161" lon="7.8922687">
+    <name>TR135 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7927272" lon="7.8937206">
+    <name>TR136 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915643" lon="7.8607178">
+    <name>TR137 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915493" lon="7.861037">
+    <name>TR138 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919063" lon="7.8617104">
+    <name>TR139 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7914674" lon="7.8618741">
+    <name>TR140 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918343" lon="7.8626536">
+    <name>TR141 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792105" lon="7.8627526">
+    <name>TR142 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920794" lon="7.8638463">
+    <name>TR143 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913432" lon="7.8639421">
+    <name>TR144 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919576" lon="7.8642746">
+    <name>TR145 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920625" lon="7.8649094">
+    <name>TR146 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918715" lon="7.8656281">
+    <name>TR147 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7922066" lon="7.8658923">
+    <name>TR148 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919644" lon="7.8659444">
+    <name>TR149 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919058" lon="7.8664014">
+    <name>TR150 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920972" lon="7.8666846">
+    <name>TR151 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79219" lon="7.8669858">
+    <name>TR152 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920971" lon="7.8676259">
+    <name>TR153 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792108" lon="7.8678229">
+    <name>TR154 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919758" lon="7.8680997">
+    <name>TR155 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919859" lon="7.8682209">
+    <name>TR156 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918241" lon="7.8682253">
+    <name>TR157 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916457" lon="7.8683667">
+    <name>TR158 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920696" lon="7.8685223">
+    <name>TR159 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919899" lon="7.8686459">
+    <name>TR160 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919216" lon="7.8690272">
+    <name>TR161 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919001" lon="7.8696047">
+    <name>TR162 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7917135" lon="7.8698374">
+    <name>TR163 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7922741" lon="7.8730559">
+    <name>TR164 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918121" lon="7.87363">
+    <name>TR165 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7921644" lon="7.8738179">
+    <name>TR166 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7921343" lon="7.8744411">
+    <name>TR167 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916499" lon="7.8745452">
+    <name>TR168 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920097" lon="7.8745659">
+    <name>TR169 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79186" lon="7.8749039">
+    <name>TR170 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7917546" lon="7.8751648">
+    <name>TR171 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918299" lon="7.8755271">
+    <name>TR172 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7917134" lon="7.8755606">
+    <name>TR173 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7914859" lon="7.8762195">
+    <name>TR174 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920001" lon="7.8783462">
+    <name>TR175 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918475" lon="7.8783655">
+    <name>TR176 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.791625" lon="7.8785991">
+    <name>TR177 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 19 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7920349" lon="7.8791803">
+    <name>TR178 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918633" lon="7.8800501">
+    <name>TR179 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918286" lon="7.8801877">
+    <name>TR180 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.791578" lon="7.8803006">
+    <name>TR181 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918036" lon="7.8804009">
+    <name>TR182 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919404" lon="7.8806098">
+    <name>TR183 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916985" lon="7.8806921">
+    <name>TR184 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918698" lon="7.8807483">
+    <name>TR185 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915013" lon="7.8807581">
+    <name>TR186 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916819" lon="7.8808444">
+    <name>TR187 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7917474" lon="7.8811159">
+    <name>TR188 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915498" lon="7.8811363">
+    <name>TR189 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916967" lon="7.8814664">
+    <name>TR190 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7922134" lon="7.8828948">
+    <name>TR191 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.791513" lon="7.8829742">
+    <name>TR192 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916036" lon="7.8830477">
+    <name>TR193 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916409" lon="7.8831985">
+    <name>TR194 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915165" lon="7.8833536">
+    <name>TR195 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915717" lon="7.8834888">
+    <name>TR196 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7921393" lon="7.8836255">
+    <name>TR197 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,2 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7914927" lon="7.8836882">
+    <name>TR198 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915596" lon="7.8841115">
+    <name>TR199 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7917981" lon="7.8846365">
+    <name>TR200 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 17 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915201" lon="7.8847046">
+    <name>TR201 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7917824" lon="7.8848798">
+    <name>TR202 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918729" lon="7.8849381">
+    <name>TR203 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7917407" lon="7.8852301">
+    <name>TR204 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923368" lon="7.8855331">
+    <name>TR205 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916541" lon="7.8855815">
+    <name>TR206 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915481" lon="7.8857817">
+    <name>TR207 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 2,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7922148" lon="7.8859462">
+    <name>TR208 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7915245" lon="7.8861466">
+    <name>TR209 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7921633" lon="7.8862056">
+    <name>TR210 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7921041" lon="7.8866019">
+    <name>TR211 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79237" lon="7.8871717">
+    <name>TR212 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7919029" lon="7.8871993">
+    <name>TR213 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 2,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7921277" lon="7.8872085">
+    <name>TR214 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 2,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7918164" lon="7.8875659">
+    <name>TR215 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7916475" lon="7.8877677">
+    <name>TR216 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79175" lon="7.8881597">
+    <name>TR217 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923139" lon="7.8898451">
+    <name>TR218 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7924323" lon="7.890009">
+    <name>TR219 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792217" lon="7.8900602">
+    <name>TR220 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923611" lon="7.8900867">
+    <name>TR221 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.792319" lon="7.8903915">
+    <name>TR222 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 22 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7923313" lon="7.8907555">
+    <name>TR223 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7909159" lon="7.8643787">
+    <name>TR224 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904703" lon="7.8714496">
+    <name>TR225 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7910036" lon="7.873682">
+    <name>TR226 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913416" lon="7.8761778">
+    <name>TR227 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7909933" lon="7.8773712">
+    <name>TR228 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906974" lon="7.877455">
+    <name>TR229 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.790988" lon="7.877766">
+    <name>TR230 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906848" lon="7.8780322">
+    <name>TR231 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908107" lon="7.8780288">
+    <name>TR232 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906962" lon="7.8792463">
+    <name>TR233 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907435" lon="7.8795031">
+    <name>TR234 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7910952" lon="7.8796152">
+    <name>TR235 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913205" lon="7.8796851">
+    <name>TR236 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7910063" lon="7.8797238">
+    <name>TR237 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907111" lon="7.8798835">
+    <name>TR238 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905695" lon="7.880115">
+    <name>TR239 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905712" lon="7.8802971">
+    <name>TR240 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912463" lon="7.8804005">
+    <name>TR241 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907793" lon="7.8804433">
+    <name>TR242 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907007" lon="7.8806883">
+    <name>TR243 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912404" lon="7.8807347">
+    <name>TR244 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907132" lon="7.8810675">
+    <name>TR245 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905786" lon="7.8810863">
+    <name>TR246 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912896" lon="7.8811888">
+    <name>TR247 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913188" lon="7.8814309">
+    <name>TR248 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912116" lon="7.8814945">
+    <name>TR249 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7911309" lon="7.8824834">
+    <name>TR250 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7911864" lon="7.8826489">
+    <name>TR251 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912959" lon="7.8828281">
+    <name>TR252 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.791207" lon="7.8829368">
+    <name>TR253 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907046" lon="7.8830412">
+    <name>TR254 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7911187" lon="7.8831061">
+    <name>TR255 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908601" lon="7.8833255">
+    <name>TR256 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906176" lon="7.8833471">
+    <name>TR257 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.790816" lon="7.8834177">
+    <name>TR258 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912123" lon="7.8834983">
+    <name>TR259 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7914025" lon="7.8836602">
+    <name>TR260 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906848" lon="7.8838007">
+    <name>TR261 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906959" lon="7.8840282">
+    <name>TR262 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913998" lon="7.8843283">
+    <name>TR263 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7909149" lon="7.8843867">
+    <name>TR264 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7911402" lon="7.8844414">
+    <name>TR265 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7909443" lon="7.884644">
+    <name>TR266 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908289" lon="7.8847988">
+    <name>TR267 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913504" lon="7.8848154">
+    <name>TR268 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908929" lon="7.8849186">
+    <name>TR269 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7914504" lon="7.8849342">
+    <name>TR270 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912719" lon="7.8850755">
+    <name>TR271 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.791012" lon="7.8851583">
+    <name>TR272 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907695" lon="7.8851799">
+    <name>TR273 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.790709" lon="7.8854396">
+    <name>TR274 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907663" lon="7.8858024">
+    <name>TR275 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908934" lon="7.8859357">
+    <name>TR276 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906959" lon="7.8859713">
+    <name>TR277 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907073" lon="7.886229">
+    <name>TR278 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908544" lon="7.8865743">
+    <name>TR279 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79073" lon="7.8867294">
+    <name>TR280 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.790689" lon="7.8871555">
+    <name>TR281 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908603" lon="7.8872117">
+    <name>TR282 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7911212" lon="7.8872352">
+    <name>TR283 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7906645" lon="7.8874294">
+    <name>TR284 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908534" lon="7.8874396">
+    <name>TR285 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913533" lon="7.8890052">
+    <name>TR286 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7914701" lon="7.8890021">
+    <name>TR287 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913996" lon="7.8891557">
+    <name>TR288 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7911236" lon="7.8894363">
+    <name>TR289 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7907198" lon="7.8895077">
+    <name>TR290 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 1,2 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908013" lon="7.8895814">
+    <name>TR291 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7913591" lon="7.8896274">
+    <name>TR292 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7912906" lon="7.8899936">
+    <name>TR293 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7910306" lon="7.8900763">
+    <name>TR294 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,2 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7911657" lon="7.8901031">
+    <name>TR295 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7908482" lon="7.8907643">
+    <name>TR296 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7910416" lon="7.8912601">
+    <name>TR297 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7901363" lon="7.8722631">
+    <name>TR298 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7903875" lon="7.8741236">
+    <name>TR299 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7901141" lon="7.8794743">
+    <name>TR300 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904742" lon="7.8795406">
+    <name>TR301 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7900617" lon="7.8796427">
+    <name>TR302 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7898301" lon="7.8808329">
+    <name>TR303 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7900467" lon="7.8809183">
+    <name>TR304 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7903018" lon="7.881291">
+    <name>TR305 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7901943" lon="7.8813242">
+    <name>TR306 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.790464" lon="7.8813322">
+    <name>TR307 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7902853" lon="7.8814432">
+    <name>TR308 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7898301" lon="7.8817893">
+    <name>TR309 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897081" lon="7.8822024">
+    <name>TR310 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7898263" lon="7.8823511">
+    <name>TR311 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7899951" lon="7.8831056">
+    <name>TR312 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79015" lon="7.8833292">
+    <name>TR313 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897829" lon="7.8834755">
+    <name>TR314 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7901066" lon="7.8834973">
+    <name>TR315 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905403" lon="7.8837287">
+    <name>TR316 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7901099" lon="7.8838464">
+    <name>TR317 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897149" lon="7.8839024">
+    <name>TR318 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897962" lon="7.8839458">
+    <name>TR319 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 6 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7898334" lon="7.8840814">
+    <name>TR320 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,3 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905347" lon="7.8840932">
+    <name>TR321 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7899611" lon="7.8842754">
+    <name>TR322 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896916" lon="7.8842977">
+    <name>TR323 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905187" lon="7.8843061">
+    <name>TR324 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7902412" lon="7.8844349">
+    <name>TR325 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897474" lon="7.8844936">
+    <name>TR326 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904401" lon="7.8845511">
+    <name>TR327 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.790261" lon="7.8846317">
+    <name>TR328 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897131" lon="7.8846766">
+    <name>TR329 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7898749" lon="7.8846723">
+    <name>TR330 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904335" lon="7.8848093">
+    <name>TR331 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897617" lon="7.88507">
+    <name>TR332 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 2,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7903099" lon="7.8850555">
+    <name>TR333 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 2,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7903043" lon="7.88542">
+    <name>TR334 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 17 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904753" lon="7.8854458">
+    <name>TR335 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904409" lon="7.8856137">
+    <name>TR336 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7898483" lon="7.8856749">
+    <name>TR337 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,5 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7902018" lon="7.8859995">
+    <name>TR338 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.789781" lon="7.8861777">
+    <name>TR339 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7903115" lon="7.886194">
+    <name>TR340 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905819" lon="7.8862779">
+    <name>TR341 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7899272" lon="7.8864319">
+    <name>TR342 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905212" lon="7.8865072">
+    <name>TR343 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7902975" lon="7.8866194">
+    <name>TR344 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7901628" lon="7.8866381">
+    <name>TR345 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7902186" lon="7.886834">
+    <name>TR346 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7903991" lon="7.8869203">
+    <name>TR347 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.79023" lon="7.8870918">
+    <name>TR348 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904101" lon="7.8871325">
+    <name>TR349 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7900967" lon="7.8882338">
+    <name>TR350 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7899903" lon="7.8883884">
+    <name>TR351 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7901525" lon="7.8884297">
+    <name>TR352 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7905548" lon="7.8891629">
+    <name>TR353 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7900083" lon="7.8893595">
+    <name>TR354 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 1,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904222" lon="7.8894093">
+    <name>TR355 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 0,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897683" lon="7.8896542">
+    <name>TR356 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.790607" lon="7.8899509">
+    <name>TR357 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897911" lon="7.8901698">
+    <name>TR358 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7903053" lon="7.8903687">
+    <name>TR359 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 2,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7904695" lon="7.8906376">
+    <name>TR360 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7902108" lon="7.8918133">
+    <name>TR361 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897885" lon="7.8918396">
+    <name>TR362 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7902307" lon="7.8920253">
+    <name>TR363 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7900423" lon="7.8920607">
+    <name>TR364 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7898437" lon="7.8929463">
+    <name>TR365 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897892" lon="7.8938586">
+    <name>TR366 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7892994" lon="7.8626463">
+    <name>TR367 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 0,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891436" lon="7.8775875">
+    <name>TR368 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891475" lon="7.8789688">
+    <name>TR369 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.789042" lon="7.8792145">
+    <name>TR370 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7887602" lon="7.8798444">
+    <name>TR371 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896337" lon="7.8809748">
+    <name>TR372 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 19 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891135" lon="7.8820664">
+    <name>TR373 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891165" lon="7.8823851">
+    <name>TR374 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7892706" lon="7.8825176">
+    <name>TR375 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896152" lon="7.8828424">
+    <name>TR376 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7894726" lon="7.8829828">
+    <name>TR377 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 6 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7890099" lon="7.8834809">
+    <name>TR378 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891924" lon="7.8837796">
+    <name>TR379 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7893546" lon="7.8838209">
+    <name>TR380 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7894643" lon="7.8840153">
+    <name>TR381 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7892945" lon="7.8841261">
+    <name>TR382 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7893428" lon="7.8844891">
+    <name>TR383 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7894515" lon="7.8845773">
+    <name>TR384 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7890473" lon="7.8846032">
+    <name>TR385 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7892651" lon="7.8848251">
+    <name>TR386 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7895258" lon="7.8848334">
+    <name>TR387 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891849" lon="7.8849032">
+    <name>TR388 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7890686" lon="7.884967">
+    <name>TR389 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7892315" lon="7.8850841">
+    <name>TR390 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7894659" lon="7.8851538">
+    <name>TR391 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896571" lon="7.8854219">
+    <name>TR392 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7893077" lon="7.8855375">
+    <name>TR393 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,4 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7894788" lon="7.8855785">
+    <name>TR394 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896416" lon="7.8856804">
+    <name>TR395 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,1 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891755" lon="7.8858294">
+    <name>TR396 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7889801" lon="7.8860774">
+    <name>TR397 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7892233" lon="7.8861317">
+    <name>TR398 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891006" lon="7.8864689">
+    <name>TR399 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7895141" lon="7.8864732">
+    <name>TR400 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 17 m breit, 1,3 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7894992" lon="7.8868075">
+    <name>TR401 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7891681" lon="7.8869681">
+    <name>TR402 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7890614" lon="7.8870923">
+    <name>TR403 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896949" lon="7.8885177">
+    <name>TR404 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896085" lon="7.8888995">
+    <name>TR405 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7895111" lon="7.8890538">
+    <name>TR406 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.789612" lon="7.8892789">
+    <name>TR407 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.789681" lon="7.8899298">
+    <name>TR408 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7897411" lon="7.8905961">
+    <name>TR409 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 1,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7893629" lon="7.8924732">
+    <name>TR410 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7890675" lon="7.8926025">
+    <name>TR411 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7893331" lon="7.8931419">
+    <name>TR412 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,0 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7893859" lon="7.8939906">
+    <name>TR413 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7896565" lon="7.8940898">
+    <name>TR414 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7878044" lon="7.8500878">
+    <name>TR415 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 20 m breit, 0,9 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7882619" lon="7.8509253">
+    <name>TR416 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7876528" lon="7.8520956">
+    <name>TR417 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 0,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7880607" lon="7.854331">
+    <name>TR418 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7880462" lon="7.8546957">
+    <name>TR419 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7879688" lon="7.8550622">
+    <name>TR420 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 0,7 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7880751" lon="7.8558334">
+    <name>TR421 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7878198" lon="7.8559239">
+    <name>TR422 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7878883" lon="7.856514">
+    <name>TR423 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7884406" lon="7.8812342">
+    <name>TR424 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7887919" lon="7.8861431">
+    <name>TR425 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7887738" lon="7.8870999">
+    <name>TR426 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7885791" lon="7.8874239">
+    <name>TR427 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7886161" lon="7.8894722">
+    <name>TR428 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 1,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.78852" lon="7.8926928">
+    <name>TR429 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.788608" lon="7.8934646">
+    <name>TR430 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 2,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7887545" lon="7.8937492">
+    <name>TR431 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 1,0 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7885482" lon="7.8938002">
+    <name>TR432 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 2,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7886841" lon="7.893918">
+    <name>TR433 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.788668" lon="7.8941158">
+    <name>TR434 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 9 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7868422" lon="7.8580452">
+    <name>TR435 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 22 m breit, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7874548" lon="7.8581803">
+    <name>TR436 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7868045" lon="7.864004">
+    <name>TR437 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7875581" lon="7.8868589">
+    <name>TR438 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7873814" lon="7.8881538">
+    <name>TR439 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.787451" lon="7.8888806">
+    <name>TR440 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7872729" lon="7.8890523">
+    <name>TR441 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7877595" lon="7.8891912">
+    <name>TR442 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 15 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7871576" lon="7.8892223">
+    <name>TR443 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7874815" lon="7.8892593">
+    <name>TR444 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7874189" lon="7.8892913">
+    <name>TR445 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7877097" lon="7.8896327">
+    <name>TR446 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7876948" lon="7.8899671">
+    <name>TR447 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7866229" lon="7.8638116">
+    <name>TR448 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7865515" lon="7.8638742">
+    <name>TR449 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,5 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7866688" lon="7.8639166">
+    <name>TR450 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,5 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7869092" lon="7.8847358">
+    <name>TR451 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 17 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7867934" lon="7.8867881">
+    <name>TR452 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7857552" lon="7.8510545">
+    <name>TR453 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 21 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7850907" lon="7.8605441">
+    <name>TR454 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 1,1 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7850451" lon="7.8623667">
+    <name>TR455 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,6 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.784643" lon="7.8550616">
+    <name>TR456 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 7 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7844986" lon="7.8559459">
+    <name>TR457 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 18 m breit, 1,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7845157" lon="7.8586775">
+    <name>TR458 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7840423" lon="7.858994">
+    <name>TR459 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,4 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7826248" lon="7.8602314">
+    <name>TR460 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,0 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7824206" lon="7.860495">
+    <name>TR461 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7814314" lon="7.8623431">
+    <name>TR462 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,3 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7815827" lon="7.8650253">
+    <name>TR463 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,8 m tief, oft bewachsen. · noch zu prüfen</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7809761" lon="7.8664683">
+    <name>TR464 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 10 m breit, 0,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.780748" lon="7.8670664">
+    <name>TR465 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7802339" lon="7.8659268">
+    <name>TR466 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 16 m breit, 0,8 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.778066" lon="7.8657576">
+    <name>TR467 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 11 m breit, 0,6 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7782357" lon="7.8675438">
+    <name>TR468 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 8 m breit, 0,5 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7781631" lon="7.868426">
+    <name>TR469 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 12 m breit, 1,2 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.777228" lon="7.8664935">
+    <name>TR470 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 13 m breit, 0,7 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7762778" lon="7.865821">
+    <name>TR471 Grube / Bombentrichter</name>
+    <desc>Runde Mulde, ca. 14 m breit, 1,9 m tief, oft bewachsen. · sicher</desc>
+    <type>Trichter</type>
+  </wpt>
+  <wpt lat="53.7928087" lon="7.8891124">
+    <name>U001 Bielefelder Haus</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7870515" lon="7.8498473">
+    <name>U002 Jugendgästehaus Westkap Wangerooge</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7877819" lon="7.893749">
+    <name>U003 Lagune am Wattenmeer</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.787649" lon="7.8939589">
+    <name>U004 Lagune am Wattenmeer</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7876606" lon="7.8943366">
+    <name>U005 Lagune am Wattenmeer</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.786227" lon="7.8516063">
+    <name>U006 Haus Anne</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7859447" lon="7.8524413">
+    <name>U007 Inselheimverein Schalksmühle</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7854209" lon="7.8519046">
+    <name>U008 Inselheim Rüstringen</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7850591" lon="7.85383">
+    <name>U009 Gutenbergheim</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7850544" lon="7.8554102">
+    <name>U010 Westeroog</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7844923" lon="7.8578297">
+    <name>U011 DJH Wangerooge</name>
+    <desc>sicher</desc>
+    <type>Unterkunft</type>
+  </wpt>
+  <wpt lat="53.7893065" lon="7.8522599">
+    <name>US002 Trafostation</name>
+    <desc>Häuschen oder Kasten mit Blitz-Schild. · noch zu prüfen</desc>
+    <type>Umspannstation</type>
+  </wpt>
+  <wpt lat="53.7909622" lon="7.8901556">
+    <name>V001 Wäldchen</name>
+    <desc>Kleine Baumgruppe. · sicher</desc>
+    <type>Vegetation</type>
+  </wpt>
+  <wpt lat="53.7904782" lon="7.8888537">
+    <name>V002 Wäldchen</name>
+    <desc>Kleine Baumgruppe. · sicher</desc>
+    <type>Vegetation</type>
+  </wpt>
+  <wpt lat="53.7893998" lon="7.8918954">
+    <name>V003 Wäldchen</name>
+    <desc>Kleine Baumgruppe. · sicher</desc>
+    <type>Vegetation</type>
+  </wpt>
+  <wpt lat="53.7889234" lon="7.8928658">
+    <name>V004 Wäldchen</name>
+    <desc>Kleine Baumgruppe. · sicher</desc>
+    <type>Vegetation</type>
+  </wpt>
+  <wpt lat="53.7867373" lon="7.8965648">
+    <name>V005 Wäldchen</name>
+    <desc>Kleine Baumgruppe. · sicher</desc>
+    <type>Vegetation</type>
+  </wpt>
+  <wpt lat="53.7903685" lon="7.859932">
+    <name>W001 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 6 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7906921" lon="7.8830476">
+    <name>W002 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 12 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7896249" lon="7.8544402">
+    <name>W003 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 23 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7897292" lon="7.8592464">
+    <name>W004 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 6 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7898601" lon="7.8596831">
+    <name>W005 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 6 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7899387" lon="7.8602988">
+    <name>W006 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 13 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7901354" lon="7.8608461">
+    <name>W007 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 12 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7897935" lon="7.861001">
+    <name>W008 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 15 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7901172" lon="7.8611987">
+    <name>W009 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 14 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7900632" lon="7.8616662">
+    <name>W010 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 11 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7899326" lon="7.8647726">
+    <name>W011 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 14 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7895702" lon="7.8652272">
+    <name>W012 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 14 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7901565" lon="7.8662998">
+    <name>W013 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 6 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7902107" lon="7.8711864">
+    <name>W014 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7904603" lon="7.8714438">
+    <name>W015 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 12 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7903086" lon="7.8717469">
+    <name>W016 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 15 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7899243" lon="7.8718923">
+    <name>W017 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7897712" lon="7.8723321">
+    <name>W018 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7900262" lon="7.8724983">
+    <name>W019 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 22 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7898181" lon="7.8729259">
+    <name>W020 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 17 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7903839" lon="7.8741176">
+    <name>W021 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 5 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.790576" lon="7.8838052">
+    <name>W022 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 14 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7905396" lon="7.884046">
+    <name>W023 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 10 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7898501" lon="7.8870305">
+    <name>W024 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 27 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7885932" lon="7.861155">
+    <name>W025 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7894536" lon="7.8618421">
+    <name>W026 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 15 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7893884" lon="7.8623555">
+    <name>W027 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 6 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7892886" lon="7.862639">
+    <name>W028 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7892276" lon="7.8629351">
+    <name>W029 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7891373" lon="7.8775832">
+    <name>W030 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 5 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7893436" lon="7.8779177">
+    <name>W031 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 13 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7891348" lon="7.8789479">
+    <name>W032 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7892934" lon="7.8789938">
+    <name>W033 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.789045" lon="7.8791537">
+    <name>W034 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 14 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7892968" lon="7.8874626">
+    <name>W035 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 31 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7895463" lon="7.8878172">
+    <name>W036 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 19 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7884361" lon="7.8750881">
+    <name>W037 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 47 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7887178" lon="7.876846">
+    <name>W038 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 9 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7887363" lon="7.8852839">
+    <name>W039 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 25 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7886615" lon="7.8864229">
+    <name>W040 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 14 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7869061" lon="7.8519278">
+    <name>W041 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 17 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7869392" lon="7.8576555">
+    <name>W042 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 18 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7873941" lon="7.8578571">
+    <name>W043 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 14 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7877447" lon="7.8892386">
+    <name>W044 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 11 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7877261" lon="7.8896626">
+    <name>W045 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 12 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7867067" lon="7.8593922">
+    <name>W046 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 12 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7853132" lon="7.8661814">
+    <name>W047 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7852022" lon="7.8665183">
+    <name>W048 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 6 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7852353" lon="7.8668893">
+    <name>W049 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7852739" lon="7.8671615">
+    <name>W050 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7852408" lon="7.8675616">
+    <name>W051 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7852924" lon="7.8680747">
+    <name>W052 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7854228" lon="7.8687497">
+    <name>W053 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7852616" lon="7.8691001">
+    <name>W054 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 6 m. Im Sommer evtl. trocken. · noch zu prüfen</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7848419" lon="7.8660621">
+    <name>W055 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 8 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.7842459" lon="7.8707196">
+    <name>W056 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 73 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+  <wpt lat="53.784059" lon="7.8665431">
+    <name>W057 Tümpel / Wasserloch</name>
+    <desc>Wasserloch oder feuchte Senke, ca. 151 m. Im Sommer evtl. trocken. · sicher</desc>
+    <type>Gewässer</type>
+  </wpt>
+</gpx>

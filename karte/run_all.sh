@@ -27,6 +27,7 @@ mkdir -p out/maps out/svg
 for m in color bw; do for sh in uebersicht detail_west detail_mitte detail_ost detail_sued; do echo "$sh $m"; done; done \
   | xargs -P "$JOBS" -n 2 bash -c 'set -o pipefail; python3 -W ignore scripts/render_map.py "$0" "$1" "out/maps/$0_$1.pdf" "out/maps/$0_$1.png" 200 "out/svg/$0_$1.svg" | tail -1'   # a failing sheet stops the run
 step "PDFs zusammenfügen";      python3 scripts/merge_pdfs.py
+step "Export für OL-Software";  python3 -W ignore scripts/export_ol.py
 step "Feldcheck: Daten, Kacheln, Web-App"; APP_OUT="${APP_OUT:-$(cd .. && pwd)}" python3 -W ignore scripts/build_site.py --tiles
 step "Landmarkenliste (Excel)"; python3 scripts/make_xlsx.py
-echo; echo "Fertig. Karten: out/*.pdf · Liste: out/Wangerooge_West_Landmarken_v1.xlsx · Web-App: Repo-Wurzel (GitHub Pages)"
+echo; echo "Fertig. Karten: out/*.pdf · Liste: out/Wangerooge_West_Landmarken_v1.xlsx · OL-Export: out/ol/ · Web-App: Repo-Wurzel (GitHub Pages)"

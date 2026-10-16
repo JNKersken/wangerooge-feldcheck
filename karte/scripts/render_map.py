@@ -1,9 +1,8 @@
 """Hand-drawn style orienteering map renderer (A4 PDF/PNG).
-Usage: render_map.py <sheet> <color|bw> <out.pdf> [png]
+Usage: render_map.py <sheet> <color|bw> <out.pdf> [png] [dpi] [svg]
 Sheets defined in SHEETS. All symbol sizes are in paper millimetres."""
-import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); from base import BASE, SOURCES
+import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); from base import BASE, SOURCES, GRID_TO_MAG, MAG_YEAR
 import sys, os, json, math, hashlib
-None
 import numpy as np
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -65,15 +64,14 @@ KIND_LAYER = dict(bench='bench', rescue='rescue', shelter='shelter', gate='gate'
                   pond='water', steeppt='steep', sandfence='structures')
 _TAGN = [0]
 class _Tag:
-    """Tag every artist added to ax inside the block (nested tags win; ids stay stable within one render)."""
+    """Tag every artist added to ax inside the block (nested tags win; ids stay stable within one render).
+    Uses the axes' child list in insertion order, so a block only looks at what it added (no rescans)."""
     def __init__(self, ax, key): self.ax, self.key = ax, key
-    def _lists(self): a = self.ax; return (a.lines, a.patches, a.collections, a.texts, a.images)
-    def __enter__(self): self.n = [len(l) for l in self._lists()]; return self
+    def __enter__(self): self.n = len(self.ax._children); return self
     def __exit__(self, *exc):
-        for lst, n0 in zip(self._lists(), self.n):
-            for art in list(lst)[n0:]:
-                if not (art.get_gid() or '').startswith('L-'):
-                    _TAGN[0] += 1; art.set_gid(f'L-{self.key}-{_TAGN[0]}')
+        for art in self.ax._children[self.n:]:
+            if not (art.get_gid() or '').startswith('L-'):
+                _TAGN[0] += 1; art.set_gid(f'L-{self.key}-{_TAGN[0]}')
 def tag(S, key): return _Tag(S.ax, key)
 
 def mix(c, paper, t):
@@ -625,8 +623,8 @@ def draw_item(S, d):
     if k == 'peak': S.sym('peak', x, y, P['ink'], key, 1.0, z=zz, light=lt, halo_z=HALO_Z); return
     if k == 'tree': col = P['green'] if d['sure'] else P['gray']
     p0 = d['members'][0]['p']
-    if k == 'groyne':   # name letter at the landward end of the groyne
-        S.numreq.append(dict(d=d, kind='sos', col=col, txt=p0['name'])); return
+    if k == 'groyne':   # name at the landward end; 'Buhne G' so it is not mistaken for Lupe G
+        S.numreq.append(dict(d=d, kind='sos', col=col, txt=f"Buhne {p0['name']}" if p0['name'] else '')); return
     S.sym(k, x, y, col, key, d['size'], z=zz, light=lt, halo_z=HALO_Z)
     if d['n'] > 1: S.numreq.append(dict(d=d, kind='roman', col=P['count']))
     elif k == 'rescue' and S.dense and p0['name']: S.numreq.append(dict(d=d, kind='sos', col=col))
@@ -849,6 +847,37 @@ def sub_sheet(S, bbox, scale, rect):
 
 # ---- Lupen across all sheets: one letter per area, counted on from Blatt 1 to Blatt 4
 LUPEN_REG = BASE + '/data/lupen.json'
+LUPEN_LETTERS = BASE + '/data/lupen_buchstaben.json'   # letters once given stay with their area (kept in the repo)
+ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+def _assign_letters(out):
+    """Give each Lupe area its letter from earlier runs (same objects or same spot); new areas get letters never used
+    before, so printed maps and new ones never use one letter for two different places. Areas that disappear keep
+    their letter reserved."""
+    old = json.load(open(LUPEN_LETTERS, encoding='utf-8')) if os.path.exists(LUPEN_LETTERS) else []
+    if not old:   # first run: today's reading order
+        for i, e in enumerate(out): e['L'] = ABC[i]
+    else:
+        free = {o['L']: o for o in old}
+        def score(e, o):
+            if e['manual'] or o.get('manual'):
+                return 2.0 if e['manual'] and o.get('manual') and list(e['manual']['bbox']) == list(o['manual']) else 0.0
+            sh = len(set(e['ids']) & set(o['ids']))
+            near = math.hypot(e['plan']['cx'] - o['cx'], e['plan']['cy'] - o['cy']) < 40
+            return sh / max(1, len(set(e['ids']) | set(o['ids']))) + (0.5 if near else 0) if (sh or near) else 0.0
+        pairs = sorted(((score(e, o), i, o['L']) for i, e in enumerate(out) for o in old), reverse=True)
+        for sc, i, L in pairs:
+            if sc <= 0: break
+            if 'L' not in out[i] and L in free: out[i]['L'] = L; del free[L]
+        used = {o['L'] for o in old}
+        spare = [c for c in ABC if c not in used] + sorted(free)   # unused letters first, retired ones only when they run out
+        for e in out:
+            if 'L' not in e: e['L'] = spare.pop(0); free.pop(e['L'], None)
+    keep = {e['L']: dict(L=e['L'], ids=e['ids'], cx=round(e['plan']['cx'], 1), cy=round(e['plan']['cy'], 1),
+                         manual=list(e['manual']['bbox']) if e['manual'] else None, aktiv=True) for e in out}
+    for o in old:
+        if o['L'] not in keep: keep[o['L']] = dict(o, aktiv=False)
+    json.dump([keep[k] for k in sorted(keep)], open(LUPEN_LETTERS, 'w', encoding='utf-8'), indent=1)
 DETAIL_ORDER = ['detail_west', 'detail_mitte', 'detail_ost', 'detail_sued']   # Blatt 1..4
 MANUAL_LUPEN = {   # hand-set areas: bbox (UTM), scale options (largest zoom first), preferred side for the inset
     'detail_sued': [dict(bbox=(425328, 5959196, 425432, 5959298), scales=(1500, 2000), side='west', name='Westanleger')],
@@ -922,9 +951,9 @@ def build_lupen_registry():
     for a in areas:
         plan = _plan_from_bbox(a['manual']['bbox'], a['manual']['scales'][0]) if a['manual'] else _clamp_plan(plan_inset(list(a['mem'].values())))
         kinds = sorted({q['kind'] for q in a['mem'].values()})
-        out.append(dict(sheets=sorted(a['sheets'], key=DETAIL_ORDER.index), plan=plan, manual=a['manual'], n=len(a['mem']), kinds=kinds))
+        out.append(dict(sheets=sorted(a['sheets'], key=DETAIL_ORDER.index), plan=plan, manual=a['manual'], n=len(a['mem']), kinds=kinds, ids=sorted(a['mem'])))
     out.sort(key=lambda e: (DETAIL_ORDER.index(e['sheets'][0]), -e['plan']['cy'], e['plan']['cx']))
-    for i, e in enumerate(out): e['L'] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i]
+    _assign_letters(out); out.sort(key=lambda e: e['L'])
     json.dump(out, open(LUPEN_REG, 'w'), indent=1)
     for o in out: print(o['L'], o['sheets'], o['plan']['scale'], [round(v) for v in o['plan']['bbox']], 'manuell' if o['manual'] else (o['n'], o['kinds']))
     return out
@@ -1097,9 +1126,16 @@ def _labels(S):
 def layer_northlines(S):
     with tag(S, 'north'): _northlines(S)
 def _northlines(S):
-    P = S.P; sp = 250 if S.dense else 500
-    for x in np.arange(math.ceil(S.x0 / sp) * sp, S.x1, sp):
-        S.line([(x, S.y0), (x, S.y1)], f'nl{x}', P['blue'] if S.mode == 'color' else '#999999', 0.35, amp=0.08, double=False, z=6, alpha=0.6)
+    """Magnetic north lines (ISOM): tilted GRID_TO_MAG degrees clockwise against the grid, every 250 m (overview 500 m)."""
+    P = S.P; sp = 250 if S.dense else 500; a = math.radians(GRID_TO_MAG)
+    ux, uy = math.sin(a), math.cos(a); nx_, ny_ = math.cos(a), -math.sin(a)   # line direction and its normal (pointing east)
+    frame = box(S.x0, S.y0, S.x1, S.y1); cx, cy = (S.x0 + S.x1) / 2, (S.y0 + S.y1) / 2; L = math.hypot(S.x1 - S.x0, S.y1 - S.y0)
+    k0 = math.floor(((S.x0 - cx) * nx_ + (S.y1 - cy) * ny_ - L) / sp)
+    for k in range(k0, k0 + int(2 * L / sp) + 3):   # offsets counted from the map centre, so neighbouring sheets do not matter
+        ox, oy = cx + k * sp * nx_, cy + k * sp * ny_
+        seg = frame.intersection(LineString([(ox - L * ux, oy - L * uy), (ox + L * ux, oy + L * uy)]))
+        if seg.is_empty or seg.length < 1: continue
+        S.line(list(seg.coords), f'nl{k}', P['blue'] if S.mode == 'color' else '#999999', 0.35, amp=0.08, double=False, z=6, alpha=0.6)
 
 def layer_sheet_index(S):
     with tag(S, 'sheetindex'): _sheet_index(S)
@@ -1131,23 +1167,39 @@ def frame_and_margin(S, name):
         lx = S.mx + S.mw + 6; ty = ph - 14
         T(lx, ty, cfg['title'], 22, True); T(lx, ty - 7, 'Orientierungslauf-Karte', 11)
         T(lx, ty - 13, f'1 : {S.scale:,}'.replace(',', '.') + '  ·  Äquidistanz 2,5 m', 9.5)
+        T(lx, ty - 26.5, f'Nordlinien und Pfeil: magnetisch Nord {MAG_YEAR} ({str(GRID_TO_MAG).replace(".", ",")}° östlich Gitternord)', 6.5)
         scalebar(lx, ty - 22, 500)
         legend(S, lx, ty - 30)
     else:
         T(S.mx, 12, cfg['title'] + '  –  ' + cfg['sub'], 15, True)
-        T(S.mx, 6.5, f'1 : {S.scale:,}'.replace(',', '.') + '  ·  Äquidistanz 2,5 m  ·  Nordlinien 250 m', 8.5)
+        T(S.mx, 6.5, f'1 : {S.scale:,}'.replace(',', '.') + f'  ·  Äquidistanz 2,5 m  ·  Nordlinien magnetisch Nord ({MAG_YEAR}), Abstand 250 m', 8.5)
         scalebar(S.mx + S.mw - 60, 8, 250)
     T(pw - 4, 3 if name == 'uebersicht' else ph - 5, SOURCES,
       5, ha='right', font=PRINT, color=P['gray'])
     # north arrow
     nx, ny = (S.mx + S.mw - 8, S.my + S.mh - 14) if name != 'uebersicht' else (S.mx + S.mw - 9, S.my + S.mh - 16)
     a = fig.add_axes([nx / pw, ny / ph, 7 / pw, 12 / ph]); a.axis('off'); a.set_xlim(-1, 1); a.set_ylim(-1, 1.6)
-    a.add_patch(MPoly([(0, 1.0), (-0.45, -0.6), (0, -0.25), (0.45, -0.6)], fc=P['ink'], ec=P['ink'], lw=0.5))
-    a.text(0, 1.3, 'N', fontproperties=HANDB, fontsize=10, ha='center', va='center', color=P['ink'])
+    rot = lambda pts: [(px_ * math.cos(math.radians(GRID_TO_MAG)) + py_ * math.sin(math.radians(GRID_TO_MAG)),
+                        -px_ * math.sin(math.radians(GRID_TO_MAG)) + py_ * math.cos(math.radians(GRID_TO_MAG))) for px_, py_ in pts]   # magnetic north
+    a.add_patch(MPoly(rot([(0, 1.0), (-0.45, -0.6), (0, -0.25), (0.45, -0.6)]), fc=P['ink'], ec=P['ink'], lw=0.5))
+    a.text(*rot([(0, 1.3)])[0], 'N', fontproperties=HANDB, fontsize=10, ha='center', va='center', color=P['ink'])
 
 LEG_LAYER = dict(road='roads', foot='paths', path='paths', board='paths', steps='paths', bridge='paths', rail='rail', railx='rail', fence='structures', dyke='structures',
                  cont='contours', steep='steep', summit='summits', pit='pits', water='water', open='open', scrub='veg', forest='veg', sand='sand', rz='ruhezone',
                  bld='buildings', pitch='buildings', lupe='lupen', group='bench', groyne='structures')
+LEG_EXTRA = {   # symbols that appear in the legend only when the data has them (e.g. after a field check)
+    'tree': 'Einzelbaum', 'bush': 'markanter Busch', 'rzsign': 'Ruhezonen-Schild', 'rzpost': 'Ruhezonen-Pfahl', 'beachaccess': 'Strandaufgang',
+    'boulder': 'Findling / Stein', 'post': 'Pfahl / Pfosten', 'flagpole': 'Fahnenmast', 'flag': 'Wegweiser', 'mast': 'Mast / Messstation',
+    'sign': 'Schild', 'pond': 'Tümpel (klein)', 'steeppt': 'Abbruchkante', 'sandfence': 'Sandfangzaun', 'boardwalk': 'Holzsteg (Punkt)',
+    'ferry': 'Fähranleger', 'dot': 'sonstiger Punkt'}
+def _kinds_in_data():
+    S_ = type('Dense', (), {'dense': True})()
+    return {r[0] for r in (sym_kind(f['properties'], S_) for f in json.load(open(BASE + '/data/points_v1.geojson', encoding='utf-8'))['features']) if r}
+def _lupe_legend():
+    reg = json.load(open(LUPEN_REG)) if os.path.exists(LUPEN_REG) else []
+    sc = sorted({(e['manual']['scales'][0] if e['manual'] else e['plan']['scale']) for e in reg})   # hand-set Lupen: preferred scale
+    f = lambda v: f'1:{v:,}'.replace(',', '.')
+    return 'Lupe' if not sc else f'Lupe ({f(sc[0])})' if len(sc) == 1 else f'Lupe ({f(sc[0])}–{f(sc[-1])})'
 def legend(S, lx, ty, width=54):
     P = S.P; fig = S.fig; pw, ph = S.pw, S.ph
     # map-legend order: lines, then areas, then point symbols (most useful for orienteering first); '#' = group heading
@@ -1155,12 +1207,12 @@ def legend(S, lx, ty, width=54):
         ('#', 'Linien'),
         ('road', 'Straße / Hauptweg'), ('foot', 'befestigter Weg'), ('path', 'Pfad'), ('board', 'Holzsteg'), ('steps', 'Treppe / Übergang'),
         ('bridge', 'Brücke / Durchlass'), ('rail', 'Inselbahn'), ('railx', 'Bahnübergang'), ('dyke', 'Deich'), ('fence', 'Zaun'),
-        ('groyne', 'Buhne + Name'), ('cont', 'Höhenlinie 2,5 m'), ('steep', 'Steilhang'),
+        ('groyne', 'Buhne „Buhne H“'), ('cont', 'Höhenlinie 2,5 m'), ('steep', 'Steilhang'),
         ('#', 'Flächen'),
         ('bld', 'Gebäude'), ('pitch', 'Sportplatz'), ('forest', 'Wäldchen'), ('scrub', 'Gebüsch'), ('open', 'offene Wiese'),
         ('sand', 'Sand / Strand'), ('water', 'Tümpel / Wasser'), ('rz', 'Ruhezone'),
         ('#', 'Karte'),
-        ('lupe', 'Lupe (1:1.000)'),
+        ('lupe', _lupe_legend()),
     ], [
         ('#', 'Orientierungspunkte'),
         ('bench', 'Bank'), ('group', 'Anzahl (ab 7 römisch)'), ('rescue', 'SOS-Schild + Nr.'), ('gate', 'Tor / Durchlass'), ('shelter', 'Schutzhütte'),
@@ -1172,6 +1224,9 @@ def legend(S, lx, ty, width=54):
         ('toilet', 'WC'), ('playground', 'Spielplatz'), ('fitness', 'Fitnessgerät'), ('picnic', 'Picknickplatz'), ('fire', 'Feuerstelle'),
         ('ring', 'Rettungsring'), ('hydrant', 'Hydrant'), ('recycling', 'Container'), ('bike', 'Fahrradständer'), ('substation', 'Trafostation'),
     ]]
+    have = {k for c in cols for k, _ in c}
+    extra = [(k, t) for k, t in LEG_EXTRA.items() if k in _kinds_in_data() and k not in have]
+    if extra: cols[1] += [('#', 'Weitere / vor Ort erfasst')] + extra
     h = 4.3   # row height (mm)
     ys = []
     for items in cols:
@@ -1255,8 +1310,7 @@ def legend(S, lx, ty, width=54):
                 M.sym('milestone', cx - 1.0, y, P['ink'], k)
                 a.text(cx - 0.5, y, '2,4', fontproperties=SERIF, fontsize=4.8, color=P['ink'], ha='left', va='center_baseline')
             elif k == 'groyne':
-                a.plot([sx, ex - 2.2], [y - 0.3, y - 0.3], color=P['ink'], lw=0.55)
-                a.text(ex - 1.9, y, 'H', fontproperties=SERIF, fontsize=4.8, color=P['ink'], ha='left', va='center_baseline')
+                a.plot([sx + 0.5, ex - 0.5], [y - 0.3, y - 0.3], color=P['ink'], lw=0.55)
             elif k == 'observatory': M.sym('observatory', cx, y, P['ink'], k, 0.85)
             elif k in ('lighthouse',): M.sym(k, cx, y, P['ink'], k, 0.85)
             else: M.sym(k, cx, y, P['ink'], k)
@@ -1265,7 +1319,7 @@ def legend(S, lx, ty, width=54):
     yb = ty - tot - 5
     fig.text(lx / pw, yb / ph, 'Ruhezone: Wege nicht verlassen!', fontproperties=HANDB, fontsize=7.2, color=P['purple'])
 
-def render(name, mode, out, png=None):
+def render(name, mode, out, png=None, dpi=110, svg=None):
     S = Sheet(name, mode)
     layer_base(S); layer_areas(S); layer_contours(S); layer_ruhezone(S); layer_lines(S); layer_buildings(S)
     layer_extras(S); layer_points(S); layer_northlines(S); layer_labels(S)
@@ -1296,12 +1350,11 @@ def render(name, mode, out, png=None):
         if hits: print('  QA-Überlappungen:', hits[:30])
     except Exception as e: print('QA failed', e)
     print(name, mode, 'Lupen:', [(L, I['scale'], I['n']) for L, I, r in S.insets], 'Gruppen:', sum(1 for d in S.drawn if d['n'] > 1))
-    S.fig.savefig(out, facecolor=S.P['paper'])
-    if png: S.fig.savefig(png, dpi=DPI, facecolor=S.P['paper'])
-    if SVG_OUT: save_svg(S, SVG_OUT)
+    S.fig.savefig(out, facecolor=S.P['paper'], metadata={'CreationDate': None})   # no timestamp: same map -> same file
+    if png: S.fig.savefig(png, dpi=dpi, facecolor=S.P['paper'])
+    if svg: save_svg(S, svg)
     plt.close(S.fig)
 
-SVG_OUT = None
 def save_svg(S, path):
     """Layered SVG for the web app: groups carry ids L-<layer>-<n>; text as paths (no fonts needed)."""
     import matplotlib as _mpl
@@ -1352,6 +1405,4 @@ def render_field(png, pxm=2):
 
 if __name__ == '__main__':
     name, mode, out = sys.argv[1:4]; png = sys.argv[4] if len(sys.argv) > 4 else None
-    DPI = int(sys.argv[5]) if len(sys.argv) > 5 else 110
-    SVG_OUT = sys.argv[6] if len(sys.argv) > 6 else None
-    render(name, mode, out, png)
+    render(name, mode, out, png, int(sys.argv[5]) if len(sys.argv) > 5 else 110, sys.argv[6] if len(sys.argv) > 6 else None)

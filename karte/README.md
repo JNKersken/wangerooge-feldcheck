@@ -16,7 +16,11 @@ Ergebnisse:
 | Datei | Inhalt |
 |---|---|
 | `out/Wangerooge_West_OL_v1_Farbe.pdf` / `_SW.pdf` | Übersicht 1:15.000 + Blätter 1–4 (1:5.000 / 1:7.500) mit Lupen |
-| `out/Wangerooge_West_Landmarken_v1.xlsx` | Landmarkenliste mit Status, Quellen, Koordinaten |
+| `out/Wangerooge_West_Landmarken_v1.xlsx` | Landmarkenliste mit Status, Quellen, Koordinaten, Notizen vor Ort |
+| `out/ol/Wangerooge_West_Posten.xml` | IOF XML 3.0: alle sicheren Landmarken als mögliche Posten (Purple Pen, OCAD, Condes), Start Sternwarte |
+| `out/ol/*.gpx`, `out/ol/*.kml` | alle Landmarken als Wegpunkte (GPS-Geräte, Google Earth, QGIS) |
+| `out/ol/<blatt>.jpg` + `.jgw` + `.prj` | Blatt (Farbe, nur Kartenfeld) mit Weltdatei, EPSG:25832 – als Hintergrund in QGIS, OCAD, OpenOrienteering Mapper |
+| `out/ol/<blatt>.kmz` | Blatt als KML-Bodenüberlagerung (MapRun, Google Earth) |
 | Repo-Wurzel (`index.html`, `t*.png`, `data.json` …) | Feldcheck-Web-App für GitHub Pages (GPS, offline) |
 | Repo-Wurzel `karten/*.svg`, `karten/layers.json` | Blätter als Ebenen-SVG für „Karte als PDF“ in der App |
 
@@ -86,7 +90,9 @@ Diese Dateien sind Ergebnis längerer oder teils manueller Schritte. `run_all.sh
 | `sand.geojson` | offene Sandflächen aus dem Luftbild (`sand.py`) |
 | `bench_dop_verdict.json` | manuelle Sichtprüfung der Bänke im Luftbild (Kontaktabzug aus `bench_sheet.py`) |
 | `id_registry.json` | stabile Landmarken-IDs – nicht löschen, sonst ändern sich IDs |
-| `lupen.json` | Lupen-Buchstaben über alle Blätter (wird bei jedem Lauf neu berechnet) |
+| `lupen.json` | Lupen über alle Blätter (wird bei jedem Lauf neu berechnet) |
+| `lupen_buchstaben.json` | welcher Buchstabe zu welchem Lupen-Gebiet gehört – nicht löschen: so behält jede Lupe ihren Buchstaben, neue Gebiete bekommen noch nie benutzte Buchstaben |
+| `version.json` | Version und Datenstände für Karte, Liste und App |
 
 ## Ablauf (`run_all.sh`)
 
@@ -96,12 +102,13 @@ Diese Dateien sind Ergebnis längerer oder teils manueller Schritte. `run_all.sh
 4. *(FULL)* `craters2.py`, `crater_dop.py`, `craters_manual.py`, `path_check.py`, `sand.py`
 5. `landmarks_v0.py` – Landmarken aus OSM (Bänke, SOS-Schilder, Buhnen, km-Steine …)
 6. `derived_landmarks.py` – Dünenkuppen und Steilhänge aus dem Höhenmodell
-7. `build_layers.py` – alles zusammenführen, Status sicher/prüfen, stabile IDs → `data/points_v1.geojson`
-8. `render_map.build_lupen_registry()` – Lupen-Bereiche und Buchstaben über alle Blätter
-9. `render_map.py <blatt> <color|bw> …` – Blätter rendern (PDF + PNG)
+7. `build_layers.py` – alles zusammenführen (mit `feldcheck_merge.py` für die Einsendungen), Status sicher/prüfen, stabile IDs → `data/points_v1.geojson`
+8. `render_map.build_lupen_registry()` – Lupen-Bereiche über alle Blätter, Buchstaben aus `data/lupen_buchstaben.json`
+9. `render_map.py <blatt> <color|bw> <pdf> [png] [dpi] [svg]` – Blätter rendern (PDF, PNG, Ebenen-SVG)
 10. `merge_pdfs.py` – Gesamt-PDFs
-11. `build_site.py --tiles` – Feldcheck-Daten, Kartenkacheln, Ebenen-SVGs, Web-App (Wurzel) und Artefakt-Seite (`web/site/`)
-12. `make_xlsx.py` – Landmarkenliste
+11. `export_ol.py` – Export für OL- und GPS-Software → `out/ol/`
+12. `build_site.py --tiles` – Feldcheck-Daten, Kartenkacheln, Ebenen-SVGs, Web-App (Wurzel) und Artefakt-Seite (`web/site/`)
+13. `make_xlsx.py` – Landmarkenliste
 
 ## Wo man was einstellt
 
@@ -122,3 +129,13 @@ Hilfsskripte ohne Einfluss auf die Ergebnisse: `view_*.py`, `symbol_*.py`, `fami
 ## Schriften
 
 Caveat, Patrick Hand, PT Serif – SIL Open Font License (`fonts/licenses/`). Leaflet 1.9.4 – BSD-2-Clause. jsPDF 2.5.2 und svg2pdf.js 2.2.4 – MIT (`web/lib/`).
+
+## Nordrichtung
+
+Die Karte ist im UTM-Gitter gezeichnet (Gitternord oben). Die Nordlinien und der Nordpfeil zeigen nach magnetisch Nord:
+`base.GRID_TO_MAG` = 4,6° östlich Gitternord (Missweisung nach WMM2025 für 2026 +3,7°, Meridiankonvergenz +0,9°).
+Die Missweisung wächst um etwa 0,15° pro Jahr – bei einer neuen Ausgabe Wert und `MAG_YEAR` in `base.py` anpassen.
+Derselbe Winkel korrigiert in der App die Kompassrichtung.
+
+Gleiche Eingaben ergeben gleiche Dateien (PDF ohne Zeitstempel, Excel mit festen Zeiten, SVG mit festen IDs) –
+ein Lauf ohne neue Daten ändert im Repo nichts.

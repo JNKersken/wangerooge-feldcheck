@@ -114,6 +114,16 @@ jobs:
           python karte/scripts/feldcheck_report.py "$RUNNER_TEMP/neu.txt" "${{ github.run_id }}" "$RUNNER_TEMP/titel.txt" > "$RUNNER_TEMP/body.md"
           cat "$RUNNER_TEMP/titel.txt"
 
+      - name: Vorschaubilder ablegen (eigener Zweig "vorschau", nicht in main)
+        if: steps.neu.outputs.keine == '0'
+        run: |
+          set -euo pipefail
+          ls karte/out/vorschau/*.jpg >/dev/null 2>&1 || { echo "Keine Vorschaubilder."; exit 0; }
+          git worktree add -q --orphan -b vorschau-lauf "$RUNNER_TEMP/vorschau"
+          cp karte/out/vorschau/*.jpg "$RUNNER_TEMP/vorschau/"
+          cd "$RUNNER_TEMP/vorschau"
+          git add -A && git commit -q -m "Vorschau zu Lauf ${{ github.run_id }}" && git push -q -f origin HEAD:vorschau
+
       - name: Änderungsvorschlag anlegen
         if: steps.neu.outputs.keine == '0'
         env:

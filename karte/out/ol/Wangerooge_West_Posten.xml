@@ -1,0 +1,3883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CourseData xmlns="http://www.orienteering.org/datastandard/3.0" iofVersion="3.0" createTime="2026-10-15T12:00:00" creator="wangerooge-feldcheck 1.5">
+  <Event>
+    <Name>Wangerooge West</Name>
+  </Event>
+  <RaceCourseData>
+    <Map>
+      <Scale>5000</Scale>
+      <MapPositionTopLeft x="0" y="560.00" unit="mm"/>
+      <MapPositionBottomRight x="680.00" y="0" unit="mm"/>
+    </Map>
+    <Control type="Start">
+      <Id>S1</Id>
+      <Name>Inselheim Rüstringen – Sternwarte</Name>
+      <Position lng="7.8518651" lat="53.7855868"/>
+      <MapPosition x="121.12" y="285.58" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>B004</Id>
+      <Name>Neuer Leuchtturm</Name>
+      <Position lng="7.8571615" lat="53.7900913"/>
+      <MapPosition x="192.52" y="384.68" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>B005</Id>
+      <Name>Inselheim Rüstringen – Sternwarte</Name>
+      <Position lng="7.8518651" lat="53.7855868"/>
+      <MapPosition x="121.12" y="285.58" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH014</Id>
+      <Name>Buhne K</Name>
+      <Position lng="7.883777" lat="53.7942656"/>
+      <MapPosition x="544.64" y="471.98" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH015</Id>
+      <Name>Buhne C</Name>
+      <Position lng="7.8578905" lat="53.7935419"/>
+      <MapPosition x="203.36" y="461.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH016</Id>
+      <Name>Buhne D</Name>
+      <Position lng="7.8668244" lat="53.7940069"/>
+      <MapPosition x="321.22" y="469.76" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH017</Id>
+      <Name>Buhne I</Name>
+      <Position lng="7.875911" lat="53.7939387"/>
+      <MapPosition x="440.90" y="466.34" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH018</Id>
+      <Name>Buhne L</Name>
+      <Position lng="7.891516" lat="53.7941181"/>
+      <MapPosition x="646.54" y="467.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH019</Id>
+      <Name>Buhne B</Name>
+      <Position lng="7.8503502" lat="53.7906977"/>
+      <MapPosition x="103.00" y="399.62" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH020</Id>
+      <Name>Buhne G</Name>
+      <Position lng="7.8538373" lat="53.7904156"/>
+      <MapPosition x="148.84" y="392.60" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH021</Id>
+      <Name>Buhne F</Name>
+      <Position lng="7.849266" lat="53.7894873"/>
+      <MapPosition x="88.28" y="372.92" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH022</Id>
+      <Name>Buhne B</Name>
+      <Position lng="7.8511366" lat="53.7899735"/>
+      <MapPosition x="113.10" y="383.34" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH023</Id>
+      <Name>Buhne E</Name>
+      <Position lng="7.8481005" lat="53.7883687"/>
+      <MapPosition x="72.52" y="348.28" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH024</Id>
+      <Name>Buhne H</Name>
+      <Position lng="7.8466313" lat="53.7872013"/>
+      <MapPosition x="52.74" y="322.62" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH025</Id>
+      <Name>Buhne U</Name>
+      <Position lng="7.8483081" lat="53.7865531"/>
+      <MapPosition x="74.60" y="307.84" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BH026</Id>
+      <Name>Buhne V</Name>
+      <Position lng="7.8513862" lat="53.7845036"/>
+      <MapPosition x="114.42" y="261.58" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK002</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8681161" lat="53.7927768"/>
+      <MapPosition x="337.80" y="442.12" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK004</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8730848" lat="53.7929513"/>
+      <MapPosition x="403.32" y="444.96" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK008</Id>
+      <Name>Bank ohne Lehne</Name>
+      <Position lng="7.8622846" lat="53.7916717"/>
+      <MapPosition x="260.58" y="418.76" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK009</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8647053" lat="53.7921441"/>
+      <MapPosition x="292.64" y="428.76" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK010</Id>
+      <Name>Bank ohne Lehne</Name>
+      <Position lng="7.870467" lat="53.791617"/>
+      <MapPosition x="368.36" y="415.82" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK013</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8789774" lat="53.792069"/>
+      <MapPosition x="480.64" y="424.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK014</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8812307" lat="53.7919965"/>
+      <MapPosition x="510.30" y="422.02" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK016</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8845644" lat="53.7919997"/>
+      <MapPosition x="554.22" y="421.40" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK019</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.892039" lat="53.7917859"/>
+      <MapPosition x="652.62" y="415.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK021</Id>
+      <Name>Bank ohne Lehne</Name>
+      <Position lng="7.8593974" lat="53.7911023"/>
+      <MapPosition x="222.34" y="406.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK022</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8716208" lat="53.7908782"/>
+      <MapPosition x="383.30" y="399.14" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK023</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8716635" lat="53.7908732"/>
+      <MapPosition x="383.86" y="399.02" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK029</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8528755" lat="53.7895569"/>
+      <MapPosition x="135.86" y="373.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK034</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8783564" lat="53.7900254"/>
+      <MapPosition x="471.74" y="378.76" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK035</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8784082" lat="53.7900169"/>
+      <MapPosition x="472.42" y="378.56" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK036</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8922802" lat="53.788394"/>
+      <MapPosition x="654.62" y="339.58" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK037</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8925436" lat="53.7883065"/>
+      <MapPosition x="658.06" y="337.58" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BK044</Id>
+      <Name>Bank mit Lehne</Name>
+      <Position lng="7.8513065" lat="53.7849774"/>
+      <MapPosition x="113.54" y="272.14" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BR006</Id>
+      <Name>Brücke (Inselbahn)</Name>
+      <Position lng="7.8745797" lat="53.7887163"/>
+      <MapPosition x="421.52" y="350.42" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BR007</Id>
+      <Name>Brücke (Inselbahn)</Name>
+      <Position lng="7.872444" lat="53.7872428"/>
+      <MapPosition x="392.86" y="318.08" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BR008</Id>
+      <Name>Brücke (Inselbahn)</Name>
+      <Position lng="7.8727316" lat="53.7874414"/>
+      <MapPosition x="396.72" y="322.44" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BR009</Id>
+      <Name>Durchlass</Name>
+      <Position lng="7.8685295" lat="53.7781497"/>
+      <MapPosition x="338.06" y="116.58" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BR010</Id>
+      <Name>Brücke (Inselbahn)</Name>
+      <Position lng="7.8684727" lat="53.7774409"/>
+      <MapPosition x="337.06" y="100.82" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BU010</Id>
+      <Name>Bahnübergang</Name>
+      <Position lng="7.874119" lat="53.7912945"/>
+      <MapPosition x="416.36" y="407.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BU011</Id>
+      <Name>Bahnübergang</Name>
+      <Position lng="7.8508187" lat="53.7887732"/>
+      <MapPosition x="108.48" y="356.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BU012</Id>
+      <Name>Bahnübergang</Name>
+      <Position lng="7.8909765" lat="53.7883253"/>
+      <MapPosition x="637.42" y="338.32" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BU013</Id>
+      <Name>Bahnübergang</Name>
+      <Position lng="7.8937157" lat="53.7874895"/>
+      <MapPosition x="673.22" y="319.16" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BU014</Id>
+      <Name>Bahnübergang</Name>
+      <Position lng="7.867916" lat="53.7765313"/>
+      <MapPosition x="329.40" y="80.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>BU017</Id>
+      <Name>Bahnübergang</Name>
+      <Position lng="7.8668226" lat="53.7743062"/>
+      <MapPosition x="314.20" y="31.42" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D001</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8900628" lat="53.7934413"/>
+      <MapPosition x="627.16" y="452.34" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D002</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8900603" lat="53.7937091"/>
+      <MapPosition x="627.22" y="458.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D003</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8922555" lat="53.7935362"/>
+      <MapPosition x="656.08" y="454.00" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D004</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8864556" lat="53.7926429"/>
+      <MapPosition x="579.36" y="435.32" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D005</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.89311" lat="53.7919881"/>
+      <MapPosition x="666.80" y="419.38" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D006</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8685026" lat="53.7909953"/>
+      <MapPosition x="342.26" y="402.40" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D007</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.857011" lat="53.7903209"/>
+      <MapPosition x="190.62" y="389.82" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D008</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8663787" lat="53.7898184"/>
+      <MapPosition x="313.86" y="376.66" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D009</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.862865" lat="53.7877779"/>
+      <MapPosition x="266.84" y="332.00" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D010</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.860759" lat="53.7866811"/>
+      <MapPosition x="238.70" y="308.04" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D011</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8673869" lat="53.776227"/>
+      <MapPosition x="322.32" y="74.04" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D012</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8675035" lat="53.7760672"/>
+      <MapPosition x="323.80" y="70.46" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D013</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.8682589" lat="53.7765328"/>
+      <MapPosition x="333.92" y="80.66" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>D014</Id>
+      <Name>Dünenübergang (Treppe)</Name>
+      <Position lng="7.867421" lat="53.7756934"/>
+      <MapPosition x="322.58" y="62.16" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>E003</Id>
+      <Name>Wangerooger Yachtclub e.V. Lagerplatz</Name>
+      <Position lng="7.8510037" lat="53.7885053"/>
+      <MapPosition x="110.82" y="350.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>E007</Id>
+      <Name>Fritz Thieme</Name>
+      <Position lng="7.8682311" lat="53.7763258"/>
+      <MapPosition x="333.48" y="76.06" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>E011</Id>
+      <Name>Westanleger</Name>
+      <Position lng="7.8669294" lat="53.7742838"/>
+      <MapPosition x="315.60" y="30.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB001</Id>
+      <Name>Freizeitbad Oase</Name>
+      <Position lng="7.8944779" lat="53.7934839"/>
+      <MapPosition x="685.34" y="452.38" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB002</Id>
+      <Name>Haus Saline</Name>
+      <Position lng="7.8761732" lat="53.7929326"/>
+      <MapPosition x="444.00" y="443.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB003</Id>
+      <Name>Kinderspielhaus Sockenland</Name>
+      <Position lng="7.8922101" lat="53.7922639"/>
+      <MapPosition x="655.04" y="425.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB004</Id>
+      <Name>Dünenhalle</Name>
+      <Position lng="7.8929193" lat="53.7921976"/>
+      <MapPosition x="664.36" y="424.08" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB005</Id>
+      <Name>Schullandheim Bünder e.V.</Name>
+      <Position lng="7.8539743" lat="53.7894551"/>
+      <MapPosition x="150.30" y="371.20" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB006</Id>
+      <Name>Haus am Meer</Name>
+      <Position lng="7.850574" lat="53.7891753"/>
+      <MapPosition x="105.40" y="365.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB007</Id>
+      <Name>Die Seenotretter DGzRS</Name>
+      <Position lng="7.8920244" lat="53.7891736"/>
+      <MapPosition x="651.52" y="356.98" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB008</Id>
+      <Name>Haus Wattblick</Name>
+      <Position lng="7.8938119" lat="53.78816"/>
+      <MapPosition x="674.72" y="334.06" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB009</Id>
+      <Name>Mellumrat e.V. Wangerooge Weststation</Name>
+      <Position lng="7.8512232" lat="53.7870836"/>
+      <MapPosition x="113.20" y="319.02" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB010</Id>
+      <Name>Schöpfwerk Westgrodendeich</Name>
+      <Position lng="7.8609002" lat="53.7868496"/>
+      <MapPosition x="240.62" y="311.76" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB011</Id>
+      <Name>Westturm</Name>
+      <Position lng="7.8575317" lat="53.7846782"/>
+      <MapPosition x="195.46" y="264.16" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB012</Id>
+      <Name>Wangerooger Yacht Club</Name>
+      <Position lng="7.867385" lat="53.7761299"/>
+      <MapPosition x="322.26" y="71.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>GB013</Id>
+      <Name>Schiffsmeldestelle</Name>
+      <Position lng="7.8682309" lat="53.7766134"/>
+      <MapPosition x="333.58" y="82.46" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>H002</Id>
+      <Name>Kriegsgräberstätte</Name>
+      <Position lng="7.8863902" lat="53.7927043"/>
+      <MapPosition x="578.52" y="436.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>H003</Id>
+      <Name>Kriegsgrabstätte</Name>
+      <Position lng="7.8863902" lat="53.7927034"/>
+      <MapPosition x="578.52" y="436.68" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>H004</Id>
+      <Name>Inselfriedhof</Name>
+      <Position lng="7.888095" lat="53.7905799"/>
+      <MapPosition x="600.24" y="389.08" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>HP003</Id>
+      <Name>Haltepunkt Westen</Name>
+      <Position lng="7.8510834" lat="53.7888108"/>
+      <MapPosition x="111.98" y="357.48" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>HP004</Id>
+      <Name>Haltepunkt Westanleger</Name>
+      <Position lng="7.867051" lat="53.7746148"/>
+      <MapPosition x="317.32" y="38.24" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU001</Id>
+      <Name>Dünenkuppe 18 m</Name>
+      <Position lng="7.8811695" lat="53.7937254"/>
+      <MapPosition x="510.10" y="460.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU002</Id>
+      <Name>Dünenkuppe 17 m</Name>
+      <Position lng="7.8863774" lat="53.793702"/>
+      <MapPosition x="578.70" y="458.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU003</Id>
+      <Name>Dünenkuppe 17 m</Name>
+      <Position lng="7.8850102" lat="53.7937342"/>
+      <MapPosition x="560.70" y="459.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU004</Id>
+      <Name>Dünenkuppe 17 m</Name>
+      <Position lng="7.8840742" lat="53.7935367"/>
+      <MapPosition x="548.30" y="455.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU005</Id>
+      <Name>Dünenkuppe 17 m</Name>
+      <Position lng="7.8845717" lat="53.7936672"/>
+      <MapPosition x="554.90" y="458.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU006</Id>
+      <Name>Dünenkuppe 17 m</Name>
+      <Position lng="7.8777576" lat="53.7935767"/>
+      <MapPosition x="465.10" y="457.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU007</Id>
+      <Name>Dünenkuppe 16 m</Name>
+      <Position lng="7.892496" lat="53.7936867"/>
+      <MapPosition x="659.30" y="457.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU008</Id>
+      <Name>Dünenkuppe 16 m</Name>
+      <Position lng="7.8770156" lat="53.7935068"/>
+      <MapPosition x="455.30" y="456.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU009</Id>
+      <Name>Dünenkuppe 16 m</Name>
+      <Position lng="7.8765" lat="53.793484"/>
+      <MapPosition x="448.50" y="456.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU010</Id>
+      <Name>Dünenkuppe 16 m</Name>
+      <Position lng="7.8793195" lat="53.7936452"/>
+      <MapPosition x="485.70" y="459.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU011</Id>
+      <Name>Dünenkuppe 16 m</Name>
+      <Position lng="7.8697901" lat="53.7934749"/>
+      <MapPosition x="360.10" y="457.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU012</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8756643" lat="53.7935121"/>
+      <MapPosition x="437.50" y="456.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU013</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8716266" lat="53.7934922"/>
+      <MapPosition x="384.30" y="457.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU014</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8653349" lat="53.7931721"/>
+      <MapPosition x="301.30" y="451.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU015</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8751179" lat="53.793507"/>
+      <MapPosition x="430.30" y="456.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU016</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8725372" lat="53.7935007"/>
+      <MapPosition x="396.30" y="457.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU017</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8732347" lat="53.7935342"/>
+      <MapPosition x="405.50" y="457.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU018</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8741615" lat="53.793507"/>
+      <MapPosition x="417.70" y="457.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU019</Id>
+      <Name>Dünenkuppe 15 m</Name>
+      <Position lng="7.8662653" lat="53.7761202"/>
+      <MapPosition x="307.50" y="71.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU020</Id>
+      <Name>Dünenkuppe 14 m</Name>
+      <Position lng="7.8579576" lat="53.7830796"/>
+      <MapPosition x="200.50" y="228.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU021</Id>
+      <Name>Dünenkuppe 14 m</Name>
+      <Position lng="7.8576182" lat="53.7832831"/>
+      <MapPosition x="196.10" y="233.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU022</Id>
+      <Name>Dünenkuppe 14 m</Name>
+      <Position lng="7.8663614" lat="53.7764987"/>
+      <MapPosition x="308.90" y="80.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU023</Id>
+      <Name>Dünenkuppe 14 m</Name>
+      <Position lng="7.8551498" lat="53.7903247"/>
+      <MapPosition x="166.10" y="390.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU024</Id>
+      <Name>Dünenkuppe 13 m</Name>
+      <Position lng="7.8564589" lat="53.7907507"/>
+      <MapPosition x="183.50" y="399.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU025</Id>
+      <Name>Dünenkuppe 13 m</Name>
+      <Position lng="7.856925" lat="53.790917"/>
+      <MapPosition x="189.70" y="403.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU026</Id>
+      <Name>Dünenkuppe 13 m</Name>
+      <Position lng="7.8547278" lat="53.7902128"/>
+      <MapPosition x="160.50" y="387.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU027</Id>
+      <Name>Dünenkuppe 13 m</Name>
+      <Position lng="7.8589974" lat="53.7917457"/>
+      <MapPosition x="217.30" y="421.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU028</Id>
+      <Name>Dünenkuppe 13 m</Name>
+      <Position lng="7.8583656" lat="53.7915329"/>
+      <MapPosition x="208.90" y="416.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU029</Id>
+      <Name>Dünenkuppe 13 m</Name>
+      <Position lng="7.8540474" lat="53.7845434"/>
+      <MapPosition x="149.50" y="261.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU030</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8610648" lat="53.7809968"/>
+      <MapPosition x="240.70" y="181.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU031</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8574222" lat="53.7910565"/>
+      <MapPosition x="196.30" y="406.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU032</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8630697" lat="53.779254"/>
+      <MapPosition x="266.50" y="142.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU033</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8600867" lat="53.7818055"/>
+      <MapPosition x="228.10" y="199.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU034</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8598068" lat="53.7820545"/>
+      <MapPosition x="224.50" y="205.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU035</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8622767" lat="53.7799566"/>
+      <MapPosition x="256.30" y="158.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU036</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8586752" lat="53.7829246"/>
+      <MapPosition x="209.90" y="224.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU037</Id>
+      <Name>Dünenkuppe 12 m</Name>
+      <Position lng="7.8635676" lat="53.7788003"/>
+      <MapPosition x="272.90" y="132.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU038</Id>
+      <Name>Dünenkuppe 11 m</Name>
+      <Position lng="7.8932475" lat="53.7905116"/>
+      <MapPosition x="668.10" y="386.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU039</Id>
+      <Name>Dünenkuppe 10 m</Name>
+      <Position lng="7.8905674" lat="53.7925543"/>
+      <MapPosition x="633.50" y="432.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU040</Id>
+      <Name>Dünenkuppe 10 m</Name>
+      <Position lng="7.8924064" lat="53.7901713"/>
+      <MapPosition x="656.90" y="379.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU041</Id>
+      <Name>Dünenkuppe 10 m</Name>
+      <Position lng="7.8918438" lat="53.7925122"/>
+      <MapPosition x="650.30" y="431.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU042</Id>
+      <Name>Dünenkuppe 10 m</Name>
+      <Position lng="7.8502377" lat="53.7862058"/>
+      <MapPosition x="99.90" y="299.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU043</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8769976" lat="53.7919066"/>
+      <MapPosition x="454.50" y="420.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU044</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8564384" lat="53.7848089"/>
+      <MapPosition x="181.10" y="267.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU045</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8547513" lat="53.7837771"/>
+      <MapPosition x="158.50" y="244.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU046</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8849461" lat="53.7927179"/>
+      <MapPosition x="559.50" y="437.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU047</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8909336" lat="53.7896094"/>
+      <MapPosition x="637.30" y="366.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU048</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8923435" lat="53.7885258"/>
+      <MapPosition x="655.50" y="342.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU049</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8920732" lat="53.789566"/>
+      <MapPosition x="652.30" y="365.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU050</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8815033" lat="53.7931622"/>
+      <MapPosition x="514.30" y="447.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU051</Id>
+      <Name>Dünenkuppe 9 m</Name>
+      <Position lng="7.8883797" lat="53.7891722"/>
+      <MapPosition x="603.50" y="357.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU052</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.890788" lat="53.7922507"/>
+      <MapPosition x="636.30" y="425.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU053</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.889798" lat="53.7895"/>
+      <MapPosition x="622.30" y="364.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU054</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.8787245" lat="53.7909071"/>
+      <MapPosition x="476.90" y="398.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU055</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.8868052" lat="53.7918812"/>
+      <MapPosition x="583.70" y="418.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU056</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.8783694" lat="53.79227"/>
+      <MapPosition x="472.70" y="428.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU057</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.8909891" lat="53.7909582"/>
+      <MapPosition x="638.50" y="396.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU058</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.8635392" lat="53.791645"/>
+      <MapPosition x="277.10" y="417.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU059</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.8924517" lat="53.790756"/>
+      <MapPosition x="657.70" y="392.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU060</Id>
+      <Name>Dünenkuppe 8 m</Name>
+      <Position lng="7.8884076" lat="53.7915635"/>
+      <MapPosition x="604.70" y="410.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU061</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8792901" lat="53.7919011"/>
+      <MapPosition x="484.70" y="420.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU062</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8914678" lat="53.7900727"/>
+      <MapPosition x="644.50" y="377.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU063</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8906751" lat="53.7930766"/>
+      <MapPosition x="635.10" y="444.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU064</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8863082" lat="53.7911575"/>
+      <MapPosition x="576.90" y="402.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU065</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8914437" lat="53.7909894"/>
+      <MapPosition x="644.50" y="397.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU066</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8789462" lat="53.7928417"/>
+      <MapPosition x="480.50" y="441.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU067</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8905795" lat="53.7903701"/>
+      <MapPosition x="632.90" y="383.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU068</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.888856" lat="53.7901025"/>
+      <MapPosition x="610.10" y="378.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU069</Id>
+      <Name>Dünenkuppe 7 m</Name>
+      <Position lng="7.8825852" lat="53.7930105"/>
+      <MapPosition x="528.50" y="444.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU070</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8870585" lat="53.7909128"/>
+      <MapPosition x="586.70" y="396.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU071</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8859908" lat="53.7893838"/>
+      <MapPosition x="572.10" y="362.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU072</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.860103" lat="53.7851225"/>
+      <MapPosition x="229.50" y="273.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU073</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8728304" lat="53.7927574"/>
+      <MapPosition x="399.90" y="440.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU074</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8778679" lat="53.7928586"/>
+      <MapPosition x="466.30" y="441.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU075</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8900749" lat="53.7905093"/>
+      <MapPosition x="626.30" y="387.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU076</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8831573" lat="53.7926203"/>
+      <MapPosition x="535.90" y="435.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU077</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8840607" lat="53.7917568"/>
+      <MapPosition x="547.50" y="416.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU078</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8608011" lat="53.7851291"/>
+      <MapPosition x="238.70" y="273.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU079</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8892902" lat="53.7914818"/>
+      <MapPosition x="616.30" y="408.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU080</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.885748" lat="53.7899568"/>
+      <MapPosition x="569.10" y="375.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU081</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8893367" lat="53.790871"/>
+      <MapPosition x="616.70" y="395.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU082</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8732917" lat="53.7902719"/>
+      <MapPosition x="405.10" y="385.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU083</Id>
+      <Name>Dünenkuppe 6 m</Name>
+      <Position lng="7.8814837" lat="53.791616"/>
+      <MapPosition x="513.50" y="413.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU084</Id>
+      <Name>Dünenkuppe 5 m</Name>
+      <Position lng="7.8895084" lat="53.7912681"/>
+      <MapPosition x="619.10" y="404.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU085</Id>
+      <Name>Dünenkuppe 5 m</Name>
+      <Position lng="7.8631678" lat="53.7851696"/>
+      <MapPosition x="269.90" y="273.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU086</Id>
+      <Name>Dünenkuppe 5 m</Name>
+      <Position lng="7.886559" lat="53.7897126"/>
+      <MapPosition x="579.70" y="370.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>KU087</Id>
+      <Name>Dünenkuppe 5 m</Name>
+      <Position lng="7.8705845" lat="53.7915947"/>
+      <MapPosition x="369.90" y="415.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SH001</Id>
+      <Name>Steilhang</Name>
+      <Position lng="7.8928128" lat="53.7936465"/>
+      <MapPosition x="663.46" y="456.34" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SH002</Id>
+      <Name>Steilhang</Name>
+      <Position lng="7.8736808" lat="53.7933739"/>
+      <MapPosition x="411.32" y="454.24" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SH003</Id>
+      <Name>Steilhang</Name>
+      <Position lng="7.8841948" lat="53.7934534"/>
+      <MapPosition x="549.86" y="453.82" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SH004</Id>
+      <Name>Steilhang</Name>
+      <Position lng="7.8932133" lat="53.7875441"/>
+      <MapPosition x="666.62" y="320.48" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SH005</Id>
+      <Name>Steilhang</Name>
+      <Position lng="7.8557204" lat="53.7848102"/>
+      <MapPosition x="171.64" y="267.48" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SH006</Id>
+      <Name>Steilhang</Name>
+      <Position lng="7.8659275" lat="53.7759849"/>
+      <MapPosition x="303.00" y="68.96" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SP003</Id>
+      <Name>Spielplatz</Name>
+      <Position lng="7.8919341" lat="53.7930002"/>
+      <MapPosition x="651.66" y="442.14" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SP004</Id>
+      <Name>Spielplatz</Name>
+      <Position lng="7.8921332" lat="53.7919557"/>
+      <MapPosition x="653.92" y="418.86" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SPO007</Id>
+      <Name>Sportplatz (Tennis)</Name>
+      <Position lng="7.8940807" lat="53.7920222"/>
+      <MapPosition x="679.60" y="419.94" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SPO008</Id>
+      <Name>Sportplatz (Mehrzweck)</Name>
+      <Position lng="7.8555803" lat="53.7897329"/>
+      <MapPosition x="171.56" y="377.04" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SPO009</Id>
+      <Name>Sportplatz (Mehrzweck)</Name>
+      <Position lng="7.851932" lat="53.7885313"/>
+      <MapPosition x="123.06" y="351.08" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SPO010</Id>
+      <Name>Sportplatz (Mehrzweck)</Name>
+      <Position lng="7.8499394" lat="53.7874587"/>
+      <MapPosition x="96.42" y="327.64" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SPO011</Id>
+      <Name>Sportplatz (Fußball / Basketball / Handball)</Name>
+      <Position lng="7.8527006" lat="53.78562"/>
+      <MapPosition x="132.14" y="286.14" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>SPO012</Id>
+      <Name>Sportplatz (Tennis)</Name>
+      <Position lng="7.854616" lat="53.784956"/>
+      <MapPosition x="157.14" y="270.96" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>T001</Id>
+      <Name>Aussichtsdüne</Name>
+      <Position lng="7.890199" lat="53.7936295"/>
+      <MapPosition x="629.02" y="456.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR001</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.866929" lat="53.7931692"/>
+      <MapPosition x="322.30" y="451.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR002</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8683998" lat="53.793237"/>
+      <MapPosition x="341.70" y="452.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR003</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.868606" lat="53.7934727"/>
+      <MapPosition x="344.50" y="457.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR005</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8772729" lat="53.7935362"/>
+      <MapPosition x="458.70" y="457.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR008</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8823354" lat="53.7932689"/>
+      <MapPosition x="525.30" y="450.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR011</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8834731" lat="53.7933064"/>
+      <MapPosition x="540.30" y="450.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR012</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8841641" lat="53.7935825"/>
+      <MapPosition x="549.50" y="456.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR013</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.884798" lat="53.7937232"/>
+      <MapPosition x="557.90" y="459.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR016</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8651061" lat="53.7926486"/>
+      <MapPosition x="298.10" y="439.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR017</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8655658" lat="53.7924911"/>
+      <MapPosition x="304.10" y="436.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR019</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8663369" lat="53.7926063"/>
+      <MapPosition x="314.30" y="438.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR020</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.867164" lat="53.7923355"/>
+      <MapPosition x="325.10" y="432.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR021</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8683955" lat="53.7922662"/>
+      <MapPosition x="341.30" y="430.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR022</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8687937" lat="53.7927014"/>
+      <MapPosition x="346.70" y="440.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR023</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8690098" lat="53.7925686"/>
+      <MapPosition x="349.50" y="437.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR024</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8693416" lat="53.7926527"/>
+      <MapPosition x="353.90" y="439.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR025</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8698711" lat="53.7927206"/>
+      <MapPosition x="360.90" y="440.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR026</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8698918" lat="53.792514"/>
+      <MapPosition x="361.10" y="435.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR027</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8701115" lat="53.7928127"/>
+      <MapPosition x="364.10" y="442.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR028</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8702014" lat="53.7922922"/>
+      <MapPosition x="365.10" y="430.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR029</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8702402" lat="53.7925443"/>
+      <MapPosition x="365.70" y="436.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR030</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.870475" lat="53.7928431"/>
+      <MapPosition x="368.90" y="443.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR031</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8706818" lat="53.7924945"/>
+      <MapPosition x="371.50" y="435.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR032</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8709752" lat="53.7928748"/>
+      <MapPosition x="375.50" y="443.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR033</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8710089" lat="53.7927493"/>
+      <MapPosition x="375.90" y="440.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR034</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8711414" lat="53.7929033"/>
+      <MapPosition x="377.70" y="444.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR035</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8711703" lat="53.7923912"/>
+      <MapPosition x="377.90" y="432.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR036</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8713534" lat="53.7929233"/>
+      <MapPosition x="380.50" y="444.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR037</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8714565" lat="53.7924748"/>
+      <MapPosition x="381.70" y="434.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR038</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.871542" lat="53.7926824"/>
+      <MapPosition x="382.90" y="439.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR039</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8718208" lat="53.7924783"/>
+      <MapPosition x="386.50" y="434.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR040</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8722612" lat="53.7924734"/>
+      <MapPosition x="392.30" y="434.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR041</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8723267" lat="53.7928605"/>
+      <MapPosition x="393.30" y="443.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR042</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8723238" lat="53.7929684"/>
+      <MapPosition x="393.30" y="445.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR044</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8724915" lat="53.7923767"/>
+      <MapPosition x="395.30" y="432.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR045</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8726134" lat="53.7929262"/>
+      <MapPosition x="397.10" y="444.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR046</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8726741" lat="53.7923604"/>
+      <MapPosition x="397.70" y="431.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR047</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8727374" lat="53.7928284"/>
+      <MapPosition x="398.70" y="442.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR048</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8727733" lat="53.792622"/>
+      <MapPosition x="399.10" y="437.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR049</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8729812" lat="53.7927948"/>
+      <MapPosition x="401.90" y="441.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR051</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8733412" lat="53.79296"/>
+      <MapPosition x="406.70" y="445.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR052</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8735344" lat="53.7931146"/>
+      <MapPosition x="409.30" y="448.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR053</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8735741" lat="53.7927644"/>
+      <MapPosition x="409.70" y="440.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR054</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8736835" lat="53.7926486"/>
+      <MapPosition x="411.10" y="438.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR055</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8737052" lat="53.7929724"/>
+      <MapPosition x="411.50" y="445.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR056</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8737312" lat="53.7931344"/>
+      <MapPosition x="411.90" y="448.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR057</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8742629" lat="53.7931214"/>
+      <MapPosition x="418.90" y="448.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR058</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8744151" lat="53.7925386"/>
+      <MapPosition x="420.70" y="435.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR059</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8744708" lat="53.7927279"/>
+      <MapPosition x="421.50" y="439.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR060</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8744761" lat="53.7930965"/>
+      <MapPosition x="421.70" y="447.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR061</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8746023" lat="53.7929179"/>
+      <MapPosition x="423.30" y="443.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR062</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8747796" lat="53.7930993"/>
+      <MapPosition x="425.70" y="447.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR063</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8748526" lat="53.7926416"/>
+      <MapPosition x="426.50" y="437.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR064</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8759813" lat="53.7924454"/>
+      <MapPosition x="441.30" y="433.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR065</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8767134" lat="53.7923174"/>
+      <MapPosition x="450.90" y="430.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR066</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.876711" lat="53.7924073"/>
+      <MapPosition x="450.90" y="432.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR067</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8769628" lat="53.7926434"/>
+      <MapPosition x="454.30" y="437.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR068</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8777394" lat="53.7925518"/>
+      <MapPosition x="464.50" y="435.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR070</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8778494" lat="53.7929843"/>
+      <MapPosition x="466.10" y="444.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR071</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8780613" lat="53.7924379"/>
+      <MapPosition x="468.70" y="432.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR072</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8782719" lat="53.7930781"/>
+      <MapPosition x="471.70" y="446.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR073</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8783882" lat="53.7927017"/>
+      <MapPosition x="473.10" y="438.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR074</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8784061" lat="53.7931692"/>
+      <MapPosition x="473.50" y="448.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR075</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.878507" lat="53.7928016"/>
+      <MapPosition x="474.70" y="440.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR076</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8787629" lat="53.7928849"/>
+      <MapPosition x="478.10" y="442.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR077</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8787812" lat="53.7927683"/>
+      <MapPosition x="478.30" y="439.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR079</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.879119" lat="53.7931939"/>
+      <MapPosition x="482.90" y="449.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR080</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8791428" lat="53.7928705"/>
+      <MapPosition x="483.10" y="441.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR081</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8792285" lat="53.7925028"/>
+      <MapPosition x="484.10" y="433.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR082</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8793138" lat="53.7927193"/>
+      <MapPosition x="485.30" y="438.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR083</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8794179" lat="53.7928012"/>
+      <MapPosition x="486.70" y="440.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR084</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8794252" lat="53.7930979"/>
+      <MapPosition x="486.90" y="446.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR085</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8795832" lat="53.7928656"/>
+      <MapPosition x="488.90" y="441.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR086</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8799913" lat="53.7929324"/>
+      <MapPosition x="494.30" y="443.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR087</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8802178" lat="53.7929794"/>
+      <MapPosition x="497.30" y="444.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR088</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8802798" lat="53.7923598"/>
+      <MapPosition x="497.90" y="430.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR089</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8802777" lat="53.7924407"/>
+      <MapPosition x="497.90" y="432.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR090</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.880475" lat="53.7924425"/>
+      <MapPosition x="500.50" y="432.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR091</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8804861" lat="53.7925954"/>
+      <MapPosition x="500.70" y="435.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR092</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.880516" lat="53.79318"/>
+      <MapPosition x="501.30" y="448.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR093</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8811436" lat="53.7929881"/>
+      <MapPosition x="509.50" y="444.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR094</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8811712" lat="53.7925209"/>
+      <MapPosition x="509.70" y="433.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR095</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8812076" lat="53.7928628"/>
+      <MapPosition x="510.30" y="441.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR096</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8813711" lat="53.7924239"/>
+      <MapPosition x="512.30" y="431.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR097</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8814119" lat="53.7926041"/>
+      <MapPosition x="512.90" y="435.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR098</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8815692" lat="53.7923988"/>
+      <MapPosition x="514.90" y="430.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR099</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8816237" lat="53.792633"/>
+      <MapPosition x="515.70" y="436.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR100</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8817188" lat="53.7924811"/>
+      <MapPosition x="516.90" y="432.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR103</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8819969" lat="53.7928702"/>
+      <MapPosition x="520.70" y="441.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR104</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8820532" lat="53.7924662"/>
+      <MapPosition x="521.30" y="432.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR106</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8823031" lat="53.7927742"/>
+      <MapPosition x="524.70" y="439.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR108</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.882587" lat="53.7923723"/>
+      <MapPosition x="528.30" y="430.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR109</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8829473" lat="53.7930948"/>
+      <MapPosition x="533.30" y="446.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR110</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8831461" lat="53.7930427"/>
+      <MapPosition x="535.90" y="444.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR111</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8842839" lat="53.7930713"/>
+      <MapPosition x="550.90" y="445.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR114</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8850263" lat="53.7925568"/>
+      <MapPosition x="560.50" y="433.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR116</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8861866" lat="53.7928822"/>
+      <MapPosition x="575.90" y="440.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR117</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8862596" lat="53.7929908"/>
+      <MapPosition x="576.90" y="443.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR120</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8868362" lat="53.7924298"/>
+      <MapPosition x="584.30" y="430.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR121</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.886996" lat="53.792701"/>
+      <MapPosition x="586.50" y="436.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR122</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8871077" lat="53.7930705"/>
+      <MapPosition x="588.10" y="444.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR123</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8873237" lat="53.7929377"/>
+      <MapPosition x="590.90" y="441.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR124</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8875611" lat="53.7931467"/>
+      <MapPosition x="594.10" y="446.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR126</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8880819" lat="53.7929717"/>
+      <MapPosition x="600.90" y="442.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR127</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8888028" lat="53.793266"/>
+      <MapPosition x="610.50" y="448.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR128</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.889837" lat="53.7931947"/>
+      <MapPosition x="624.10" y="446.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR129</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8900818" lat="53.7931251"/>
+      <MapPosition x="627.30" y="445.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR130</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8905935" lat="53.7927163"/>
+      <MapPosition x="633.90" y="436.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR131</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.89081" lat="53.7931408"/>
+      <MapPosition x="636.90" y="445.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR132</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.891249" lat="53.7931898"/>
+      <MapPosition x="642.70" y="446.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR133</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8913002" lat="53.7929745"/>
+      <MapPosition x="643.30" y="441.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR134</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8921174" lat="53.7924967"/>
+      <MapPosition x="653.90" y="430.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR135</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8922687" lat="53.7925161"/>
+      <MapPosition x="655.90" y="431.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR136</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8937206" lat="53.7927272"/>
+      <MapPosition x="675.10" y="435.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR137</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8607178" lat="53.7915643"/>
+      <MapPosition x="239.90" y="416.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR138</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.861037" lat="53.7915493"/>
+      <MapPosition x="244.10" y="416.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR139</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8617104" lat="53.7919063"/>
+      <MapPosition x="253.10" y="424.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR140</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8618741" lat="53.7914674"/>
+      <MapPosition x="255.10" y="414.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR141</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8626536" lat="53.7918343"/>
+      <MapPosition x="265.50" y="422.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR142</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8627526" lat="53.792105"/>
+      <MapPosition x="266.90" y="428.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR143</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8638463" lat="53.7920794"/>
+      <MapPosition x="281.30" y="427.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR144</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8639421" lat="53.7913432"/>
+      <MapPosition x="282.30" y="411.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR145</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8642746" lat="53.7919576"/>
+      <MapPosition x="286.90" y="424.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR146</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8649094" lat="53.7920625"/>
+      <MapPosition x="295.30" y="426.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR147</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8656281" lat="53.7918715"/>
+      <MapPosition x="304.70" y="422.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR148</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8658923" lat="53.7922066"/>
+      <MapPosition x="308.30" y="429.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR149</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8659444" lat="53.7919644"/>
+      <MapPosition x="308.90" y="424.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR150</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8664014" lat="53.7919058"/>
+      <MapPosition x="314.90" y="423.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR151</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8666846" lat="53.7920972"/>
+      <MapPosition x="318.70" y="427.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR152</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8669858" lat="53.79219"/>
+      <MapPosition x="322.70" y="429.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR153</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8676259" lat="53.7920971"/>
+      <MapPosition x="331.10" y="427.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR154</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8678229" lat="53.792108"/>
+      <MapPosition x="333.70" y="427.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR155</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8680997" lat="53.7919758"/>
+      <MapPosition x="337.30" y="424.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR156</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8682209" lat="53.7919859"/>
+      <MapPosition x="338.90" y="424.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR157</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8682253" lat="53.7918241"/>
+      <MapPosition x="338.90" y="420.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR158</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8683667" lat="53.7916457"/>
+      <MapPosition x="340.70" y="416.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR159</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8685223" lat="53.7920696"/>
+      <MapPosition x="342.90" y="426.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR160</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8686459" lat="53.7919899"/>
+      <MapPosition x="344.50" y="424.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR161</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8690272" lat="53.7919216"/>
+      <MapPosition x="349.50" y="422.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR162</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8696047" lat="53.7919001"/>
+      <MapPosition x="357.10" y="422.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR163</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8698374" lat="53.7917135"/>
+      <MapPosition x="360.10" y="418.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR164</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8730559" lat="53.7922741"/>
+      <MapPosition x="402.70" y="429.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR165</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.87363" lat="53.7918121"/>
+      <MapPosition x="410.10" y="419.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR166</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8738179" lat="53.7921644"/>
+      <MapPosition x="412.70" y="427.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR167</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8744411" lat="53.7921343"/>
+      <MapPosition x="420.90" y="426.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR168</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8745452" lat="53.7916499"/>
+      <MapPosition x="422.10" y="415.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR169</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8745659" lat="53.7920097"/>
+      <MapPosition x="422.50" y="423.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR170</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8749039" lat="53.79186"/>
+      <MapPosition x="426.90" y="420.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR171</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8751648" lat="53.7917546"/>
+      <MapPosition x="430.30" y="417.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR172</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8755271" lat="53.7918299"/>
+      <MapPosition x="435.10" y="419.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR173</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8755606" lat="53.7917134"/>
+      <MapPosition x="435.50" y="416.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR174</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8762195" lat="53.7914859"/>
+      <MapPosition x="444.10" y="411.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR175</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8783462" lat="53.7920001"/>
+      <MapPosition x="472.30" y="422.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR176</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8783655" lat="53.7918475"/>
+      <MapPosition x="472.50" y="419.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR177</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8785991" lat="53.791625"/>
+      <MapPosition x="475.50" y="414.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR179</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8800501" lat="53.7918633"/>
+      <MapPosition x="494.70" y="419.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR180</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8801877" lat="53.7918286"/>
+      <MapPosition x="496.50" y="418.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR181</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8803006" lat="53.791578"/>
+      <MapPosition x="497.90" y="412.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR182</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8804009" lat="53.7918036"/>
+      <MapPosition x="499.30" y="417.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR183</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8806098" lat="53.7919404"/>
+      <MapPosition x="502.10" y="420.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR184</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8806921" lat="53.7916985"/>
+      <MapPosition x="503.10" y="415.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR185</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8807483" lat="53.7918698"/>
+      <MapPosition x="503.90" y="419.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR186</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8807581" lat="53.7915013"/>
+      <MapPosition x="503.90" y="411.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR187</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8808444" lat="53.7916819"/>
+      <MapPosition x="505.10" y="415.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR188</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8811159" lat="53.7917474"/>
+      <MapPosition x="508.70" y="416.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR189</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8811363" lat="53.7915498"/>
+      <MapPosition x="508.90" y="412.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR190</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8814664" lat="53.7916967"/>
+      <MapPosition x="513.30" y="415.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR191</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8828948" lat="53.7922134"/>
+      <MapPosition x="532.30" y="426.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR192</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8829742" lat="53.791513"/>
+      <MapPosition x="533.10" y="410.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR193</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8830477" lat="53.7916036"/>
+      <MapPosition x="534.10" y="412.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR194</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8831985" lat="53.7916409"/>
+      <MapPosition x="536.10" y="413.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR195</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8833536" lat="53.7915165"/>
+      <MapPosition x="538.10" y="410.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR196</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8834888" lat="53.7915717"/>
+      <MapPosition x="539.90" y="412.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR198</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8836882" lat="53.7914927"/>
+      <MapPosition x="542.50" y="410.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR199</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8841115" lat="53.7915596"/>
+      <MapPosition x="548.10" y="411.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR200</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8846365" lat="53.7917981"/>
+      <MapPosition x="555.10" y="416.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR201</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8847046" lat="53.7915201"/>
+      <MapPosition x="555.90" y="410.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR202</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8848798" lat="53.7917824"/>
+      <MapPosition x="558.30" y="416.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR203</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8849381" lat="53.7918729"/>
+      <MapPosition x="559.10" y="418.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR204</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8852301" lat="53.7917407"/>
+      <MapPosition x="562.90" y="415.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR205</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8855331" lat="53.7923368"/>
+      <MapPosition x="567.10" y="428.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR206</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8855815" lat="53.7916541"/>
+      <MapPosition x="567.50" y="413.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR207</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8857817" lat="53.7915481"/>
+      <MapPosition x="570.10" y="411.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR208</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8859462" lat="53.7922148"/>
+      <MapPosition x="572.50" y="425.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR209</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8861466" lat="53.7915245"/>
+      <MapPosition x="574.90" y="410.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR210</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8862056" lat="53.7921633"/>
+      <MapPosition x="575.90" y="424.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR211</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8866019" lat="53.7921041"/>
+      <MapPosition x="581.10" y="423.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR212</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8871717" lat="53.79237"/>
+      <MapPosition x="588.70" y="429.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR213</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8871993" lat="53.7919029"/>
+      <MapPosition x="588.90" y="418.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR214</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8872085" lat="53.7921277"/>
+      <MapPosition x="589.10" y="423.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR215</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8875659" lat="53.7918164"/>
+      <MapPosition x="593.70" y="416.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR216</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8877677" lat="53.7916475"/>
+      <MapPosition x="596.30" y="412.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR217</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8881597" lat="53.79175"/>
+      <MapPosition x="601.50" y="415.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR218</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8898451" lat="53.7923139"/>
+      <MapPosition x="623.90" y="427.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR219</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.890009" lat="53.7924323"/>
+      <MapPosition x="626.10" y="429.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR220</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8900602" lat="53.792217"/>
+      <MapPosition x="626.70" y="425.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR221</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8900867" lat="53.7923611"/>
+      <MapPosition x="627.10" y="428.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR222</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8903915" lat="53.792319"/>
+      <MapPosition x="631.10" y="427.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR225</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8714496" lat="53.7904703"/>
+      <MapPosition x="380.90" y="390.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR226</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.873682" lat="53.7910036"/>
+      <MapPosition x="410.50" y="401.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR227</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8761778" lat="53.7913416"/>
+      <MapPosition x="443.50" y="408.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR229</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.877455" lat="53.7906974"/>
+      <MapPosition x="460.10" y="393.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR230</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.877766" lat="53.790988"/>
+      <MapPosition x="464.30" y="400.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR231</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8780322" lat="53.7906848"/>
+      <MapPosition x="467.70" y="393.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR232</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8780288" lat="53.7908107"/>
+      <MapPosition x="467.70" y="396.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR233</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8792463" lat="53.7906962"/>
+      <MapPosition x="483.70" y="393.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR234</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8795031" lat="53.7907435"/>
+      <MapPosition x="487.10" y="394.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR235</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8796152" lat="53.7910952"/>
+      <MapPosition x="488.70" y="402.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR236</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8796851" lat="53.7913205"/>
+      <MapPosition x="489.70" y="407.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR237</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8797238" lat="53.7910063"/>
+      <MapPosition x="490.10" y="400.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR238</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8798835" lat="53.7907111"/>
+      <MapPosition x="492.10" y="393.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR239</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.880115" lat="53.7905695"/>
+      <MapPosition x="495.10" y="390.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR240</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8802971" lat="53.7905712"/>
+      <MapPosition x="497.50" y="390.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR241</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8804005" lat="53.7912463"/>
+      <MapPosition x="499.10" y="405.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR242</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8804433" lat="53.7907793"/>
+      <MapPosition x="499.50" y="395.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR243</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8806883" lat="53.7907007"/>
+      <MapPosition x="502.70" y="393.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR244</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8807347" lat="53.7912404"/>
+      <MapPosition x="503.50" y="405.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR245</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8810675" lat="53.7907132"/>
+      <MapPosition x="507.70" y="393.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR246</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8810863" lat="53.7905786"/>
+      <MapPosition x="507.90" y="390.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR247</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8811888" lat="53.7912896"/>
+      <MapPosition x="509.50" y="406.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR248</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8814309" lat="53.7913188"/>
+      <MapPosition x="512.70" y="406.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR249</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8814945" lat="53.7912116"/>
+      <MapPosition x="513.50" y="404.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR250</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8824834" lat="53.7911309"/>
+      <MapPosition x="526.50" y="402.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR251</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8826489" lat="53.7911864"/>
+      <MapPosition x="528.70" y="403.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR252</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8828281" lat="53.7912959"/>
+      <MapPosition x="531.10" y="406.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR253</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8829368" lat="53.791207"/>
+      <MapPosition x="532.50" y="404.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR254</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8830412" lat="53.7907046"/>
+      <MapPosition x="533.70" y="392.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR255</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8831061" lat="53.7911187"/>
+      <MapPosition x="534.70" y="402.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR257</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8833471" lat="53.7906176"/>
+      <MapPosition x="537.70" y="390.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR258</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8834177" lat="53.790816"/>
+      <MapPosition x="538.70" y="395.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR259</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8834983" lat="53.7912123"/>
+      <MapPosition x="539.90" y="404.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR260</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8836602" lat="53.7914025"/>
+      <MapPosition x="542.10" y="408.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR262</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8840282" lat="53.7906959"/>
+      <MapPosition x="546.70" y="392.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR263</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8843283" lat="53.7913998"/>
+      <MapPosition x="550.90" y="408.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR264</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8843867" lat="53.7909149"/>
+      <MapPosition x="551.50" y="397.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR265</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8844414" lat="53.7911402"/>
+      <MapPosition x="552.30" y="402.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR266</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.884644" lat="53.7909443"/>
+      <MapPosition x="554.90" y="397.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR267</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8847988" lat="53.7908289"/>
+      <MapPosition x="556.90" y="395.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR268</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8848154" lat="53.7913504"/>
+      <MapPosition x="557.30" y="406.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR269</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8849186" lat="53.7908929"/>
+      <MapPosition x="558.50" y="396.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR270</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8849342" lat="53.7914504"/>
+      <MapPosition x="558.90" y="409.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR271</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8850755" lat="53.7912719"/>
+      <MapPosition x="560.70" y="405.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR272</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8851583" lat="53.791012"/>
+      <MapPosition x="561.70" y="399.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR274</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8854396" lat="53.790709"/>
+      <MapPosition x="565.30" y="392.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR275</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8858024" lat="53.7907663"/>
+      <MapPosition x="570.10" y="393.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR276</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8859357" lat="53.7908934"/>
+      <MapPosition x="571.90" y="396.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR277</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8859713" lat="53.7906959"/>
+      <MapPosition x="572.30" y="392.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR278</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.886229" lat="53.7907073"/>
+      <MapPosition x="575.70" y="392.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR279</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8865743" lat="53.7908544"/>
+      <MapPosition x="580.30" y="395.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR280</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8867294" lat="53.79073"/>
+      <MapPosition x="582.30" y="392.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR281</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8871555" lat="53.790689"/>
+      <MapPosition x="587.90" y="391.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR282</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8872117" lat="53.7908603"/>
+      <MapPosition x="588.70" y="395.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR283</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8872352" lat="53.7911212"/>
+      <MapPosition x="589.10" y="401.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR284</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8874294" lat="53.7906645"/>
+      <MapPosition x="591.50" y="391.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR285</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8874396" lat="53.7908534"/>
+      <MapPosition x="591.70" y="395.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR286</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8890052" lat="53.7913533"/>
+      <MapPosition x="612.50" y="406.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR287</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8890021" lat="53.7914701"/>
+      <MapPosition x="612.50" y="408.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR288</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8891557" lat="53.7913996"/>
+      <MapPosition x="614.50" y="407.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR289</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8894363" lat="53.7911236"/>
+      <MapPosition x="618.10" y="400.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR291</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8895814" lat="53.7908013"/>
+      <MapPosition x="619.90" y="393.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR292</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8896274" lat="53.7913591"/>
+      <MapPosition x="620.70" y="406.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR293</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8899936" lat="53.7912906"/>
+      <MapPosition x="625.50" y="404.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR297</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8912601" lat="53.7910416"/>
+      <MapPosition x="642.10" y="398.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR298</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8722631" lat="53.7901363"/>
+      <MapPosition x="391.50" y="382.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR299</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8741236" lat="53.7903875"/>
+      <MapPosition x="416.10" y="387.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR300</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8794743" lat="53.7901141"/>
+      <MapPosition x="486.50" y="380.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR301</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8795406" lat="53.7904742"/>
+      <MapPosition x="487.50" y="388.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR303</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8808329" lat="53.7898301"/>
+      <MapPosition x="504.30" y="373.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR304</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8809183" lat="53.7900467"/>
+      <MapPosition x="505.50" y="378.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR305</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.881291" lat="53.7903018"/>
+      <MapPosition x="510.50" y="384.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR306</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8813242" lat="53.7901943"/>
+      <MapPosition x="510.90" y="381.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR307</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8813322" lat="53.790464"/>
+      <MapPosition x="511.10" y="387.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR308</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8814432" lat="53.7902853"/>
+      <MapPosition x="512.50" y="383.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR309</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8817893" lat="53.7898301"/>
+      <MapPosition x="516.90" y="373.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR311</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8823511" lat="53.7898263"/>
+      <MapPosition x="524.30" y="373.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR312</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8831056" lat="53.7899951"/>
+      <MapPosition x="534.30" y="377.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR313</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8833292" lat="53.79015"/>
+      <MapPosition x="537.30" y="380.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR314</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8834755" lat="53.7897829"/>
+      <MapPosition x="539.10" y="372.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR316</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8837287" lat="53.7905403"/>
+      <MapPosition x="542.70" y="389.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR317</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8838464" lat="53.7901099"/>
+      <MapPosition x="544.10" y="379.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR318</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8839024" lat="53.7897149"/>
+      <MapPosition x="544.70" y="370.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR319</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8839458" lat="53.7897962"/>
+      <MapPosition x="545.30" y="372.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR321</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8840932" lat="53.7905347"/>
+      <MapPosition x="547.50" y="388.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR322</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8842754" lat="53.7899611"/>
+      <MapPosition x="549.70" y="376.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR323</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8842977" lat="53.7896916"/>
+      <MapPosition x="549.90" y="370.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR324</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8843061" lat="53.7905187"/>
+      <MapPosition x="550.30" y="388.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR325</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8844349" lat="53.7902412"/>
+      <MapPosition x="551.90" y="382.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR327</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8845511" lat="53.7904401"/>
+      <MapPosition x="553.50" y="386.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR328</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8846317" lat="53.790261"/>
+      <MapPosition x="554.50" y="382.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR329</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8846766" lat="53.7897131"/>
+      <MapPosition x="554.90" y="370.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR330</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8846723" lat="53.7898749"/>
+      <MapPosition x="554.90" y="374.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR331</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8848093" lat="53.7904335"/>
+      <MapPosition x="556.90" y="386.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR332</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.88507" lat="53.7897617"/>
+      <MapPosition x="560.10" y="371.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR333</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8850555" lat="53.7903099"/>
+      <MapPosition x="560.10" y="383.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR335</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8854458" lat="53.7904753"/>
+      <MapPosition x="565.30" y="387.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR336</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8856137" lat="53.7904409"/>
+      <MapPosition x="567.50" y="386.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR338</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8859995" lat="53.7902018"/>
+      <MapPosition x="572.50" y="381.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR339</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8861777" lat="53.789781"/>
+      <MapPosition x="574.70" y="371.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR340</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.886194" lat="53.7903115"/>
+      <MapPosition x="575.10" y="383.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR342</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8864319" lat="53.7899272"/>
+      <MapPosition x="578.10" y="374.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR343</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8865072" lat="53.7905212"/>
+      <MapPosition x="579.30" y="388.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR344</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8866194" lat="53.7902975"/>
+      <MapPosition x="580.70" y="383.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR345</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8866381" lat="53.7901628"/>
+      <MapPosition x="580.90" y="380.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR346</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.886834" lat="53.7902186"/>
+      <MapPosition x="583.50" y="381.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR347</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8869203" lat="53.7903991"/>
+      <MapPosition x="584.70" y="385.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR348</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8870918" lat="53.79023"/>
+      <MapPosition x="586.90" y="381.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR349</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8871325" lat="53.7904101"/>
+      <MapPosition x="587.50" y="385.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR351</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8883884" lat="53.7899903"/>
+      <MapPosition x="603.90" y="375.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR352</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8884297" lat="53.7901525"/>
+      <MapPosition x="604.50" y="379.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR353</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8891629" lat="53.7905548"/>
+      <MapPosition x="614.30" y="388.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR356</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8896542" lat="53.7897683"/>
+      <MapPosition x="620.50" y="370.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR357</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8899509" lat="53.790607"/>
+      <MapPosition x="624.70" y="389.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR359</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8903687" lat="53.7903053"/>
+      <MapPosition x="630.10" y="382.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR360</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8906376" lat="53.7904695"/>
+      <MapPosition x="633.70" y="386.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR361</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8918133" lat="53.7902108"/>
+      <MapPosition x="649.10" y="380.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR362</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8918396" lat="53.7897885"/>
+      <MapPosition x="649.30" y="370.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR363</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8920253" lat="53.7902307"/>
+      <MapPosition x="651.90" y="380.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR364</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8920607" lat="53.7900423"/>
+      <MapPosition x="652.30" y="376.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR365</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8929463" lat="53.7898437"/>
+      <MapPosition x="663.90" y="371.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR366</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8938586" lat="53.7897892"/>
+      <MapPosition x="675.90" y="370.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR367</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8626463" lat="53.7892994"/>
+      <MapPosition x="264.50" y="365.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR368</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8775875" lat="53.7891436"/>
+      <MapPosition x="461.30" y="359.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR369</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8789688" lat="53.7891475"/>
+      <MapPosition x="479.50" y="359.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR370</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8792145" lat="53.789042"/>
+      <MapPosition x="482.70" y="356.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR373</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8820664" lat="53.7891135"/>
+      <MapPosition x="520.30" y="357.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR374</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8823851" lat="53.7891165"/>
+      <MapPosition x="524.50" y="357.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR375</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8825176" lat="53.7892706"/>
+      <MapPosition x="526.30" y="361.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR376</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8828424" lat="53.7896152"/>
+      <MapPosition x="530.70" y="368.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR377</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8829828" lat="53.7894726"/>
+      <MapPosition x="532.50" y="365.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR378</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8834809" lat="53.7890099"/>
+      <MapPosition x="538.90" y="355.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR380</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8838209" lat="53.7893546"/>
+      <MapPosition x="543.50" y="362.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR383</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8844891" lat="53.7893428"/>
+      <MapPosition x="552.30" y="362.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR384</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8845773" lat="53.7894515"/>
+      <MapPosition x="553.50" y="364.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR385</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8846032" lat="53.7890473"/>
+      <MapPosition x="553.70" y="355.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR386</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8848251" lat="53.7892651"/>
+      <MapPosition x="556.70" y="360.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR388</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8849032" lat="53.7891849"/>
+      <MapPosition x="557.70" y="358.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR390</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8850841" lat="53.7892315"/>
+      <MapPosition x="560.10" y="359.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR392</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8854219" lat="53.7896571"/>
+      <MapPosition x="564.70" y="369.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR396</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8858294" lat="53.7891755"/>
+      <MapPosition x="569.90" y="358.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR397</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8860774" lat="53.7889801"/>
+      <MapPosition x="573.10" y="353.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR398</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8861317" lat="53.7892233"/>
+      <MapPosition x="573.90" y="359.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR399</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8864689" lat="53.7891006"/>
+      <MapPosition x="578.30" y="356.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR401</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8868075" lat="53.7894992"/>
+      <MapPosition x="582.90" y="365.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR402</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8869681" lat="53.7891681"/>
+      <MapPosition x="584.90" y="357.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR403</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8870923" lat="53.7890614"/>
+      <MapPosition x="586.50" y="355.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR404</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8885177" lat="53.7896949"/>
+      <MapPosition x="605.50" y="369.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR405</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8888995" lat="53.7896085"/>
+      <MapPosition x="610.50" y="367.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR406</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8890538" lat="53.7895111"/>
+      <MapPosition x="612.50" y="365.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR407</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8892789" lat="53.789612"/>
+      <MapPosition x="615.50" y="367.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR408</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8899298" lat="53.789681"/>
+      <MapPosition x="624.10" y="368.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR410</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8924732" lat="53.7893629"/>
+      <MapPosition x="657.50" y="361.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR414</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8940898" lat="53.7896565"/>
+      <MapPosition x="678.90" y="367.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR416</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8509253" lat="53.7882619"/>
+      <MapPosition x="109.70" y="345.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR418</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.854331" lat="53.7880607"/>
+      <MapPosition x="154.50" y="340.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR419</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8546957" lat="53.7880462"/>
+      <MapPosition x="159.30" y="339.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR421</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8558334" lat="53.7880751"/>
+      <MapPosition x="174.30" y="340.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR422</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8559239" lat="53.7878198"/>
+      <MapPosition x="175.40" y="334.40" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR423</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.856514" lat="53.7878883"/>
+      <MapPosition x="183.20" y="335.80" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR424</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8812342" lat="53.7884406"/>
+      <MapPosition x="509.10" y="342.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR425</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8861431" lat="53.7887919"/>
+      <MapPosition x="573.90" y="349.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR426</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8870999" lat="53.7887738"/>
+      <MapPosition x="586.50" y="349.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR427</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8874239" lat="53.7885791"/>
+      <MapPosition x="590.70" y="344.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR428</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8894722" lat="53.7886161"/>
+      <MapPosition x="617.70" y="345.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR429</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8926928" lat="53.78852"/>
+      <MapPosition x="660.10" y="342.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR430</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8934646" lat="53.788608"/>
+      <MapPosition x="670.30" y="344.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR431</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8937492" lat="53.7887545"/>
+      <MapPosition x="674.10" y="347.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR432</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8938002" lat="53.7885482"/>
+      <MapPosition x="674.70" y="342.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR433</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.893918" lat="53.7886841"/>
+      <MapPosition x="676.30" y="345.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR434</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8941158" lat="53.788668"/>
+      <MapPosition x="678.90" y="345.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR436</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8581803" lat="53.7874548"/>
+      <MapPosition x="205.00" y="325.80" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR437</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.864004" lat="53.7868045"/>
+      <MapPosition x="281.50" y="310.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR438</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8868589" lat="53.7875581"/>
+      <MapPosition x="582.90" y="322.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR439</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8881538" lat="53.7873814"/>
+      <MapPosition x="599.90" y="317.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR440</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8888806" lat="53.787451"/>
+      <MapPosition x="609.50" y="319.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR441</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8890523" lat="53.7872729"/>
+      <MapPosition x="611.70" y="315.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR442</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8891912" lat="53.7877595"/>
+      <MapPosition x="613.70" y="326.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR443</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8892223" lat="53.7871576"/>
+      <MapPosition x="613.90" y="312.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR444</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8892593" lat="53.7874815"/>
+      <MapPosition x="614.50" y="319.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR445</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8892913" lat="53.7874189"/>
+      <MapPosition x="614.90" y="318.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR446</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8896327" lat="53.7877097"/>
+      <MapPosition x="619.50" y="324.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR447</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8899671" lat="53.7876948"/>
+      <MapPosition x="623.90" y="324.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR448</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8638116" lat="53.7866229"/>
+      <MapPosition x="278.90" y="306.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR451</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8847358" lat="53.7869092"/>
+      <MapPosition x="554.70" y="308.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR452</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8867881" lat="53.7867934"/>
+      <MapPosition x="581.70" y="305.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR453</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8510545" lat="53.7857552"/>
+      <MapPosition x="110.50" y="289.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR454</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8605441" lat="53.7850907"/>
+      <MapPosition x="235.30" y="272.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR456</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8550616" lat="53.784643"/>
+      <MapPosition x="162.90" y="263.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR457</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8559459" lat="53.7844986"/>
+      <MapPosition x="174.50" y="260.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR458</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8586775" lat="53.7845157"/>
+      <MapPosition x="210.50" y="260.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR459</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.858994" lat="53.7840423"/>
+      <MapPosition x="214.50" y="249.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR461</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.860495" lat="53.7824206"/>
+      <MapPosition x="233.70" y="213.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR462</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8623431" lat="53.7814314"/>
+      <MapPosition x="257.70" y="190.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR464</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8664683" lat="53.7809761"/>
+      <MapPosition x="311.90" y="179.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR465</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8670664" lat="53.780748"/>
+      <MapPosition x="319.70" y="174.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR466</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8659268" lat="53.7802339"/>
+      <MapPosition x="304.50" y="163.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR467</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8657576" lat="53.778066"/>
+      <MapPosition x="301.50" y="115.30" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR468</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8675438" lat="53.7782357"/>
+      <MapPosition x="325.10" y="118.70" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR469</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.868426" lat="53.7781631"/>
+      <MapPosition x="336.70" y="116.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR470</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.8664935" lat="53.777228"/>
+      <MapPosition x="310.90" y="96.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>TR471</Id>
+      <Name>Grube / Bombentrichter</Name>
+      <Position lng="7.865821" lat="53.7762778"/>
+      <MapPosition x="301.70" y="75.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U001</Id>
+      <Name>Bielefelder Haus</Name>
+      <Position lng="7.8891124" lat="53.7928087"/>
+      <MapPosition x="614.42" y="438.46" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U002</Id>
+      <Name>Jugendgästehaus Westkap Wangerooge</Name>
+      <Position lng="7.8498473" lat="53.7870515"/>
+      <MapPosition x="95.06" y="318.60" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U003</Id>
+      <Name>Lagune am Wattenmeer</Name>
+      <Position lng="7.893749" lat="53.7877819"/>
+      <MapPosition x="673.76" y="325.66" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U004</Id>
+      <Name>Lagune am Wattenmeer</Name>
+      <Position lng="7.8939589" lat="53.787649"/>
+      <MapPosition x="676.48" y="322.66" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U005</Id>
+      <Name>Lagune am Wattenmeer</Name>
+      <Position lng="7.8943366" lat="53.7876606"/>
+      <MapPosition x="681.46" y="322.84" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U006</Id>
+      <Name>Haus Anne</Name>
+      <Position lng="7.8516063" lat="53.786227"/>
+      <MapPosition x="117.94" y="299.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U007</Id>
+      <Name>Inselheimverein Schalksmühle</Name>
+      <Position lng="7.8524413" lat="53.7859447"/>
+      <MapPosition x="128.84" y="293.42" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U008</Id>
+      <Name>Inselheim Rüstringen</Name>
+      <Position lng="7.8519046" lat="53.7854209"/>
+      <MapPosition x="121.58" y="281.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U009</Id>
+      <Name>Gutenbergheim</Name>
+      <Position lng="7.85383" lat="53.7850591"/>
+      <MapPosition x="146.82" y="273.42" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U010</Id>
+      <Name>Westeroog</Name>
+      <Position lng="7.8554102" lat="53.7850544"/>
+      <MapPosition x="167.64" y="272.98" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>U011</Id>
+      <Name>DJH Wangerooge</Name>
+      <Position lng="7.8578297" lat="53.7844923"/>
+      <MapPosition x="199.32" y="259.96" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>V001</Id>
+      <Name>Wäldchen</Name>
+      <Position lng="7.8901556" lat="53.7909622"/>
+      <MapPosition x="627.52" y="397.16" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>V002</Id>
+      <Name>Wäldchen</Name>
+      <Position lng="7.8888537" lat="53.7904782"/>
+      <MapPosition x="610.20" y="386.66" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>V003</Id>
+      <Name>Wäldchen</Name>
+      <Position lng="7.8918954" lat="53.7893998"/>
+      <MapPosition x="649.90" y="362.04" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>V004</Id>
+      <Name>Wäldchen</Name>
+      <Position lng="7.8928658" lat="53.7889234"/>
+      <MapPosition x="662.52" y="351.24" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>V005</Id>
+      <Name>Wäldchen</Name>
+      <Position lng="7.8965648" lat="53.7867373"/>
+      <MapPosition x="710.50" y="301.84" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W001</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.859932" lat="53.7903685"/>
+      <MapPosition x="229.12" y="390.26" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W002</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8830476" lat="53.7906921"/>
+      <MapPosition x="533.78" y="392.62" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W003</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8544402" lat="53.7896249"/>
+      <MapPosition x="156.50" y="374.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W004</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8592464" lat="53.7897292"/>
+      <MapPosition x="219.86" y="376.18" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W005</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8596831" lat="53.7898601"/>
+      <MapPosition x="225.66" y="379.00" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W007</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8608461" lat="53.7901354"/>
+      <MapPosition x="241.08" y="384.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W009</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8611987" lat="53.7901172"/>
+      <MapPosition x="245.72" y="384.40" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W010</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8616662" lat="53.7900632"/>
+      <MapPosition x="251.86" y="383.10" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W011</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8647726" lat="53.7899326"/>
+      <MapPosition x="292.74" y="379.54" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W012</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8652272" lat="53.7895702"/>
+      <MapPosition x="298.60" y="371.38" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W013</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8662998" lat="53.7901565"/>
+      <MapPosition x="312.94" y="384.20" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W014</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8711864" lat="53.7902107"/>
+      <MapPosition x="377.34" y="384.38" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W015</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8714438" lat="53.7904603"/>
+      <MapPosition x="380.82" y="389.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W016</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8717469" lat="53.7903086"/>
+      <MapPosition x="384.76" y="386.44" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W017</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8718923" lat="53.7899243"/>
+      <MapPosition x="386.54" y="377.86" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W019</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8724983" lat="53.7900262"/>
+      <MapPosition x="394.56" y="380.00" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W021</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8741176" lat="53.7903839"/>
+      <MapPosition x="416.02" y="387.62" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W022</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8838052" lat="53.790576"/>
+      <MapPosition x="543.72" y="389.88" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W023</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.884046" lat="53.7905396"/>
+      <MapPosition x="546.88" y="389.02" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W024</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8870305" lat="53.7898501"/>
+      <MapPosition x="585.96" y="373.06" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W025</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.861155" lat="53.7885932"/>
+      <MapPosition x="244.60" y="350.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W026</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8618421" lat="53.7894536"/>
+      <MapPosition x="253.96" y="369.50" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W027</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8623555" lat="53.7893884"/>
+      <MapPosition x="260.70" y="367.94" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W028</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.862639" lat="53.7892886"/>
+      <MapPosition x="264.40" y="365.66" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W029</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8629351" lat="53.7892276"/>
+      <MapPosition x="268.28" y="364.24" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W030</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8775832" lat="53.7891373"/>
+      <MapPosition x="461.24" y="359.16" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W032</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8789479" lat="53.7891348"/>
+      <MapPosition x="479.22" y="358.82" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W033</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8789938" lat="53.7892934"/>
+      <MapPosition x="479.88" y="362.34" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W034</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8791537" lat="53.789045"/>
+      <MapPosition x="481.90" y="356.78" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W036</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8878172" lat="53.7895463"/>
+      <MapPosition x="596.22" y="366.14" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W037</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8750881" lat="53.7884361"/>
+      <MapPosition x="428.12" y="344.08" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W040</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8864229" lat="53.7886615"/>
+      <MapPosition x="577.54" y="346.74" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W041</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8519278" lat="53.7869061"/>
+      <MapPosition x="122.42" y="314.92" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W042</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8576555" lat="53.7869392"/>
+      <MapPosition x="197.90" y="314.44" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W043</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8578571" lat="53.7873941"/>
+      <MapPosition x="200.72" y="324.52" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W044</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8892386" lat="53.7877447"/>
+      <MapPosition x="614.32" y="325.76" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W045</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8896626" lat="53.7877261"/>
+      <MapPosition x="619.90" y="325.26" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W046</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8593922" lat="53.7867067"/>
+      <MapPosition x="220.70" y="308.90" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W047</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8661814" lat="53.7853132"/>
+      <MapPosition x="309.66" y="276.46" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W048</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8665183" lat="53.7852022"/>
+      <MapPosition x="314.06" y="273.92" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W049</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8668893" lat="53.7852353"/>
+      <MapPosition x="318.96" y="274.58" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W050</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8671615" lat="53.7852739"/>
+      <MapPosition x="322.56" y="275.38" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W051</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8675616" lat="53.7852408"/>
+      <MapPosition x="327.82" y="274.56" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W052</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8680747" lat="53.7852924"/>
+      <MapPosition x="334.60" y="275.60" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W055</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8660621" lat="53.7848419"/>
+      <MapPosition x="307.92" y="266.00" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W056</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8707196" lat="53.7842459"/>
+      <MapPosition x="369.08" y="251.76" unit="mm"/>
+    </Control>
+    <Control type="Control">
+      <Id>W057</Id>
+      <Name>Tümpel / Wasserloch</Name>
+      <Position lng="7.8665431" lat="53.784059"/>
+      <MapPosition x="313.98" y="248.48" unit="mm"/>
+    </Control>
+  </RaceCourseData>
+</CourseData>

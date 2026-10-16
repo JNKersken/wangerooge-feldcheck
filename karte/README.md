@@ -32,6 +32,13 @@ Neue Ebene: Schlüssel in `LAYERS` ergänzen und die Zeichenbefehle in `with tag
 
 `run_all.sh` schreibt die Web-App direkt in die Repo-Wurzel. Danach committen und pushen, GitHub Pages veröffentlicht automatisch.
 
+Prüfen vor Ort: „Fehlt“ fragt nach – „nicht gefunden“ (bleibt in der Karte, zweimal von verschiedenen Handys = fehlt) oder
+„sicher weg“. Verschiebungen über 40 m (bei GPS über 3× Genauigkeit) werden einmal rückgefragt. Mit GPS zeigt die Karte
+Richtung und Entfernung zum gewählten Objekt (mit Kompass relativ zum Handy) und meldet unter 20 m „Fast da“.
+Ruhezone: `build_site.py` bestimmt für jedes Objekt dort den nächsten Punkt auf einem Weg (`wp`, `wd`); liegt es mehr als
+40 m (`RZ_SIGHT`) abseits, ist es nur per Luftbild prüfbar und zählt nicht zu den offenen Punkten im Gelände.
+Menü → Anzeigen → „Sonnenmodus“ schaltet auf volle Flächen und starken Kontrast.
+
 Offline: Kacheln und PDF-Daten (Blatt-SVGs farbig und SW, `lib/`) werden über ihren Inhalt adressiert (`t3_1_2.png?v=<hash>`,
 Liste `OFFLINE` in `index.html` und `KEEP` in `sw.js`, beide von `build_site.py`). Die Caches `fc-tiles` und `fc-pdf` überleben
 App-Updates; der Service Worker wirft beim Wechsel nur weg, was nicht mehr gebraucht wird, und die App lädt Geändertes nach,

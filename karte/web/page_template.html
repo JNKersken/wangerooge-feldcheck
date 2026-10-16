@@ -96,7 +96,13 @@ h2{margin:0;font-size:21px;line-height:1.2;font-weight:700;letter-spacing:-.015e
 .act{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:58px;border:0;border-radius:var(--r);font:700 15px var(--f-ui)}
 .act svg{width:20px;height:20px}
 .act:active{filter:brightness(.92);transform:scale(.98)}
-.a-ok{background:var(--ok);color:#fff}.a-bad{background:var(--bad);color:#fff}.a-move{background:var(--move);color:#231500}
+.a-ok{background:var(--ok);color:#fff}.a-bad{background:var(--bad);color:#fff}.a-move{background:var(--move);color:#231500}.a-nf{background:#7c7c82;color:#fff}
+.act small{font-size:11.5px;font-weight:500;opacity:.92}
+.ask{margin:0;font-size:14.5px;line-height:1.4}
+.dir{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:4px;vertical-align:-5px;color:var(--sel);transition:transform .25s}
+.dir svg{width:18px;height:18px}
+.dir.compass{color:var(--ok)}
+.stick{position:sticky;bottom:-16px;z-index:2;margin:0 -16px -16px;padding:10px 16px 16px;display:grid;gap:8px;background:var(--solid);box-shadow:0 -.5px 0 var(--hair);border-radius:0 0 28px 28px}
 .a-here{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;border:0;border-radius:var(--r);background:rgba(10,122,255,.16);color:var(--sel);font:600 15px var(--f-ui)}
 .a-here:disabled{opacity:.5}
 .a-here svg{width:18px;height:18px}
@@ -181,6 +187,14 @@ details summary{cursor:pointer;color:var(--muted);font-size:14px;font-weight:600
 .tour label input{width:18px;height:18px;accent-color:var(--accent)}
 .tour .skip{border:0;background:transparent;color:var(--muted);font-size:14px;font-weight:600;min-height:44px;padding:0 6px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+/* sun mode: solid surfaces, black text, stronger edges, a bit larger – readable in bright light */
+:root[data-sun]{--ink:#000;--muted:#2c2c2e;--hair:rgba(0,0,0,.35);--glass:#fff;--glass-strong:#fff;--solid:#fff;--edge:#000;--sheen:transparent;--fill:rgba(0,0,0,.08);--fill-2:rgba(0,0,0,.18);--field:rgba(0,0,0,.07);--blur:none;--lift:0 2px 0 rgba(0,0,0,.3);--accent-text:#9a0a4c}
+:root[data-sun] body{font-size:16.5px}
+:root[data-sun] .glass,:root[data-sun] .glass-strong{border:1.5px solid #000}
+:root[data-sun] .meta,:root[data-sun] .fact,:root[data-sun] .status,:root[data-sun] .li small{font-size:15px}
+:root[data-sun] .find{font-size:17px;font-weight:600}
+:root[data-sun] h2{font-size:23px}
+:root[data-sun] .chip[aria-pressed="true"]{background:#000;color:#fff;box-shadow:none}
 </style>
 
 <div id="app">
@@ -231,7 +245,7 @@ const IC = {
   text: '<path d="M5 7h14M5 12h14M5 17h9"/>', next: '<path d="M5 12h14M13 6l6 6-6 6"/>', undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
   down: '<path d="M6 9.5l6 6 6-6"/>', trash: '<path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/>', path: '<path d="M4 19c4-1 3-6 8-7s4-6 8-7" stroke-dasharray="2.2 3"/>',
   rec: '<circle cx="12" cy="12" r="5.5" fill="currentColor" stroke="none"/>', follow: '<circle cx="12" cy="12" r="7"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/><circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/>',
-  chev: '<path d="M9.5 6l6 6-6 6"/>', send: '<path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/>', doc: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/>', cloud: '<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/>'};
+  chev: '<path d="M9.5 6l6 6-6 6"/>', send: '<path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/>', doc: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/>', cloud: '<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/>', up: '<path d="M12 20V5M5.5 11.5 12 5l6.5 6.5"/>'};
 const svgI = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 const ti = (t) => esc(t).replace(/\[(more|list|loc|follow|plus|help)\]/g, (_, k) => `<span class="ii">${svgI(k)}</span>`);
 const LS = {get(k, d){try{const v = localStorage.getItem(k); return v ? JSON.parse(v) : d}catch(e){return d}}, set(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}};
@@ -265,13 +279,16 @@ const NEWGROUPS = [
   ['Nur vor Ort zu sehen', ['Ruhezonen-Schild','Ruhezonen-Pfahl','Strandaufgang (Nr.)','Findling / Stein','Pfahl / Pfosten','Fahnenmast','Einzelbaum','Schild (sonstiges)']],
   ['Weitere Landmarken', ['Bank','SOS-Schild','Markanter Busch','Grube / Trichter','Tümpel','Dünenkuppe','Steilhang / Abbruch','Dünenübergang','Tor / Durchlass','Infotafel','Schutzhütte','Sandfangzaun','Holzsteg','Sonstiges']]];
 const NEWTYPES = NEWGROUPS.flatMap(g => g[1]);
-const typeChips = (cur) => NEWGROUPS.map(([h, ts]) => `<p class="sub">${esc(h)}</p><div class="chips">${ts.map(t => `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${t === cur}">${esc(t)}</button>`).join('')}</div>`).join('');
+const recentTypes = () => LS.get('fc_recentTypes', []).filter(t => NEWTYPES.includes(t)).slice(0, 4);
+function useType(t){ if (t && t !== 'Schleichpfad') LS.set('fc_recentTypes', [t].concat(recentTypes().filter(x => x !== t)).slice(0, 4)); }
+const typeChips = (cur) => (recentTypes().length ? [['Zuletzt benutzt', recentTypes()]] : []).concat(NEWGROUPS).map(([h, ts]) => `<p class="sub">${esc(h)}</p><div class="chips">${ts.map(t => `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${t === cur}">${esc(t)}</button>`).join('')}</div>`).join('');
 
 let DATA = null, byId = {}, markers = {}, lines = {}, moveLines = {};
 let verdicts = {};             // confirmed from store (or local when no store)
 let pending = LS.get('fc_pending', {});   // local writes not yet confirmed
 let news = {}; let pendingNew = LS.get('fc_pendingNew', {});
 let selId = null, mode = null, addType = null, draft = [], draftLine = null, formDraft = null, showForm = false;
+let ask = null;   // a question in the object card: {kind: 'gone'} after „Fehlt“, {kind: 'move', v, far} for a far move
 let addOpen = false, showAll = LS.get('fc_showAll', false), catOff = new Set(LS.get('fc_catOff', [])), me = LS.get('fc_me', null), meMarker = null;
 let db = null, storeState = 'connecting';
 let gps = {on: false, watch: null, pos: null, acc: null, t: 0, head: null, err: null}, follow = false, rec = null, accLayer = null;
@@ -388,7 +405,7 @@ function inArea(it){ const b = areaBox(); if (!b) return true; const p = posOf(i
 let areaLayer = null;
 function drawArea(){ if (areaLayer) map.removeLayer(areaLayer); areaLayer = null; const b = areaBox(); if (b) areaLayer = L.rectangle(L.latLngBounds(ll(b[0], b[1]), ll(b[2], b[3])), {color: '#d0176c', weight: 2, dashArray: '6 6', fill: false, interactive: false}).addTo(map); }
 function progress(){
-  const todo = DATA.items.filter(i => i.s !== 'sicher').concat(DATA.paths).filter(inArea);
+  const todo = DATA.items.filter(i => i.s !== 'sicher' && !i.luft).concat(DATA.paths).filter(inArea);
   const done = todo.filter(i => vOf(i.id)).length;
   $('progTxt').textContent = `${done}/${todo.length}`; $('progTxt').title = `${done} von ${todo.length} Objekten geprüft` + (areaBox() ? ' (im gewählten Gebiet)' : '');
   $('meterFill').setAttribute('stroke-dasharray', `${(100 * done / Math.max(1, todo.length)).toFixed(1)} 100`);
@@ -495,7 +512,7 @@ async function initStore(){
 // ---------- interaction ----------
 function onTap(latlng, id){
   if (mode && !inFrame(en(latlng))) { toast('Diese Stelle liegt außerhalb der Karte.', 3000); return; }
-  if (mode === 'move' && selId){ const [e, n] = en(latlng); setMode(null); saveVerdict(selId, {st: 'woanders', e, n, note: noteVal(), t: Date.now()}); renderSheet(); return; }
+  if (mode === 'move' && selId){ const [e, n] = en(latlng); setMode(null); moveTo(selId, {st: 'woanders', e, n, src: 'tap', note: noteVal(), t: Date.now()}, 40); return; }
   if (mode === 'add'){ const [e, n] = en(latlng); const nid = 'N' + Date.now().toString(36); setMode(null); saveNew(nid, {...formDraft, e, n, t: Date.now()}); formDraft = null; selectNew(nid); return; }
   if (mode === 'movenew' && selNewId){ const [e, n] = en(latlng); const cur = pendingNew[selNewId] || news[selNewId]; setMode(null); if (cur) saveNew(selNewId, {...cur, e, n, t: Date.now()}); renderSheet(); return; }
   if (mode === 'path'){ draft.push(en(latlng)); drawDraft(); renderSheet(); return; }
@@ -504,8 +521,20 @@ function onTap(latlng, id){
 }
 map.on('click', (e) => onTap(e.latlng, null));
 let prevSel = null, selNewId = null;
-function redrawSel(){ if (prevSel && byId[prevSel]) drawItem(byId[prevSel]); if (selId && byId[selId]) drawItem(byId[selId]); prevSel = selId; }
-function select(id){ selId = id; selNewId = null; redrawSel(); renderSheet(); }
+function redrawSel(){ if (prevSel && byId[prevSel]) drawItem(byId[prevSel]); if (selId && byId[selId]) drawItem(byId[selId]); prevSel = selId; drawSight(); }
+function select(id){ if (id !== selId) ask = null; selId = id; selNewId = null; redrawSel(); renderSheet(); }
+let sight = null;
+function drawSight(){   // Ruhezone: dashed line from the viewing point on the path to the object
+  if (sight) map.removeLayer(sight); sight = null;
+  const it = selId && byId[selId]; if (!it || !it.wp) return;
+  sight = L.layerGroup([L.polyline([ll(...it.wp), ll(it.e, it.nn)], {color: it.luft ? '#8e8e93' : '#2f8a4a', weight: 2.5, dashArray: '3 6', interactive: false}),
+    L.circleMarker(ll(...it.wp), {radius: 6, color: '#fff', weight: 2, fillColor: it.luft ? '#8e8e93' : '#2f8a4a', fillOpacity: 1, interactive: false})]).addTo(map);
+}
+function moveTo(id, v, limit){   // a corrected position far from the old one is asked back once
+  const it = byId[id], far = it ? Math.round(dist([v.e, v.n], posOf(it))) : 0;
+  if (far > limit) { ask = {kind: 'move', v, far, id}; if (selId !== id) select(id); else renderSheet(); return; }
+  ask = null; saveVerdict(id, v); renderSheet();
+}
 function selectNew(id){ selNewId = id; selId = null; redrawSel(); renderSheet(); }
 function setMode(m, txt){
   mode = m; $('banner').hidden = !m; if (m) $('bannerTxt').textContent = txt;
@@ -540,6 +569,11 @@ function gpsText(){
   const age = Math.round((Date.now() - gps.t) / 1000);
   return `${gps.acc > 100 ? 'Ungefähre Position (WLAN)' : 'GPS'} ± ${Math.round(gps.acc)} m${age > 15 ? `, Position vor ${age} s` : ''}${inFrame(gps.pos) ? '' : ', du bist außerhalb der Karte'}`;
 }
+function applySun(){   // sun mode forces the light look with solid surfaces
+  const on = LS.get('fc_sun', false), r = document.documentElement;
+  if (on) { r.dataset.sun = '1'; r.dataset.theme = 'light'; } else { delete r.dataset.sun; delete r.dataset.theme; }
+}
+applySun();
 function toast(msg, ms = 6000){   // short notice under the top bar
   document.querySelectorAll('.toast').forEach(t => t.remove());
   const t = document.createElement('div'); t.className = 'toast glass-strong'; t.setAttribute('role', 'status'); t.textContent = msg;
@@ -594,7 +628,7 @@ function onPos(p){
 }
 function renderStatus(){
   const el = document.querySelector('#sheet .gpsst'); if (el) el.textContent = gpsText();
-  const hb = document.querySelectorAll('[data-here]'); hb.forEach(b => { b.disabled = !gps.pos; b.querySelector('small') && (b.querySelector('small').textContent = gps.pos ? `± ${Math.round(gps.acc)} m` : 'kein Signal'); });
+  const hb = document.querySelectorAll('[data-here]:not([data-busy])'); hb.forEach(b => { if (b.id === 'fHere' && $('fHint') && !$('fHint').hidden) return; b.disabled = !gps.pos; b.querySelector('small') && (b.querySelector('small').textContent = gps.pos ? `± ${Math.round(gps.acc)} m` : 'kein Signal'); });
   if (rec) { const r = document.querySelector('#recN'); if (r) r.textContent = `${rec.pts.length} Punkte · ${Math.round(rec.pts.reduce((s, p, i) => i ? s + dist(p, rec.pts[i - 1]) : 0, 0))} m`; }
 }
 const hereBtn = (id, label) => IS_APP && gps.on ? `<button class="a-here" id="${id}" type="button" data-here ${gps.pos ? '' : 'disabled'}>${svgI('loc')}${label} <small style="font-weight:400;opacity:.85">${gps.pos ? '± ' + Math.round(gps.acc) + ' m' : 'kein Signal'}</small></button>` : '';
@@ -606,13 +640,14 @@ function panToVisible(p, zoom){   // centre a point in the visible part of the m
 function panToMe(zoom){ if (gps.pos) panToVisible(gps.pos, zoom); }
 function measureHere(btn, done){   // one dune fix is often ±15–30 m: collect 5 s of fixes and average them (weight 1/acc²)
   if (!gps.pos || btn.disabled) return;
+  btn.dataset.busy = '1';
   // each fix counts once (a phone standing still may report rarely); fixes older than 15 s are not used
   const t0 = Date.now(), got = [], take = () => { if (gps.pos && Date.now() - gps.t < 15000 && !got.some(f => f.t === gps.t)) got.push({p: gps.pos.slice(), acc: gps.acc, t: gps.t}); };
   take(); btn.disabled = true;
   const iv = setInterval(() => {
     take(); const left = 5 - Math.floor((Date.now() - t0) / 1000);
     if (left > 0) { btn.innerHTML = `${svgI('loc')}Messe Position … ${left} s`; return; }
-    clearInterval(iv); btn.disabled = false;
+    clearInterval(iv); btn.disabled = false; delete btn.dataset.busy;
     if (!got.length) { toast('Kein GPS-Signal – bitte erneut versuchen.'); renderSheet(); return; }
     let sw = 0, se = 0, sn = 0; for (const f of got) { const w = 1 / Math.max(1, f.acc) ** 2; sw += w; se += f.p[0] * w; sn += f.p[1] * w; }
     const acc = Math.max(2, Math.round(Math.min(...got.map(f => f.acc)) / Math.sqrt(Math.min(got.length, 4))));
@@ -627,7 +662,8 @@ const fresh = () => IS_APP && gps.on && gps.pos && Date.now() - gps.t < 30000;
 const withD = (v, it) => fresh() && it ? {...v, d: Math.round(dist(gps.pos, posOf(it)))} : v;   // how far away the helper stood
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 function posOf(it){ return it.c ? it.c[Math.floor(it.c.length / 2)] : [it.e, it.nn]; }
-const openItems = () => DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !vOf(i.id) && !catOff.has(i.k) && inArea(i));
+const openItems = () => DATA.items.concat(DATA.paths).filter(i => i.s !== 'sicher' && !i.luft && !vOf(i.id) && !catOff.has(i.k) && inArea(i));
+const target = (it) => it.wp && !it.luft ? it.wp : posOf(it);   // where to go: in the Ruhezone the viewing point on the path
 function nextOpen(){
   const from = selId && byId[selId] ? posOf(byId[selId]) : (me || en(map.getCenter()));
   const cand = openItems().filter(i => i.id !== selId);
@@ -635,9 +671,24 @@ function nextOpen(){
   if (cand[0]) { select(cand[0].id); panToVisible(posOf(cand[0]), Math.max(map.getZoom(), 1)); }
   else toast(areaBox() ? 'Im gewählten Gebiet ist alles geprüft. Anderes Gebiet im Menü unter „Anzeigen“.' : 'Alles geprüft – danke!', 5000);
 }
-function updateDir(){   // live distance to the selected object while walking (no full re-render)
-  const el = document.querySelector('#sheet [data-dist]'); if (!el || !selId || !byId[selId] || !me) return;
-  el.textContent = fmtDist(dist(posOf(byId[selId]), me));
+const nearDone = new Set();
+function updateDir(){   // live distance and direction to the selected object while walking (no full re-render)
+  const it = selId && byId[selId]; if (!it || !me) return;
+  const tg = target(it), dd = dist(tg, me);
+  const head = document.querySelector('#sheet .ihead .id');
+  if (head && $('vClose') && !head.querySelector('[data-dist]')) head.innerHTML = `<span class="dir" data-dir hidden>${svgI('up')}</span><span data-dist></span>`;   // first fix after the card was drawn
+  const el = document.querySelector('#sheet [data-dist]'); if (el) el.textContent = fmtDist(dd);
+  const ar = document.querySelector('#sheet [data-dir]');
+  if (ar) {
+    const brg = Math.atan2(tg[0] - me[0], tg[1] - me[1]) * 180 / Math.PI, rel = gps.head !== null ? brg - gps.head : null;
+    ar.hidden = !(IS_APP && gps.on && gps.pos) || dd < 4;
+    ar.style.transform = `rotate(${Math.round(((rel === null ? brg : rel) + 360) % 360)}deg)`; ar.classList.toggle('compass', rel !== null);
+    ar.title = rel !== null ? 'Richtung vom Handy aus' : 'Richtung auf der Karte (Norden oben)';
+  }
+  if (fresh() && dd < 20 && !nearDone.has(it.id)) {   // once per object: you are there
+    nearDone.add(it.id); try { navigator.vibrate && navigator.vibrate(60); } catch(e) {}
+    toast(it.wp && !it.luft ? 'Du bist am Blickpunkt auf dem Weg – von hier aus schauen.' : 'Fast da – schau dich um.', 4000);
+  }
 }
 const fmtDist = (m) => m < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1).replace('.', ',')} km`;
 
@@ -665,19 +716,22 @@ function renderSheet(){
     return;
   }
   if (showForm){
-    const cur = formDraft || {typ: 'Ruhezonen-Schild', name: '', note: ''}, g = IS_APP && gps.on;
+    const cur = formDraft || {typ: '', name: '', note: ''}, g = IS_APP && gps.on;
     S.innerHTML = `<div class="row" style="flex-wrap:nowrap"><h2 style="flex:1">Neu erfassen</h2><button class="x" id="fCancel" type="button" aria-label="Abbrechen">${svgI('x')}</button></div>
       <div id="typChips" style="display:grid;gap:6px">${typeChips(cur.typ)}</div>
       <input id="nName" type="text" placeholder="Name (optional)" value="${esc(cur.name || '')}">
       <textarea id="nDesc" placeholder="Woran erkennt man es? (optional)">${esc(cur.note || '')}</textarea>
+      <div class="stick"><p class="meta" id="fHint" ${cur.typ ? 'hidden' : ''}>Erst oben die Art wählen.</p>
       ${hereBtn('fHere', 'Hier ist es')}
       <button class="ib ${g ? '' : 'pri'}" id="fPin" type="button">${svgI('pin')}${g ? 'Stattdessen auf Karte tippen' : 'Position auf Karte tippen'}</button>
-      ${gpsLine()}`;
+      ${gpsLine()}</div>`;
     let typ = cur.typ;
-    S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+    const ready = () => { $('fHint').hidden = !!typ; $('fPin').disabled = !typ; if ($('fHere')) $('fHere').disabled = !typ || !gps.pos; };
+    S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x.dataset.t === typ)); ready(); });
+    ready();
     if ($('fHere')) $('fHere').onclick = () => { if (inTour()) return; const f = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()};
-      measureHere($('fHere'), (h) => { const nid = 'N' + Date.now().toString(36); showForm = false; saveNew(nid, {...f, ...h, t: Date.now()}); formDraft = null; selectNew(nid); }); };
-    $('fPin').onclick = () => { formDraft = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()}; showForm = false; setMode('add', `Position antippen: ${typ}`); renderSheet(); };
+      measureHere($('fHere'), (h) => { const nid = 'N' + Date.now().toString(36); showForm = false; useType(f.typ); saveNew(nid, {...f, ...h, t: Date.now()}); formDraft = null; selectNew(nid); }); };
+    $('fPin').onclick = () => { if (!typ) return; formDraft = {typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()}; useType(typ); showForm = false; setMode('add', `Position antippen: ${typ}`); renderSheet(); };
     $('fCancel').onclick = () => { showForm = false; formDraft = null; renderSheet(); };
     return;
   }
@@ -693,7 +747,7 @@ function renderSheet(){
       ${storeLine()}`;
     let typ = n.typ;
     S.querySelectorAll('#typChips [data-t]').forEach(b => b.onclick = () => { typ = b.dataset.t; S.querySelectorAll('#typChips [data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
-    $('nSave').onclick = () => { saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), t: Date.now()}); $('nSave').textContent = 'Gespeichert'; };
+    $('nSave').onclick = () => { useType(typ); saveNew(selNewId, {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim(), t: Date.now()}); $('nSave').textContent = 'Gespeichert'; };
     $('nDone').onclick = () => { selNewId = null; drawNews(); renderSheet(); };
     if (!n.pts) $('nMove').onclick = () => setMode('movenew', 'Neue Position antippen');
     if ($('nHere')) $('nHere').onclick = () => { const id = selNewId, f = {...n, typ, name: $('nName').value.trim(), note: $('nDesc').value.trim()};
@@ -719,29 +773,53 @@ function renderSheet(){
   }
   const it = byId[selId], v = vOf(selId), st = stateOf(it), c = CAT[it.k] || CAT['Kleinobjekt'];
   const pill = STATES[st] || STATES.open;
-  const d = me ? dist(posOf(it), me) : null;
+  const d = me ? dist(target(it), me) : null;
   const fact = (ic, txt, cls = '') => txt ? `<div class="fact ${cls}">${svgI(ic)}<span>${esc(txt)}</span></div>` : '';
-  S.innerHTML = `<div class="ihead"><span class="pill ${pill[0]}">${pill[1]}</span><span class="cat">${esc(c[0])}</span><span class="id" ${d !== null ? 'data-dist' : ''}>${d !== null ? fmtDist(d) : esc(it.id)}</span></div>
-    <h2>${esc(it.n || c[0])}</h2>
-    ${it.f ? `<p class="find">${esc(it.f)}</p>` : ''}
-    <div class="facts">${fact('pin', it.wo)}${it.z ? fact('leaf', 'Ruhezone: nur von Wegen aus prüfen', 'zone') : ''}${fact('info', it.s === 'sicher' && !v ? 'Schon sicher – nur ändern, wenn es nicht stimmt.' : (st === 'nfm' ? `Schon ${it.nf}× nicht gefunden. Bitte genau nachsehen.` : it.w))}${fact('text', it.no)}</div>
-    <div class="acts" ${it.c ? 'style="grid-template-columns:1fr 1fr"' : ''}>
+  const rz = !it.z ? '' : it.luft ? fact('leaf', `Ruhezone, ${it.wd} m abseits der Wege: nicht hingehen. Wird per Luftbild geprüft.`, 'zone')
+    : it.wp ? fact('leaf', `Ruhezone: vom Weg aus prüfen. Bester Blickpunkt auf dem Weg, ${it.wd} m entfernt (grün gestrichelt).`, 'zone')
+    : fact('leaf', 'Ruhezone: liegt am Weg – Weg nicht verlassen.', 'zone');
+  let acts;
+  if (ask && ask.kind === 'gone' && !it.c) {
+    const away = fresh() ? Math.round(dist(gps.pos, posOf(it))) : 0, far = away > Math.max(50, 2 * gps.acc) ? away : 0;
+    acts = `<p class="ask"><b>Fehlt – was trifft zu?</b>${far ? ` Du bist ${far} m entfernt. Sicher an der richtigen Stelle gesucht?` : ''}</p>
+      <div class="acts" style="grid-template-columns:1fr 1fr">
+        <button class="act a-nf" id="vNf" type="button">${svgI('help')}Nicht gefunden<small>bleibt, jemand schaut nach</small></button>
+        <button class="act a-bad" id="vGone" type="button">${svgI('x')}Sicher weg<small>abgebaut, wird entfernt</small></button></div>
+      <button class="ib" id="vAskX" type="button">Abbrechen</button>`;
+  } else if (ask && ask.kind === 'move' && ask.id === selId) {
+    acts = `<p class="ask"><b>${ask.far} m vom bisherigen Ort.</b> Wirklich dorthin verschieben?</p>
+      <div class="row"><button class="ib pri" id="vMoveOk" type="button">${svgI('check')}Verschieben</button><button class="ib" id="vMoveX" type="button">Abbrechen</button></div>`;
+  } else {
+    acts = `<div class="acts" ${it.c ? 'style="grid-template-columns:1fr 1fr"' : ''}>
       <button class="act a-ok" id="vOk" type="button">${svgI('check')}Stimmt</button>
       <button class="act a-bad" id="vBad" type="button">${svgI('x')}Fehlt</button>
       ${it.c ? '' : `<button class="act a-move" id="vMove" type="button">${svgI('move')}Woanders</button>`}
     </div>
-    ${it.c ? `<p class="meta">${ti('Anderer Verlauf? Mit [plus] richtig einzeichnen und diesen hier auf „Fehlt“ setzen.')}</p>` : hereBtn('vHere', 'Woanders: steht hier')}
+    ${it.c ? `<p class="meta">${ti('Anderer Verlauf? Mit [plus] richtig einzeichnen und diesen hier auf „Fehlt“ setzen.')}</p>` : hereBtn('vHere', 'Woanders: steht hier')}`;
+  }
+  S.innerHTML = `<div class="ihead"><span class="pill ${pill[0]}">${pill[1]}</span><span class="cat">${esc(c[0])}</span><span class="id">${d !== null ? `<span class="dir" data-dir hidden>${svgI('up')}</span><span data-dist>${fmtDist(d)}</span>` : esc(it.id)}</span></div>
+    <h2>${esc(it.n || c[0])}</h2>
+    ${it.f ? `<p class="find">${esc(it.f)}</p>` : ''}
+    <div class="facts">${fact('pin', it.wo)}${rz}${fact('info', it.s === 'sicher' && !v ? 'Schon sicher – nur ändern, wenn es nicht stimmt.' : (st === 'nfm' ? `Schon ${it.nf}× nicht gefunden. Bitte genau nachsehen.` : it.w))}${fact('text', it.no)}</div>
+    ${acts}
     <textarea id="note" placeholder="Notiz (optional)" rows="1">${esc(v && v.note || '')}</textarea>
     <div class="row"><button class="ib grow" id="bNext2" type="button">Nächstes offenes${svgI('next')}</button>${v ? `<button class="ib icon" id="vUndo" type="button" aria-label="Bewertung zurücknehmen" title="Bewertung zurücknehmen">${svgI('undo')}</button>` : ''}<button class="ib icon" id="vClose" type="button" aria-label="Schließen" title="Schließen">${svgI('down')}</button></div>
     ${gpsLine()}${storeLine()}`;
-  $('vOk').onclick = () => { saveVerdict(selId, withD({st: 'ok', note: noteVal(), t: Date.now()}, it)); renderSheet(); };
-  $('vBad').onclick = () => { saveVerdict(selId, withD({st: 'fehlt', note: noteVal(), t: Date.now()}, it)); renderSheet(); };
-  if ($('vMove')) $('vMove').onclick = () => setMode('move', 'Richtige Position antippen');
-  if ($('vHere')) $('vHere').onclick = () => { if (inTour()) return; const id = selId, note = noteVal();
-    measureHere($('vHere'), (h) => { saveVerdict(id, {st: 'woanders', ...h, note, t: Date.now()}); renderSheet(); }); };
+  const on = (id, fn) => { if ($(id)) $(id).onclick = fn; };
+  on('vOk', () => { ask = null; saveVerdict(selId, withD({st: 'ok', note: noteVal(), t: Date.now()}, it)); renderSheet(); });
+  on('vBad', () => { if (it.c) { saveVerdict(selId, withD({st: 'fehlt', note: noteVal(), t: Date.now()}, it)); renderSheet(); return; } ask = {kind: 'gone'}; renderSheet(); });
+  on('vNf', () => { ask = null; saveVerdict(selId, withD({st: 'nf', note: noteVal(), t: Date.now()}, it)); renderSheet(); });
+  on('vGone', () => { ask = null; saveVerdict(selId, withD({st: 'fehlt', note: noteVal(), t: Date.now()}, it)); renderSheet(); });
+  on('vAskX', () => { ask = null; renderSheet(); });
+  on('vMoveOk', () => { const a = ask; ask = null; saveVerdict(a.id, {...a.v, note: noteVal() || a.v.note}); renderSheet(); });
+  on('vMoveX', () => { ask = null; renderSheet(); });
+  on('vMove', () => setMode('move', 'Richtige Position antippen'));
+  on('vHere', () => { if (inTour()) return; const id = selId, note = noteVal();
+    measureHere($('vHere'), (h) => moveTo(id, {st: 'woanders', ...h, note, t: Date.now()}, Math.max(40, 3 * h.acc))); });
   $('bNext2').onclick = nextOpen;
-  $('vClose').onclick = () => { selId = null; redrawSel(); renderSheet(); };
+  $('vClose').onclick = () => { selId = null; ask = null; redrawSel(); renderSheet(); };
   if (v) $('vUndo').onclick = () => { undoVerdict(selId); renderSheet(); };
+  updateDir();
 }
 
 // ---------- list & menu ----------
@@ -804,6 +882,7 @@ function renderMenu(){
     <section class="grp"><h3>Anzeigen</h3>
       ${catGroups(cats).map(([h, ks]) => `<p class="sub">${esc(h)}</p><div class="chips">${ks.map(k => `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${!catOff.has(k)}">${esc((CAT[k] || [k])[0])}</button>`).join('')}</div>`).join('')}
       <label class="tog">Sichere Objekte immer zeigen<input class="sw" type="checkbox" id="tAll" ${showAll ? 'checked' : ''}></label>
+      <label class="tog">Sonnenmodus (starker Kontrast)<input class="sw" type="checkbox" id="tSun" ${LS.get('fc_sun', false) ? 'checked' : ''}></label>
       ${(DATA.sheets || []).length ? `<p class="sub">Mein Gebiet</p><div class="chips">${[{id: '', title: 'Ganze Karte'}].concat(DATA.sheets).map(a => `<button class="chip" type="button" data-area="${esc(a.id)}" aria-pressed="${a.id === (areaBox() ? area : '')}">${esc(a.title)}</button>`).join('')}</div>
       <p class="meta">Liste, „Nächstes offenes“ und Fortschritt bleiben im Gebiet.</p>` : ''}
     </section>
@@ -835,6 +914,7 @@ function renderMenu(){
   $('menuPanel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const k = b.dataset.k; catOff.has(k) ? catOff.delete(k) : catOff.add(k); LS.set('fc_catOff', [...catOff]); b.setAttribute('aria-pressed', !catOff.has(k)); redrawAll(); });
   $('bTour').onclick = () => startTour();
   $('tAll').onchange = (e) => { showAll = e.target.checked; LS.set('fc_showAll', showAll); redrawAll(); };
+  $('tSun').onchange = (e) => { LS.set('fc_sun', e.target.checked); applySun(); };
   $('menuPanel').querySelectorAll('[data-area]').forEach(b => b.onclick = () => { setArea(b.dataset.area); $('menuPanel').querySelectorAll('[data-area]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
   $('menuPanel').querySelectorAll('[data-ia]').forEach(b => b.onclick = () => $('menuPanel').querySelectorAll('[data-ia]').forEach(x => x.setAttribute('aria-pressed', x === b)));
   if (IS_APP && LS.get('fc_offline', false) && $('offSt')) offlineMissing().then(m => { const st = $('offSt'); if (st) st.textContent = offText(m); }).catch(() => {});
